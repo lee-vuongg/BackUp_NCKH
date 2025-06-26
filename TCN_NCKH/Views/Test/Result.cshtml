@@ -1,0 +1,110 @@
+﻿@{
+    ViewData["Title"] = ViewBag.TopicTitle + " - Kết quả bài thi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var testResults = ViewBag.TestResults as List<TCN_NCKH.Controllers.QuestionResult>;
+}
+
+<link rel="stylesheet" href="~/css/test.css" /> @* Tự tạo file CSS này cho đẹp *@
+
+<div class="container test-page-container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-10">
+            <h1 class="section-title text-center mb-4">Kết Quả Bài Thi @ViewBag.TopicTitle</h1>
+            <hr>
+
+            <div class="score-summary text-center mb-4">
+                <h3 class="mb-3">Điểm của bạn: <span class="text-success display-4 fw-bold">@ViewBag.Score / @ViewBag.TotalQuestions</span></h3>
+                @{
+                    decimal percentage = (decimal)ViewBag.Score / ViewBag.TotalQuestions * 100;
+                }
+                <p class="lead">Bạn đã trả lời đúng <strong class="@(percentage >= 70 ? "text-success" : "text-danger")">@percentage.ToString("0.00")%</strong> số câu hỏi.</p>
+                @if (percentage >= 70)
+                {
+                    <p class="alert alert-success">Chúc mừng! Bạn đã hoàn thành bài thi với kết quả tốt.</p>
+                }
+                else
+                {
+                    <p class="alert alert-warning">Bạn chưa đạt điểm yêu cầu. Hãy ôn tập lại và thử sức lần nữa nhé!</p>
+                }
+            </div>
+
+            <h3 class="mb-3">Chi tiết các câu trả lời:</h3>
+            <div class="results-detail">
+                @if (testResults != null && testResults.Any())
+                {
+                    int qNum = 0;
+                    foreach (var result in testResults)
+                    {
+                        qNum++;
+                        <div class="card mb-3 @(result.IsCorrect ? "border-success" : "border-danger")">
+                            <div class="card-body">
+                                <h5 class="card-title">Câu @qNum: @result.Question.Text</h5>
+                                <ul class="list-unstyled">
+                                    @for (int i = 0; i < result.Question.Options.Count; i++)
+                                    {
+                                        var optionClass = "";
+                                        if (i == result.Question.CorrectOptionIndex)
+                                        {
+                                            optionClass = "text-success fw-bold"; // Đáp án đúng
+                                        }
+                                        else if (result.UserAnswerIndex.HasValue && i == result.UserAnswerIndex.Value && !result.IsCorrect)
+                                        {
+                                            optionClass = "text-danger fw-bold"; // Đáp án sai người dùng chọn
+                                        }
+
+                                        <li class="@optionClass">
+                                            @if (i == result.Question.CorrectOptionIndex)
+                                            {
+                                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                                // Icon đúng
+                                            }
+                                            else if (result.UserAnswerIndex.HasValue && i == result.UserAnswerIndex.Value && !result.IsCorrect)
+                                            {
+                                                <i class="bi bi-x-circle-fill text-danger me-2"></i>
+                                                // Icon sai
+                                            }
+                                            else
+                                            {
+                                                <i class="bi bi-circle me-2"></i>
+                                                // Icon bình thường
+                                            }
+                                            @result.Question.Options[i]
+                                        </li>
+                                    }
+                                </ul>
+                                @if (!result.IsCorrect)
+                                {
+                                    <p class="text-danger mt-2">
+                                        Đáp án của bạn:
+                                        @if (result.UserAnswerIndex.HasValue)
+                                        {
+                                            <span>@result.Question.Options[result.UserAnswerIndex.Value]</span>
+                                        }
+                                        else
+                                        {
+                                            <span>(Chưa trả lời)</span>
+                                        }
+                                    </p>
+                                    <p class="text-success">Đáp án đúng: @result.Question.Options[result.Question.CorrectOptionIndex]</p>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-center text-muted">Không có chi tiết kết quả để hiển thị.</p>
+                }
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="/" class="btn btn-primary btn-lg">Quay về Trang chủ</a>
+                <a href="/Test/@ViewBag.TopicTitle.Replace(" ", "")" class="btn btn-info btn-lg ms-3">Thi lại</a> @* Nút thi lại *@
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+}

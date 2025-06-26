@@ -1,0 +1,221 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">Chào mừng Admin!</h1>
+    <p class="lead">Tổng quan hệ thống</p>
+
+    <div class="row">
+        <div class="col-lg-8 mb-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Lịch Thi Sắp Tới</h6>
+                </div>
+                <div class="card-body">
+                    <div id="calendar"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 mb-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Phân Phối Điểm Sinh Viên</h6>
+                </div>
+                <div class="card-body">
+                    <div id="scoreChartContainer" style="cursor: pointer;">
+                        <canvas id="scoreChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="scoreChartModal" tabindex="-1" role="dialog" aria-labelledby="scoreChartModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="scoreChartModalLabel">Phân Phối Điểm Sinh Viên</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <canvas id="scoreChartModalCanvas"></canvas>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    <script>
+        var upcomingExamsData = @Html.Raw(ViewBag.UpcomingExams);
+        var studentScoresData = @Html.Raw(ViewBag.StudentScores);
+
+        // Biến toàn cục để lưu instance của biểu đồ chính
+        var mainScoreChart;
+        // Biến toàn cục để lưu instance của biểu đồ trong modal
+        var modalScoreChart;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Khởi tạo lịch thi (FullCalendar) ---
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                locale: 'vi',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                events: upcomingExamsData.map(exam => ({
+                    id: exam.id,
+                    title: exam.title,
+                    start: exam.start,
+                    extendedProps: {
+                        duration: exam.duration
+                    }
+                })),
+                eventClick: function(info) {
+                    alert('Lịch thi: ' + info.event.title + '\nThời gian làm bài: ' + info.event.extendedProps.duration + ' phút');
+                }
+            });
+            calendar.render();
+
+            // --- Khởi tạo biểu đồ điểm chính (Chart.js) ---
+            var ctx = document.getElementById('scoreChart').getContext('2d');
+            var labels = studentScoresData.map(item => item.Diem + ' điểm');
+            var dataPoints = studentScoresData.map(item => item.SoLuong);
+
+            var chartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Số lượng sinh viên'
+                        },
+                        ticks: {
+                            callback: function(value) { if (value % 1 === 0) { return value; }}
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Điểm'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Phân phối điểm thi'
+                    }
+                }
+            };
+
+            mainScoreChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Số lượng sinh viên',
+                        data: dataPoints,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 235, 0.6)', 'rgba(255, 206, 86, 0.6)',
+                            'rgba(75, 192, 192, 0.6)', 'rgba(153, 102, 255, 0.6)', 'rgba(255, 159, 64, 0.6)',
+                            'rgba(199, 199, 199, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)',
+                            'rgba(199, 199, 199, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: chartOptions // Sử dụng chung options
+            });
+
+            // --- Xử lý sự kiện click để mở modal ---
+            document.getElementById('scoreChartContainer').addEventListener('click', function() {
+                // Đảm bảo modal được hiển thị trước khi vẽ biểu đồ trong đó
+                $('#scoreChartModal').modal('show');
+            });
+
+            // --- Lắng nghe sự kiện modal hiển thị hoàn tất ---
+            $('#scoreChartModal').on('shown.bs.modal', function () {
+                // Nếu biểu đồ trong modal đã tồn tại, hủy nó đi để vẽ lại
+                if (modalScoreChart) {
+                    modalScoreChart.destroy();
+                }
+
+                // Vẽ biểu đồ trong modal
+                var modalCtx = document.getElementById('scoreChartModalCanvas').getContext('2d');
+                modalScoreChart = new Chart(modalCtx, {
+                    type: 'bar', // Cùng loại với biểu đồ chính
+                    data: {
+                        labels: labels, // Dùng lại dữ liệu
+                        datasets: [{
+                            label: 'Số lượng sinh viên',
+                            data: dataPoints,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 235, 0.6)', 'rgba(255, 206, 86, 0.6)',
+                                'rgba(75, 192, 192, 0.6)', 'rgba(153, 102, 255, 0.6)', 'rgba(255, 159, 64, 0.6)',
+                                'rgba(199, 199, 199, 0.6)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)',
+                                'rgba(199, 199, 199, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false, // Quan trọng để biểu đồ co giãn trong modal
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Số lượng sinh viên'
+                                },
+                                ticks: {
+                                    callback: function(value) { if (value % 1 === 0) { return value; }}
+                                }
+                            },
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Điểm'
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            title: {
+                                display: true,
+                                text: 'Phân phối điểm thi (Phóng to)'
+                            }
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}

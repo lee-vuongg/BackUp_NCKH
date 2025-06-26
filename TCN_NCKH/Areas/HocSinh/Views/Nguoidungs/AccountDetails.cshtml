@@ -1,0 +1,122 @@
+﻿@model TCN_NCKH.Models.DBModel.Nguoidung
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Thông tin tài khoản";
+    Layout = "~/Areas/HocSinh/Views/Shared/_LayoutHocSinh.cshtml";
+}
+
+<style>
+    .card-profile {
+        border: none;
+        border-radius: 1.5rem;
+        background: #fff;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+        .card-profile:hover {
+            box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+        }
+
+        .card-profile .card-header {
+            border-top-left-radius: 1.5rem;
+            border-top-right-radius: 1.5rem;
+            background: linear-gradient(135deg, #17a2b8, #138496);
+        }
+
+            .card-profile .card-header h4 {
+                font-weight: 600;
+                letter-spacing: 0.5px;
+            }
+
+    .profile-avatar {
+        width: 130px;
+        height: 130px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 5px solid #fff;
+        margin-top: -65px;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-info dt {
+        font-weight: 600;
+        color: #555;
+    }
+
+    .profile-info dd {
+        color: #333;
+        margin-bottom: 1rem;
+    }
+
+    .btn-custom {
+        padding: 0.6rem 1.2rem;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: all 0.2s ease;
+    }
+
+        .btn-custom:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+</style>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card card-profile text-center">
+                <div class="card-header text-white">
+                    <h4 class="mb-0">Thông tin tài khoản</h4>
+                </div>
+
+                <div class="card-body p-5">
+                    <!-- Avatar -->
+                    <div class="mb-4">
+                        <img src="~/images/@(string.IsNullOrEmpty(Model.Anhdaidien) ? "default-avatar.png" : Model.Anhdaidien)" alt="Avatar"          
+                             class="profile-avatar" />
+
+                    </div>
+
+                    <!-- Thông tin cá nhân -->
+                    <dl class="row profile-info text-start justify-content-center">
+                        <dt class="col-sm-4">Họ tên</dt>
+                        <dd class="col-sm-8">@Model.Hoten</dd>
+
+                        <dt class="col-sm-4">Email</dt>
+                        <dd class="col-sm-8">@Model.Email</dd>
+
+                        <dt class="col-sm-4">Số điện thoại</dt>
+                        <dd class="col-sm-8">@Model.Sdt</dd>
+
+                        <dt class="col-sm-4">Ngày sinh</dt>
+                        <dd class="col-sm-8">@Model.Ngaysinh?.ToString("dd/MM/yyyy")</dd>
+
+                        <dt class="col-sm-4">Giới tính</dt>
+                        <dd class="col-sm-8">
+                            @(Model.Gioitinh == true ? "Nam" : Model.Gioitinh == false ? "Nữ" : "Không xác định")
+                        </dd>
+
+                        <dt class="col-sm-4">Trạng thái</dt>
+                        <dd class="col-sm-8">
+                            @(Model.Trangthai == true ? "Đang hoạt động" : "Bị khóa")
+                        </dd>
+
+                        <dt class="col-sm-4">Loại người dùng</dt>
+                        <dd class="col-sm-8">@Model.Loainguoidung?.Tenloai</dd>
+                    </dl>
+
+                    <!-- Nút chức năng -->
+                    <div class="mt-4 d-flex justify-content-center gap-3">
+                        <a asp-action="ChangePassword" class="btn btn-warning btn-custom rounded-pill">Đổi mật khẩu</a>
+                        <a class="btn btn-warning btn-custom rounded-pill" asp-area="HocSinh" asp-controller="NguoiDungs" asp-action="Edit" asp-route-id="@Model.Id">
+                                <i class="bi bi-person"></i> Chỉnh sửa thông tin
+                            </a>
+                        <a asp-area="HocSinh" asp-controller="Nguoidungs" asp-action="UpdateAvatar" asp-route-id="@Model.Id" class="btn btn-warning rounded-pill me-2">Đổi ảnh đại diện</a>                     
+                        <a asp-controller="HocSinhHome" asp-action="Index" class="btn btn-secondary btn-custom rounded-pill">Trang chủ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

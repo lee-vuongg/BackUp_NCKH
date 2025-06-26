@@ -1,0 +1,489 @@
+﻿@model IEnumerable<TCN_NCKH.Models.DBModel.Ketquathi>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Kết quả thi";
+    Layout = "~/Areas/HocSinh/Views/Shared/_LayoutHocSinh.cshtml";
+}
+
+<div class="container-fluid mt-5">
+    <h2 class="page-title"><i class="bi bi-bar-chart-fill"></i> KẾT QUẢ CÁC BÀI THI</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning text-center shadow-sm" role="alert">
+            ⛔ Bạn chưa có kết quả bài thi nào.
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-6 mb-4">
+              
+                <div class="card shadow-sm h-100 clickable-card" data-bs-toggle="modal" data-bs-target="#chartModal">
+                    <div class="card-header bg-primary text-white py-3 rounded-top" style="border-bottom: none;">
+                        <h4 class="mb-0 text-center" style="font-family: var(--font-heading); font-weight: 600;">Tổng quan điểm thi</h4>
+                    </div>
+                    <div class="card-body p-4 d-flex justify-content-center align-items-center">
+                        <canvas id="scoreChart" style="height: 300px; width: 100%;"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+               
+                <div class="card shadow-sm h-100 clickable-card" data-bs-toggle="modal" data-bs-target="#tableModal">
+                    <div class="card-header bg-success text-white py-3 rounded-top" style="border-bottom: none;">
+                        <h4 class="mb-0 text-center" style="font-family: var(--font-heading); font-weight: 600;">Chi tiết kết quả thi</h4>
+                    </div>
+
+                    <div class="card-body p-4" style="max-height: 380px; overflow-x: auto; overflow-y: auto;">
+                        <div class="result-table">
+                            <table class="data-table">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th>🔢 STT</th>
+                                        <th>📚 Môn thi</th>
+                                        <th>🎯 Điểm</th>
+                                        <th>⏱️ Thời gian làm</th>
+                                        <th>📅 Ngày thi</th>
+                                        <th>🧾 Mã lịch thi</th>
+                                        <th>👁️ Chi tiết</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        int stt = 1;
+                                    }
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr class="text-center">
+                                            <td data-label="STT">@stt</td>
+                                            <td class="text-start" data-label="Môn thi">
+                                                @{
+                                                    if (item.Lichthi == null || item.Lichthi.Dethi == null || item.Lichthi.Dethi.Monhoc == null)
+                                                    {
+                                                        <span class="text-danger">❌ Thông tin thiếu</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>@item.Lichthi.Dethi.Monhoc.Tenmon</span>
+                                                    }
+                                                }
+                                            </td>
+                                            <td class="score-column" data-label="Điểm">@item.Diem</td>
+                                            <td data-label="Thời gian làm">@item.Thoigianlam phút</td>
+                                            <td data-label="Ngày thi">@item.Ngaythi?.ToString("dd/MM/yyyy HH:mm")</td>
+                                            <td data-label="Mã lịch thi">@item.Lichthi?.Id</td>
+                                            <td data-label="Chi tiết">
+                                                <a asp-action="Details"
+                                                   asp-route-id="@item.Id"
+                                                   class="btn-table-action">
+                                                    <i class="bi bi-file-text"></i> Xem chi tiết
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        stt++;
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="modal fade" id="chartModal" tabindex="-1" aria-labelledby="chartModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="chartModalLabel">Tổng quan điểm thi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <canvas id="scoreChartModal" style="height: 600px; width: 100%;"></canvas>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="tableModal" tabindex="-1" aria-labelledby="tableModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tableModalLabel">Chi tiết kết quả thi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div id="tableModalContent"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Lấy dữ liệu từ Model để vẽ biểu đồ (biến global)
+        var ketQuaThiData = @Html.Raw(Json.Serialize(Model.Select(item => new
+            {
+                Diem = item.Diem,
+                MonHoc = item.Lichthi?.Dethi?.Monhoc?.Tenmon ?? "Chưa xác định",
+                NgayThi = item.Ngaythi?.ToString("dd/MM/yyyy HH:mm")
+            })));
+
+        // Chuẩn bị dữ liệu cho Chart.js (biến global)
+        var chartLabels = ketQuaThiData.map(item => {
+            return item.monHoc + " (" + item.ngayThi + ")";
+        });
+
+        var chartData = ketQuaThiData.map(item => item.diem);
+
+        // Tạo màu sắc ngẫu nhiên (hàm global)
+        function generateRandomColors(num) {
+            var colors = [];
+            for (let i = 0; i < num; i++) {
+                const r = Math.floor(Math.random() * 200);
+                const g = Math.floor(Math.random() * 200);
+                const b = Math.floor(Math.random() * 200);
+                colors.push(`rgba(${r}, ${g}, ${b}, 0.6)`);
+            }
+            return colors;
+        }
+
+        var backgroundColors = generateRandomColors(chartData.length);
+        var borderColors = backgroundColors.map(color => color.replace('0.6', '1'));
+
+        // Hàm để tạo cấu hình biểu đồ (dùng chung cho cả biểu đồ chính và biểu đồ modal)
+        function getChartOptions(isModal = false) {
+            return {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            font: {
+                                family: 'Roboto',
+                                size: 14
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += context.parsed.y + ' điểm';
+                                }
+                                return label;
+                            }
+                        },
+                        titleFont: { family: 'Poppins' },
+                        bodyFont: { family: 'Roboto' }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: 'Điểm số',
+                            font: {
+                                family: 'Poppins',
+                                size: 16,
+                                weight: 'bold'
+                            }
+                        },
+                        ticks: {
+                            font: {
+                                family: 'Roboto'
+                            }
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Bài thi (Môn học - Ngày thi)',
+                            font: {
+                                family: 'Poppins',
+                                size: 16,
+                                weight: 'bold'
+                            }
+                        },
+                        ticks: {
+                            font: {
+                                family: 'Roboto'
+                            },
+                            autoSkip: false,
+                            maxRotation: isModal ? 25 : 45, // Giảm góc xoay trên modal nếu cần
+                            minRotation: isModal ? 25 : 45
+                        }
+                    }
+                }
+            };
+        }
+
+        // Biểu đồ chính trên trang
+        var ctx = document.getElementById('scoreChart').getContext('2d');
+        var scoreChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: chartLabels,
+                datasets: [{
+                    label: 'Điểm số bài thi',
+                    data: chartData,
+                    backgroundColor: backgroundColors,
+                    borderColor: borderColors,
+                    borderWidth: 1,
+                    borderRadius: 5,
+                }]
+            },
+            options: getChartOptions(false) // Sử dụng options cho biểu đồ chính
+        });
+
+        // ===========================================
+        // LOGIC XỬ LÝ MODAL KHI CLICK
+        // ===========================================
+
+        var chartModalInstance = null; // Biến để lưu trữ thể hiện biểu đồ trong modal
+        var chartCanvasModal = document.getElementById('scoreChartModal');
+
+        // Lắng nghe sự kiện click vào card biểu đồ
+        // (Thay đổi từ document.querySelector('.col-md-6:first-child .card') sang dùng data-bs-toggle trực tiếp trên HTML)
+        document.getElementById('chartModal').addEventListener('shown.bs.modal', function () {
+            // Đảm bảo chỉ tạo lại biểu đồ nếu chưa có hoặc đã bị hủy
+            if (chartModalInstance) {
+                chartModalInstance.destroy(); // Hủy thể hiện biểu đồ cũ nếu có
+            }
+            var ctxModal = chartCanvasModal.getContext('2d');
+            chartModalInstance = new Chart(ctxModal, {
+                type: 'bar',
+                data: {
+                    labels: chartLabels,
+                    datasets: [{
+                        label: 'Điểm số bài thi',
+                        data: chartData,
+                        backgroundColor: backgroundColors,
+                        borderColor: borderColors,
+                        borderWidth: 1,
+                        borderRadius: 5,
+                    }]
+                },
+                options: getChartOptions(true) // Sử dụng options cho biểu đồ modal
+            });
+        });
+
+        // Lắng nghe sự kiện click vào card bảng
+        // (Thay đổi từ document.querySelector('.col-md-6:last-child .card') sang dùng data-bs-toggle trực tiếp trên HTML)
+        document.getElementById('tableModal').addEventListener('shown.bs.modal', function () {
+            var originalTableHtml = document.querySelector('.result-table').outerHTML; // Lấy toàn bộ HTML của bảng
+            document.getElementById('tableModalContent').innerHTML = originalTableHtml; // Đặt vào modal
+
+            // Sau khi sao chép, cần loại bỏ thuộc tính style overflow-x và overflow-y
+            // nếu nó có trên thẻ div.result-table hoặc table.data-table trong modal
+            // vì modal đã có scroll riêng
+            var clonedTableDiv = document.getElementById('tableModalContent').querySelector('.result-table');
+            if (clonedTableDiv) {
+                clonedTableDiv.style.overflowX = 'visible';
+                clonedTableDiv.style.overflowY = 'visible';
+            }
+            // Thêm class để ẩn data-label trong modal khi không phải màn hình mobile
+            var clonedTable = document.getElementById('tableModalContent').querySelector('.data-table');
+            if (clonedTable) {
+                 clonedTable.classList.add('modal-table');
+            }
+        });
+
+
+        // Đảm bảo responsive cho biểu đồ chính
+        window.addEventListener('resize', function() {
+            if (scoreChart) {
+                scoreChart.resize();
+            }
+            // Không cần resize cho modal chart ở đây vì nó sẽ tự resize khi modal hiện lên và đóng lại
+            // và khi window resize, chartModalInstance sẽ tự điều chỉnh do responsive: true
+        });
+    </script>
+
+    <style>
+        /* Thêm hiệu ứng con trỏ và tương tác khi hover */
+        .clickable-card {
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+            .clickable-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+            }
+
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+            .data-table th,
+            .data-table td {
+                padding: 12px 15px;
+                border: 1px solid #e0e0e0;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            .data-table thead {
+                background-color: #f8f9fa;
+                color: #495057;
+                font-weight: 600;
+            }
+
+            .data-table tbody tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            .data-table tbody tr:hover {
+                background-color: #e9ecef;
+                transition: background-color 0.2s ease-in-out;
+            }
+
+            .data-table th:first-child,
+            .data-table td:first-child {
+                border-left: none;
+            }
+
+            .data-table th:last-child,
+            .data-table td:last-child {
+                border-right: none;
+            }
+
+            .data-table .score-column {
+                font-weight: bold;
+                color: #007bff; /* Bootstrap primary color */
+            }
+
+        .btn-table-action {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #6c757d; /* Bootstrap secondary color */
+            border: 1px solid #6c757d;
+            transition: background-color 0.2s, border-color 0.2s;
+            font-size: 0.9em;
+        }
+
+            .btn-table-action:hover {
+                background-color: #5a6268;
+                border-color: #545b62;
+                color: #fff;
+            }
+
+            .btn-table-action i {
+                margin-right: 5px;
+            }
+
+        /* Responsive table behavior */
+        @@media (max-width: 767.98px) {
+            .data-table thead {
+                display: none; /* Hide header on small screens */
+            }
+
+            .data-table, .data-table tbody, .data-table tr, .data-table td {
+                display: block; /* Make table elements act as blocks */
+                width: 100%;
+            }
+
+                .data-table tr {
+                    margin-bottom: 15px;
+                    border: 1px solid #dee2e6;
+                    border-radius: 5px;
+                    overflow: hidden;
+                }
+
+                .data-table td {
+                    text-align: right;
+                    padding-left: 50%; /* Space for pseudo-element labels */
+                    position: relative;
+                    border: none;
+                    border-bottom: 1px solid #eee;
+                }
+
+                    .data-table td:last-child {
+                        border-bottom: none;
+                    }
+
+                    .data-table td::before {
+                        content: attr(data-label); /* Use data-label for content */
+                        position: absolute;
+                        left: 0;
+                        width: 45%;
+                        padding-left: 15px;
+                        font-weight: bold;
+                        text-align: left;
+                        white-space: nowrap; /* Prevent label from wrapping */
+                    }
+                    /* Add data-label to each <td> for responsive table */
+                    .data-table td:nth-of-type(1)::before {
+                        content: "STT:";
+                    }
+
+                    .data-table td:nth-of-type(2)::before {
+                        content: "Môn thi:";
+                    }
+
+                    .data-table td:nth-of-type(3)::before {
+                        content: "Điểm:";
+                    }
+
+                    .data-table td:nth-of-type(4)::before {
+                        content: "Thời gian làm:";
+                    }
+
+                    .data-table td:nth-of-type(5)::before {
+                        content: "Ngày thi:";
+                    }
+
+                    .data-table td:nth-of-type(6)::before {
+                        content: "Mã lịch thi:";
+                    }
+
+                    .data-table td:nth-of-type(7)::before {
+                        content: "Chi tiết:";
+                    }
+        }
+
+        /* CSS để ẩn data-label::before trong modal khi không phải màn hình nhỏ */
+        @@media (min-width: 768px) {
+            .modal-table td::before {
+                content: none !important; /* Ẩn data-label trên màn hình lớn */
+            }
+
+            .modal-table td {
+                text-align: center !important; /* Căn giữa lại nội dung */
+                padding-left: 12px !important; /* Reset padding */
+            }
+
+            .modal-table .text-start { /* Giữ căn trái cho cột môn thi trong modal */
+                text-align: left !important;
+            }
+        }
+
+    </style>
+}

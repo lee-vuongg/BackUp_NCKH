@@ -1,0 +1,103 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+@using TCN_NCKH.Models.DBModel
+@using TCN_NCKH.Models
+@inject NghienCuuKhoaHocContext _context
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - Thi Trắc Nghiệm CNTT</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="~/css/LayoutHS.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    <header>
+        <h1><i class="bi bi-cpu"></i> Hệ thống thi trắc nghiệm CNTT</h1>
+    </header>
+
+    <nav class="nav-bar">
+        <div class="links">
+            <a asp-area="HocSinh" asp-controller="HocSinhHome" asp-action="Index"><i class="bi bi-house-door"></i>Trang chủ</a>
+            <a asp-area="HocSinh" asp-controller="Lichthis" asp-action="Index"><i class="bi bi-calendar3"></i>Lịch thi</a>
+            <a asp-area="HocSinh" asp-controller="DeThis" asp-action="Index"><i class="bi bi-file-earmark-text"></i>Đề thi</a>
+            <a asp-area="HocSinh" asp-controller="Ketquathis" asp-action="Index"><i class="bi bi-bar-chart-line"></i>Kết quả</a>
+            <a asp-area="HocSinh" asp-controller="NguoiDungs" asp-action="AccountDetails"><i class="bi bi-person-circle"></i>Thông tin</a>
+        </div>
+
+        @if (User.Identity != null && User.Identity.IsAuthenticated)
+        {
+            var email = User.FindFirstValue(ClaimTypes.Email);
+
+            if (!string.IsNullOrEmpty(email))
+            {
+                var user = _context.Nguoidungs.FirstOrDefault(u => u.Email == email);
+
+                if (user != null)
+                {
+                    var avatarPath = string.IsNullOrEmpty(user.Anhdaidien)
+                    ? "/images/default-avatar.png"
+                    : "/images/" + user.Anhdaidien;
+
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" data-bs-toggle="dropdown">
+                            <img src="@avatarPath" alt="Avatar" class="avatar" />
+                            <span>@user.Hoten</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+                            <li>
+                                <a class="dropdown-item" asp-area="HocSinh" asp-controller="NguoiDungs" asp-action="AccountDetails" asp-route-id="@user.Id">
+                                    <i class="bi bi-person"></i> Thông tin tài khoản
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" asp-area="HocSinh" asp-controller="NguoiDungs" asp-action="ChangePassword" asp-route-id="@user.Id">
+                                    <i class="bi bi-key"></i> Đổi mật khẩu
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li>
+                                <a class="dropdown-item text-danger" asp-area="" asp-controller="Auth" asp-action="Logout">
+                                    <i class="bi bi-box-arrow-right"></i> Đăng xuất
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                }
+                else
+                {
+                    <text><div style="color:red">Không tìm thấy người dùng trong cơ sở dữ liệu</div></text>
+                }
+            }
+            else
+            {
+                <text><div style="color:red">Không tìm thấy email đăng nhập!</div></text>
+            }
+        }
+
+    </nav>
+
+    <main class="main-content container">
+        @RenderBody()
+    </main>
+
+    <footer>
+        &copy; 2025 Thi Trắc Nghiệm CNTT - Dành cho học sinh
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

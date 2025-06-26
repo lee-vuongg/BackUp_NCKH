@@ -1,0 +1,183 @@
+﻿@model TCN_NCKH.Models.DBModel.Nguoidung
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Chỉnh Sửa Người Dùng"; // Tiêu đề trang
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml"; // Đảm bảo đúng layout của Admin
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">
+        <i class="fas fa-user-edit"></i> @ViewData["Title"]
+    </h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/Admin/AdminHome">Dashboard</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index">Quản Lý Người Dùng</a></li>
+        <li class="breadcrumb-item active">@ViewData["Title"]</li>
+    </ol>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Thông tin người dùng</h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    @* Tăng chiều rộng của form lên 6 cột *@
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" /> @* Id là hidden vì không cho sửa *@
+
+                        @* Các trường bạn KHÔNG muốn Admin chỉnh sửa nhưng muốn hiển thị *@
+                        <div class="form-group">
+                            <label class="control-label">ID Người dùng</label>
+                            <input asp-for="Id" class="form-control" readonly /> @* Chỉ hiển thị, không cho sửa *@
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Người Tạo</label>
+                            <input asp-for="Nguoitao" class="form-control" readonly /> @* Chỉ hiển thị, không cho sửa *@
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Ngày Tạo</label>
+                            <input asp-for="Ngaytao" class="form-control" readonly type="datetime-local" /> @* Chỉ hiển thị, không cho sửa *@
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Hoten" class="control-label"></label>
+                            <input asp-for="Hoten" class="form-control" />
+                            <span asp-validation-for="Hoten" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Email" class="control-label"></label>
+                            <input asp-for="Email" class="form-control" type="email" /> @* Loại input email *@
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                       
+                        <div class="form-group form-check">
+                            <input class="form-check-input" type="checkbox" id="changePasswordCheckbox">
+                            <label class="form-check-label" for="changePasswordCheckbox">Đổi mật khẩu?</label>
+                        </div>
+
+                        <div class="form-group" id="passwordFields" style="display: none;">
+                            @* Mặc định ẩn *@
+                            <label class="control-label" for="Matkhau">Mật khẩu mới</label>
+                            <input asp-for="Matkhau" class="form-control" type="password" autocomplete="new-password" />
+                            <span asp-validation-for="Matkhau" class="text-danger"></span>
+                            @* Có thể thêm trường xác nhận mật khẩu ở đây *@
+                            <label class="control-label mt-2" for="ConfirmMatkhau">Xác nhận mật khẩu mới</label>
+                            <input id="ConfirmMatkhau" name="ConfirmMatkhau" class="form-control" type="password" autocomplete="new-password" />
+                        </div>
+                      
+
+                        <div class="form-group">
+                            <label asp-for="Sdt" class="control-label"></label>
+                            <input asp-for="Sdt" class="form-control" type="tel" /> @* Loại input tel *@
+                            <span asp-validation-for="Sdt" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Ngaysinh" class="control-label"></label>
+                            @* Chuyển đổi DateOnly sang string cho input type="date" *@
+                            <input asp-for="Ngaysinh" class="form-control" type="date"
+                                   value="@(Model.Ngaysinh.HasValue ? Model.Ngaysinh.Value.ToString("yyyy-MM-dd") : "")" />
+                            <span asp-validation-for="Ngaysinh" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Gioitinh" class="control-label"></label>
+                            <select asp-for="Gioitinh" class="form-control">
+                                <option value="">-- Chọn Giới tính --</option>
+                                <option value="true">Nam</option>
+                                <option value="false">Nữ</option>
+                            </select>
+                            <span asp-validation-for="Gioitinh" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Trangthai" class="control-label"></label>
+                            <select asp-for="Trangthai" class="form-control">
+                                <option value="">-- Chọn Trạng thái --</option>
+                                <option value="true">Hoạt động</option>
+                                <option value="false">Khóa</option>
+                            </select>
+                            <span asp-validation-for="Trangthai" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Loainguoidungid" class="control-label"></label>
+                            <select asp-for="Loainguoidungid" class="form-control" asp-items="ViewBag.Loainguoidungid"></select>
+                            <span asp-validation-for="Loainguoidungid" class="text-danger"></span>
+                        </div>
+                        @* Nếu có trường Anhdaidien, bạn có thể thêm input file ở đây hoặc chỉ hiển thị đường dẫn *@
+                        @*
+                        <div class="form-group">
+                            <label asp-for="Anhdaidien" class="control-label"></label>
+                            <input type="file" name="fileAnhdaidien" class="form-control" />
+                            @if (!string.IsNullOrEmpty(Model.Anhdaidien))
+                            {
+                                <img src="~/path/to/your/images/@Model.Anhdaidien" alt="Ảnh đại diện" class="img-thumbnail mt-2" style="max-width: 150px;" />
+                            }
+                            <span asp-validation-for="Anhdaidien" class="text-danger"></span>
+                        </div>
+                        *@
+
+                        <div class="form-group mt-3">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Lưu Thay Đổi
+                            </button>
+                            <a asp-action="Index" class="btn btn-secondary ml-2">
+                                <i class="fas fa-arrow-left"></i> Quay Lại Danh Sách
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function() {
+            // Tự động đóng thông báo sau vài giây
+            window.setTimeout(function () {
+                $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                    $(this).remove();
+                });
+            }, 3000); // 3 giây
+
+            // Logic ẩn/hiện trường mật khẩu
+            $('#changePasswordCheckbox').change(function() {
+                if ($(this).is(':checked')) {
+                    $('#passwordFields').slideDown(); // Hiển thị mượt mà
+                    $('#Matkhau').prop('required', true); // Có thể thêm thuộc tính required
+                    $('#ConfirmMatkhau').prop('required', true);
+                } else {
+                    $('#passwordFields').slideUp(); // Ẩn mượt mà
+                    $('#Matkhau').val(''); // Xóa giá trị khi ẩn
+                    $('#ConfirmMatkhau').val('');
+                    $('#Matkhau').prop('required', false);
+                    $('#ConfirmMatkhau').prop('required', false);
+                }
+            });
+        });
+    </script>
+}

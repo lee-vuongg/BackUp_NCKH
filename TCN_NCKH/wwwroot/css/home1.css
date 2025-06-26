@@ -1,0 +1,1117 @@
+﻿/* Tổng quan và Font */
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    background-color: #f8f9fa;
+    line-height: 1.6;
+    overflow-x: hidden; /* Ngăn chặn cuộn ngang */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* ==================================== */
+/* Banner Home Section (Updated) */
+/* ==================================== */
+/* Style cho container của slider */
+/* home1.css */
+
+.banner-home {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Hoặc chiều cao bạn muốn */
+    background-image: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1920&q=80'); /* <-- Thay đổi URL ảnh tại đây */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Lớp phủ đen trong suốt */
+    z-index: 1; /* Đảm bảo lớp phủ nằm trên ảnh nền */
+}
+
+.banner-content {
+    position: relative; /* Đảm bảo nội dung nằm trên lớp phủ */
+    z-index: 2;
+    text-align: center;
+    width: 80%; /* Điều chỉnh độ rộng nội dung */
+    max-width: 900px;
+}
+
+    .banner-content h1 {
+        font-size: 3.5rem;
+        margin-bottom: 15px;
+        font-weight: 700;
+    }
+
+    .banner-content p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        font-weight: 400;
+    }
+
+/* Responsive adjustments for banner content */
+@media (max-width: 768px) {
+    .banner-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .banner-content p {
+        font-size: 1rem;
+    }
+
+    .banner-home {
+        height: 60vh; /* Giảm chiều cao trên thiết bị nhỏ hơn */
+    }
+}
+
+@media (max-width: 576px) {
+    .banner-content h1 {
+        font-size: 2rem;
+    }
+
+    .banner-content p {
+        font-size: 0.9rem;
+    }
+
+    .banner-home {
+        height: 50vh;
+    }
+}
+
+/* Giữ nguyên các phần CSS còn lại của bạn dưới đây */
+/* ... (Các CSS khác như .section-title, .feature-card, .test-card, v.v.) ... */
+/* Ví dụ: */
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+}
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 0;
+        width: 80px;
+        height: 4px;
+        background-color: #007bff;
+        border-radius: 2px;
+    }
+
+/* Animations */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+    .fade-in-up.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+.fade-in-left {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+    .fade-in-left.is-visible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+.delay-100 {
+    transition-delay: 0.1s;
+}
+
+.delay-200 {
+    transition-delay: 0.2s;
+}
+
+.delay-300 {
+    transition-delay: 0.3s;
+}
+
+.delay-400 {
+    transition-delay: 0.4s;
+}
+/* ... các style khác của bạn ... */
+
+/* Star rating input */
+.star-rating-input {
+    display: inline-block;
+    font-size: 1.5em; /* Kích thước sao */
+}
+
+    .star-rating-input input[type="radio"] {
+        display: none; /* Ẩn input radio gốc */
+    }
+
+    .star-rating-input label {
+        color: #ccc; /* Màu sao mặc định */
+        cursor: pointer;
+        padding: 0 2px;
+    }
+
+        .star-rating-input label:hover,
+        .star-rating-input label:hover ~ label,
+        .star-rating-input input[type="radio"]:checked ~ label {
+            color: #ffc107; /* Màu sao khi hover hoặc được chọn */
+        }
+
+/* Review cards */
+.review-card {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.review-author {
+    font-weight: bold;
+    color: #333;
+}
+
+.review-stars .fas.fa-star {
+    color: #ccc; /* Default star color */
+}
+
+    .review-stars .fas.fa-star.checked {
+        color: #ffc107; /* Checked star color */
+    }
+
+.review-text {
+    color: #555;
+    line-height: 1.6;
+}
+
+.review-timestamp {
+    font-size: 0.85em;
+    color: #888;
+    text-align: right;
+    margin-top: 10px;
+}
+
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.comment-form-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-top: 50px;
+}
+
+    .comment-form-container h3 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #333;
+        font-weight: 600;
+    }
+
+.comment-form .form-control-sm {
+    border-radius: 0.25rem;
+}
+
+.comment-form .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    font-weight: 600;
+}
+
+    .comment-form .btn-success:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+
+/* Test Card Grid */
+.test-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.test-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+    .test-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+.test-icon {
+    font-size: 3.5rem;
+    color: #007bff; /* Primary color */
+    margin-bottom: 20px;
+}
+
+.test-card h3 {
+    font-size: 1.6rem;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.test-card p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 25px;
+    flex-grow: 1; /* Cho phép paragraph chiếm không gian còn lại */
+}
+
+.test-card .btn-outline-primary {
+    border-width: 2px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+    .test-card .btn-outline-primary:hover {
+        background-color: #007bff;
+        color: #fff;
+        transform: scale(1.05);
+    }
+
+    .test-card .btn-outline-primary i {
+        margin-left: 8px;
+    }
+
+/* Feature Cards (Lĩnh vực nổi bật) */
+.feature-card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .feature-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .feature-card .card-img-top {
+        height: 180px; /* Chiều cao cố định cho ảnh */
+        object-fit: cover; /* Đảm bảo ảnh được cắt mà không bị méo */
+    }
+
+    .feature-card .card-body {
+        padding: 25px;
+        text-align: center;
+    }
+
+    .feature-card .card-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .feature-card .card-text {
+        font-size: 0.95rem;
+        color: #666;
+        margin-bottom: 20px;
+        line-height: 1.5;
+    }
+
+    .feature-card .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        font-weight: 500;
+        padding: 8px 18px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+        .feature-card .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .feature-card .btn-primary i {
+            margin-left: 5px;
+        }
+
+
+/* Hero section (banner-content already updated above) */
+.banner-home {
+    /* This class is now effectively replaced by .banner-slider-container in functionality */
+    /* You can remove or keep it if it's used elsewhere for overall layout */
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Adjust as needed */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    overflow: hidden; /* Ensure slider stays within bounds */
+}
+
+/* Button styles */
+.btn-hero {
+    background-color: #28a745; /* A vibrant green for action */
+    border-color: #28a745;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 50px; /* Pill shape */
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+    .btn-hero:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+        transform: translateY(-3px); /* Slight lift on hover */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-hero i {
+        margin-left: 10px;
+        transition: transform 0.3s ease;
+    }
+
+    .btn-hero:hover i {
+        transform: translateY(3px); /* Icon moves down slightly */
+    }
+
+/* General section spacing */
+section {
+    padding: 80px 0;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+/* Scroll reveal initial state */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+    .scroll-reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+/* #particles-js removed as it's not used with the new image banner setup */
+/* Old #particles-js styles (commented out/removed if not used) */
+/*
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+*/
+
+.banner-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    padding: 20px;
+}
+
+    .banner-content h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .banner-content p {
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin-bottom: 40px;
+        opacity: 0.9;
+    }
+
+.btn-hero {
+    background-color: #28a745; /* Màu xanh lá nổi bật */
+    border-color: #28a745;
+    color: #fff;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 50px; /* Bo tròn nút */
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+}
+
+    .btn-hero:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+        transform: translateY(-3px); /* Hiệu ứng nhấc nhẹ */
+        box-shadow: 0 6px 20px rgba(40, 167, 69, 0.6);
+    }
+
+/* Common Section Styling */
+section {
+    padding: 80px 0;
+    position: relative;
+    opacity: 0; /* Mặc định ẩn để dùng scroll-reveal */
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+    section.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+.section-title {
+    font-size: 2.8rem;
+    font-weight: 600;
+    margin-bottom: 60px;
+    color: #007bff;
+    position: relative;
+    display: inline-block; /* Để gạch chân nằm gọn */
+}
+
+    .section-title::after {
+        content: '';
+        display: block;
+        width: 80px;
+        height: 4px;
+        background-color: #28a745; /* Gạch chân màu xanh lá */
+        margin: 10px auto 0; /* Căn giữa gạch chân */
+        border-radius: 2px;
+    }
+
+/* Card Section - Lĩnh vực nổi bật */
+.card-section .card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+    .card-section .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
+
+.card-section .card-img-top {
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.card-section .card-body {
+    padding: 25px;
+}
+
+.card-section .card-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #343a40;
+    margin-bottom: 15px;
+}
+
+.card-section .card-text {
+    font-size: 1rem;
+    color: #6c757d;
+    line-height: 1.5;
+}
+
+.card-section .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+    .card-section .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+        transform: translateX(5px); /* Hiệu ứng mũi tên bay */
+    }
+
+/* Test Section - Bài thi nổi bật */
+.test-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 30px;
+    padding: 20px;
+}
+
+.test-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Căn chỉnh nội dung */
+}
+
+    .test-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .test-card h3 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #007bff;
+        margin-bottom: 15px;
+    }
+
+    .test-card p {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 25px;
+        flex-grow: 1; /* Cho phép paragraph chiếm không gian còn lại */
+    }
+
+    .test-card .test-icon {
+        font-size: 3.5rem;
+        color: #28a745;
+        margin-bottom: 20px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .test-card:hover .test-icon {
+        transform: scale(1.1); /* Hiệu ứng phóng to icon khi hover */
+    }
+
+    .test-card .btn-outline-primary {
+        border-color: #007bff;
+        color: #007bff;
+        border-radius: 8px;
+        padding: 10px 25px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+        .test-card .btn-outline-primary:hover {
+            background-color: #007bff;
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+/* ==================================== */
+/* Reviews Section (Updated for Grid and Stars) */
+/* ==================================== */
+.reviews {
+    background-color: #e9f7ff; /* Nền xanh nhạt cho phần nhận xét */
+    border-radius: 15px;
+    padding: 60px 30px;
+    margin-top: 60px;
+}
+
+/* review-carousel styles removed, replaced by review-grid */
+/*
+.review-carousel {
+    margin-bottom: 50px;
+    padding: 0 10px;
+}
+*/
+
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 2 cột trên màn hình lớn, 1 cột trên màn hình nhỏ */
+    gap: 30px; /* Khoảng cách giữa các card */
+    margin-top: 40px;
+}
+
+.review-card {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Đẩy nội dung lên trên, timestamp xuống dưới */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left; /* Căn trái text trong nhận xét */
+}
+
+    .review-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    }
+
+/* Chat bubble specific styles removed for a more professional card look */
+/*
+.review-card.chat-bubble {
+    border-bottom-left-radius: 0;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.review-card.chat-bubble::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    width: 0;
+    height: 0;
+    border: 15px solid transparent;
+    border-top-color: #ffffff;
+    border-left-color: #ffffff;
+    border-bottom: 0;
+    border-right: 0;
+    margin-left: -15px;
+    margin-bottom: -15px;
+    transform: rotate(45deg);
+    z-index: 1;
+}
+*/
+
+.review-header {
+    display: flex;
+    justify-content: space-between; /* Đẩy tên và sao ra hai phía */
+    align-items: center;
+    margin-bottom: 10px; /* Khoảng cách giữa header và text */
+}
+
+/* review-avatar styles removed as avatars are no longer used */
+/*
+.review-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 12px;
+    border: 2px solid #007bff;
+    flex-shrink: 0;
+}
+*/
+
+.review-author {
+    font-weight: 600;
+    color: #007bff;
+    font-size: 1.1rem; /* Giữ kích thước tên rõ ràng */
+    white-space: nowrap; /* Ngăn tên bị xuống dòng */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Cắt bớt nếu quá dài */
+}
+
+.review-stars {
+    color: #ffc107; /* Màu sao hiển thị trong nhận xét */
+    font-size: 1em;
+    flex-shrink: 0; /* Ngăn sao co lại */
+}
+    .review-stars .fas.fa-star {
+        margin-right: 2px;
+        color: #ccc; /* Mặc định là màu xám */
+    }
+
+        .review-stars .fas.fa-star.checked {
+            color: #ffc107; /* Màu vàng cho sao đã được đánh giá */
+        }
+.review-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 0; /* Loại bỏ margin-bottom mặc định */
+    flex-grow: 1; /* Cho phép nhận xét giãn nở */
+}
+
+.review-timestamp {
+    font-size: 0.8em; /* Kích thước nhỏ hơn cho ngày giờ */
+    color: #888;
+    text-align: right;
+    margin-top: 10px; /* Khoảng cách từ text đến timestamp */
+    font-style: italic;
+}
+
+.star-rating-input {
+    display: flex;
+    flex-direction: row-reverse; /* Đảo ngược để dễ CSS */
+    justify-content: flex-end; /* Căn phải các sao trong input */
+    margin-bottom: 10px; /* Khoảng cách dưới */
+    width: fit-content; /* Giữ các sao gần nhau */
+}
+
+    .star-rating-input input[type="radio"] {
+        display: none; /* Ẩn radio button mặc định */
+    }
+
+    .star-rating-input label {
+        font-size: 1.8em; /* Kích thước sao */
+        color: #ccc; /* Màu sao chưa chọn */
+        cursor: pointer;
+        padding: 0 3px; /* Khoảng cách giữa các sao */
+        transition: color 0.2s ease-in-out;
+    }
+
+    .star-rating-input input[type="radio"]:checked ~ label {
+        color: #ffc107; /* Màu sao đã chọn */
+    }
+
+    .star-rating-input label:hover,
+    .star-rating-input label:hover ~ label {
+        color: #ffc107; /* Màu sao khi hover */
+    }
+/* ==================================== */
+/* Comment Form (Updated for compactness and stars) */
+/* ==================================== */
+.comment-form-container {
+    background-color: #f8f9fa; /* Màu nền nhẹ hơn */
+    padding: 30px; /* Giảm padding */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-top: 50px;
+    max-width: 550px; /* Giới hạn chiều rộng để form gọn hơn */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    .comment-form-container h3 {
+        font-size: 1.8rem; /* Giảm kích thước tiêu đề */
+        font-weight: 600;
+        color: #007bff;
+        margin-bottom: 25px; /* Giảm margin bottom */
+        text-align: center;
+    }
+
+.comment-form .form-group {
+    margin-bottom: 15px; /* Giảm khoảng cách giữa các group */
+}
+
+.comment-form label {
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 5px; /* Giảm khoảng cách dưới label */
+    display: block;
+    font-size: 0.95rem; /* Hơi giảm kích thước chữ label */
+}
+
+.comment-form .form-control {
+    border-radius: 6px; /* Hơi giảm bo tròn */
+    border: 1px solid #ddd;
+    padding: 8px 12px; /* Giảm padding */
+    font-size: 0.9rem; /* Giảm kích thước chữ input */
+    transition: border-color 0.3s ease;
+}
+
+/* Specific styles for smaller form controls as requested (already applied in HTML with form-control-sm) */
+/* These will override if .form-control-sm is explicitly used in HTML */
+.comment-form .form-control-sm {
+    height: calc(1.8125rem + 2px); /* Bootstrap's form-control-sm height */
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 0.2rem;
+}
+
+.comment-form textarea.form-control-sm {
+    min-height: 70px; /* Giảm chiều cao tối thiểu của textarea */
+    resize: vertical; /* Cho phép resize theo chiều dọc */
+}
+
+.comment-form .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.comment-form .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    padding: 8px 20px; /* Giảm padding nút */
+    font-size: 1rem; /* Giảm kích thước chữ nút */
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    width: auto; /* Để nút không chiếm hết chiều rộng */
+    display: block; /* Để nút nằm trên một hàng riêng */
+    margin: 0 auto; /* Căn giữa nút */
+}
+
+/* Specific styles for smaller button as requested (already applied in HTML with btn-sm) */
+.comment-form .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+}
+
+
+.comment-form .btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+    transform: translateY(-3px);
+}
+
+/* Star Rating Input Styles */
+.star-rating-input {
+    display: flex;
+    flex-direction: row-reverse; /* Đảo ngược để dễ CSS */
+    justify-content: flex-end; /* Căn phải các sao trong input */
+    margin-bottom: 10px; /* Khoảng cách dưới */
+    width: fit-content; /* Giữ các sao gần nhau */
+    /* text-align: center; */ /* Nếu muốn căn giữa các sao trong div */
+}
+
+    .star-rating-input input[type="radio"] {
+        display: none; /* Ẩn radio button mặc định */
+    }
+
+    .star-rating-input label {
+        font-size: 1.8em; /* Kích thước sao */
+        color: #ccc; /* Màu sao chưa chọn */
+        cursor: pointer;
+        padding: 0 3px; /* Khoảng cách giữa các sao */
+        transition: color 0.2s ease-in-out;
+    }
+
+    .star-rating-input input[type="radio"]:checked ~ label {
+        color: #ffc107; /* Màu sao đã chọn */
+    }
+
+    .star-rating-input label:hover,
+    .star-rating-input label:hover ~ label {
+        color: #ffc107; /* Màu sao khi hover */
+    }
+
+
+/* Animations (Banner content) */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.delay-100 {
+    animation-delay: 0.1s;
+}
+
+.delay-200 {
+    animation-delay: 0.2s;
+}
+
+.delay-300 {
+    animation-delay: 0.3s;
+}
+
+.delay-400 {
+    animation-delay: 0.4s;
+}
+
+.delay-500 {
+    animation-delay: 0.5s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: fadeInLeft 0.8s ease-out forwards;
+}
+
+@keyframes fadeInLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* Scroll Reveal Classes (JS Controlled) */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+    .scroll-reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+.scroll-reveal-item { /* Dùng cho từng item trong lưới Test và Review */
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition-delay: var(--delay, 0s); /* Dùng custom property cho delay */
+}
+
+    .scroll-reveal-item.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .banner-content h1 {
+        font-size: 2.8rem;
+    }
+
+    .banner-content p {
+        font-size: 1.2rem;
+    }
+
+    .section-title {
+        font-size: 2.2rem;
+    }
+
+    .review-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 2 cột trên màn hình nhỏ hơn */
+        gap: 20px;
+    }
+
+    .review-card {
+        padding: 20px;
+    }
+
+    .review-author {
+        font-size: 1rem;
+    }
+
+    .review-text {
+        font-size: 0.9rem;
+    }
+
+    .comment-form-container {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .banner-home {
+        min-height: 50vh; /* Giảm chiều cao banner trên mobile */
+    }
+
+    .banner-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .banner-content p {
+        font-size: 1rem;
+    }
+
+    .btn-hero {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 40px;
+    }
+
+    .card-section .card-title, .test-card h3 {
+        font-size: 1.4rem;
+    }
+
+    .test-cards-grid {
+        grid-template-columns: 1fr; /* Một cột trên màn hình nhỏ */
+    }
+
+    .test-icon {
+        font-size: 2.8rem;
+    }
+
+    section {
+        padding: 60px 0;
+    }
+
+    .review-grid {
+        grid-template-columns: 1fr; /* Một cột trên màn hình nhỏ */
+    }
+
+    .review-card {
+        padding: 18px 22px;
+    }
+
+    .review-author {
+        font-size: 0.95rem;
+    }
+
+    .review-text {
+        font-size: 0.85rem;
+    }
+
+    .comment-form-container {
+        padding: 20px;
+    }
+
+        .comment-form-container h3 {
+            font-size: 1.6rem;
+        }
+}
+
+@media (max-width: 576px) {
+    .banner-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .banner-content p {
+        font-size: 0.9rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+    /* No chat bubble tail anymore, so no need for this adjustment */
+    /* .review-card.chat-bubble::before {
+        left: 15px;
+    } */
+}

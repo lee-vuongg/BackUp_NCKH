@@ -1,0 +1,98 @@
+﻿body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f6f9;
+}
+
+h1 {
+    font-size: 40px;
+    font-weight: 600;
+    color: #222;
+    text-align: center;
+    margin: 40px 0 30px 0;
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+    border-bottom: 2px solid #ddd;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.table-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+}
+
+.table-custom {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .table-custom thead {
+        background-color: #2f3640;
+        color: #ffffff;
+    }
+
+    .table-custom th,
+    .table-custom td {
+        padding: 14px 16px;
+        text-align: center;
+        font-size: 15px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .table-custom tbody tr:hover {
+        background-color: #f0f4fa;
+        transition: background-color 0.2s ease;
+    }
+
+.btn-detail {
+    padding: 8px 16px;
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+    .btn-detail:hover {
+        background: linear-gradient(to right, #163b76, #204b92);
+        transform: translateY(-1px);
+    }
+
+ @media (max-width: 768px) {
+        .table-custom thead
+
+    {
+        display: none;
+    }
+
+    .table-custom,
+    .table-custom tbody,
+    .table-custom tr,
+    .table-custom td {
+        display: block;
+        width: 100%;
+    }
+
+        .table-custom td {
+            text-align: right;
+            padding-left: 50%;
+            position: relative;
+        }
+
+            .table-custom td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 15px;
+                width: 45%;
+                text-align: left;
+                font-weight: 600;
+                color: #2f3640;
+            }
+
+    } 

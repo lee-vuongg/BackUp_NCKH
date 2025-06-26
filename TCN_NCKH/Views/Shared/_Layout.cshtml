@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - TCN_NCKH</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/LayoutKVL.css" asp-append-version="true" rel="stylesheet" />
+    <link href="~/TCN_NCKH.styles.css" asp-append-version="true" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+    
+    @await RenderSectionAsync("Styles", required: false) @* KHẮC PHỤC LỖI NÀY! *@
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="https://navigates.vn/wp-content/uploads/2024/05/logo-dai-hoc-nguyen-trai.png" alt="Logo TCN" width="80" height="50" class="d-inline-block align-text-top me-2" />
+          
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                        aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Trang Chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Chính Sách</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="HocSinh" asp-action="Index">Học Sinh</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Auth" asp-action="Login">Đăng Nhập</a>
+                        </li>
+                    </ul>
+                    <div class="nav-social-icons d-none d-lg-flex">
+                        <a href="https://www.facebook.com/diemhuong2004" target="_blank" title="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="https://www.facebook.com/diemhuong2004" target="_blank" title="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="https://twitter.com" target="_blank" title="Twitter"><i class="bi bi-twitter"></i></a>
+                        <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div aria-live="polite" aria-atomic="true" class="position-fixed bottom-0 end-0 p-3" style="z-index: 10000">
+        <div class="toast align-items-center text-white bg-success border-0" id="successToast" role="alert">
+            <div class="d-flex">
+                <div class="toast-body" id="toastMessage">Đăng ký thành công!</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+        <div class="toast align-items-center text-white bg-danger border-0 mt-2" id="errorToast" role="alert">
+            <div class="d-flex">
+                <div class="toast-body" id="errorToastMessage">Có lỗi xảy ra!</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container container-main">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-row">
+                <div class="footer-col">
+                    <h5><i class="bi bi-buildings-fill"></i> Về TCN_NCKH</h5>
+                    <p><i class="bi bi-geo-alt-fill"></i> Địa chỉ: 28A Đ. Lê Trọng Tấn, Hà Cầu, Hà Đông, Hà Nội</p>
+                    <p><i class="bi bi-envelope-fill"></i> Email: <a href="mailto:TCN@gmail.com">TCN@gmail.com</a></p>
+                    <p><i class="bi bi-telephone-fill"></i> Điện thoại: <a href="tel:+84383520274">0383 520 274</a></p>
+                    <p><i class="bi bi-facebook"></i> Facebook: <a href="https://www.facebook.com/diemhuong2004" target="_blank">TCN Nguyễn Trãi</a></p>
+                    <p><i class="bi bi-instagram"></i> Instagram: <a href="https://www.facebook.com/diemhuong2004" target="_blank">TCN Nguyễn Trãi</a></p>
+                </div>
+                <div class="footer-col">
+                    <h5><i class="bi bi-link-45deg"></i> Liên kết nhanh</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="bi bi-house-door-fill"></i> <a asp-area="" asp-controller="Home" asp-action="Index">Trang Chủ</a></li>
+                        <li><i class="bi bi-file-earmark-lock-fill"></i> <a asp-area="" asp-controller="Home" asp-action="Privacy">Chính Sách Bảo Mật</a></li>
+                        <li><i class="bi bi-person-fill"></i> <a asp-area="" asp-controller="HocSinh" asp-action="Index">Thông tin Học Sinh</a></li>
+                        <li><i class="bi bi-box-arrow-in-right"></i> <a asp-area="" asp-controller="Auth" asp-action="Login">Đăng Nhập</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col footer-map">
+                    <h5><i class="bi bi-map-fill"></i> Bản Đồ</h5>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.109918731175!2d105.7725906750873!3d20.98808168065099!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135cd29a4358a99%3a0x241d6b052f58e1c6!2zMjggQSBsZSB0cuG7jW5nIGThuqVpbiBIw6AgxJBhZyBIw6AgTmG7mWk!5e0!3m2!1svi!2sbd!4v1718873730000!5m2!1svi!2sbd"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+            <div class="text-center pt-4 footer-bottom-text">
+                &copy; @DateTime.Now.Year - <strong>TCN_NCKH</strong> - Thiết kế bởi nhóm nghiên cứu trẻ & đỉnh 🤙
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+        // Toast notifications logic (should be at the end, after Bootstrap JS)
+        window.addEventListener('DOMContentLoaded', () => {
+            const successMessage = '@TempData["SuccessToast"]';
+            const errorMessage = '@TempData["ErrorToast"]'; // Assume you might set an ErrorToast
+
+            if (successMessage && successMessage.trim() !== '') {
+                document.getElementById('toastMessage').innerText = successMessage;
+                var successToast = new bootstrap.Toast(document.getElementById('successToast'));
+                successToast.show();
+            } else if (errorMessage && errorMessage.trim() !== '') {
+                document.getElementById('errorToastMessage').innerText = errorMessage;
+                var errorToast = new bootstrap.Toast(document.getElementById('errorToast'));
+                errorToast.show();
+            }
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false) @* ĐẢM BẢO DÒNG NÀY CÓ Ở CUỐI BODY *@
+</body>
+</html>

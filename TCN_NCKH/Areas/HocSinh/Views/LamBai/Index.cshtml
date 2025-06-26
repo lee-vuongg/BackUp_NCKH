@@ -1,0 +1,119 @@
+﻿@model TCN_NCKH.Models.DBModel.Lichthi
+@using TCN_NCKH.Models.DBModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Làm Bài Thi";
+    Layout = "~/Areas/HocSinh/Views/Shared/_LayoutHocSinh.cshtml";
+
+    var thoiGianPhut = Model.Thoigian;
+    var cauHoiList = Model.Dethi?.Cauhois.ToList() ?? new List<Cauhoi>();
+    var dapAnChon = ViewBag.DapAnChon as Dictionary<int, List<int>> ?? new Dictionary<int, List<int>>();
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-uppercase">
+            📝 Làm bài: @Model.Dethi?.Tendethi
+        </h2>
+        <div>
+            <span class="badge bg-danger fs-5 p-2 rounded shadow-sm">
+                ⏳ Thời gian còn lại: <span id="countdown">--:--</span>
+            </span>
+        </div>
+    </div>
+
+    <div class="border rounded bg-light p-3 shadow-sm mb-4">
+        <p><strong>📘 Môn học:</strong> @Model.Dethi?.Monhoc?.Tenmon</p>
+        <p><strong>📅 Ngày thi:</strong> @Model.Ngaythi.ToString("dd/MM/yyyy")</p>
+        <p><strong>🕒 Thời gian làm bài:</strong> @thoiGianPhut phút</p>
+    </div>
+
+    <form id="examForm" asp-action="NopBai" method="post">
+        <input type="hidden" name="lichThiId" value="@Model.Id" />
+
+        @for (int i = 0; i < cauHoiList.Count; i++)
+        {
+            var cauhoi = cauHoiList[i];
+            var dapanDungList = cauhoi.Dapans?.Where(d => d.Dung == true).ToList() ?? new List<Dapan>();
+            bool isMultipleChoice = dapanDungList.Count > 1;
+
+            <div class="card mb-4 border-primary shadow-sm">
+                <div class="card-header bg-primary text-white fw-bold">
+                    📖 Câu @(i + 1):
+                </div>
+                <div class="card-body">
+                    <p>@Html.Raw(cauhoi.Noidung)</p>
+
+                    @foreach (var dapan in cauhoi.Dapans ?? new List<Dapan>())
+                    {
+                        bool daChon = dapAnChon.TryGetValue(cauhoi.Id, out var listChon) && listChon.Contains(dapan.Id);
+
+                        if (isMultipleChoice)
+                        {
+                            <div class="form-check mb-2">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       name="dapAnChon[@cauhoi.Id]"
+                                       value="@dapan.Id"
+                                       id="cauhoi_@cauhoi.Id@dapan.Id"
+                                @(daChon ? "checked" : "") />
+                                <label class="form-check-label" for="cauhoi_@cauhoi.Id@dapan.Id">
+                                    @Html.Raw(dapan.Noidung)
+                                </label>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="form-check mb-2">
+                                <input class="form-check-input"
+                                       type="radio"
+                                       name="dapAnChon[@cauhoi.Id]"
+                                       value="@dapan.Id"
+                                       id="cauhoi_@cauhoi.Id@dapan.Id"
+                                       required
+                                @(daChon ? "checked" : "") />
+                                <label class="form-check-label" for="cauhoi_@cauhoi.Id@dapan.Id">
+                                    @Html.Raw(dapan.Noidung)
+                                </label>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        }
+
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-lg btn-success px-5 shadow">
+                ✅ Nộp Bài
+            </button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        const totalMinutes = @thoiGianPhut;
+        let timeLeft = totalMinutes * 60;
+        const countdownEl = document.getElementById("countdown");
+
+        function formatTime(seconds) {
+            const min = Math.floor(seconds / 60);
+            const sec = seconds % 60;
+            return `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+        }
+
+        function updateCountdown() {
+            countdownEl.textContent = formatTime(timeLeft);
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                alert("⏰ Hết giờ! Bài thi sẽ được nộp.");
+                document.getElementById("examForm").submit();
+            }
+            timeLeft--;
+        }
+
+        const timer = setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+}

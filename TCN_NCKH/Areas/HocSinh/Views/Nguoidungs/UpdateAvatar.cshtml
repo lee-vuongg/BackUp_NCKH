@@ -1,0 +1,89 @@
+﻿@model TCN_NCKH.Models.DBModel.Nguoidung
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Cập nhật ảnh đại diện";
+    Layout = "~/Areas/HocSinh/Views/Shared/_LayoutHocSinh.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-lg border-0 rounded-4 p-4">
+                <h3 class="text-center mb-4 text-primary fw-bold">Cập nhật ảnh đại diện</h3>
+
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-danger">@TempData["Error"]</div>
+                }
+
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success">@TempData["Success"]</div>
+                }
+
+                <div class="text-center mb-4">
+                    <img id="avatarPreview"
+                         src="~/images/@Model.Anhdaidien?@DateTime.Now.Ticks"
+                         class="rounded-circle border border-3 shadow"
+                         style="width: 160px; height: 160px; object-fit: cover;"
+                         alt="Avatar hiện tại" />
+                    <p class="text-muted mt-2">Ảnh hiện tại</p>
+                </div>
+
+                <form asp-action="UpdateAvatar"
+                      asp-controller="Nguoidungs"
+                      asp-area="HocSinh"
+                      enctype="multipart/form-data"
+                      method="post"
+                      class="needs-validation" novalidate>
+                    <input type="hidden" name="id" value="@Model.Id" />
+
+                    <div class="mb-3">
+                        <label for="avatarFile" class="form-label fw-semibold">Chọn ảnh đại diện mới</label>
+                        <input type="file" name="avatarFile" id="avatarFile"
+                               class="form-control" accept="image/*" onchange="previewImage(this)" required />
+                        <div class="invalid-feedback">Vui lòng chọn ảnh.</div>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary px-5 rounded-pill shadow-sm">
+                            <i class="bi bi-upload me-2"></i> Cập nhật
+                        </button>
+                        <a asp-action="AccountDetails" class="btn btn-secondary ms-2 px-4 rounded-pill">Quay lại</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Hiển thị ảnh preview
+        function previewImage(input) {
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById("avatarPreview").src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Bắt validation bootstrap
+        (() => {
+            'use strict';
+            const forms = document.querySelectorAll('.needs-validation');
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+}

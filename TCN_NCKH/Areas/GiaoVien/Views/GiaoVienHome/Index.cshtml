@@ -1,0 +1,112 @@
+﻿@{
+    Layout = "~/Areas/GiaoVien/Views/Shared/_LayoutGiaoVien.cshtml";
+    ViewData["Title"] = "Dashboard Giáo Viên";
+
+    // **PHẦN BỔ SUNG ĐỂ SỬA LỖI RuntimeBinderException**
+    // Ép kiểu rõ ràng các List từ ViewBag để RuntimeBinder có thể nhận diện phương thức .Any()
+    var recentDeThis = ViewBag.RecentDeThis as List<TCN_NCKH.Models.DBModel.Dethi>;
+    var upcomingLichThis = ViewBag.UpcomingLichThis as List<TCN_NCKH.Models.DBModel.Lichthi>;
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-4 col-6">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>@(ViewData["TotalDeThi"] ?? 0)</h3>
+                    <p>Tổng số Đề Thi</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <a href="/GiaoVien/DeThis/Index" class="small-box-footer">Xem chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-4 col-6">
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h3>@(ViewData["PassRate"] ?? 0)<sup style="font-size: 20px">%</sup></h3> @* Hiển thị tỷ lệ đạt *@
+                    <p>Tỷ lệ Đạt</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <a href="/GiaoVien/Ketquathis/Index" class="small-box-footer">Xem chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-4 col-6">
+            <div class="small-box bg-warning">
+                <div class="inner">
+                    <h3>@(ViewData["UpcomingLichThi"] ?? 0)</h3>
+                    <p>Lịch Thi Sắp Tới</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <a href="/GiaoVien/Lichthis/Index" class="small-box-footer">Xem chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <section class="col-lg-7 connectedSortable">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-edit mr-1"></i>
+                        Đề Thi Gần Đây
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        @* Đã thay ViewBag.RecentDeThis bằng biến recentDeThis đã được ép kiểu *@
+                        @if (recentDeThis != null && recentDeThis.Any())
+                        {
+                            @foreach (var deThi in recentDeThis)
+                            {
+                                <li class="list-group-item">@deThi.Tendethi - Ngày tạo: @(deThi.Ngaytao?.ToString("dd/MM/yyyy") ?? "N/A")</li>
+                            }
+                        }
+                        else
+                        {
+                            <li class="list-group-item">Không có đề thi nào gần đây.</li>
+                        }
+                        <li class="list-group-item"><a href="/GiaoVien/DeThis/Index">Xem tất cả Đề Thi</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="col-lg-5 connectedSortable">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-clock mr-1"></i>
+                        Lịch Thi Sắp Tới
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        @* Đã thay ViewBag.UpcomingLichThis bằng biến upcomingLichThis đã được ép kiểu *@
+                        @if (upcomingLichThis != null && upcomingLichThis.Any())
+                        {
+                            @foreach (var lichThi in upcomingLichThis)
+                            {
+                                <li class="list-group-item">
+                                    Đề: @(lichThi.Dethi?.Tendethi ?? "N/A") - Lớp: @(lichThi.Lophoc?.Tenlop ?? "N/A") - Ngày thi: @lichThi.Ngaythi.ToString("dd/MM/yyyy HH:mm")
+                                </li>
+                            }
+                        }
+                        else
+                        {
+                            <li class="list-group-item">Không có lịch thi sắp tới.</li>
+                        }
+                        <li class="list-group-item"><a href="/GiaoVien/Lichthis/Index">Xem tất cả Lịch Thi</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    @* Có thể thêm các script Chart.js tại đây để biểu diễn dữ liệu bằng biểu đồ nếu muốn *@
+}

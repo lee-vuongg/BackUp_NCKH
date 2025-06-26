@@ -1,0 +1,230 @@
+﻿/* Styling cho Form Nhận xét */
+.comment-form-container {
+    margin-top: 50px; /* Tạo khoảng cách với danh sách nhận xét phía trên */
+    padding: 30px;
+    background-color: #f8f9fa; /* Nền nhẹ nhàng cho form */
+    border-radius: 12px; /* Bo tròn góc đẹp mắt */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08); /* Đổ bóng nhẹ */
+    max-width: 600px; /* Giới hạn chiều rộng của form */
+    margin-left: auto; /* Căn giữa form */
+    margin-right: auto; /* Căn giữa form */
+    border: 1px solid #e0e0e0; /* Đường viền nhẹ */
+}
+
+.comment-form-container h3 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #4a148c; /* Màu sắc phù hợp với phần nhận xét */
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+.comment-form .form-group {
+    margin-bottom: 25px; /* Khoảng cách giữa các nhóm form */
+}
+
+.comment-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #555;
+    font-size: 1rem;
+}
+
+.comment-form .form-control {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid #ced4da;
+    border-radius: 8px; /* Bo tròn góc của input/textarea */
+    font-size: 1rem;
+    box-sizing: border-box; /* Đảm bảo padding không làm tăng chiều rộng tổng thể */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .comment-form .form-control:focus {
+        border-color: #7b1fa2; /* Màu viền khi focus, phù hợp với reviews section */
+        box-shadow: 0 0 0 0.2rem rgba(123, 31, 162, 0.25); /* Đổ bóng khi focus */
+        outline: none; /* Bỏ viền outline mặc định của trình duyệt */
+    }
+
+.comment-form textarea.form-control {
+    resize: vertical; /* Cho phép thay đổi kích thước theo chiều dọc */
+    min-height: 100px; /* Chiều cao tối thiểu */
+}
+
+.comment-form button.btn-primary {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #7b1fa2; /* Màu nút submit, phù hợp với reviews section */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    letter-spacing: 0.5px;
+}
+
+    .comment-form button.btn-primary:hover {
+        background-color: #4a148c; /* Màu nút khi hover */
+        transform: translateY(-2px); /* Hiệu ứng nhấc nhẹ nút lên */
+    }
+
+/* Điều chỉnh lại review-list để hỗ trợ prepend tốt hơn */
+.review-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Tăng khoảng cách giữa các thẻ một chút */
+    justify-content: center;
+    margin-bottom: 40px; /* Thêm khoảng cách dưới review list */
+}
+
+.review-card {
+    flex: 1 1 calc(33.33% - 20px); /* 3 cột, trừ đi khoảng cách */
+    max-width: 320px; /* Đảm bảo các thẻ không quá lớn */
+    background: #fff;
+    box-shadow: 0 6px 18px rgba(106,27,154,0.15);
+    border-radius: 16px;
+    padding: 25px 20px; /* Tăng padding một chút */
+    font-size: 1rem; /* Kích thước font cơ bản */
+    font-style: italic;
+    color: #4a148c;
+    position: relative;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 150px; /* Đảm bảo chiều cao tối thiểu cho card */
+}
+
+    .review-card::before {
+        content: "“";
+        font-size: 3rem; /* Kích thước lớn hơn cho dấu ngoặc kép */
+        color: #ba68c8;
+        position: absolute;
+        top: 5px; /* Điều chỉnh vị trí */
+        left: 10px; /* Điều chỉnh vị trí */
+        font-weight: 700;
+        opacity: 0.3; /* Rõ hơn một chút */
+        z-index: 0; /* Đảm bảo nằm dưới text */
+    }
+
+    .review-card p { /* Nếu bạn bọc nội dung nhận xét trong thẻ <p> */
+        position: relative; /* Để nội dung nằm trên dấu ngoặc kép */
+        z-index: 1;
+        margin-bottom: 0;
+    }
+
+.review-author {
+    margin-top: 20px; /* Tăng khoảng cách từ nội dung nhận xét */
+    font-weight: 700;
+    font-style: normal;
+    color: #7b1fa2; /* Màu sắc tác giả */
+    text-align: right;
+    font-size: 0.95rem; /* Kích thước font lớn hơn một chút */
+}
+
+/* Responsive cho Form Nhận xét */
+@media (max-width: 768px) {
+    .comment-form-container {
+        padding: 20px;
+        margin: 30px auto; /* Điều chỉnh margin cho màn hình nhỏ hơn */
+    }
+
+        .comment-form-container h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+    .comment-form button.btn-primary {
+        font-size: 1rem;
+        padding: 12px;
+    }
+
+    .review-card {
+        flex: 1 1 calc(50% - 20px); /* 2 cột trên màn hình trung bình */
+        max-width: unset; /* Bỏ giới hạn max-width */
+    }
+}
+
+@media (max-width: 576px) {
+    .review-card {
+        flex: 1 1 100%; /* 1 cột trên màn hình nhỏ */
+    }
+}
+/* Styling cho Form Nhận xét - Đã điều chỉnh cho nhỏ gọn hơn */
+.comment-form-container {
+    margin-top: 30px; /* Giảm khoảng cách trên */
+    padding: 20px; /* Giảm padding bên trong */
+    background-color: #f8f9fa;
+    border-radius: 10px; /* Bo tròn góc ít hơn một chút */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); /* Đổ bóng nhẹ hơn */
+    max-width: 500px; /* Giảm chiều rộng tối đa của form */
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #e0e0e0;
+}
+
+    .comment-form-container h3 {
+        text-align: center;
+        margin-bottom: 20px; /* Giảm khoảng cách dưới tiêu đề */
+        color: #4a148c;
+        font-weight: 700;
+        font-size: 1.5rem; /* Giảm kích thước tiêu đề */
+    }
+
+.comment-form .form-group {
+    margin-bottom: 15px; /* Giảm khoảng cách giữa các nhóm form */
+}
+
+.comment-form label {
+    display: block;
+    margin-bottom: 6px; /* Giảm khoảng cách dưới label */
+    font-weight: 600;
+    color: #555;
+    font-size: 0.9rem; /* Giảm kích thước font của label */
+}
+
+.comment-form .form-control {
+    width: 100%;
+    padding: 10px 12px; /* Giảm padding của input/textarea */
+    border: 1px solid #ced4da;
+    border-radius: 6px; /* Bo tròn góc ít hơn */
+    font-size: 0.9rem; /* Giảm kích thước font của input/textarea */
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .comment-form .form-control:focus {
+        border-color: #7b1fa2;
+        box-shadow: 0 0 0 0.15rem rgba(123, 31, 162, 0.15); /* Đổ bóng nhỏ hơn */
+        outline: none;
+    }
+
+.comment-form textarea.form-control {
+    resize: vertical;
+    min-height: 80px; /* Giảm chiều cao tối thiểu của textarea */
+    max-height: 150px; /* Thêm chiều cao tối đa để ngăn kéo dài quá mức */
+}
+
+.comment-form button.btn-primary {
+    display: block;
+    width: 100%;
+    padding: 10px; /* Giảm padding của nút */
+    background-color: #7b1fa2;
+    color: white;
+    border: none;
+    border-radius: 6px; /* Bo tròn góc ít hơn */
+    font-size: 1rem; /* Giảm kích thước font của nút */
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    letter-spacing: 0.3px; /* Giảm letter-spacing */
+}
+
+    .comment-form button.btn-primary:hover {
+        background-color: #4a148c;
+        transform: translateY(-1px); /* Hiệu ứng nhấc nhẹ hơn */
+    }

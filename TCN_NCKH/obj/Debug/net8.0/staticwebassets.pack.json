@@ -1,0 +1,361 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\TCN_NCKH.bundle.scp.css",
+      "PackagePath": "staticwebassets\\TCN_NCKH.c31altdqe8.bundle.scp.css"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\css\\LayoutHS.css",
+      "PackagePath": "staticwebassets\\css\\LayoutHS.css"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\css\\LayoutKVL.css",
+      "PackagePath": "staticwebassets\\css\\LayoutKVL.css"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\css\\LichthiHS.css",
+      "PackagePath": "staticwebassets\\css\\LichthiHS.css"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\css\\home1.css",
+      "PackagePath": "staticwebassets\\css\\home1.css"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\css\\idex1.css",
+      "PackagePath": "staticwebassets\\css\\idex1.css"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\css\\login.css",
+      "PackagePath": "staticwebassets\\css\\login.css"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\css\\test.css",
+      "PackagePath": "staticwebassets\\css\\test.css"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\images\\0b2b6dc4-afab-44b4-8677-0fba3bb16428.jpg",
+      "PackagePath": "staticwebassets\\images\\0b2b6dc4-afab-44b4-8677-0fba3bb16428.jpg"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\images\\1bf312f5-30bc-41fd-b60d-846503ed74ba.jpg",
+      "PackagePath": "staticwebassets\\images\\1bf312f5-30bc-41fd-b60d-846503ed74ba.jpg"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\images\\35e76f06-3626-4503-8674-66236f3d7f4f.jpg",
+      "PackagePath": "staticwebassets\\images\\35e76f06-3626-4503-8674-66236f3d7f4f.jpg"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\images\\3b5d1617-a430-4b2f-8cb0-d3595d4c9e15.jpg",
+      "PackagePath": "staticwebassets\\images\\3b5d1617-a430-4b2f-8cb0-d3595d4c9e15.jpg"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\images\\536fcc85-892d-40bc-8ba3-9e0ecd151cc2.jpg",
+      "PackagePath": "staticwebassets\\images\\536fcc85-892d-40bc-8ba3-9e0ecd151cc2.jpg"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\images\\5551eed2-22eb-4533-a457-a9908773e927.jpg",
+      "PackagePath": "staticwebassets\\images\\5551eed2-22eb-4533-a457-a9908773e927.jpg"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\images\\5c72015e-4a48-4abe-81eb-1f329e4b48c5.jpg",
+      "PackagePath": "staticwebassets\\images\\5c72015e-4a48-4abe-81eb-1f329e4b48c5.jpg"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\images\\624b0dcf-fdef-4c02-bed2-a1a9916d8b7f.jpg",
+      "PackagePath": "staticwebassets\\images\\624b0dcf-fdef-4c02-bed2-a1a9916d8b7f.jpg"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\images\\87e743ca-c7d3-4ae2-9f98-12f66d222020.jpg",
+      "PackagePath": "staticwebassets\\images\\87e743ca-c7d3-4ae2-9f98-12f66d222020.jpg"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\images\\8b3350da-ee91-4014-9eaf-68428f9ecb4f.jpg",
+      "PackagePath": "staticwebassets\\images\\8b3350da-ee91-4014-9eaf-68428f9ecb4f.jpg"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\images\\AVT.jpg",
+      "PackagePath": "staticwebassets\\images\\AVT.jpg"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\images\\CT.jpg",
+      "PackagePath": "staticwebassets\\images\\CT.jpg"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\images\\a6c3c81e-ef93-46f8-8e08-5fba661a8e62.jpg",
+      "PackagePath": "staticwebassets\\images\\a6c3c81e-ef93-46f8-8e08-5fba661a8e62.jpg"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\images\\a998d605-5f9e-4e6b-8911-7274d2f57c33.jpg",
+      "PackagePath": "staticwebassets\\images\\a998d605-5f9e-4e6b-8911-7274d2f57c33.jpg"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\images\\bbaf0664-7364-41c3-a20f-e468c420683a.jpg",
+      "PackagePath": "staticwebassets\\images\\bbaf0664-7364-41c3-a20f-e468c420683a.jpg"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\images\\d52c88ba-037e-4b85-8d1f-508c738c2d1e.jpg",
+      "PackagePath": "staticwebassets\\images\\d52c88ba-037e-4b85-8d1f-508c738c2d1e.jpg"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.TCN_NCKH.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.TCN_NCKH.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.TCN_NCKH.props",
+      "PackagePath": "build\\TCN_NCKH.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.TCN_NCKH.props",
+      "PackagePath": "buildMultiTargeting\\TCN_NCKH.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.TCN_NCKH.props",
+      "PackagePath": "buildTransitive\\TCN_NCKH.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -1,0 +1,193 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject TCN_NCKH.Models.DBModel.NghienCuuKhoaHocContext _context
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Identity
+@using TCN_NCKH.Models.DBModel
+@using TCN_NCKH.Models
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - Giáo Viên | Thi Trắc Nghiệm</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css" />
+
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    @{
+        // Khai báo biến 'giaovien' ở đây để có thể sử dụng xuyên suốt layout
+        TCN_NCKH.Models.DBModel.Nguoidung giaovien = null;
+
+        if (User.Identity != null && User.Identity.IsAuthenticated)
+        {
+            var email = User.FindFirstValue(ClaimTypes.Email);
+
+            if (!string.IsNullOrEmpty(email))
+            {
+                // Lấy thông tin người dùng từ database (giả định giáo viên cũng là một Nguoidung)
+                giaovien = _context.Nguoidungs.FirstOrDefault(u => u.Email == email);
+            }
+        }
+    }
+    <div class="wrapper">
+
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                @if (User.Identity != null && User.Identity.IsAuthenticated)
+                {
+                    // Sử dụng biến 'giaovien' đã lấy ở phía trên
+                    if (giaovien != null)
+                    {
+                        var avatarPath = string.IsNullOrEmpty(giaovien.Anhdaidien)
+                        ? "/images/CT.jpg" // Ảnh mặc định nếu không set (giống admin)
+                        : "/images/" + giaovien.Anhdaidien;
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" data-toggle="dropdown">
+                                <img src="@avatarPath" alt="Avatar" class="rounded-circle mr-2" style="width:32px; height:32px; object-fit:cover;" />
+                                <span class="text-uppercase fw-bold">@giaovien.Hoten</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li>
+                                    @* Giả sử Giáo viên có trang chi tiết tài khoản riêng trong Area GiaoVien *@
+                                    <a class="dropdown-item" asp-area="GiaoVien" asp-controller="NguoiDungs" asp-action="AccountDetails" asp-route-id="@giaovien.Id">
+                                        <i class="fas fa-user mr-2"></i> Thông tin tài khoản
+                                    </a>
+                                </li>
+                                <li>
+                                    @* Giả sử Giáo viên có trang đổi mật khẩu riêng trong Area GiaoVien *@
+                                    <a class="dropdown-item" asp-area="GiaoVien" asp-controller="NguoiDungs" asp-action="ChangePassword" asp-route-id="@giaovien.Id">
+                                        <i class="fas fa-key mr-2"></i> Đổi mật khẩu
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li>
+                                    <form asp-area="" asp-controller="Auth" asp-action="Logout" method="post">
+                                        <button type="submit" class="dropdown-item text-danger">
+                                            <i class="fas fa-sign-out-alt mr-2"></i> Đăng xuất
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        // Fallback nếu không tìm thấy người dùng trong DB nhưng vẫn xác thực
+                        <li class="nav-item d-flex align-items-center">
+                            <span class="mr-3 text-uppercase font-weight-bold">Giáo viên</span>
+                            <form asp-area="" asp-controller="Auth" asp-action="Logout" method="post" style="display:inline;">
+                                <button type="submit" class="btn btn-outline-danger btn-sm">Đăng xuất</button>
+                            </form>
+                        </li>
+                    }
+                }
+                <li class="nav-item">
+                    <form class="form-inline ml-3" asp-area="GiaoVien" asp-controller="Search" asp-action="Index" method="get">
+                        <div class="input-group input-group-sm">
+                            <input class="form-control form-control-navbar" type="search" placeholder="Tìm kiếm..." aria-label="Search" name="query">
+                            <div class="input-group-append">
+                                <button class="btn btn-navbar" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <a href="/GiaoVien/GiaoVienHome/Index" class="brand-link text-center">
+                <span class="brand-text font-weight-light">Trang Giáo Viên</span>
+            </a>
+
+            <div class="sidebar">
+                @if (User.Identity != null && User.Identity.IsAuthenticated && giaovien != null)
+                {
+                    var avatarPath = string.IsNullOrEmpty(giaovien.Anhdaidien)
+                    ? "/images/CT.jpg" // Ảnh mặc định nếu không set
+                    : "/images/" + giaovien.Anhdaidien;
+
+                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                        <div class="image">
+                            <img src="@avatarPath" class="img-circle elevation-2" alt="User Image">
+                        </div>
+                        <div class="info">
+                            <a href="#" class="d-block">@giaovien.Hoten</a> @* Có thể link tới trang profile nếu có *@
+                        </div>
+                    </div>
+                }
+
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <li class="nav-item">
+                            <a href="/GiaoVien/Home/Index" class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" ? "active" : "")">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/GiaoVien/DeThis/Index" class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "DeThis" ? "active" : "")">
+                                <i class="nav-icon fas fa-file-alt"></i>
+                                <p>Quản Lý Đề Thi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/GiaoVien/Ketquathis/Index" class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Ketquathis" ? "active" : "")">
+                                <i class="nav-icon fas fa-chart-bar"></i>
+                                <p>Kết Quả</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/GiaoVien/Lichthis/Index" class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Lichthis" ? "active" : "")">
+                                <i class="nav-icon fas fa-calendar-alt"></i>
+                                <p>Lịch Thi</p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+        <div class="content-wrapper">
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">@ViewData["Title"]</h1>
+                        </div><div class="col-sm-6">
+                            @* Breadcrumbs có thể đặt ở đây *@
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="content pt-3">
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+            </section>
+        </div>
+        <footer class="main-footer text-center">
+            <strong>© 2025 Thi Trắc Nghiệm.</strong> All rights reserved.
+        </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

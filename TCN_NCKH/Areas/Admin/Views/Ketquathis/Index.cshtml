@@ -1,0 +1,171 @@
+﻿@model TCN_NCKH.Models.DBModel.KetquathiListViewModel 
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Thống Kê Kết Quả Thi";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">
+        <i class="fas fa-chart-bar"></i> Thống Kê Kết Quả Thi
+    </h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/Admin/AdminHome">Dashboard</a></li>
+        <li class="breadcrumb-item active">Thống Kê Kết Quả Thi</li>
+    </ol>
+
+    <!-- Khu vực hiển thị thông báo -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @Html.Raw(TempData["SuccessMessage"])
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @Html.Raw(TempData["ErrorMessage"])
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+            <h6 class="m-0 font-weight-bold text-primary">Tổng hợp kết quả theo lịch thi</h6>
+            @* Bạn có thể thêm nút "Tạo mới kết quả thi" (riêng lẻ) ở đây nếu muốn người dùng có thể thêm từng kết quả thi thủ công.
+               Tuy nhiên, với trang thống kê, có thể bạn không cần nó ở đây mà ở một trang riêng biệt khác. *
+            @* <a asp-action="Create" class="btn btn-primary btn-sm">
+                <i class="fas fa-plus"></i> Tạo Kết Quả Thi Mới
+            </a> *@
+        </div>
+        <div class="card-body">
+            @if (Model == null || !Model.LichthiSummaries.Any())
+            {
+                <div class="alert alert-info">Không có dữ liệu lịch thi nào để thống kê.</div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>ID Lịch Thi</th>
+                                <th>Tên Đề Thi</th>
+                                <th>Lớp Học</th>
+                                <th>Thời Gian Thi</th>
+                                <th class="text-center">Tổng SV</th>
+                                <th class="text-center">Đã Làm Bài</th>
+                                <th class="text-center">Chưa Làm Bài</th>
+                                <th class="text-center">Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.LichthiSummaries) @* <-- Lặp qua danh sách thống kê *@
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.Lichthi.Id)</td> @* Truy cập ID qua đối tượng Lichthi *@
+                                    <td>
+                                        @if (item.Lichthi?.Dethi != null) @* Truy cập Tên Đề Thi qua Lichthi.Dethi *@
+                                        {
+                                            <span>@item.Lichthi.Dethi.Tendethi</span>
+                                        }
+                                        else
+                                        {
+                                            <span>(Không rõ đề thi)</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.Lichthi?.Lophoc != null) @* Truy cập Tên Lớp Học qua Lichthi.Lophoc *@
+                                        {
+                                            <span>@item.Lichthi.Lophoc.Tenlop</span>
+                                        }
+                                        else
+                                        {
+                                            <span>(Không rõ lớp)</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @* Sử dụng Ngaythi của đối tượng Lichthi để hiển thị ngày và giờ thi *@
+                                        @if (item.Lichthi?.Ngaythi != null)
+                                        {
+                                            @item.Lichthi.Ngaythi.ToString("dd/MM/yyyy HH:mm")
+                                        }
+                                        else
+                                        {
+                                            <span>N/A</span>
+                                        }
+                                    </td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.TongSoSinhVienLopHoc)</td>
+                                    <td class="text-center">
+                                        @if (item.SoLuongSinhVienDaLam > 0)
+                                        {
+                                            <a asp-action="StudentsByLichthi" asp-route-id="@item.Lichthi.Id" asp-route-showCompleted="true" class="text-success font-weight-bold" title="Xem danh sách sinh viên đã làm bài">
+                                                @Html.DisplayFor(modelItem => item.SoLuongSinhVienDaLam) <i class="fas fa-arrow-right"></i>
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">@Html.DisplayFor(modelItem => item.SoLuongSinhVienDaLam)</span>
+                                        }
+                                    </td>
+                                    <td class="text-center">
+                                        @if (item.SoLuongSinhVienChuaLam > 0)
+                                        {
+                                            <a asp-action="StudentsByLichthi" asp-route-id="@item.Lichthi.Id" asp-route-showCompleted="false" class="text-danger font-weight-bold" title="Xem danh sách sinh viên chưa làm bài">
+                                                @Html.DisplayFor(modelItem => item.SoLuongSinhVienChuaLam) <i class="fas fa-arrow-right"></i>
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">@Html.DisplayFor(modelItem => item.SoLuongSinhVienChuaLam)</span>
+                                        }
+                                    </td>
+                                    <td class="text-center">
+                                        @* Nút này có thể dẫn đến trang chi tiết của LỊCH THI hoặc danh sách tất cả các KẾT QUẢ THI của lịch đó *@
+                                        <a asp-action="StudentsByLichthi" asp-route-id="@item.Lichthi.Id" asp-route-showCompleted="true" class="btn btn-info btn-sm" title="Xem tất cả kết quả thi của lịch này">
+                                            <i class="fas fa-search"></i> Xem KQ
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap4.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Tự động đóng thông báo sau vài giây
+            window.setTimeout(function () {
+                $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                    $(this).remove();
+                });
+            }, 3000); // 3 giây
+
+            $('#dataTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Vietnamese.json"
+                },
+                "order": [[ 3, "desc" ]] // Sắp xếp mặc định theo cột Thời gian thi giảm dần
+            });
+        });
+    </script>
+}
+
+@section Styles {
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" xintegrity="sha512-1ycn6IcaQQ40j/6PqqF/zEE4hQYkMWn6VfUe50I+fI+I5M5b5G+w5g5Z5L5K5B5E5P5V5C5X5Y5A5B5E5P5Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+}

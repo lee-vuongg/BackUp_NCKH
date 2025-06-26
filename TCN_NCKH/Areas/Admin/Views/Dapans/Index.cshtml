@@ -1,0 +1,212 @@
+﻿@model TCN_NCKH.Models.DBModel.DethiListViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Quản Lý Đáp Án Theo Đề Thi"; // Tiêu đề trang rõ ràng
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml"; // Đảm bảo đúng layout của Admin
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">
+        <i class="fas fa-list-alt"></i> @ViewData["Title"]
+    </h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/Admin/AdminHome">Dashboard</a></li>
+        <li class="breadcrumb-item active">@ViewData["Title"]</li>
+    </ol>
+
+    <!-- Khu vực hiển thị thông báo (Success/Error) -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách đề thi, câu hỏi và đáp án</h6>
+            <a asp-action="Create" class="btn btn-primary btn-sm">
+                <i class="fas fa-plus"></i> Tạo Đáp Án Mới (Độc lập)
+            </a> @* Vẫn giữ nút tạo đáp án độc lập *@
+        </div>
+        <div class="card-body">
+            @if (!Model.Dethis.Any()) @* Truy cập danh sách đề thi qua Model.Dethis *@
+            {
+                <div class="alert alert-info">Không có đề thi nào được tìm thấy.</div>
+            }
+            else
+            {
+                @foreach (var dethi in Model.Dethis) @* Duyệt qua Model.Dethis *@
+                {
+                    <div class="card mb-4 border-info"> @* Card cho từng đề thi *@
+                        <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+                            <h4 class="mb-0">
+                                <i class="fas fa-book"></i> Đề Thi [ID: @dethi.Id]: @Html.DisplayFor(modelItem => dethi.Tendethi)
+                                @if (dethi.Ngaytao.HasValue)
+                                {
+                                    <small class="text-white-50 ml-2">(Ngày tạo: @dethi.Ngaytao.Value.ToShortDateString())</small>
+                                }
+                            </h4>
+                            @* Nút quản lý cho Đề thi nếu bạn muốn (ví dụ: Edit Đề thi) *@
+                            @* <a asp-controller="Dethis" asp-action="Edit" asp-route-id="@dethi.Id" class="btn btn-sm btn-primary">
+                                <i class="fas fa-edit"></i> Chỉnh sửa đề thi
+                            </a> *@
+                        </div>
+                        <div class="card-body">
+                            @if (!dethi.Cauhois.Any())
+                            {
+                                <div class="alert alert-warning">Chưa có câu hỏi nào cho đề thi này.</div>
+                            }
+                            else
+                            {
+                                @foreach (var cauhoi in dethi.Cauhois)
+                                {
+                                    <div class="card mb-3 border-primary"> @* Card cho từng câu hỏi *@
+                                        @* Thêm data-toggle="collapse" và href để bật chức năng thu gọn *@
+                                        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center"
+                                             data-toggle="collapse" href="#collapseCauhoi_@cauhoi.Id" role="button" aria-expanded="true" aria-controls="collapseCauhoi_@cauhoi.Id" style="cursor: pointer;">
+                                            <h5 class="mb-0">
+                                                <i class="fas fa-question-circle"></i> Câu hỏi [ID: @cauhoi.Id]: @Html.DisplayFor(modelItem => cauhoi.Noidung)
+                                                @if (cauhoi.Diem != null)
+                                                {
+                                                    <small class="text-white-50 ml-2">(Điểm: @cauhoi.Diem)</small>
+                                                }
+                                            </h5>
+                                            <i class="fas fa-chevron-down toggle-icon"></i> @* Icon để biểu thị có thể thu gọn/mở rộng *@
+                                        </div>
+                                        @* Thêm class 'collapse' và id để liên kết với data-toggle. 
+                                           Thêm 'show' nếu muốn mặc định là mở, nếu không thì bỏ 'show' để mặc định là đóng. *@
+                                        <div class="collapse show" id="collapseCauhoi_@cauhoi.Id"> 
+                                            <div class="card-body">
+                                                @if (!cauhoi.Dapans.Any())
+                                                {
+                                                    <p class="text-muted">Chưa có đáp án nào cho câu hỏi này.</p>
+                                                }
+                                                else
+                                                {
+                                                    <div class="table-responsive">
+                                                        <table class="table table-sm table-bordered table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th style="width: 50px;">#</th>
+                                                                    <th>Nội dung Đáp án</th>
+                                                                    <th style="width: 100px;" class="text-center">Đúng</th>
+                                                                    <th style="width: 150px;" class="text-center">Hành Động</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @{ int dapanCounter = 1; }
+                                                                @foreach (var dapan in cauhoi.Dapans)
+                                                                {
+                                                                    <tr>
+                                                                        <td>@dapanCounter</td>
+                                                                        <td>@Html.DisplayFor(modelItem => dapan.Noidung)</td>
+                                                                        <td class="text-center">
+                                                                            @if (dapan.Dung == true)
+                                                                            {
+                                                                                <i class="fas fa-check-circle text-success" title="Đáp án đúng"></i>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <i class="fas fa-times-circle text-danger" title="Đáp án sai"></i>
+                                                                            }
+                                                                        </td>
+                                                                        <td class="text-center">
+                                                                            <a asp-action="Edit" asp-route-id="@dapan.Id" class="btn btn-warning btn-sm" title="Chỉnh sửa">
+                                                                                <i class="fas fa-edit"></i>
+                                                                            </a>
+                                                                            <a asp-action="Details" asp-route-id="@dapan.Id" class="btn btn-info btn-sm ml-1" title="Chi tiết">
+                                                                                <i class="fas fa-info-circle"></i>
+                                                                            </a>
+                                                                            <a asp-action="Delete" asp-route-id="@dapan.Id" class="btn btn-danger btn-sm ml-1" title="Xóa">
+                                                                                <i class="fas fa-trash-alt"></i>
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                                    dapanCounter++;
+                                                                }
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div> @* End collapse for Cauhoi *@
+                                    </div> @* End Card for Cauhoi *@
+                                }
+                            }
+                        </div>
+                    </div> @* End Card for Dethi *@
+                }
+            }
+            
+            <!-- Phần phân trang -->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item @(Model.PageNumber == 1 ? "disabled" : "")">
+                        <a class="page-link" asp-action="Index" asp-route-page="@(Model.PageNumber - 1)" asp-route-pageSize="@Model.PageSize" tabindex="-1" aria-disabled="@(Model.PageNumber == 1)">Trước</a>
+                    </li>
+                    @for (int i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                            <a class="page-link" asp-action="Index" asp-route-page="@i" asp-route-pageSize="@Model.PageSize">@i</a>
+                        </li>
+                    }
+                    <li class="page-item @(Model.PageNumber == Model.TotalPages ? "disabled" : "")">
+                        <a class="page-link" asp-action="Index" asp-route-page="@(Model.PageNumber + 1)" asp-route-pageSize="@Model.PageSize" aria-disabled="@(Model.PageNumber == Model.TotalPages)">Tiếp</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="text-center text-muted mt-2">
+                Hiển thị @Model.Dethis.Count() / @Model.TotalItems đề thi. Trang @Model.PageNumber / @Model.TotalPages
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Tự động đóng thông báo sau vài giây
+            window.setTimeout(function () {
+                $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                    $(this).remove();
+                });
+            }, 3000); // 3 giây
+
+            // Xử lý icon xoay khi collapse/expand
+            $('.card-header[data-toggle="collapse"]').click(function() {
+                var icon = $(this).find('.toggle-icon');
+                if ($(this).attr('aria-expanded') === 'true') { // Nếu đang mở và click để đóng
+                    icon.removeClass('fa-chevron-up').addClass('fa-chevron-down');
+                } else { // Nếu đang đóng và click để mở
+                    icon.removeClass('fa-chevron-down').addClass('fa-chevron-up');
+                }
+            });
+
+            // Đảm bảo trạng thái ban đầu của icon khớp với 'show' class (nếu có)
+            $('.collapse').on('show.bs.collapse', function () {
+                $('[href="#' + this.id + '"]').find('.toggle-icon').removeClass('fa-chevron-down').addClass('fa-chevron-up');
+            }).on('hide.bs.collapse', function () {
+                $('[href="#' + this.id + '"]').find('.toggle-icon').removeClass('fa-chevron-up').addClass('fa-chevron-down');
+            });
+            
+            // Khởi tạo trạng thái icon khi trang tải (nếu mặc định là 'show')
+            $('.collapse.show').each(function() {
+                $('[href="#' + this.id + '"]').find('.toggle-icon').removeClass('fa-chevron-down').addClass('fa-chevron-up');
+            });
+        });
+    </script>
+    @* Đảm bảo _AdminLayout.cshtml của bạn đã bao gồm jQuery và Bootstrap JS. *@
+}

@@ -1,0 +1,150 @@
+﻿@{
+    ViewData["Title"] = ViewBag.TopicTitle + " - Bắt đầu thi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var questions = Model as List<TCN_NCKH.Models.Question>;
+    int questionNumber = 0;
+}
+
+<link rel="stylesheet" href="~/css/test.css" /> @* Tự tạo file CSS này cho đẹp *@
+
+<div class="container test-page-container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-10">
+            <h1 class="section-title text-center mb-4">Bài Thi Trắc Nghiệm @ViewBag.TopicTitle</h1>
+            <div class="test-header d-flex justify-content-between align-items-center mb-4">
+                <span id="question-counter" class="badge bg-primary fs-5">Câu 1 / @questions.Count</span>
+                <span id="timer" class="badge bg-danger fs-5">Thời gian: 10:00</span>
+            </div>
+            <hr>
+
+            <form id="quizForm" action="/Test/SubmitTest" method="post">
+                <div id="questions-container">
+                    @foreach (var q in questions)
+                    {
+                        questionNumber++;
+                            <div class="question-card @(questionNumber == 1 ? "" : "d-none")" data-question-id="@q.Id">
+                                <h4 class="mb-3">Câu @questionNumber: @q.Text</h4>
+                                <div class="options-group">
+                                @for (int i = 0; i < q.Options.Count; i++)
+                                {
+                                            <div class="form-check mb-2">
+                                        @{
+                                            // Tạo ID cho input và label bên trong vòng lặp để đảm bảo chúng là duy nhất
+                                            // và Razor parse đúng cách.
+                                            var inputId = $"q_{q.Id}_option_{i}";
+                                        }
+                                        <input class="form-check-input" type="radio" name="question_@q.Id" id="@inputId" value="@i" required>
+                                        <label class="form-check-label" for="@inputId">
+                                            @q.Options[i]
+                                        </label>
+                                            </div>
+                                }
+                                </div>
+                            </div>
+                    }
+                </div>
+
+                <div class="d-flex justify-content-between mt-4">
+                    <button type="button" id="prev-btn" class="btn btn-secondary" style="display:none;">Câu trước</button>
+                    <button type="button" id="next-btn" class="btn btn-primary">Câu kế tiếp</button>
+                    <button type="submit" id="submit-btn" class="btn btn-success" style="display:none;">Nộp bài</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const quizForm = document.getElementById('quizForm');
+                const questionsContainer = document.getElementById('questions-container');
+                const questionCards = Array.from(document.querySelectorAll('.question-card'));
+                const questionCounter = document.getElementById('question-counter');
+                const timerDisplay = document.getElementById('timer');
+                const prevBtn = document.getElementById('prev-btn');
+                const nextBtn = document.getElementById('next-btn');
+                const submitBtn = document.getElementById('submit-btn');
+
+                let currentQuestionIndex = 0;
+                const totalQuestions = questionCards.length;
+                const timeLimitInMinutes = 10; // Giới hạn thời gian 10 phút
+                let timeLeft = timeLimitInMinutes * 60; // Thời gian còn lại bằng giây
+                let timerInterval;
+
+                function showQuestion(index) {
+                    questionCards.forEach((card, i) => {
+                        card.classList.add('d-none');
+                        if (i === index) {
+                            card.classList.remove('d-none');
+                        }
+                    });
+                    questionCounter.textContent = `Câu ${index + 1} / ${totalQuestions}`;
+
+                    prevBtn.style.display = index === 0 ? 'none' : 'block';
+                    if (index === totalQuestions - 1) {
+                        nextBtn.style.display = 'none';
+                        submitBtn.style.display = 'block';
+                    } else {
+                        nextBtn.style.display = 'block';
+                        submitBtn.style.display = 'none';
+                    }
+                }
+
+                function startTimer() {
+                    timerInterval = setInterval(() => {
+                        timeLeft--;
+                        const minutes = Math.floor(timeLeft / 60);
+                        const seconds = timeLeft % 60;
+                        timerDisplay.textContent = `Thời gian: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                        if (timeLeft <= 0) {
+                            clearInterval(timerInterval);
+                            alert('Hết giờ! Bài thi sẽ tự động nộp.');
+                            quizForm.submit(); // Tự động nộp bài khi hết giờ
+                        }
+                    }, 1000);
+                }
+
+                nextBtn.addEventListener('click', function () {
+                    // Kiểm tra xem người dùng đã chọn đáp án cho câu hiện tại chưa
+                    const currentQuestionCard = questionCards[currentQuestionIndex];
+                    const selectedOption = currentQuestionCard.querySelector(`input[name="question_${currentQuestionCard.dataset.questionId}"]:checked`);
+
+                    if (!selectedOption) {
+                        alert('Vui lòng chọn một đáp án trước khi chuyển câu.');
+                        return;
+                    }
+
+                    if (currentQuestionIndex < totalQuestions - 1) {
+                        currentQuestionIndex++;
+                        showQuestion(currentQuestionIndex);
+                    }
+                });
+
+                prevBtn.addEventListener('click', function () {
+                    if (currentQuestionIndex > 0) {
+                        currentQuestionIndex--;
+                        showQuestion(currentQuestionIndex);
+                    }
+                });
+
+                // Khi form nộp bài, dừng đếm ngược
+                quizForm.addEventListener('submit', function() {
+                    clearInterval(timerInterval);
+                });
+
+                // Khởi tạo hiển thị câu hỏi đầu tiên và bắt đầu đếm ngược
+                if (totalQuestions > 0) {
+                    showQuestion(currentQuestionIndex);
+                    startTimer();
+                } else {
+                    questionsContainer.innerHTML = '<p class="text-center text-danger">Không có câu hỏi nào để hiển thị.</p>';
+                    timerDisplay.style.display = 'none';
+                    nextBtn.style.display = 'none';
+                    prevBtn.style.display = 'none';
+                    submitBtn.style.display = 'none';
+                }
+            });
+        </script>
+}

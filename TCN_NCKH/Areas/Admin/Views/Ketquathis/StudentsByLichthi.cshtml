@@ -1,0 +1,125 @@
+﻿@model IEnumerable<TCN_NCKH.Models.DBModel.Sinhvien>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    var lichthi = ViewData["Lichthi"] as TCN_NCKH.Models.DBModel.Lichthi;
+    var showCompleted = ViewData["ShowCompleted"] as bool?;
+
+    ViewData["Title"] = $"Danh sách {(showCompleted == true ? "đã làm bài" : "chưa làm bài")}";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">
+        <i class="fas fa-users"></i> Danh sách sinh viên
+        <span class="badge badge-@(showCompleted == true ? "success" : "danger")">
+            @(showCompleted == true ? "Đã làm bài" : "Chưa làm bài")
+        </span>
+    </h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/Admin/AdminHome">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="/Admin/Ketquathis">Thống Kê Kết Quả Thi</a></li>
+        <li class="breadcrumb-item active">Danh sách sinh viên</li>
+    </ol>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+                Thông tin Lịch thi: @(lichthi?.Dethi?.Tendethi ?? "N/A") - Lớp: @(lichthi?.Lophoc?.Tenlop ?? "N/A")
+                <br />
+                Ngày thi: @(lichthi?.Ngaythi != null ? lichthi.Ngaythi.ToString("dd/MM/yyyy HH:mm") : "N/A")
+            </h6>
+        </div>
+        <div class="card-body">
+            @if (!Model.Any())
+            {
+                <div class="alert alert-info">Không có sinh viên nào trong danh sách này.</div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" id="studentsTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Mã SV</th>
+                                <th>Họ Tên SV</th>
+                                <th>Lớp Học</th>
+                                <th>Email</th>
+                                @if (showCompleted == true)
+                                {
+                                    <th>Điểm số</th>
+                                    <th>Thời gian làm bài</th>
+                                    <th class="text-center">Hành động</th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var student in Model)
+                            {
+                                <tr>
+                                    <td>@student.Msv</td>
+                                    <td>@(student.SinhvienNavigation?.Hoten ?? "N/A")</td> @* <-- Đã sửa thành SinhvienNavigation *@
+                                    <td>
+                                        @if (student.Lophoc != null)
+                                        {
+                                            @student.Lophoc.Tenlop
+                                        }
+                                        else
+                                        {
+                                            <span>N/A</span>
+                                        }
+                                    </td>
+                                    <td>@(student.SinhvienNavigation?.Email ?? "N/A")</td> @* <-- Đã sửa thành SinhvienNavigation *@
+                                    @if (showCompleted == true)
+                                    {
+                                        var ketquathi = student.Ketquathis?.FirstOrDefault(kq => kq.Lichthiid == lichthi.Id);
+                                        <td>@(ketquathi?.Diem.ToString("F2") ?? "N/A")</td>
+                                        <td>@(ketquathi?.Thoigianlam.ToString() + " phút" ?? "N/A")</td>
+                                        <td class="text-center">
+                                            @if (ketquathi != null)
+                                            {
+                                                <a asp-action="Details" asp-route-id="@ketquathi.Id" class="btn btn-primary btn-sm" title="Xem chi tiết bài làm">
+                                                    <i class="fas fa-eye"></i> Xem Bài
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <span class="text-muted">Không có KQ</span>
+                                            }
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Quay lại Thống Kê
+        </a>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap4.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#studentsTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Vietnamese.json"
+                },
+                "order": [[ 0, "asc" ]] // Sắp xếp mặc định theo cột Mã SV tăng dần
+            });
+        });
+    </script>
+}
+
+@section Styles {
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" xintegrity="sha512-1ycn6IcaQQ40j/6PqqF/zEE4hQYkMWn6VfUe50I+fI+I5M5b5G+w5g5Z5L5K5B5E5P5V5C5X5Y5A5B5E5P5Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+}

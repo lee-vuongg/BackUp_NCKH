@@ -1,0 +1,60 @@
+﻿@model IEnumerable<TCN_NCKH.Models.DBModel.Ketquathi>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/GiaoVien/Views/Shared/_LayoutGiaoVien.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Diem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Thoigianlam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ngaythi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lichthi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sinhvien)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Diem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Thoigianlam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ngaythi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lichthi.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sinhvien.Sinhvienid)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

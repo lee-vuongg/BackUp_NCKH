@@ -1,0 +1,317 @@
+﻿@{
+    ViewData["Title"] = "Trang Chủ - Thi Trắc Nghiệm CNTT"; // Tiêu đề rõ ràng hơn
+}
+
+@* Các links CSS này bạn nên đặt trong _Layout.cshtml để tránh lặp lại
+    và đảm bảo load sớm trên tất cả các trang. 
+    Nếu bạn để ở đây, chúng sẽ chỉ tải cho trang Index này và có thể gây tải lại không cần thiết.
+    Tôi sẽ giữ nguyên như bạn cung cấp nhưng khuyến nghị di chuyển chúng.
+*@
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="~/css/home1.css" asp-append-version="true" />
+@* CHÚ Ý: Bạn đang có hai dòng Font Awesome link.
+    Hãy chỉ giữ lại MỘT DÒNG và đảm bảo `integrity` hash là CHÍNH XÁC.
+*@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<div class="banner-home">
+    @* Bỏ thuộc tính data-backgrounds ở đây *@
+    <div class="banner-overlay"></div> @* Thêm lớp phủ cho banner để chữ dễ đọc hơn *@
+    <div class="banner-content">
+        <h1 class="fade-in-up">Trang Thi Trắc Nghiệm Công Nghệ Thông Tin</h1>
+        <p class="fade-in-up delay-200">Nơi hội tụ tri thức, sáng tạo và tương lai số</p>
+        <a href="#card-section" class="btn btn-hero fade-in-up delay-400">Khám phá ngay <i class="fas fa-arrow-down"></i></a>
+    </div>
+</div>
+
+<section id="card-section" class="container card-section scroll-reveal">
+    <h2 class="section-title text-center mb-5 fade-in-up">Lĩnh vực nổi bật trong Công Nghệ Thông Tin</h2>
+    <div class="row g-4 justify-content-center">
+        @* Thêm justify-content-center để căn giữa các card nếu có ít hơn 4 cái *@
+        @* Trí tuệ nhân tạo *@
+        <div class="col-lg-3 col-md-6 col-sm-10 fade-in-left delay-100">
+            <div class="card h-100 feature-card">
+                @* h-100 để các card có chiều cao bằng nhau *@
+                <img class="card-img-top" src="https://images.unsplash.com/photo-1560264418-c4445382edbc?auto=format&fit=crop&w=800&q=80" alt="AI" />
+                <div class="card-body d-flex flex-column">
+                    @* flex-column để căn chỉnh nội dung *@
+                    <h5 class="card-title">🤖 Trí tuệ nhân tạo</h5>
+                    <p class="card-text">Máy học, xử lý ngôn ngữ tự nhiên, thị giác máy tính.</p>
+                    <a href="@Url.Action("AI", "Home")" class="btn btn-primary mt-auto">Xem thêm <i class="fas fa-arrow-right"></i></a> @* mt-auto đẩy nút xuống dưới cùng *@
+                </div>
+            </div>
+        </div>
+
+        @* Phát triển Web *@
+        <div class="col-lg-3 col-md-6 col-sm-10 fade-in-left delay-200">
+            <div class="card h-100 feature-card">
+                <img class="card-img-top" src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=800&q=80" alt="Web" />
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">💻 Phát triển Web</h5>
+                    <p class="card-text">Tạo website responsive, tối ưu SEO, bảo mật cao.</p>
+                    <a href="@Url.Action("WebDevelopment", "Home")" class="btn btn-primary mt-auto">Xem thêm <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        @* Ứng dụng di động *@
+        <div class="col-lg-3 col-md-6 col-sm-10 fade-in-left delay-300">
+            <div class="card h-100 feature-card">
+                <img class="card-img-top" src="https://images.unsplash.com/photo-1551836022-4c4c79ecde51?auto=format&fit=crop&w=800&q=80" alt="Mobile" />
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">📱 Ứng dụng Di động</h5>
+                    <p class="card-text">Phát triển app đa nền tảng với Flutter, Kotlin, Swift.</p>
+                    <a href="@Url.Action("MobileApp", "Home")" class="btn btn-primary mt-auto">Xem thêm <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        @* Cloud Computing *@
+        <div class="col-lg-3 col-md-6 col-sm-10 fade-in-left delay-400">
+            <div class="card h-100 feature-card">
+                <img class="card-img-top" src="https://images.unsplash.com/photo-1596495577886-d920f1fb7238?auto=format&fit=crop&w=800&q=80" alt="Cloud" />
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">☁️ Điện toán đám mây</h5>
+                    <p class="card-text">AWS, Azure, Google Cloud Platform và DevOps.</p>
+                    <a href="@Url.Action("CloudComputing", "Home")" class="btn btn-primary mt-auto">Xem thêm <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container test-section scroll-reveal">
+    <h2 class="section-title text-center mb-5 fade-in-up">Bài Thi Nổi Bật</h2>
+    <div class="test-cards-grid">
+        @{
+            var tests = new[] {
+        new { Title = "Lập Trình C#", Desc = "Kiểm tra kiến thức cơ bản và nâng cao về ngôn ngữ C#.", Link = "/Test/CSharp", Icon = "fab fa-cuttlefish" }, // Dùng icon thay vì ảnh để đồng bộ
+        new { Title = "Mạng Máy Tính", Desc = "Đánh giá kiến thức về mạng, giao thức và bảo mật mạng.", Link = "/Test/Networking", Icon = "fas fa-network-wired" },
+        new { Title = "Cơ Sở Dữ Liệu", Desc = "Kiểm tra kỹ năng thiết kế và truy vấn CSDL SQL.", Link = "/Test/Database", Icon = "fas fa-database" },
+        new { Title = "An Ninh Mạng", Desc = "Đánh giá kiến thức về bảo mật, tấn công và phòng chống.", Link = "/Test/CyberSecurity", Icon = "fas fa-shield-alt" },
+        new { Title = "Phát Triển Web", Desc = "Kiểm tra kỹ năng HTML, CSS, JavaScript và Framework.", Link = "/Test/WebDevelopment", Icon = "fas fa-code" },
+        new { Title = "Trí Tuệ Nhân Tạo", Desc = "Đánh giá kiến thức về AI, machine learning và deep learning.", Link = "/Test/AI", Icon = "fas fa-robot" },
+        };
+        }
+
+        @foreach (var test in tests)
+        {
+            <div class="test-card scroll-reveal-item fade-in-up">
+                <div class="test-icon"><i class="@test.Icon"></i></div>
+                <h3>@test.Title</h3>
+                <p>@test.Desc</p>
+                <a href="@test.Link" class="btn btn-outline-primary">Tham gia ngay <i class="fas fa-play-circle"></i></a>
+            </div>
+        }
+    </div>
+</section>
+
+<section class="container reviews scroll-reveal">
+    <h2 class="section-title text-center mb-5 fade-in-up">Nhận Xét Học Viên</h2>
+    <div class="review-grid" id="reviewGrid">
+        @* Các nhận xét sẽ được tải bằng JS vào đây *@
+    </div>
+
+
+    <div class="text-center mt-4">
+        <button id="loadMoreReviewsBtn" class="btn btn-primary" style="display: none;">
+            Xem thêm nhận xét <i class="fas fa-arrow-down"></i>
+        </button>
+    </div>
+
+    <div class="comment-form-container fade-in-up">
+        <h3>Để lại nhận xét của bạn</h3>
+        <form id="commentForm" class="comment-form">
+            <div class="form-group mb-3">
+                <label for="commentName">Tên của bạn:</label>
+                <input type="text" id="commentName" class="form-control form-control-sm" placeholder="Nhập tên của bạn" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="starRating">Đánh giá của bạn:</label>
+                <div id="starRating" class="star-rating-input">
+
+                    <input type="radio" id="rating5" name="rating" value="5" /><label for="rating5" title="5 sao"><i class="fas fa-star"></i></label>
+                    <input type="radio" id="rating4" name="rating" value="4" /><label for="rating4" title="4 sao"><i class="fas fa-star"></i></label>
+                    <input type="radio" id="rating3" name="rating" value="3" /><label for="rating3" title="3 sao"><i class="fas fa-star"></i></label>
+                    <input type="radio" id="rating2" name="rating" value="2" /><label for="rating2" title="2 sao"><i class="fas fa-star"></i></label>
+                    <input type="radio" id="rating1" name="rating" value="1" /><label for="rating1" title="1 sao"><i class="fas fa-star"></i></label>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="commentText">Nhận xét:</label>
+                <textarea id="commentText" class="form-control form-control-sm" rows="3" placeholder="Viết nhận xét của bạn tại đây..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-paper-plane"></i> Gửi nhận xét</button>
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const commentForm = document.getElementById('commentForm');
+            const commentNameInput = document.getElementById('commentName');
+            const commentTextInput = document.getElementById('commentText');
+            const reviewGrid = document.getElementById('reviewGrid');
+
+            const loadMoreReviewsBtn = document.getElementById('loadMoreReviewsBtn');
+
+            const INITIAL_DISPLAY_COUNT = 4; // Số lượng nhận xét hiển thị ban đầu
+            let allComments = []; // Mảng chứa tất cả nhận xét
+            let displayedCount = 0; // Số lượng nhận xét hiện đang hiển thị
+
+            // Hàm để định dạng ngày giờ
+            function formatDateTime(isoString) {
+                const date = new Date(isoString);
+                const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+                return date.toLocaleDateString('vi-VN', options);
+            }
+
+            // Hàm để hiển thị số sao
+            function getStarHtml(rating) {
+                let stars = '';
+                for (let i = 1; i <= 5; i++) {
+                    // Đảm bảo class 'checked' được thêm vào để hiển thị màu vàng cho sao đã chọn
+                    stars += `<i class="fas fa-star ${i <= rating ? 'checked' : ''}"></i>`;
+                }
+                return stars;
+            }
+
+            // Hàm để hiển thị một nhận xét lên DOM
+            function displayComment(commentObj) {
+                const newReviewCardHtml = `
+                    <div class="review-card chat-bubble scroll-reveal-item fade-in-up">
+                        <div class="review-header">
+                            <span class="review-author">${commentObj.authorName}</span>
+                            <div class="review-stars">${getStarHtml(commentObj.rating)}</div>
+                        </div>
+                        <p class="review-text">${commentObj.commentText}</p>
+                        <div class="review-timestamp">${formatDateTime(commentObj.timestamp)}</div>
+                    </div>
+                `;
+
+                reviewGrid.insertAdjacentHTML('beforeend', newReviewCardHtml);
+            }
+
+            // Hàm để tải và hiển thị nhận xét từ Local Storage
+            function loadCommentsFromLocalStorage() {
+                const storedComments = localStorage.getItem('userComments');
+                let comments = storedComments ? JSON.parse(storedComments) : [];
+
+                if (comments.length === 0) {
+                    const initialComments = [
+                            { authorName: "Lê Vương", commentText: "Tổng hợp các đề thi mới nhất, xịn xò quá ạ. Rất phù hợp để ôn luyện và củng cố kiến thức.", rating: 4, timestamp: new Date(Date.now() - 2 * 24 * 3600 * 1000).toISOString() }, // 2 days ago
+                            { authorName: "Diễm Hương", commentText: "Em học chậm hiểu và từ khi có trang thi này em cảm thấy thông minh hơn. Rất khuyến khích mọi người dùng thử.", rating: 5, timestamp: new Date(Date.now() - 3 * 24 * 3600 * 1000).toISOString() }, // 3 days ago
+                        ];
+                    comments = initialComments;
+                    localStorage.setItem('userComments', JSON.stringify(comments));
+                }
+
+                // Sắp xếp nhận xét từ mới nhất đến cũ nhất
+                comments.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                allComments = comments; // Lưu trữ tất cả nhận xét vào biến toàn cục
+
+                reviewGrid.innerHTML = ''; // Xóa tất cả các nhận xét hiện có
+                displayedCount = 0; // Đặt lại số lượng nhận xét đã hiển thị
+
+                // Hiển thị số lượng nhận xét ban đầu
+                displayMoreComments(INITIAL_DISPLAY_COUNT);
+            }
+
+
+            function displayMoreComments(count) {
+                const commentsToDisplay = allComments.slice(displayedCount, displayedCount + count);
+                commentsToDisplay.forEach(comment => {
+                    displayComment(comment);
+                });
+                displayedCount += commentsToDisplay.length;
+
+                // Ẩn nút "Xem thêm" nếu đã hiển thị hết tất cả nhận xét
+                if (displayedCount >= allComments.length) {
+                    loadMoreReviewsBtn.style.display = 'none';
+                } else {
+                    loadMoreReviewsBtn.style.display = 'block'; // Hiển thị nút nếu còn nhận xét
+                }
+            }
+
+            // Tải nhận xét khi trang được tải lần đầu tiên
+            loadCommentsFromLocalStorage();
+
+
+            loadMoreReviewsBtn.addEventListener('click', function() {
+                displayMoreComments(INITIAL_DISPLAY_COUNT); // Tải thêm số lượng bằng INITIAL_DISPLAY_COUNT
+            });
+
+            commentForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const name = commentNameInput.value.trim();
+                const commentText = commentTextInput.value.trim();
+                const selectedRating = document.querySelector('input[name="rating"]:checked');
+                const rating = selectedRating ? parseInt(selectedRating.value) : 0; // Lấy giá trị sao
+
+                if (name && commentText && rating > 0) { // Yêu cầu phải có cả sao
+                    const storedComments = localStorage.getItem('userComments');
+                    let comments = storedComments ? JSON.parse(storedComments) : [];
+
+                    const newCommentObj = {
+                        authorName: name,
+                        commentText: commentText,
+                        timestamp: new Date().toISOString(), // Gán timestamp hiện tại
+                        rating: rating // Lưu giá trị sao
+                    };
+
+                    comments.push(newCommentObj); // Thêm vào cuối mảng, sau đó sẽ sắp xếp lại khi tải
+                    localStorage.setItem('userComments', JSON.stringify(comments));
+
+                    // Tải lại và hiển thị các nhận xét (để đảm bảo sắp xếp và giới hạn hiển thị)
+                    loadCommentsFromLocalStorage();
+
+                    // Reset form
+                    commentNameInput.value = '';
+                    commentTextInput.value = '';
+                    if (selectedRating) {
+                        selectedRating.checked = false; // Bỏ chọn sao đã chọn
+                    }
+
+                } else {
+                    alert('Vui lòng nhập đầy đủ tên, nhận xét và chọn số sao đánh giá.');
+                }
+            });
+
+            // Intersection Observer cho hiệu ứng cuộn (scroll-reveal)
+            const scrollRevealElements = document.querySelectorAll('.scroll-reveal, .scroll-reveal-item');
+
+            const observerOptions = {
+                root: null, // viewport
+                rootMargin: '0px',
+                threshold: 0.1 // Khi 10% của phần tử hiển thị trong viewport
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        // observer.unobserve(entry.target); // Ngừng quan sát sau khi đã hiển thị nếu muốn hiệu ứng chỉ chạy 1 lần
+                    }
+                });
+            }, observerOptions);
+
+            scrollRevealElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // --- BỎ JavaScript cho Hiệu ứng Hover đổi ảnh Banner ở đây ---
+            // Đảm bảo không có code liên quan đến bannerHome.addEventListener('mouseenter') hay updateBackground
+            // nếu bạn muốn loại bỏ hoàn toàn hiệu ứng này.
+            // --- Kết thúc BỎ JavaScript cho Hiệu ứng Hover đổi ảnh Banner ---
+
+        });
+    </script>
+}
+
+@section Styles {
+    @* Owl Carousel CSS không cần nữa nếu đã chuyển sang Grid *@
+    @* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" /> *@
+}

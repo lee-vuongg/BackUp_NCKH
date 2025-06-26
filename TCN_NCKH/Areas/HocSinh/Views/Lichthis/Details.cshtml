@@ -1,0 +1,91 @@
+﻿@model TCN_NCKH.Models.DBModel.Lichthi
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Chi tiết lịch thi";
+    Layout = "~/Areas/HocSinh/Views/Shared/_LayoutHocSinh.cshtml";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background: #f5f7fa;
+    }
+
+    h2 {
+        font-size: 28px;
+        font-weight: 700;
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 40px;
+    }
+
+    .exam-detail-card {
+        background: linear-gradient(to right, #e0eafc, #cfdef3);
+        padding: 35px 40px;
+        border-radius: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+        .exam-detail-card dl {
+            margin-bottom: 0;
+        }
+
+        .exam-detail-card dt {
+            font-weight: 600;
+            color: #34495e;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+
+        .exam-detail-card dd {
+            font-size: 17px;
+            color: #2c3e50;
+            margin-bottom: 12px;
+        }
+
+    .btn-back {
+        display: block;
+        width: fit-content;
+        margin: 40px auto 0;
+        padding: 10px 22px;
+        background: linear-gradient(to right, #74ebd5, #9face6);
+        color: #fff;
+        font-weight: 600;
+        border: none;
+        border-radius: 10px;
+        text-decoration: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
+    }
+
+        .btn-back:hover {
+            background: linear-gradient(to right, #65dac2, #8f9ce3);
+            transform: translateY(-2px);
+        }
+</style>
+
+<h2>Chi tiết lịch thi</h2>
+
+<div class="exam-detail-card">
+    <dl class="row">
+        <dt class="col-sm-4">🗓️ Ngày thi</dt>
+        <dd class="col-sm-8">@Model.Ngaythi.ToString("dd/MM/yyyy")</dd>
+
+        <dt class="col-sm-4">⏰ Thời gian thi</dt>
+        <dd class="col-sm-8">@Model.Thoigian</dd>
+
+        <dt class="col-sm-4">📄 Tên đề thi</dt>
+        <dd class="col-sm-8">@Model.Dethi?.Tendethi</dd>
+
+        <dt class="col-sm-4">📘 Môn học</dt>
+        <dd class="col-sm-8">@Model.Dethi?.Monhoc?.Tenmon</dd>
+
+        <dt class="col-sm-4">🏫 Lớp học</dt>
+        <dd class="col-sm-8">@Model.Lophoc?.Tenlop</dd>
+    </dl>
+</div>
+
+<a asp-action="Index" class="btn-back">← Quay lại danh sách</a>

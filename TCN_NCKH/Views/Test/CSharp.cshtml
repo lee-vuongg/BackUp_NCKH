@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Thi Trắc Nghiệm Lập Trình C#"; // Tiêu đề trang
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Đảm bảo sử dụng layout chung
+}
+
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h1 class="section-title text-center mb-4">Thi Trắc Nghiệm Lập Trình C#</h1>
+            <p class="lead text-center">
+                Kiểm tra và củng cố kiến thức của bạn về ngôn ngữ lập trình C# từ cơ bản đến nâng cao.
+            </p>
+            <hr class="my-4">
+
+            <div class="card shadow-lg mb-4">
+                <div class="card-body">
+                    <h4 class="card-title text-primary">Thông tin bài thi</h4>
+                    <p class="card-text">
+                        Bài thi này được thiết kế để đánh giá sự hiểu biết của bạn về các khái niệm cốt lõi trong C#, bao gồm:
+                    </p>
+                    <ul>
+                        <li>Cú pháp cơ bản, biến, kiểu dữ liệu</li>
+                        <li>Cấu trúc điều khiển (if/else, switch, loops)</li>
+                        <li>Lập trình hướng đối tượng (OOP): Class, đối tượng, kế thừa, đa hình</li>
+                        <li>Xử lý ngoại lệ, File I/O</li>
+                        <li>LINQ, Generic, Delegate và Event</li>
+                        <li>ASP.NET Core Basics (nếu có)</li>
+                    </ul>
+                    <p class="card-text">
+                        Mỗi câu hỏi sẽ tập trung vào một khía cạnh cụ thể, giúp bạn nhận diện được những phần kiến thức cần ôn luyện thêm.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card shadow-lg mb-4">
+                <div class="card-body">
+                    <h4 class="card-title text-primary">Quy định và Hướng dẫn</h4>
+                    <ul>
+                        <li><strong>Số lượng câu hỏi:</strong> 20 câu trắc nghiệm.</li>
+                        <li><strong>Thời gian:</strong> 30 phút.</li>
+                        <li><strong>Điểm đạt:</strong> 70% số câu trả lời đúng.</li>
+                        <li>Bạn không thể quay lại câu hỏi trước khi đã chuyển sang câu tiếp theo.</li>
+                        <li>Kết quả sẽ hiển thị ngay sau khi hoàn thành bài thi.</li>
+                    </ul>
+                    <p class="card-text text-danger">
+                        **Lưu ý:** Hãy chắc chắn bạn đã sẵn sàng trước khi bắt đầu bài thi!
+                    </p>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="/Test/StartTest?topic=csharp" class="btn btn-success btn-lg">Bắt đầu Thi Ngay</a>
+                <a href="/" class="btn btn-secondary btn-lg ms-3">Quay về trang chủ</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+}

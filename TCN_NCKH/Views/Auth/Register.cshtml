@@ -1,0 +1,138 @@
+﻿@model TCN_NCKH.Controllers.RegisterModel
+
+@{
+    ViewData["Title"] = "Đăng ký tài khoản";
+    Layout = "~/Views/Shared/_Layout.cshtml"; // sửa nếu khác
+}
+
+
+<div id="particles-js" style="position: fixed; width: 100%; height: 100%; z-index: -1;"></div>
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card shadow-lg p-4" style="width: 100%; max-width: 550px; background-color: #ffffffcc; border-radius: 1rem;">
+        <h3 class="text-center text-success mb-4"><i class="bi bi-person-plus-fill"></i> @ViewData["Title"]</h3>
+
+        <form asp-action="Register" method="post" novalidate>
+            <div asp-validation-summary="All" class="text-danger mb-3 text-center"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Msv" class="fw-semibold"></label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-card-list"></i></span>
+                    <input asp-for="Msv" class="form-control" placeholder="Nhập mã sinh viên..." />
+                </div>
+                <span asp-validation-for="Msv" class="text-danger small"></span>
+            </div>
+            <!-- THÊM TRƯỜNG LỚP HỌC -->
+            <div class="form-group mb-3">
+                <label asp-for="Lophocid" class="fw-semibold"></label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-building"></i></span>
+                    <input asp-for="Lophocid" class="form-control" placeholder="Nhập tên lớp..." />
+                </div>
+                <span asp-validation-for="Lophocid" class="text-danger small"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Hoten" class="fw-semibold"></label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                    <input asp-for="Hoten" class="form-control" placeholder="Nhập họ tên..." />
+                </div>
+                <span asp-validation-for="Hoten" class="text-danger small"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Email" class="fw-semibold"></label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-envelope-at"></i></span>
+                    <input asp-for="Email" class="form-control" placeholder="Nhập email..." />
+                </div>
+                <span asp-validation-for="Email" class="text-danger small"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Password" class="fw-semibold"></label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                    <input asp-for="Password" type="password" class="form-control" placeholder="Nhập mật khẩu..." />
+                </div>
+                <span asp-validation-for="Password" class="text-danger small"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Sdt" class="fw-semibold"></label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
+                    <input asp-for="Sdt" class="form-control" placeholder="Nhập số điện thoại..." />
+                </div>
+                <span asp-validation-for="Sdt" class="text-danger small"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Ngaysinh" class="fw-semibold"></label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-calendar-date"></i></span>
+                    <input asp-for="Ngaysinh" type="date" class="form-control" />
+                </div>
+                <span asp-validation-for="Ngaysinh" class="text-danger small"></span>
+            </div>
+           
+
+            <div class="form-group mb-4">
+                <label asp-for="Gioitinh" class="fw-semibold"></label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-gender-ambiguous"></i></span>
+                    <select asp-for="Gioitinh" class="form-control">
+                        <option value="">-- Chọn giới tính --</option>
+                        <option value="true">Nam</option>
+                        <option value="false">Nữ</option>
+                    </select>
+                </div>
+                <span asp-validation-for="Gioitinh" class="text-danger small"></span>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100 shadow-sm fw-semibold">
+                <i class="bi bi-person-check-fill"></i> Đăng ký
+            </button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 60 },
+                "color": { "value": "#198754" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.3 },
+                "size": { "value": 3 },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#198754",
+                    "opacity": 0.5,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2
+                }
+            },
+            "interactivity": {
+                "events": {
+                    "onhover": { "enable": true, "mode": "grab" },
+                    "onclick": { "enable": true, "mode": "push" }
+                },
+                "modes": {
+                    "grab": { "distance": 140, "line_linked": { "opacity": 1 } },
+                    "push": { "particles_nb": 4 }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

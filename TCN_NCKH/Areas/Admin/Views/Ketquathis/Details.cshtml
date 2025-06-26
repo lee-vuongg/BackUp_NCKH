@@ -1,0 +1,153 @@
+﻿@model TCN_NCKH.Models.DBModel.Ketquathi
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Chi Tiết Kết Quả Thi";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+
+    // Lấy thông tin từ Model để dễ sử dụng trong View
+    var ketqua = Model;
+    var lichthi = ketqua?.Lichthi;
+    var dethi = lichthi?.Dethi;
+    var lophocLichthi = lichthi?.Lophoc;
+    var sinhvien = ketqua?.Sinhvien;
+    var nguoidungSinhvien = sinhvien?.SinhvienNavigation; // Đảm bảo tên này khớp với model Sinhvien của bạn
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">
+        <i class="fas fa-file-alt"></i> Chi Tiết Bài Làm - ID: @ketqua?.Id
+    </h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/Admin/AdminHome">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="/Admin/Ketquathis">Thống Kê Kết Quả Thi</a></li>
+        <li class="breadcrumb-item active">Chi Tiết Bài Làm</li>
+    </ol>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Thông tin chung</h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <dl class="row mb-0">
+                        <dt class="col-sm-4">Điểm số:</dt>
+                        <dd class="col-sm-8">
+                            <span class="font-weight-bold text-@(ketqua?.Diem >= 5 ? "success" : "danger")">
+                                @(ketqua?.Diem.ToString("F2") ?? "N/A")
+                            </span>
+                        </dd>
+
+                        <dt class="col-sm-4">Thời gian làm bài:</dt>
+                        <dd class="col-sm-8">
+                            @(ketqua?.Thoigianlam.ToString() + " phút" ?? "N/A")
+                        </dd>
+
+                        <dt class="col-sm-4">Ngày thi:</dt>
+                        <dd class="col-sm-8">@(ketqua?.Ngaythi?.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</dd>
+                    </dl>
+                </div>
+                <div class="col-md-6">
+                    <dl class="row mb-0">
+                        <dt class="col-sm-4">Đề thi:</dt>
+                        <dd class="col-sm-8">@(dethi?.Tendethi ?? "N/A")</dd>
+
+                        <dt class="col-sm-4">Lớp học:</dt>
+                        <dd class="col-sm-8">@(lophocLichthi?.Tenlop ?? "N/A")</dd>
+
+                        <dt class="col-sm-4">ID Lịch thi:</dt>
+                        <dd class="col-sm-8">@(lichthi?.Id.ToString() ?? "N/A")</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Thông tin Sinh viên</h6>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-2">Mã SV:</dt>
+                <dd class="col-sm-10">@(sinhvien?.Msv ?? "N/A")</dd>
+
+                <dt class="col-sm-2">Họ Tên:</dt>
+                @* Đảm bảo 'Hoten' tồn tại trong model Nguoidung.cs *@
+                <dd class="col-sm-10">@(nguoidungSinhvien?.Hoten ?? "N/A")</dd>
+
+                <dt class="col-sm-2">Email:</dt>
+                @* Đảm bảo 'Email' tồn tại trong model Nguoidung.cs *@
+                <dd class="col-sm-10">@(nguoidungSinhvien?.Email ?? "N/A")</dd>
+
+                <dt class="col-sm-2">Lớp:</dt>
+                <dd class="col-sm-10">@(sinhvien?.Lophoc?.Tenlop ?? "N/A")</dd>
+            </dl>
+        </div>
+    </div>
+
+    @if (ketqua?.TraloiSinhviens != null && ketqua.TraloiSinhviens.Any())
+    {
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Chi tiết bài làm</h6>
+            </div>
+            <div class="card-body">
+                @* Sắp xếp các câu trả lời theo ID câu hỏi để dễ xem *@
+                @foreach (var traloi in ketqua.TraloiSinhviens.OrderBy(t => t.Cauhoi?.Id))
+                {
+                    @* Khai báo biến isStudentAnswerCorrect trực tiếp trong vòng lặp, không dùng khối @{} *@
+                    // Xác định xem sinh viên trả lời đúng hay sai dựa vào thuộc tính Dung của Dapan mà sinh viên chọn
+                    var isStudentAnswerCorrect = traloi.Dapan?.Dung == true;
+                    <div class="mb-4 p-3 border rounded @(isStudentAnswerCorrect ? "border-success" : "border-danger")">
+                        <p class="mb-1">
+                            <strong>Câu hỏi ID: @(traloi.Cauhoi?.Id ?? 0)</strong>
+                        </p>
+                        <p class="mb-1">
+                            <strong>Câu hỏi:</strong> @(traloi.Cauhoi?.Noidung ?? "Không rõ nội dung câu hỏi.")
+                        </p>
+                        <p class="mb-1 text-info">
+                            <strong>Đáp án đúng:</strong>
+                            @if (traloi.Cauhoi?.Dapans != null)
+                            {
+                                var dapanDung = traloi.Cauhoi.Dapans.FirstOrDefault(d => d.Dung == true);
+                                if (dapanDung != null)
+                                {
+                                    <span>@(dapanDung.Noidung ?? "N/A")</span>
+                                }
+                                else
+                                {
+                                    <span>(Không có đáp án đúng được đánh dấu)</span>
+                                }
+                            }
+                            else
+                            {
+                                <span>(Không tải được đáp án đúng)</span>
+                            }
+                        </p>
+                        <p class="mb-1 @(isStudentAnswerCorrect ? "text-success" : "text-danger")">
+                            <strong>Sinh viên chọn:</strong> @(traloi.Dapan?.Noidung ?? "Không rõ đáp án sinh viên chọn.")
+                            - <strong>Kết quả:</strong> @(isStudentAnswerCorrect ? "Đúng" : "Sai")
+                            <i class="fas @(isStudentAnswerCorrect ? "fa-check-circle" : "fa-times-circle")"></i>
+                        </p>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning">
+            Không có chi tiết bài làm hoặc câu trả lời nào được tìm thấy cho kết quả thi này.
+        </div>
+    }
+
+    <div class="mt-4">
+        <a asp-action="Edit" asp-route-id="@ketqua?.Id" class="btn btn-primary">
+            <i class="fas fa-edit"></i> Chỉnh sửa
+        </a>
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Quay lại Danh sách Thống kê
+        </a>
+    </div>
+</div>

@@ -1,0 +1,131 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject TCN_NCKH.Models.DBModel.NghienCuuKhoaHocContext _context
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Identity
+@using TCN_NCKH.Models.DBModel
+@using TCN_NCKH.Models
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - Admin | Trang Quản Trị</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css" />
+
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                @if (User.Identity != null && User.Identity.IsAuthenticated)
+                {
+                    var email = User.FindFirstValue(ClaimTypes.Email);
+
+                    if (!string.IsNullOrEmpty(email))
+                    {
+                        // Use _context to find the Nguoidung (Admin)
+                        var admin = _context.Nguoidungs.FirstOrDefault(u => u.Email == email);
+
+                        if (admin != null)
+                        {
+                            var avatarPath = string.IsNullOrEmpty(admin.Anhdaidien)
+                            ? "/images/CT.jpg" // Default avatar if not set
+                            : "/images/" + admin.Anhdaidien;
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" data-toggle="dropdown">
+                                    <img src="@avatarPath" alt="Avatar" class="rounded-circle mr-2" style="width:32px; height:32px; object-fit:cover;" />
+                                    <span class="text-uppercase fw-bold">@admin.Hoten</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li>
+                                        <a class="dropdown-item" asp-area="HocSinh" asp-controller="NguoiDungs" asp-action="AccountDetails" asp-route-id="@admin.Id">
+                                            <i class="fas fa-user mr-2"></i> Thông tin tài khoản
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-area="HocSinh" asp-controller="NguoiDungs" asp-action="ChangePassword" asp-route-id="@admin.Id">
+                                            <i class="fas fa-key mr-2"></i> Đổi mật khẩu
+                                        </a>
+                                    </li>
+                                    <li><hr class="dropdown-divider" /></li>
+                                    <li>
+                                        <form asp-area="" asp-controller="Auth" asp-action="Logout" method="post">
+                                            <button type="submit" class="dropdown-item text-danger">
+                                                <i class="fas fa-sign-out-alt mr-2"></i> Đăng xuất
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <span class="text-danger nav-link">Không tìm thấy admin trong cơ sở dữ liệu</span>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <span class="text-danger nav-link">Không tìm thấy email đăng nhập!</span>
+                        </li>
+                    }
+                }
+            </ul>
+        </nav>
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <a href="/Admin/AdminHome/Index" class="brand-link text-center">
+                <span class="brand-text font-weight-light">Trang Admin</span>
+            </a>
+
+            <div class="sidebar">
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <li class="nav-item"><a href="/Admin/AdminHome/Index" class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "AdminHome" ? "active" : "")"><i class="nav-icon fas fa-tachometer-alt"></i><p>Dashboard</p></a></li>
+                        <li class="nav-item"><a href="/Admin/Dethis/Index" class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Dethis" ? "active" : "")"><i class="nav-icon fas fa-file-alt"></i><p>Quản Lý Đề Thi</p></a></li>
+                        <li class="nav-item"><a href="/Admin/Ketquathis/Index" class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Ketquathis" ? "active" : "")"><i class="nav-icon fas fa-poll"></i><p>Kết Quả Thi</p></a></li>
+                        <li class="nav-item"><a href="/Admin/Lichthis/Index" class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Lichthis" ? "active" : "")"><i class="nav-icon fas fa-calendar-alt"></i><p>Lịch Thi</p></a></li>
+                        <li class="nav-item"><a href="/Admin/Lophocs/Index" class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Lophocs" ? "active" : "")"><i class="nav-icon fas fa-users"></i><p>Quản lý Lớp Học</p></a></li>
+                        <li class="nav-item"><a href="/Admin/Nguoidungs/Index" class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Nguoidungs" ? "active" : "")"><i class="nav-icon fas fa-user-friends"></i><p>Quản lý Người Dùng</p></a></li>
+                        <li class="nav-item"><a href="/Admin/Monhocs/Index" class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Monhocs" ? "active" : "")"><i class="nav-icon fas fa-book"></i><p>Quản lý Môn Học</p></a></li>
+                        <li class="nav-item"><a href="/Admin/Cauhois/Index" class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Cauhois" ? "active" : "")"><i class="nav-icon fas fa-question-circle"></i><p>Quản lý Câu Hỏi</p></a></li>
+                        <li class="nav-item"><a href="/Admin/Sinhviens/Index" class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Sinhviens" ? "active" : "")"><i class="nav-icon fas fa-user-graduate"></i><p>Quản lý Sinh Viên</p></a></li>
+                        <li class="nav-item"><a href="/Admin/Dapans/Index" class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Dapans" ? "active" : "")"><i class="nav-icon fas fa-check-circle"></i><p>Quản lý Đáp Án</p></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+        <div class="content-wrapper">
+            <section class="content pt-3">
+                <div class="container-fluid">
+                    @RenderBody() @* Đây là nơi nội dung của View con sẽ được render *@
+                    @* @RenderSection("Scripts", required: false) <-- XÓA DÒNG NÀY *@
+                </div>
+            </section>
+        </div>
+        <footer class="main-footer text-center">
+            <strong>© 2025 Đại Học Nguyễn Trãi.</strong> All rights reserved.
+        </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+
+    @await RenderSectionAsync("Scripts", required: false) @* GIỮ LẠI DÒNG NÀY *@
+</body>
+</html>

@@ -1,0 +1,107 @@
+﻿/* wwwroot/css/test.css */
+
+.test-page-container {
+    background-color: #f8f9fa;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.test-header {
+    margin-bottom: 25px;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 15px;
+}
+
+.question-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+    .question-card h4 {
+        color: #007bff;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+.options-group .form-check {
+    margin-bottom: 12px;
+}
+
+.options-group .form-check-label {
+    font-size: 1.05rem;
+    color: #343a40;
+    cursor: pointer;
+    padding-left: 5px;
+}
+
+.options-group .form-check-input {
+    margin-top: 0.3em;
+    transform: scale(1.2); /* Tăng kích thước radio button */
+    margin-right: 8px;
+}
+
+/* Style cho trang kết quả */
+.score-summary {
+    background-color: #e9f7ef;
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+    .score-summary h3 {
+        color: #28a745;
+    }
+
+.results-detail .card {
+    border-width: 2px;
+}
+
+.results-detail .card-title {
+    color: #007bff;
+    font-weight: 600;
+}
+
+.results-detail ul {
+    padding-left: 0;
+}
+
+.results-detail li {
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+}
+
+    .results-detail li i {
+        font-size: 1.2em;
+        width: 25px; /* Đảm bảo icon có chiều rộng cố định */
+    }
+
+/* Màu cho đáp án đúng và sai trong chi tiết */
+.results-detail .text-success {
+    color: #28a745 !important;
+}
+
+.results-detail .text-danger {
+    color: #dc3545 !important;
+}
+
+/* Nút quay về trang chủ/thi lại */
+.btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+    .btn-info:hover {
+        background-color: #138496;
+        border-color: #117a8b;
+    }
+
+.d-none {
+    display: none !important;
+}

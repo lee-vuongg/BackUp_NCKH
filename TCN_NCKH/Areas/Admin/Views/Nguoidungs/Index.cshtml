@@ -1,0 +1,174 @@
+﻿@model IEnumerable<TCN_NCKH.Models.DBModel.Nguoidung>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Quản Lý Người Dùng"; // Tiêu đề trang
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml"; // Đảm bảo đúng layout của Admin
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">
+        <i class="fas fa-users-cog"></i> @ViewData["Title"] @* Icon người dùng cho tiêu đề *@
+    </h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/Admin/AdminHome">Dashboard</a></li> @* Đường dẫn về Dashboard của Admin *@
+        <li class="breadcrumb-item active">@ViewData["Title"]</li>
+    </ol>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách người dùng</h6>
+            <a asp-action="Create" class="btn btn-primary btn-sm">
+                <i class="fas fa-user-plus"></i> Tạo Mới Người Dùng
+            </a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">#</th> @* Cột số thứ tự *@
+                            <th>ID</th>
+                            <th>Họ Tên</th>
+                            <th>Email</th>
+                            <th>SĐT</th>
+                            <th>Ngày Sinh</th>
+                            <th>Giới Tính</th>
+                            <th>Trạng Thái</th>
+                            <th>Loại Người Dùng</th>
+                            <th>Người Tạo</th> @* Thêm cột người tạo nếu muốn hiển thị ai đã tạo tài khoản này *@
+                            <th>Ngày Tạo</th>
+                            <th style="width: 150px;">Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int rowNo = 1;
+                        } @* Khởi tạo biến số thứ tự *@
+                        @if (Model != null && Model.Any())
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@(rowNo++)</td> @* Hiển thị và tăng số thứ tự *@
+                                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Hoten)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    <td>
+                                        @(item.Sdt ?? "N/A") @* Hiển thị SĐT, nếu null thì "N/A" *@
+                                    </td>
+                                    <td>
+                                        @(item.Ngaysinh?.ToString("dd/MM/yyyy") ?? "N/A") @* Định dạng ngày sinh *@
+                                    </td>
+                                    <td>
+                                        @{
+                                            string gioiTinhText = "Không rõ";
+                                            if (item.Gioitinh.HasValue)
+                                            {
+                                                gioiTinhText = item.Gioitinh.Value ? "Nam" : "Nữ";
+                                            }
+                                        }
+                                        @gioiTinhText
+                                    </td>
+                                    <td>
+                                        @{
+                                            string statusBadgeClass = "badge badge-secondary";
+                                            string statusText = "Không rõ";
+                                            if (item.Trangthai.HasValue)
+                                            {
+                                                if (item.Trangthai.Value) { statusBadgeClass = "badge badge-success"; statusText = "Hoạt động"; }
+                                                else { statusBadgeClass = "badge badge-danger"; statusText = "Khóa"; }
+                                            }
+                                        }
+                                        <span class="@statusBadgeClass">@statusText</span>
+                                    </td>
+                                    <td>
+                                        @(item.Loainguoidung?.Tenloai ?? "N/A") @* Hiển thị tên loại người dùng an toàn *@
+                                    </td>
+                                    <td>
+                                        @* Thay vì @(item.NguoiTaoNavigation?.Hoten ?? "N/A"), bạn chỉ cần hiển thị trực tiếp Nguoitao *@
+                                        @(item.Nguoitao ?? "N/A")
+                                    </td>
+                                    <td>
+                                        @(item.Ngaytao?.ToString("dd/MM/yyyy HH:mm") ?? "N/A") @* Định dạng ngày tạo *@
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm" title="Chỉnh sửa">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm" title="Chi tiết">
+                                            <i class="fas fa-info-circle"></i>
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm" title="Xóa">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="12" class="text-center">Không tìm thấy người dùng nào.</td> @* Cập nhật colspan cho phù hợp với số cột *@
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap4.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Khởi tạo DataTables
+            $('#dataTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Vietnamese.json" // Ngôn ngữ tiếng Việt
+                },
+                "columnDefs": [
+                    { "orderable": false, "targets": 0 },   // Cột số thứ tự không sắp xếp
+                    { "orderable": false, "targets": -1 }  // Cột hành động không sắp xếp
+                ]
+            });
+
+            // Tự động đóng thông báo sau vài giây
+            window.setTimeout(function () {
+                $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                    $(this).remove();
+                });
+            }, 3000); // 3 giây
+        });
+    </script>
+}
+
+@section Styles {
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40j/6PqqF/zEE4hQYkMWn6VfUe50I+fI+I5M5b5G+w5g5Z5L5K5B5E5P5V5C5X5Y5A5B5E5P5Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+}

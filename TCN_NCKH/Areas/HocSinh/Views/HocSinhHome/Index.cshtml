@@ -1,0 +1,124 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "~/Areas/HocSinh/Views/Shared/_LayoutHocSinh.cshtml";
+    ViewData["Title"] = "Trang chủ học sinh";
+}
+
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h2 class="mb-2 text-primary">🎓 Chào mừng bạn đến với hệ thống thi trắc nghiệm CNTT</h2>
+        <p class="text-muted fs-5">Hãy chọn một chức năng bên dưới để bắt đầu học tập và thi cử hiệu quả</p>
+    </div>
+
+    <section class="mb-5 p-4 rounded bg-danger-subtle shadow-sm">
+        <div class="row align-items-center">
+            <div class="col-md-3 text-center text-md-start">
+                <img src="https://images.unsplash.com/photo-1510531704581-5b2870972060?auto=format&fit=crop&w=400&q=80" alt="Thông báo mới" class="img-fluid rounded shadow" />
+            </div>
+            <div class="col-md-9">
+                <h3 class="text-danger mb-3">🔔 Thông báo Lịch thi mới!</h3>
+                @* Kiểm tra xem có dữ liệu lịch thi nào được truyền từ Controller không *@
+                @if (ViewBag.LichThiSapToi != null && ((List<TCN_NCKH.Models.DBModel.Lichthi>)ViewBag.LichThiSapToi).Any())
+                {
+                    <p class="text-dark fs-5">Bạn có các lịch thi sắp tới hoặc chưa làm bài:</p>
+                    <ul class="list-group list-group-flush">
+                        @foreach (var lichThi in (List<TCN_NCKH.Models.DBModel.Lichthi>)ViewBag.LichThiSapToi)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    @* Đảm bảo truy cập các thuộc tính có thể là null bằng ? *@
+                                    <strong>@lichThi.Dethi?.Tendethi</strong> (@lichThi.Dethi?.Monhoc?.Tenmon) - Lớp: @lichThi.Lophoc?.Tenlop <br />
+                                    <small class="text-muted">Ngày thi: @lichThi.Ngaythi.ToString("dd/MM/yyyy HH:mm") - Thời gian: @lichThi.Thoigian phút</small>
+                                </div>                             
+                            </li>
+                        }
+                    </ul>
+                    <div class="mt-3">
+                        <a href="/HocSinh/Lichthis/Index" class="btn btn-outline-danger">Xem tất cả lịch thi</a>
+                    </div>
+                }
+                else
+                {
+                    <p class="text-dark fs-5">Hiện tại không có lịch thi mới nào sắp diễn ra hoặc bạn đã hoàn thành tất cả các bài thi.</p>
+                    <a href="/HocSinh/Lichthis/Index" class="btn btn-outline-danger">Xem lịch thi</a>
+                }
+            </div>
+        </div>
+    </section>
+
+    <section class="mb-5 p-4 rounded bg-primary-subtle shadow-sm">
+        <div class="row align-items-center mb-3">
+            <div class="col-md-3 text-center text-md-start">
+                <img src="https://images.unsplash.com/photo-1554475901-4538ddfbccc2?auto=format&fit=crop&w=400&q=80" alt="Lịch thi" class="img-fluid rounded shadow" />
+            </div>
+            <div class="col-md-9">
+                <h3 class="text-primary mb-3">📅 Quản lý kỳ thi</h3>
+                <p class="text-dark fs-5">Xem và quản lý lịch thi của bạn, lên kế hoạch học tập hiệu quả.</p>
+                <div class="row row-cols-1 row-cols-md-4 g-3 mt-3">
+                    <a href="/HocSinh/Lichthis/Index" class="btn btn-outline-primary">Lịch thi</a>
+                    <a href="/HocSinh/DangKyThi/Index" class="btn btn-outline-primary">Đăng ký thi</a>
+                    <a href="/HocSinh/ThongBao/Index" class="btn btn-outline-primary">Thông báo</a>
+                    <a href="/HocSinh/ThiSinhVien/Index" class="btn btn-outline-primary">Thông tin thí sinh</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mb-5 p-4 rounded bg-success-subtle shadow-sm">
+        <div class="row align-items-center flex-md-row-reverse mb-3">
+            <div class="col-md-3 text-center text-md-end">
+                <img src="https://images.unsplash.com/photo-1521747116042-5a810fda9664?auto=format&fit=crop&w=400&q=80" alt="Đề thi" class="img-fluid rounded shadow" />
+            </div>
+            <div class="col-md-9">
+                <h3 class="text-success mb-3">📚 Làm bài thi trực tuyến</h3>
+                <p class="text-dark fs-5">Tham gia các đề thi trắc nghiệm CNTT, nâng cao kỹ năng và kiểm tra kiến thức.</p>
+                <div class="row row-cols-1 row-cols-md-6 g-3 mt-3">
+                    <a href="/HocSinh/DeThis/Index" class="btn btn-outline-success">Danh sách đề thi</a>
+                    <a href="/HocSinh/LamBai/Index" class="btn btn-outline-success">Bắt đầu thi</a> @* Đã sửa từ /HocSinh/Thi/Index sang /HocSinh/LamBai/Index *@
+                    <a href="/HocSinh/ThiLai/Index" class="btn btn-outline-success">Thi lại</a>
+                    <a href="/HocSinh/ThongKe/Index" class="btn btn-outline-success">Thống kê kết quả</a>
+                    <a href="/HocSinh/TaiLieu/Index" class="btn btn-outline-success">Tài liệu học tập</a>
+                    <a href="/HocSinh/HuongDan/Index" class="btn btn-outline-success">Hướng dẫn sử dụng</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mb-5 p-4 rounded bg-warning-subtle shadow-sm">
+        <div class="row align-items-center mb-3">
+            <div class="col-md-3 text-center text-md-start">
+                <img src="https://images.unsplash.com/photo-1527689368864-3a821dbccc34?auto=format&fit=crop&w=400&q=80" alt="Kết quả thi" class="img-fluid rounded shadow" />
+            </div>
+            <div class="col-md-9">
+                <h3 class="text-warning mb-3">📊 Xem kết quả và phân tích</h3>
+                <p class="text-dark fs-5">Xem chi tiết kết quả các kỳ thi, phân tích điểm và tiến bộ của bạn qua thời gian.</p>
+                <div class="row row-cols-1 row-cols-md-4 g-3 mt-3">
+                    <a href="/HocSinh/Ketquathis/Index" class="btn btn-outline-warning">Kết quả thi</a>
+                    <a href="/HocSinh/BangXepHang/Index" class="btn btn-outline-warning">Bảng xếp hạng</a>
+                    <a href="/HocSinh/PhanTich/Index" class="btn btn-outline-warning">Phân tích điểm</a>
+                    <a href="/HocSinh/LichSuThi/Index" class="btn btn-outline-warning">Lịch sử thi</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mb-5 p-4 rounded bg-info-subtle shadow-sm">
+        <div class="row align-items-center flex-md-row-reverse mb-3">
+            <div class="col-md-3 text-center text-md-end">
+                <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="Thông tin cá nhân" class="img-fluid rounded shadow" />
+            </div>
+            <div class="col-md-9">
+                <h3 class="text-info mb-3">👤 Quản lý thông tin cá nhân</h3>
+                <p class="text-dark fs-5">Cập nhật thông tin cá nhân, thay đổi mật khẩu, email và bảo mật tài khoản.</p>
+                <div class="row row-cols-1 row-cols-md-4 g-3 mt-3">
+                    <a href="/HocSinh/Thongtin/Index" class="btn btn-outline-info">Thông tin cá nhân</a>
+                    <a href="/HocSinh/DoiMatKhau/Index" class="btn btn-outline-info">Đổi mật khẩu</a>
+                    <a href="/HocSinh/ThongBaoCaNhan/Index" class="btn btn-outline-info">Thông báo cá nhân</a>
+                    <form asp-controller="Auth" asp-action="Logout" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-outline-danger">Đăng xuất</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

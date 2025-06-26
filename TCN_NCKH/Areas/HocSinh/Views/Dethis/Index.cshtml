@@ -1,0 +1,160 @@
+﻿@model IEnumerable<TCN_NCKH.Models.ViewModels.DeThiViewModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Danh sách đề thi";
+    Layout = "~/Areas/HocSinh/Views/Shared/_LayoutHocSinh.cshtml";
+}
+
+<div id="particles-js" style="position: fixed; z-index: -1; width: 100%; height: 100%;"></div>
+
+<div class="container my-5 py-4 bg-white rounded-4 shadow-lg border border-light">
+    @* Đã điều chỉnh class *@
+    <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
+        @* Thêm border-bottom *@
+        <h2 class="text-primary fw-bold mb-0 fs-3"><i class="bi bi-journal-text me-2"></i> Danh sách đề thi</h2> @* Điều chỉnh font-size, margin, icon spacing *@
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped align-middle rounded-3 overflow-hidden">
+            @* Đã điều chỉnh class *@
+            <thead class="bg-primary text-white text-center">
+                @* Thay table-dark bằng bg-primary *@
+                <tr>
+                    <th class="p-3">Đề Thi</th>
+                    <th class="p-3">Ngày tạo</th>
+                    <th class="p-3">Môn học</th>
+                    <th class="p-3">Người tạo</th>
+                    <th class="p-3">Trạng thái</th>
+                    <th class="p-3">Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr class="text-center">
+                            <td class="fw-semibold text-break">@item.DeThi.Tendethi</td> @* Thêm text-break cho tên đề thi dài *@
+                            <td>@(item.DeThi.Ngaytao?.ToString("dd/MM/yyyy"))</td>
+                            <td>@(item.DeThi.Monhoc?.Tenmon ?? "Chưa có")</td>
+                            <td>@(item.DeThi.NguoitaoNavigation?.Hoten ?? "Chưa có")</td>
+                            <td>
+                                @if (item.DaNopBai)
+                                {
+                                    <span class="badge bg-success p-2 rounded-pill">Đã nộp bài</span> @* Thêm padding, bo tròn hơn *@
+                                }
+                                else
+                                {
+                                    <span class="badge bg-warning text-dark p-2 rounded-pill">Chưa nộp bài</span> @* Thêm padding, bo tròn hơn *@
+                                }
+                            </td>
+                            <td>
+                                @if (!item.DaNopBai)
+                                {
+                                    <a asp-area="HocSinh" asp-controller="LamBai" asp-action="Index" asp-route-id="@item.DeThi.Id"
+                                       class="btn btn-outline-primary btn-sm px-3 shadow-sm d-inline-flex align-items-center justify-content-center">
+                                        @* Thêm d-inline-flex *@
+                                        <i class="bi bi-play-circle me-1"></i> Làm bài @* Thêm margin cho icon *@
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a asp-area="HocSinh" asp-controller="Ketquathis" asp-action="Index"
+                                       class="btn btn-outline-info btn-sm px-3 shadow-sm d-inline-flex align-items-center justify-content-center">
+                                        @* Thêm d-inline-flex *@
+                                        <i class="bi bi-eye me-1"></i> Xem kết quả @* Thêm margin cho icon *@
+                                    </a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" class="text-center text-muted py-4 fs-5">Chưa có đề thi nào.</td> @* Tăng padding và font-size *@
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 50, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#007bff" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5 },
+                "size": { "value": 3 },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#007bff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": { "enable": true, "speed": 2 }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "grab" },
+                    "onclick": { "enable": true, "mode": "push" }
+                },
+                "modes": {
+                    "grab": { "distance": 140, "line_linked": { "opacity": 1 } },
+                    "push": { "particles_nb": 4 }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+}
+<style>
+    /* TCN_NCKH/wwwroot/css/HocSinhCustom.css */
+
+    /* Custom styles for the table */
+    .table-responsive table {
+        border-collapse: separate; /* Required for rounded corners on table */
+        border-spacing: 0;
+    }
+
+    .table-responsive .rounded-3 {
+        border-radius: 0.5rem !important; /* Adjust as needed for outer table border-radius */
+    }
+
+    .table-responsive thead {
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+        overflow: hidden; /* Ensures child elements respect border-radius */
+    }
+
+        /* Make sure table header cells respect the border-radius */
+        .table-responsive thead th:first-child {
+            border-top-left-radius: 0.5rem;
+        }
+
+        .table-responsive thead th:last-child {
+            border-top-right-radius: 0.5rem;
+        }
+
+    /* Custom style for action buttons */
+    .btn-sm.px-3 {
+        min-width: 90px; /* Đảm bảo các nút có độ rộng tương đương */
+    }
+
+    /* Adjust padding in table cells for better look */
+    .table-responsive td, .table-responsive th {
+        padding: 0.75rem; /* Default Bootstrap padding is 0.5rem, increase for more space */
+    }
+
+    /* Optional: Style for the main content container shadow */
+    .container.shadow-lg {
+        box-shadow: 0 1rem 3rem rgba(0,0,0,.175) !important; /* Mạnh hơn shadow-sm */
+    }
+</style>

@@ -1,0 +1,152 @@
+﻿@model IEnumerable<TCN_NCKH.Models.DBModel.Dethi>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Quản Lý Đề Thi Của Tôi"; // Tiêu đề riêng cho giáo viên
+    Layout = "~/Areas/GiaoVien/Views/Shared/_LayoutGiaoVien.cshtml"; // Đảm bảo đúng layout của giáo viên
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">
+        <i class="fas fa-file-alt"></i> @ViewData["Title"]
+    </h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/GiaoVien/Home/Index">Dashboard</a></li> @* Đảm bảo đường dẫn dashboard đúng cho giáo viên *@
+        <li class="breadcrumb-item active">@ViewData["Title"]</li>
+    </ol>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách đề thi của tôi</h6> @* Tiêu đề bảng rõ ràng hơn *@
+            <a asp-action="Create" class="btn btn-primary btn-sm">
+                <i class="fas fa-plus"></i> Tạo Mới Đề Thi
+            </a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">#</th> @* Thêm cột số thứ tự nếu muốn, Datatables sẽ không xử lý cột này mặc định *@
+                            <th>ID</th>
+                            <th>
+                                Tên Đề Thi
+                            </th>
+                            <th>
+                                Ngày Tạo
+                            </th>
+                            <th>
+                                Môn học
+                            </th>
+                            <th>
+                                Người tạo
+                            </th>
+                            <th>Trạng thái</th> @* Cột trạng thái nếu bạn có thuộc tính trạng thái trong Dethi *@
+                            <th style="width: 150px;">Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int rowNo = 1;
+                        } @* Khởi tạo số thứ tự từ 1 (Datatables có thể tự hiển thị số hàng) *@
+                        @if (Model != null && Model.Any())
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@(rowNo++)</td> @* Số thứ tự tự tăng *@
+                                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Tendethi)
+                                    </td>
+                                    <td>
+                                        @(item.Ngaytao?.ToString("dd/MM/yyyy HH:mm") ?? "N/A") @* Định dạng ngày giờ *@
+                                    </td>
+                                    <td>
+                                        @(item.Monhoc?.Tenmon ?? "N/A") @* Sử dụng Tenmon và kiểm tra null an toàn *@
+                                    </td>
+                                    <td>
+                                        @(item.NguoitaoNavigation?.Hoten ?? "N/A") @* Sử dụng Hoten và kiểm tra null an toàn *@
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-success">Hoạt động</span> @* Giả định trạng thái cố định, hoặc thay bằng logic kiểm tra item.IsActive nếu có *@
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm" title="Chỉnh sửa">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm" title="Chi tiết">
+                                            <i class="fas fa-info-circle"></i>
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm" title="Xóa">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="8" class="text-center">Không tìm thấy đề thi nào của bạn.</td> @* Cập nhật colspan *@
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @* Nếu layout của bạn đã có jQuery, có thể không cần dòng này *@
+    @* <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> *@
+
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap4.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Khởi tạo DataTables
+            $('#dataTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Vietnamese.json" // Ngôn ngữ tiếng Việt
+                },
+                "columnDefs": [
+                    { "orderable": false, "targets": 0 }, // Cột số thứ tự không sắp xếp
+                    { "orderable": false, "targets": -1 } // Cột hành động không sắp xếp
+                ]
+            });
+
+            // Tự động đóng thông báo sau vài giây
+            window.setTimeout(function () {
+                $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                    $(this).remove();
+                });
+            }, 3000); // 3 giây
+        });
+    </script>
+}
+
+@section Styles {
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40j/6PqqF/zEE4hQYkMWn6VfUe50I+fI+I5M5b5G+w5g5Z5L5K5B5E5P5V5C5X5Y5A5B5E5P5Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+}

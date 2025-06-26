@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Thi Trắc Nghiệm Phát Triển Web";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h1 class="section-title text-center mb-4">Thi Trắc Nghiệm Phát Triển Web</h1>
+            <p class="lead text-center">
+                Đánh giá kiến thức và kỹ năng của bạn về các công nghệ frontend và backend trong phát triển web.
+            </p>
+            <hr class="my-4">
+
+            <div class="card shadow-lg mb-4">
+                <div class="card-body">
+                    <h4 class="card-title text-primary">Thông tin bài thi</h4>
+                    <p class="card-text">
+                        Bài thi này sẽ kiểm tra kiến thức về:
+                    </p>
+                    <ul>
+                        <li>HTML5, CSS3, JavaScript (ES6+)</li>
+                        <li>Thao tác DOM, AJAX, Fetch API</li>
+                        <li>Các framework/library phổ biến (React, Angular, Vue, Bootstrap)</li>
+                        <li>Kiến trúc RESTful API, HTTP methods</li>
+                        <li>Bảo mật web cơ bản (XSS, CSRF)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card shadow-lg mb-4">
+                <div class="card-body">
+                    <h4 class="card-title text-primary">Quy định và Hướng dẫn</h4>
+                    <ul>
+                        <li><strong>Số lượng câu hỏi:</strong> 20 câu.</li>
+                        <li><strong>Thời gian:</strong> 30 phút.</li>
+                        <li><strong>Điểm đạt:</strong> 70%.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="/Test/StartTest?topic=webdevelopment" class="btn btn-success btn-lg">Bắt đầu Thi Ngay</a>
+                <a href="/" class="btn btn-secondary btn-lg ms-3">Quay về trang chủ</a>
+            </div>
+        </div>
+    </div>
+</div>

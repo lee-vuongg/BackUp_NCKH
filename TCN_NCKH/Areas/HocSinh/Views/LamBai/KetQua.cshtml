@@ -1,0 +1,83 @@
+﻿@model TCN_NCKH.Models.DBModel.KetQuaViewModel
+@using TCN_NCKH.Models.DBModel
+
+@{
+    ViewData["Title"] = "Kết Quả Bài Thi";
+    Layout = "~/Areas/HocSinh/Views/Shared/_LayoutHocSinh.cshtml";
+
+    var lichthi = Model.Ketquathi.Lichthi;
+    var dethi = lichthi?.Dethi;
+    var cauHoiList = dethi?.Cauhois.ToList() ?? new List<Cauhoi>();
+    var dapAnChon = Model.DapAnChon ?? new Dictionary<int, List<int>>();
+}
+
+<div class="container mt-4">
+    <h3 class="fw-bold">📊 Kết quả bài thi: @dethi?.Tendethi</h3>
+    <p><strong>Môn học:</strong> @dethi?.Monhoc?.Tenmon</p>
+    <p><strong>Ngày thi:</strong> @lichthi?.Ngaythi.ToString("dd/MM/yyyy")</p>
+    <p><strong>Điểm:</strong> <span class="text-success fs-4">@Model.Diem</span></p>
+
+    @for (int i = 0; i < cauHoiList.Count; i++)
+    {
+        var cauhoi = cauHoiList[i];
+        var dapans = cauhoi.Dapans ?? new List<Dapan>();
+        var dapAnDungList = dapans.Where(d => d.Dung == true).Select(d => d.Id).ToList();
+
+        dapAnChon.TryGetValue(cauhoi.Id, out List<int> daChonList);
+        daChonList = daChonList ?? new List<int>();
+
+        bool chonDungHet = dapAnDungList.All(id => daChonList.Contains(id));
+        bool chonThemSai = daChonList.Except(dapAnDungList).Any();
+        bool isCorrect = chonDungHet && !chonThemSai;
+
+        <div class="card mb-3 border @(isCorrect ? "border-success" : "border-danger") shadow-sm">
+            <div class="card-body">
+                <p class="fw-bold">Câu @(i + 1): @Html.Raw(cauhoi.Noidung)</p>
+
+                @foreach (var dapan in dapans)
+                {
+                    bool isDung = dapan.Dung == true;
+                    bool daChon = daChonList.Contains(dapan.Id);
+                    string labelClass = "";
+                    string iconHtml = "";
+
+                    if (isDung)
+                    {
+                        labelClass = "text-success fw-bold";
+                        iconHtml = "<span class='text-success me-2'>✅</span>";
+                    }
+                    if (daChon && !isDung)
+                    {
+                        labelClass = "text-danger text-decoration-line-through";
+                        iconHtml = "<span class='text-danger me-2'>❌</span>";
+                    }
+
+                    <div class="form-check mb-1 d-flex align-items-center">
+                        <input type="checkbox" class="form-check-input" disabled @(daChon ? "checked" : "") />
+                        <label class="form-check-label @labelClass" style="margin-left: 0.5rem;">
+                            @Html.Raw(iconHtml)
+                            @Html.Raw(dapan.Noidung)
+                        </label>
+                    </div>
+                }
+
+                <p class="mt-2">
+                    @if (isCorrect)
+                    {
+                        <span class="text-success">✅ Câu trả lời đúng</span>
+                    }
+                    else
+                    {
+                        <span class="text-danger">❌ Câu trả lời sai</span>
+                    }
+                </p>
+            </div>
+        </div>
+    }
+
+    <div class="text-center mt-4">
+        <a asp-action="Index" class="btn btn-primary btn-lg">
+            🔙 Quay lại danh sách bài thi
+        </a>
+    </div>
+</div>

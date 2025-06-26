@@ -1,0 +1,131 @@
+﻿/* Custom CSS cho Trang Đăng nhập */
+
+/* KHÔNG CÓ CÁC THAY ĐỔI CHO body, html Ở ĐÂY để giữ nguyên background gốc của trang */
+
+/* Container cho form đăng nhập (giữ nguyên để căn giữa và z-index) */
+.login-page-container {
+    position: relative;
+    z-index: 10; /* Đưa form đăng nhập lên trên các hạt */
+}
+
+/* Kiểu dáng chính của thẻ form: Màu tối, chiều sâu */
+.login-card-custom {
+    background-color: #2c3e55; /* Nền màu xám xanh đậm, tối để có chiều sâu */
+    border-radius: 1.5rem; /* Góc bo tròn */
+    /* Tạo chiều sâu bằng box-shadow đa lớp tinh tế */
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.7), /* Bóng lớn, rất đậm để tạo chiều sâu */
+    0 6px 12px rgba(0, 0, 0, 0.4), /* Bóng nhỏ hơn, nhẹ hơn */
+    inset 0 0 15px rgba(0, 0, 0, 0.5); /* Bóng đổ vào bên trong để tăng chiều sâu cho form */
+    overflow: hidden; /* Quan trọng cho hoạt ảnh đường viền */
+    position: relative; /* Cần thiết cho các pseudo-element */
+    z-index: 1; /* Đảm bảo nội dung thẻ nằm trên hoạt ảnh đường viền */
+    border: none; /* Bỏ border mặc định của Bootstrap */
+}
+
+    /* Điều chỉnh màu chữ cho tiêu đề và các thành phần khác trong form */
+    .login-card-custom .text-primary {
+        color: #a0d9ff !important; /* Màu xanh sáng hơn cho tiêu đề để nổi bật trên nền tối */
+        text-shadow: 0 0 10px rgba(160, 217, 255, 0.5); /* Thêm bóng chữ để nổi bật */
+    }
+
+    .login-card-custom label.form-label,
+    .login-card-custom p.text-center {
+        color: #e0e0e0; /* Màu chữ trắng xám cho label và đoạn văn bản "Chưa có tài khoản?" */
+    }
+
+    /* Điều chỉnh màu cho icon trong input-group-text */
+    .login-card-custom .input-group-text {
+        background-color: #1a2530; /* Nền tối hơn cho icon để hòa hợp và tạo chiều sâu nhẹ */
+        border: 1px solid rgba(255, 255, 255, 0.15); /* Viền icon tinh tế */
+        color: #a0d9ff; /* Màu icon xanh sáng để dễ nhìn */
+    }
+
+    .login-card-custom .form-control {
+        background-color: #1a2530; /* **Nền input có màu tương tự form nhưng đậm hơn** */
+        border: 1px solid rgba(255, 255, 255, 0.1); /* Đường viền input tinh tế */
+        color: #ffffff; /* Màu chữ input là trắng */
+        /* **Thêm box-shadow để tạo chiều sâu riêng cho input** */
+        box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.6); /* Bóng đổ vào bên trong để tạo chiều sâu cho input */
+        transition: all 0.3s ease; /* Thêm transition cho hiệu ứng mượt mà khi focus */
+    }
+
+        .login-card-custom .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.6); /* Màu placeholder là trắng mờ */
+            opacity: 1; /* Đảm bảo placeholder không bị mờ quá */
+        }
+
+        .login-card-custom .form-control:focus {
+            background-color: #1a2530; /* Giữ nguyên màu nền khi focus */
+            border-color: #00aaff; /* Màu viền khi focus phù hợp với màu ánh sáng */
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.6), /* Giữ bóng đổ vào */
+            0 0 0 0.25rem rgba(0, 170, 255, 0.35); /* Thêm bóng ngoài khi focus */
+        }
+
+    /* Màu chữ của thông báo lỗi */
+    .login-card-custom .text-danger {
+        color: #ffb3b3 !important; /* Màu đỏ sáng hơn cho thông báo lỗi để dễ đọc trên nền tối */
+    }
+
+    /* Màu và hiệu ứng cho nút Đăng nhập */
+    .login-card-custom .btn-primary {
+        background-color: #007bff; /* Giữ màu nút chính */
+        border-color: #007bff;
+        color: #ffffff; /* Màu chữ nút là trắng */
+        transition: all 0.3s ease;
+    }
+
+        .login-card-custom .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+            transform: translateY(-2px); /* Hiệu ứng nhấc nhẹ khi hover */
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
+        }
+
+    /* Màu liên kết cho "Đăng ký ngay" */
+    .login-card-custom a {
+        color: #00aaff; /* Màu xanh sáng cho liên kết, phù hợp với ánh sáng */
+        font-weight: bold; /* Làm nổi bật liên kết */
+    }
+
+        .login-card-custom a:hover {
+            color: #8be0ff; /* Màu liên kết khi hover */
+        }
+
+    /* --- Hiệu ứng Đường viền Ánh sáng Nhỏ (Chỉ chạy quanh form) --- */
+    /* Giữ nguyên như lần trước */
+    .login-card-custom::before,
+    .login-card-custom::after {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        background: linear-gradient( 45deg, #00aaff, #ff00f7, #00ff00, #ffff00, #ff0000, #00aaff );
+        background-size: 400% 400%;
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        z-index: 0;
+        border-radius: 1.6rem;
+        animation: gradientBorder 15s ease infinite;
+        filter: blur(6px);
+        opacity: 0.7;
+    }
+
+    .login-card-custom::after {
+        filter: blur(2px);
+        animation: gradientBorder 15s ease infinite reverse;
+        opacity: 0.4;
+    }
+
+@keyframes gradientBorder {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
