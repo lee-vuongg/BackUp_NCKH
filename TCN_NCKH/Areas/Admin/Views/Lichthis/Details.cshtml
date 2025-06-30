@@ -1,43 +1,119 @@
 ﻿@model TCN_NCKH.Models.DBModel.Lichthi
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Chi Tiết Lịch Thi";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Details</h1>
+<div class="container-fluid">
+    <h1 class="mt-4">
+        <i class="fas fa-info-circle"></i> @ViewData["Title"]
+    </h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/Admin/AdminHome">Dashboard</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index">Quản Lý Lịch Thi</a></li>
+        <li class="breadcrumb-item active">@ViewData["Title"]</li>
+    </ol>
 
-<div>
-    <h4>Lichthi</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Ngaythi)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Ngaythi)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Thoigian)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Thoigian)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Dethi)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Dethi.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Lophoc)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Lophoc.Id)
-        </dd>
-    </dl>
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Thông tin chi tiết lịch thi</h6>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Dethi)
+                </dt>
+                <dd class="col-sm-9">
+                    @(Model.Dethi?.Tendethi ?? "N/A") @* Hiển thị Tên đề thi *@
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Lophoc)
+                </dt>
+                <dd class="col-sm-9">
+                    @(Model.Lophoc?.Tenlop ?? "N/A") @* Hiển thị Tên lớp học *@
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Phongthi)
+                </dt>
+                <dd class="col-sm-9">
+                    @(Model.Phongthi ?? "N/A")
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.ThoigianBatdau)
+                </dt>
+                <dd class="col-sm-9">
+                    @* Sử dụng ToString() với định dạng ngày giờ cho DateTime? *@
+                    @(Model.ThoigianBatdau.HasValue ? Model.ThoigianBatdau.Value.ToString("dd/MM/yyyy HH:mm") : "N/A")
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.ThoigianKetthuc)
+                </dt>
+                <dd class="col-sm-9">
+                    @* Sử dụng ToString() với định dạng ngày giờ cho DateTime? *@
+                    @(Model.ThoigianKetthuc.HasValue ? Model.ThoigianKetthuc.Value.ToString("dd/MM/yyyy HH:mm") : "N/A")
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Thoigian)
+                </dt>
+                <dd class="col-sm-9">
+                    @* Sử dụng HasValue và ToString() cho int? *@
+                    @(Model.Thoigian.HasValue ? Model.Thoigian.Value + " phút" : "N/A")
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Ngaythi)
+                </dt>
+                <dd class="col-sm-9">
+                    @* Ngaythi là DateTime không nullable, nên không cần HasValue. Chỉ cần ToString() *@
+                    @Model.Ngaythi.ToString("dd/MM/yyyy") @* Định dạng chỉ ngày *@
+                </dd>
+            </dl>
+        </div>
+        <div class="card-footer">
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning">
+                <i class="fas fa-edit"></i> Chỉnh Sửa
+            </a>
+            <a asp-action="Index" class="btn btn-secondary ml-2">
+                <i class="fas fa-arrow-left"></i> Quay Lại Danh Sách
+            </a>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Tự động đóng thông báo sau vài giây
+            window.setTimeout(function () {
+                $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                    $(this).remove();
+                });
+            }, 3000); // 3 giây
+        });
+    </script>
+}

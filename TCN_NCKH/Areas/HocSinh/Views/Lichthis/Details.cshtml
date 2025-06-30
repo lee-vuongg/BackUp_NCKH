@@ -65,6 +65,39 @@
             background: linear-gradient(to right, #65dac2, #8f9ce3);
             transform: translateY(-2px);
         }
+
+    .btn-action {
+        display: inline-block;
+        padding: 8px 18px;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        text-align: center;
+        transition: all 0.3s ease;
+        margin-right: 10px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-start {
+        background: linear-gradient(to right, #2ecc71, #27ae60);
+        color: #fff;
+    }
+
+        .btn-start:hover {
+            background: linear-gradient(to right, #27ae60, #2ecc71);
+            transform: translateY(-1px);
+        }
+
+    .btn-disabled {
+        background-color: #bdc3c7;
+        color: #7f8c8d;
+        cursor: not-allowed;
+        padding: 8px 18px; /* Giữ padding giống btn-action */
+        border-radius: 8px;
+        display: inline-block; /* Để span có thể nhận padding */
+        font-weight: 600;
+        box-shadow: none;
+    }
 </style>
 
 <h2>Chi tiết lịch thi</h2>
@@ -74,8 +107,22 @@
         <dt class="col-sm-4">🗓️ Ngày thi</dt>
         <dd class="col-sm-8">@Model.Ngaythi.ToString("dd/MM/yyyy")</dd>
 
-        <dt class="col-sm-4">⏰ Thời gian thi</dt>
-        <dd class="col-sm-8">@Model.Thoigian</dd>
+     
+        <dt class="col-sm-4">⏰ Thời gian làm bài</dt>
+        <dd class="col-sm-8">
+            @(Model.Thoigian.HasValue ? $"{Model.Thoigian.Value} phút" : "N/A")
+        </dd>
+
+       
+        <dt class="col-sm-4">📍 Phòng thi</dt>
+        <dd class="col-sm-8">@(string.IsNullOrEmpty(Model.Phongthi) ? "Chưa xác định" : Model.Phongthi)</dd>
+
+    
+        <dt class="col-sm-4">⏱️ Bắt đầu (Thực tế)</dt>
+        <dd class="col-sm-8">@(Model.ThoigianBatdau.HasValue ? Model.ThoigianBatdau.Value.ToString("HH:mm dd/MM/yyyy") : "Chưa xác định")</dd>
+
+        <dt class="col-sm-4">🏁 Kết thúc (Thực tế)</dt>
+        <dd class="col-sm-8">@(Model.ThoigianKetthuc.HasValue ? Model.ThoigianKetthuc.Value.ToString("HH:mm dd/MM/yyyy") : "Chưa xác định")</dd>
 
         <dt class="col-sm-4">📄 Tên đề thi</dt>
         <dd class="col-sm-8">@Model.Dethi?.Tendethi</dd>
@@ -86,6 +133,47 @@
         <dt class="col-sm-4">🏫 Lớp học</dt>
         <dd class="col-sm-8">@Model.Lophoc?.Tenlop</dd>
     </dl>
+    <div style="text-align: center; margin-top: 30px;">
+        @{
+            var now = DateTime.Now;
+            var thoiGianKetThucDuKien = Model.Ngaythi.AddMinutes(Model.Thoigian.GetValueOrDefault(0));
+            var thoiGianBatDauThucTe = Model.ThoigianBatdau;
+            var thoiGianKetThucThucTe = Model.ThoigianKetthuc;
+
+            bool isExamActive = Model.Ngaythi.Date <= now.Date && now < thoiGianKetThucDuKien;
+
+            if (thoiGianBatDauThucTe.HasValue && thoiGianKetThucThucTe.HasValue)
+            {
+                isExamActive = isExamActive && (now >= thoiGianBatDauThucTe.Value && now <= thoiGianKetThucThucTe.Value);
+            }
+
+            if (thoiGianKetThucThucTe.HasValue && now > thoiGianKetThucThucTe.Value)
+            {
+                isExamActive = false;
+            }
+
+            // TODO: Cần lấy StudentId từ phiên đăng nhập và kiểm tra trong DB.
+            // Ví dụ: bool hasStudentSubmitted = await _context.Ketquathis.AnyAsync(kq => kq.Lichthiid == Model.Id && kq.Sinhvienid == currentStudentId);
+            bool hasStudentSubmitted = false; // Thay thế bằng logic kiểm tra thực tế
+
+            if (isExamActive && !hasStudentSubmitted)
+            {
+                <a asp-action="StartExam" asp-route-id="@Model.Id" class="btn-action btn-start">Bắt đầu thi</a>
+            }
+            else if (hasStudentSubmitted)
+            {
+                <span class="btn-action btn-disabled">Đã nộp bài</span>
+            }
+            else if (now >= thoiGianKetThucDuKien || (thoiGianKetThucThucTe.HasValue && now > thoiGianKetThucThucTe.Value))
+            {
+                <span class="btn-action btn-disabled">Đã hết hạn</span>
+            }
+            else
+            {
+                <span class="btn-action btn-disabled">Chưa đến giờ</span>
+            }
+        }
+    </div>
 </div>
 
 <a asp-action="Index" class="btn-back">← Quay lại danh sách</a>

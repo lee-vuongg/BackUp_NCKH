@@ -1,0 +1,89 @@
+﻿@model TCN_NCKH.Models.DBModel.Bocauhoi
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Chỉnh sửa Bộ câu hỏi";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    // Để hiển thị dropdown cho Mucdokho, chúng ta sẽ cần ViewBag.MucDoKhoList từ Controller
+    // Trong BocauhoisController.Edit (GET), bạn sẽ cần thêm:
+    // ViewBag.MucDoKhoList = new SelectList(new List<string> { "Dễ", "Trung bình", "Khó" }, bocauhoi.Mucdokho);
+    // Hoặc nếu Mucdokho của bạn là một enum, bạn có thể chuyển đổi enum sang SelectList.
+}
+
+<h1>Chỉnh sửa Bộ câu hỏi</h1>
+
+<h4>@Model.Tenbocauhoi</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        @* Tăng chiều rộng cột form lên một chút *@
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div> @* Thêm margin bottom *@
+            <input type="hidden" asp-for="Id" />
+
+            <div class="mb-3">
+                @* Dùng mb-3 cho khoảng cách giữa các nhóm form *@
+                <label asp-for="Tenbocauhoi" class="form-label"></label> @* Dùng form-label *@
+                <input asp-for="Tenbocauhoi" class="form-control" />
+                <span asp-validation-for="Tenbocauhoi" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Monhocid" class="form-label">Môn học</label> @* Dùng tên rõ ràng hơn "Môn học" *@
+                <select asp-for="Monhocid" class="form-select" asp-items="ViewBag.Monhocid"></select> @* Dùng form-select *@
+                <span asp-validation-for="Monhocid" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Mota" class="form-label"></label>
+                <textarea asp-for="Mota" class="form-control" rows="3"></textarea> @* Dùng textarea cho mô tả dài hơn *@
+                <span asp-validation-for="Mota" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Mucdokho" class="form-label">Mức độ khó</label> @* Dùng tên rõ ràng hơn "Mức độ khó" *@
+                @* Sửa thành dropdown nếu Mucdokho có các giá trị cố định *@
+                <select asp-for="Mucdokho" class="form-select" asp-items="ViewBag.MucDoKhoList">
+                    <option value="">-- Chọn mức độ khó --</option> @* Tùy chọn: Thêm placeholder *@
+                </select>
+                @* Nếu Mucdokho vẫn là text input, giữ lại input này:
+                <input asp-for="Mucdokho" class="form-control" /> *@
+                <span asp-validation-for="Mucdokho" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="DapanMacdinhA" class="form-label"></label>
+                <input asp-for="DapanMacdinhA" class="form-control" />
+                <span asp-validation-for="DapanMacdinhA" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="DapanMacdinhB" class="form-label"></label>
+                <input asp-for="DapanMacdinhB" class="form-control" />
+                <span asp-validation-for="DapanMacdinhB" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="DapanMacdinhC" class="form-label"></label>
+                <input asp-for="DapanMacdinhC" class="form-control" />
+                <span asp-validation-for="DapanMacdinhC" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="DapanMacdinhD" class="form-label"></label>
+                <input asp-for="DapanMacdinhD" class="form-control" />
+                <span asp-validation-for="DapanMacdinhD" class="text-danger"></span>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                @* Dùng flexbox để căn chỉnh nút *@
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-save"></i> Lưu thay đổi
+                </button>
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Quay lại danh sách
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

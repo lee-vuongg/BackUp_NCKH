@@ -255,16 +255,16 @@ namespace TCN_NCKH.Areas.HocSinh.Controllers
                     await image.SaveAsync(newFilePath);
                 }
 
-                if (!string.IsNullOrEmpty(nguoidung.Anhdaidien))
+                if (!string.IsNullOrEmpty(nguoidung.AnhDaiDien))
                 {
-                    var oldPath = Path.Combine(uploadsFolder, nguoidung.Anhdaidien);
-                    if (System.IO.File.Exists(oldPath) && !nguoidung.Anhdaidien.Equals("default-avatar.png"))
+                    var oldPath = Path.Combine(uploadsFolder, nguoidung.AnhDaiDien);
+                    if (System.IO.File.Exists(oldPath) && !nguoidung.AnhDaiDien.Equals("default-avatar.png"))
                     {
                         System.IO.File.Delete(oldPath);
                     }
                 }
 
-                nguoidung.Anhdaidien = newFileName;
+                nguoidung.AnhDaiDien = newFileName;
                 _context.Update(nguoidung);
                 await _context.SaveChangesAsync();
 

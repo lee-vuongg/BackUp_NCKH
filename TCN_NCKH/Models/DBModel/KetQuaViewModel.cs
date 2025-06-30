@@ -7,6 +7,6 @@
         // Dictionary<CauhoiId, List<DapanId>> - cho phép nhiều đáp án chọn
         public Dictionary<int, List<int>> DapAnChon { get; set; } = new();
 
-        public double Diem { get; set; }
+        public double? Diem { get; set; } // Thêm dấu '?'
     }
 }

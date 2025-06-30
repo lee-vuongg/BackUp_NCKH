@@ -15,6 +15,8 @@ public partial class NghienCuuKhoaHocContext : DbContext
     {
     }
 
+    public virtual DbSet<Bocauhoi> Bocauhois { get; set; }
+
     public virtual DbSet<Cauhoi> Cauhois { get; set; }
 
     public virtual DbSet<Dapan> Dapans { get; set; }
@@ -24,6 +26,8 @@ public partial class NghienCuuKhoaHocContext : DbContext
     public virtual DbSet<Ketquathi> Ketquathis { get; set; }
 
     public virtual DbSet<Lichthi> Lichthis { get; set; }
+
+    public virtual DbSet<LichthiSinhvien> LichthiSinhviens { get; set; }
 
     public virtual DbSet<Loainguoidung> Loainguoidungs { get; set; }
 
@@ -36,8 +40,6 @@ public partial class NghienCuuKhoaHocContext : DbContext
     public virtual DbSet<Sinhvien> Sinhviens { get; set; }
 
     public virtual DbSet<TraloiSinhvien> TraloiSinhviens { get; set; }
-    public virtual DbSet<Lambai> Lambais { get; set; }
-
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -45,23 +47,85 @@ public partial class NghienCuuKhoaHocContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Bocauhoi>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__BOCAUHOI__3214EC27B643B184");
+
+            entity.ToTable("BOCAUHOI");
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.DapanMacdinhA)
+                .HasMaxLength(500)
+                .HasColumnName("DAPAN_MACDINH_A");
+            entity.Property(e => e.DapanMacdinhB)
+                .HasMaxLength(500)
+                .HasColumnName("DAPAN_MACDINH_B");
+            entity.Property(e => e.DapanMacdinhC)
+                .HasMaxLength(500)
+                .HasColumnName("DAPAN_MACDINH_C");
+            entity.Property(e => e.DapanMacdinhD)
+                .HasMaxLength(500)
+                .HasColumnName("DAPAN_MACDINH_D");
+            entity.Property(e => e.Monhocid)
+                .HasMaxLength(5)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("MONHOCID");
+            entity.Property(e => e.Mota).HasColumnName("MOTA");
+            entity.Property(e => e.Mucdokho).HasColumnName("MUCDOKHO");
+            entity.Property(e => e.Tenbocauhoi)
+                .HasMaxLength(255)
+                .HasColumnName("TENBOCAUHOI");
+
+            entity.HasOne(d => d.Monhoc).WithMany(p => p.Bocauhois)
+                .HasForeignKey(d => d.Monhocid)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_BOCAUHOI_MONHOC");
+        });
+
         modelBuilder.Entity<Cauhoi>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__CAUHOI__3214EC270EB3EBE9");
 
             entity.ToTable("CAUHOI");
 
-            entity.Property(e => e.Id).HasColumnName("ID");
-            entity.Property(e => e.Dethiid)
-                .HasMaxLength(10)
+            entity.Property(e => e.Id)
+                .ValueGeneratedOnAdd()
+                .HasColumnName("ID");
+
+            entity.Property(e => e.Bocauhoiid).HasColumnName("BOCAUHOIID");
+
+            entity.Property(e => e.DapandungKeys)
+                .HasMaxLength(4)
                 .IsUnicode(false)
-                .IsFixedLength()
+                .HasColumnName("DAPANDUNG_KEYS");
+
+            entity.Property(e => e.Dethiid)
+                .HasMaxLength(36) // Kiểm tra lại độ dài Dethiid nếu cần
+                .IsUnicode(true)
+                .IsFixedLength(false)
                 .HasColumnName("DETHIID");
-            entity.Property(e => e.Diem).HasColumnName("DIEM");
-            entity.Property(e => e.Loaicauhoi).HasColumnName("LOAICAUHOI");
+
+            entity.Property(e => e.Diem)
+                .HasColumnName("DIEM");
+
+            entity.Property(e => e.Loaicauhoi)
+                .HasColumnName("LOAICAUHOI");
+
+            // HÃY XÓA DÒNG NÀY (nếu có):
+            // entity.Property(e => e.Mucdokho)
+            //    .HasColumnName("MUCDOKHO");
+
             entity.Property(e => e.Noidung)
+                .IsRequired()
                 .HasMaxLength(500)
                 .HasColumnName("NOIDUNG");
+
+            // Các mối quan hệ (foreign keys) vẫn giữ nguyên
+            entity.HasOne(d => d.Bocauhoi).WithMany(p => p.Cauhois)
+                .HasForeignKey(d => d.Bocauhoiid)
+                .OnDelete(DeleteBehavior.SetNull)
+                .HasConstraintName("FK_CAUHOI_BOCAUHOI");
 
             entity.HasOne(d => d.Dethi).WithMany(p => p.Cauhois)
                 .HasForeignKey(d => d.Dethiid)
@@ -101,11 +165,16 @@ public partial class NghienCuuKhoaHocContext : DbContext
                 .IsUnicode(false)
                 .IsFixedLength()
                 .HasColumnName("ID");
+            entity.Property(e => e.Bocauhoiid).HasColumnName("BOCAUHOIID");
+            entity.Property(e => e.DethikhacnhauCa).HasColumnName("DETHIKHACNHAU_CA");
             entity.Property(e => e.Monhocid)
                 .HasMaxLength(5)
                 .IsUnicode(false)
                 .IsFixedLength()
                 .HasColumnName("MONHOCID");
+            entity.Property(e => e.MucdokhoDe).HasColumnName("MUCDOKHO_DE");
+            entity.Property(e => e.MucdokhoKho).HasColumnName("MUCDOKHO_KHO");
+            entity.Property(e => e.MucdokhoTrungbinh).HasColumnName("MUCDOKHO_TRUNGBINH");
             entity.Property(e => e.Ngaytao)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
@@ -115,9 +184,15 @@ public partial class NghienCuuKhoaHocContext : DbContext
                 .IsUnicode(false)
                 .IsFixedLength()
                 .HasColumnName("NGUOITAO");
+            entity.Property(e => e.Soluongcauhoi).HasColumnName("SOLUONGCAUHOI");
             entity.Property(e => e.Tendethi)
                 .HasMaxLength(100)
                 .HasColumnName("TENDETHI");
+
+            entity.HasOne(d => d.Bocauhoi).WithMany(p => p.Dethis)
+                .HasForeignKey(d => d.Bocauhoiid)
+                .OnDelete(DeleteBehavior.SetNull)
+                .HasConstraintName("FK_DETHI_BOCAUHOI");
 
             entity.HasOne(d => d.Monhoc).WithMany(p => p.Dethis)
                 .HasForeignKey(d => d.Monhocid)
@@ -181,7 +256,16 @@ public partial class NghienCuuKhoaHocContext : DbContext
             entity.Property(e => e.Ngaythi)
                 .HasColumnType("datetime")
                 .HasColumnName("NGAYTHI");
+            entity.Property(e => e.Phongthi)
+                .HasMaxLength(50)
+                .HasColumnName("PHONGTHI");
             entity.Property(e => e.Thoigian).HasColumnName("THOIGIAN");
+            entity.Property(e => e.ThoigianBatdau)
+                .HasColumnType("datetime")
+                .HasColumnName("THOIGIAN_BATDAU");
+            entity.Property(e => e.ThoigianKetthuc)
+                .HasColumnType("datetime")
+                .HasColumnName("THOIGIAN_KETTHUC");
 
             entity.HasOne(d => d.Dethi).WithMany(p => p.Lichthis)
                 .HasForeignKey(d => d.Dethiid)
@@ -192,6 +276,31 @@ public partial class NghienCuuKhoaHocContext : DbContext
                 .HasForeignKey(d => d.Lophocid)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__LICHTHI__LOPHOCI__3C69FB99");
+        });
+
+        modelBuilder.Entity<LichthiSinhvien>(entity =>
+        {
+            entity.HasKey(e => new { e.Lichthiid, e.Sinhvienid }).HasName("PK__LICHTHI___FFA2C5444CDD6EBB");
+
+            entity.ToTable("LICHTHI_SINHVIEN");
+
+            entity.Property(e => e.Lichthiid).HasColumnName("LICHTHIID");
+            entity.Property(e => e.Sinhvienid)
+                .HasMaxLength(15)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("SINHVIENID");
+            entity.Property(e => e.Duocphepthi)
+                .HasDefaultValue(true)
+                .HasColumnName("DUOCPHEPTHI");
+
+            entity.HasOne(d => d.Lichthi).WithMany(p => p.LichthiSinhviens)
+                .HasForeignKey(d => d.Lichthiid)
+                .HasConstraintName("FK_LICHTHI_SINHVIEN_LICHTHI");
+
+            entity.HasOne(d => d.Sinhvien).WithMany(p => p.LichthiSinhviens)
+                .HasForeignKey(d => d.Sinhvienid)
+                .HasConstraintName("FK_LICHTHI_SINHVIEN_SINHVIEN");
         });
 
         modelBuilder.Entity<Loainguoidung>(entity =>
@@ -263,6 +372,7 @@ public partial class NghienCuuKhoaHocContext : DbContext
                 .IsUnicode(false)
                 .IsFixedLength()
                 .HasColumnName("ID");
+            entity.Property(e => e.AnhDaiDien).HasMaxLength(255);
             entity.Property(e => e.Email)
                 .HasMaxLength(100)
                 .IsUnicode(false)
@@ -360,6 +470,8 @@ public partial class NghienCuuKhoaHocContext : DbContext
 
             entity.ToTable("TRALOI_SINHVIEN");
 
+            entity.HasIndex(e => e.KetquathiId, "IX_TRALOI_SINHVIEN_KetquathiId");
+
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Cauhoiid).HasColumnName("CAUHOIID");
             entity.Property(e => e.Dapanid).HasColumnName("DAPANID");
@@ -381,6 +493,10 @@ public partial class NghienCuuKhoaHocContext : DbContext
                 .HasForeignKey(d => d.Dapanid)
                 .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("FK__TRALOI_SI__DAPAN__37A5467C");
+
+            entity.HasOne(d => d.Ketquathi).WithMany(p => p.TraloiSinhviens)
+                .HasForeignKey(d => d.KetquathiId)
+                .HasConstraintName("FK_TRALOI_SINHVIEN_Ketquathi_KetquathiId");
 
             entity.HasOne(d => d.Sinhvien).WithMany(p => p.TraloiSinhviens)
                 .HasForeignKey(d => d.Sinhvienid)

@@ -13,13 +13,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewData["Title"] - Thi Trắc Nghiệm CNTT</title>
 
-    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="~/css/LayoutHS.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
 </head>
 <body>
@@ -46,9 +47,9 @@
 
                 if (user != null)
                 {
-                    var avatarPath = string.IsNullOrEmpty(user.Anhdaidien)
+                    var avatarPath = string.IsNullOrEmpty(user.AnhDaiDien)
                     ? "/images/default-avatar.png"
-                    : "/images/" + user.Anhdaidien;
+                    : "/images/" + user.AnhDaiDien;
 
                     <div class="dropdown">
                         <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" data-bs-toggle="dropdown">
@@ -98,6 +99,34 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+    <script>
+        // Kiểm tra và hiển thị thông báo lỗi (Error Message)
+        var errorMessage = '@TempData["ErrorMessage"]';
+        if (errorMessage && errorMessage.trim() !== '') {
+            Swal.fire({
+                icon: 'error', // Biểu tượng lỗi
+                title: 'Lỗi!',
+                text: errorMessage,
+                confirmButtonText: 'Đóng'
+            });
+        }
+
+        // Kiểm tra và hiển thị thông báo thành công (Success Message)
+        var successMessage = '@TempData["SuccessMessage"]';
+        if (successMessage && successMessage.trim() !== '') {
+            Swal.fire({
+                icon: 'success', // Biểu tượng thành công
+                title: 'Thành công!',
+                text: successMessage,
+                confirmButtonText: 'Đóng',
+                timer: 3000, // Tự động đóng sau 3 giây (tùy chọn)
+                timerProgressBar: true
+            });
+        }
+    </script>
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

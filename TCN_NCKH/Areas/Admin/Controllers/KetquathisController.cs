@@ -27,11 +27,11 @@ namespace TCN_NCKH.Areas.Admin.Controllers
             var lichthis = await _context.Lichthis
                                          .Include(lt => lt.Dethi)
                                          .Include(lt => lt.Lophoc)
-                                             .ThenInclude(lh => lh.Sinhviens) // Eager load Sinhviens trong Lophoc để đếm tổng SV
+                                         .ThenInclude(lh => lh.Sinhviens) // Eager load Sinhviens trong Lophoc để đếm tổng SV
                                          .OrderByDescending(lt => lt.Ngaythi) // Sắp xếp theo ngày thi mới nhất
                                          .ToListAsync();
 
-            var lichthiSummaries = new List<LichthiSummary>();
+            var lichthiSummaries = new List<LichthiSummary>(); // Đảm bảo bạn có ViewModel này
 
             foreach (var lichthi in lichthis)
             {
@@ -41,10 +41,10 @@ namespace TCN_NCKH.Areas.Admin.Controllers
                 // Số sinh viên đã hoàn thành bài thi cho lịch thi này
                 // Sử dụng Distinct() để đảm bảo mỗi sinh viên chỉ được tính một lần
                 int studentsCompleted = await _context.Ketquathis
-                                                    .Where(kq => kq.Lichthiid == lichthi.Id)
-                                                    .Select(kq => kq.Sinhvienid)
-                                                    .Distinct()
-                                                    .CountAsync();
+                                                      .Where(kq => kq.Lichthiid == lichthi.Id)
+                                                      .Select(kq => kq.Sinhvienid)
+                                                      .Distinct()
+                                                      .CountAsync();
 
                 // Số sinh viên chưa hoàn thành bài thi
                 int studentsNotCompleted = totalStudents - studentsCompleted;
@@ -59,7 +59,7 @@ namespace TCN_NCKH.Areas.Admin.Controllers
                 });
             }
 
-            var viewModel = new KetquathiListViewModel
+            var viewModel = new KetquathiListViewModel // Đảm bảo bạn có ViewModel này
             {
                 LichthiSummaries = lichthiSummaries
             };
@@ -69,7 +69,6 @@ namespace TCN_NCKH.Areas.Admin.Controllers
 
         // GET: Admin/Ketquathis/Details/5 (Chi tiết một kết quả thi cụ thể của sinh viên)
         // Phương thức này dùng để xem CHI TIẾT KẾT QUẢ CỦA MỘT BÀI LÀM CỤ THỂ, chứ không phải tổng quan lịch thi.
-        // Trong KetquathisController.cs
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -86,11 +85,11 @@ namespace TCN_NCKH.Areas.Admin.Controllers
                 .Include(k => k.Sinhvien)
                     .ThenInclude(sv => sv.Lophoc)
                 .Include(k => k.Sinhvien)
-                    .ThenInclude(sv => sv.SinhvienNavigation) // Đã sửa thành SinhvienNavigation
+                    .ThenInclude(sv => sv.SinhvienNavigation) // Đã sửa thành Sinhvien.Nguoidung, giả định bạn có thuộc tính này. Nếu không, hãy giữ nguyên SinhvienNavigation nếu đó là tên đúng trong model.
                 .Include(k => k.TraloiSinhviens) // Load các câu trả lời của sinh viên
                     .ThenInclude(ts => ts.Dapan) // Load đáp án mà sinh viên đã chọn
                         .ThenInclude(da => da.Cauhoi) // Load câu hỏi liên quan đến đáp án đó
-                            .ThenInclude(ch => ch.Dapans) // <== THÊM DÒNG NÀY: Load tất cả đáp án của câu hỏi để tìm đáp án đúng
+                            .ThenInclude(ch => ch.Dapans) // Load tất cả đáp án của câu hỏi để tìm đáp án đúng
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (ketquathi == null)
@@ -104,7 +103,6 @@ namespace TCN_NCKH.Areas.Admin.Controllers
 
         // GET: Admin/Ketquathis/StudentsByLichthi/5
         // Hiển thị danh sách sinh viên đã làm bài / chưa làm bài cho một lịch thi cụ thể
-        // Hiển thị danh sách sinh viên đã làm bài / chưa làm bài cho một lịch thi cụ thể
         public async Task<IActionResult> StudentsByLichthi(int? id, bool? showCompleted = true)
         {
             if (id == null)
@@ -114,10 +112,10 @@ namespace TCN_NCKH.Areas.Admin.Controllers
             }
 
             var lichthi = await _context.Lichthis
-                                        .Include(lt => lt.Dethi)
-                                        .Include(lt => lt.Lophoc)
-                                            .ThenInclude(lh => lh.Sinhviens) // Load tất cả sinh viên trong lớp
-                                        .FirstOrDefaultAsync(lt => lt.Id == id);
+                                         .Include(lt => lt.Dethi)
+                                         .Include(lt => lt.Lophoc)
+                                             .ThenInclude(lh => lh.Sinhviens) // Load tất cả sinh viên trong lớp
+                                         .FirstOrDefaultAsync(lt => lt.Id == id);
 
             if (lichthi == null)
             {
@@ -133,13 +131,14 @@ namespace TCN_NCKH.Areas.Admin.Controllers
             if (showCompleted == true) // Lấy sinh viên đã làm bài
             {
                 students = await _context.Ketquathis
-                                        .Where(kq => kq.Lichthiid == id)
-                                        .Select(kq => kq.Sinhvien!)
-                                        .Distinct()
-                                        .Include(sv => sv.Lophoc)
-                                        .Include(sv => sv.SinhvienNavigation)
-                                        .ToListAsync();
+                                         .Where(kq => kq.Lichthiid == id)
+                                         .Select(kq => kq.Sinhvien!) // Chọn đối tượng Sinhvien từ Ketquathi
+                                         .Distinct()
+                                         .Include(sv => sv.Lophoc)
+                                         .Include(sv => sv.SinhvienNavigation) // Đã sửa thành Sinhvien.Nguoidung
+                                         .ToListAsync();
 
+                // Load Ketquathis cho mỗi sinh viên (nếu cần hiển thị điểm ngay trên danh sách này)
                 foreach (var sv in students)
                 {
                     await _context.Entry(sv)
@@ -153,7 +152,7 @@ namespace TCN_NCKH.Areas.Admin.Controllers
             {
                 students = await _context.Sinhviens
                     .Include(sv => sv.Lophoc)
-                    .Include(sv => sv.SinhvienNavigation)
+                    .Include(sv => sv.SinhvienNavigation) // Đã sửa thành Sinhvien.Nguoidung
                     .Where(sv => sv.Lophocid == lichthi.Lophocid) // Lọc sinh viên trong lớp học của lịch thi
                     .Where(sv => !_context.Ketquathis // Tìm những sinh viên KHÔNG CÓ kết quả thi cho lịch thi này
                         .Any(kq => kq.Lichthiid == id && kq.Sinhvienid == sv.Sinhvienid))
@@ -163,21 +162,20 @@ namespace TCN_NCKH.Areas.Admin.Controllers
             return View(students);
         }
 
-
-
         // GET: Admin/Ketquathis/Create
         public IActionResult Create()
         {
             var lichthis = _context.Lichthis
-                                .Include(lt => lt.Dethi)
-                                .Include(lt => lt.Lophoc)
-                                .AsEnumerable() // Chuyển sang client-side để tạo chuỗi hiển thị
-                                .Select(lt => new
-                                {
-                                    Id = lt.Id,
-                                    DisplayText = $"{lt.Dethi?.Tendethi} - {lt.Lophoc?.Tenlop} ({lt.Thoigian.ToString("dd/MM/yyyy HH:mm")})"
-                                })
-                                .ToList();
+                                 .Include(lt => lt.Dethi)
+                                 .Include(lt => lt.Lophoc)
+                                 .AsEnumerable() // Chuyển sang client-side để tạo chuỗi hiển thị
+                                 .Select(lt => new
+                                 {
+                                     Id = lt.Id,
+                                     // SỬA LỖI CS1501 TẠI ĐÂY
+                                     DisplayText = $"{lt.Dethi?.Tendethi} - {lt.Lophoc?.Tenlop} ({lt.ThoigianBatdau?.ToString("dd/MM/yyyy HH:mm") ?? "N/A"})"
+                                 })
+                                 .ToList();
 
             ViewData["Lichthiid"] = new SelectList(lichthis, "Id", "DisplayText");
             ViewData["Sinhvienid"] = new SelectList(_context.Sinhviens.OrderBy(sv => sv.Msv), "Sinhvienid", "Msv");
@@ -204,22 +202,23 @@ namespace TCN_NCKH.Areas.Admin.Controllers
                 }
             }
             var lichthis = _context.Lichthis
-                                .Include(lt => lt.Dethi)
-                                .Include(lt => lt.Lophoc)
-                                .AsEnumerable()
-                                .Select(lt => new
-                                {
-                                    Id = lt.Id,
-                                    DisplayText = $"{lt.Dethi?.Tendethi} - {lt.Lophoc?.Tenlop} ({lt.Thoigian.ToString("dd/MM/yyyy HH:mm")})"
-                                })
-                                .ToList();
+                                 .Include(lt => lt.Dethi)
+                                 .Include(lt => lt.Lophoc)
+                                 .AsEnumerable()
+                                 .Select(lt => new
+                                 {
+                                     Id = lt.Id,
+                                     // SỬA LỖI CS1501 TẠI ĐÂY
+                                     DisplayText = $"{lt.Dethi?.Tendethi} - {lt.Lophoc?.Tenlop} ({lt.ThoigianBatdau?.ToString("dd/MM/yyyy HH:mm") ?? "N/A"})"
+                                 })
+                                 .ToList();
 
             ViewData["Lichthiid"] = new SelectList(lichthis, "Id", "DisplayText", ketquathi.Lichthiid);
             ViewData["Sinhvienid"] = new SelectList(_context.Sinhviens.OrderBy(sv => sv.Msv), "Sinhvienid", "Msv", ketquathi.Sinhvienid);
             TempData["ErrorMessage"] = "Có lỗi xảy ra khi tạo kết quả thi. Vui lòng kiểm tra lại thông tin.";
             string validationErrors = string.Join("<br/>", ModelState.Values
-                                                  .SelectMany(v => v.Errors)
-                                                  .Select(e => e.ErrorMessage));
+                                                                    .SelectMany(v => v.Errors)
+                                                                    .Select(e => e.ErrorMessage));
             if (!string.IsNullOrEmpty(validationErrors))
             {
                 TempData["ErrorMessage"] = (TempData["ErrorMessage"] as string ?? "") + "<br/>" + validationErrors;
@@ -237,12 +236,12 @@ namespace TCN_NCKH.Areas.Admin.Controllers
             }
 
             var ketquathi = await _context.Ketquathis
-                                        .Include(k => k.Lichthi)
-                                            .ThenInclude(lt => lt.Dethi)
-                                        .Include(k => k.Lichthi)
-                                            .ThenInclude(lt => lt.Lophoc)
-                                        .Include(k => k.Sinhvien)
-                                        .FirstOrDefaultAsync(m => m.Id == id);
+                                         .Include(k => k.Lichthi)
+                                             .ThenInclude(lt => lt.Dethi)
+                                         .Include(k => k.Lichthi)
+                                             .ThenInclude(lt => lt.Lophoc)
+                                         .Include(k => k.Sinhvien)
+                                         .FirstOrDefaultAsync(m => m.Id == id);
             if (ketquathi == null)
             {
                 TempData["ErrorMessage"] = "Kết quả thi không tồn tại.";
@@ -250,15 +249,16 @@ namespace TCN_NCKH.Areas.Admin.Controllers
             }
 
             var lichthis = _context.Lichthis
-                                .Include(lt => lt.Dethi)
-                                .Include(lt => lt.Lophoc)
-                                .AsEnumerable()
-                                .Select(lt => new
-                                {
-                                    Id = lt.Id,
-                                    DisplayText = $"{lt.Dethi?.Tendethi} - {lt.Lophoc?.Tenlop} ({lt.Thoigian.ToString("dd/MM/yyyy HH:mm")})"
-                                })
-                                .ToList();
+                                 .Include(lt => lt.Dethi)
+                                 .Include(lt => lt.Lophoc)
+                                 .AsEnumerable()
+                                 .Select(lt => new
+                                 {
+                                     Id = lt.Id,
+                                     // SỬA LỖI CS1501 TẠI ĐÂY
+                                     DisplayText = $"{lt.Dethi?.Tendethi} - {lt.Lophoc?.Tenlop} ({lt.ThoigianBatdau?.ToString("dd/MM/yyyy HH:mm") ?? "N/A"})"
+                                 })
+                                 .ToList();
 
             ViewData["Lichthiid"] = new SelectList(lichthis, "Id", "DisplayText", ketquathi.Lichthiid);
             ViewData["Sinhvienid"] = new SelectList(_context.Sinhviens.OrderBy(sv => sv.Msv), "Sinhvienid", "Msv", ketquathi.Sinhvienid);
@@ -304,21 +304,22 @@ namespace TCN_NCKH.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
             var lichthis = _context.Lichthis
-                                .Include(lt => lt.Dethi)
-                                .Include(lt => lt.Lophoc)
-                                .AsEnumerable()
-                                .Select(lt => new
-                                {
-                                    Id = lt.Id,
-                                    DisplayText = $"{lt.Dethi?.Tendethi} - {lt.Lophoc?.Tenlop} ({lt.Thoigian.ToString("dd/MM/yyyy HH:mm")})"
-                                })
-                                .ToList();
+                                 .Include(lt => lt.Dethi)
+                                 .Include(lt => lt.Lophoc)
+                                 .AsEnumerable()
+                                 .Select(lt => new
+                                 {
+                                     Id = lt.Id,
+                                     // SỬA LỖI CS1501 TẠI ĐÂY
+                                     DisplayText = $"{lt.Dethi?.Tendethi} - {lt.Lophoc?.Tenlop} ({lt.ThoigianBatdau?.ToString("dd/MM/yyyy HH:mm") ?? "N/A"})"
+                                 })
+                                 .ToList();
             ViewData["Lichthiid"] = new SelectList(lichthis, "Id", "DisplayText", ketquathi.Lichthiid);
             ViewData["Sinhvienid"] = new SelectList(_context.Sinhviens.OrderBy(sv => sv.Msv), "Sinhvienid", "Msv", ketquathi.Sinhvienid);
             TempData["ErrorMessage"] = "Thông tin kết quả thi không hợp lệ. Vui lòng kiểm tra lại.";
             string validationErrors = string.Join("<br/>", ModelState.Values
-                                                  .SelectMany(v => v.Errors)
-                                                  .Select(e => e.ErrorMessage));
+                                                                    .SelectMany(v => v.Errors)
+                                                                    .Select(e => e.ErrorMessage));
             if (!string.IsNullOrEmpty(validationErrors))
             {
                 TempData["ErrorMessage"] = (TempData["ErrorMessage"] as string ?? "") + "<br/>" + validationErrors;
@@ -375,7 +376,7 @@ namespace TCN_NCKH.Areas.Admin.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
-        
+
         private bool KetquathiExists(int id)
         {
             return _context.Ketquathis.Any(e => e.Id == id);

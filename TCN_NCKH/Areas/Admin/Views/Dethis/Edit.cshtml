@@ -1,47 +1,179 @@
-﻿@model TCN_NCKH.Models.DBModel.Dethi
+﻿@model TCN_NCKH.Models.ViewModels.DethiViewModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 @{
-    ViewData["Title"] = "Edit";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Chỉnh sửa đề thi";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml"; // Đảm bảo đúng layout
 }
 
-<h1>Edit</h1>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<style>
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
 
-<h4>Dethi</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Tendethi" class="control-label"></label>
-                <input asp-for="Tendethi" class="form-control" />
-                <span asp-validation-for="Tendethi" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Monhocid" class="control-label"></label>
-                <select asp-for="Monhocid" class="form-control" asp-items="ViewBag.Monhocid"></select>
-                <span asp-validation-for="Monhocid" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Nguoitao" class="control-label"></label>
-                <select asp-for="Nguoitao" class="form-control" asp-items="ViewBag.Nguoitao"></select>
-                <span asp-validation-for="Nguoitao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Ngaytao" class="control-label"></label>
-                <input asp-for="Ngaytao" class="form-control" />
-                <span asp-validation-for="Ngaytao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+    .card-header {
+        background-color: #007bff;
+        color: white;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        padding: 1rem 1.5rem;
+        font-size: 1.25rem;
+    }
+
+    .form-group label {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+</style>
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <i class="bi bi-pencil-square me-2"></i> Chỉnh sửa đề thi
+        </div>
+        <div class="card-body">
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @TempData["SuccessMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @Html.Raw(TempData["ErrorMessage"])
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            <form asp-action="Edit" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <input type="hidden" asp-for="Id" /> @* Hidden input để gửi ID về controller *@
+
+                <div class="form-group mb-3">
+                    <label asp-for="Tendethi" class="control-label"></label>
+                    <input asp-for="Tendethi" class="form-control" />
+                    <span asp-validation-for="Tendethi" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Monhocid" class="control-label"></label>
+                    <select asp-for="Monhocid" class="form-control" asp-items="Model.MonhocList">
+                        <option value="">-- Chọn Môn học --</option>
+                    </select>
+                    <span asp-validation-for="Monhocid" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Bocauhoiid" class="control-label"></label>
+                    <select asp-for="Bocauhoiid" id="bocauhoiDropdown" class="form-control" asp-items="Model.BocauhoiList">
+                        <option value="">-- Chọn Bộ câu hỏi --</option>
+                    </select>
+                    <span asp-validation-for="Bocauhoiid" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Mucdokho" class="control-label"></label>
+                    @* Thêm input hidden để gửi giá trị Mucdokho lên Controller *@
+                    <input type="hidden" asp-for="Mucdokho" id="hiddenMucdokho" />
+                    <input type="text" id="displayMucdokho" class="form-control" readonly />
+                    <span asp-validation-for="Mucdokho" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Soluongcauhoi" class="control-label"></label>
+                    <input asp-for="Soluongcauhoi" class="form-control" type="number" min="1" />
+                    <span asp-validation-for="Soluongcauhoi" class="text-danger"></span>
+                </div>
+
+                <div class="form-group form-check mb-3">
+                    <input class="form-check-input" asp-for="DethikhacnhauCa" />
+                    <label class="form-check-label" asp-for="DethikhacnhauCa"></label>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-pencil-fill me-2"></i> Cập nhật
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary ms-2">
+                        <i class="bi bi-arrow-left-circle me-2"></i> Quay lại danh sách
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function() {
+            // Tự động đóng thông báo sau 3 giây
+            window.setTimeout(function () {
+                $(".alert.fade.show").fadeTo(500, 0).slideUp(500, function () {
+                    $(this).remove();
+                });
+            }, 3000);
 
+            // Hàm để cập nhật hiển thị mức độ khó
+            function updateMucdokhoDisplay(mucDoKhoValue) {
+                var mucDoKhoText = "";
+                if (mucDoKhoValue === 0) {
+                    mucDoKhoText = "Dễ";
+                } else if (mucDoKhoValue === 1) {
+                    mucDoKhoText = "Trung bình";
+                } else if (mucDoKhoValue === 2) {
+                    mucDoKhoText = "Khó";
+                } else {
+                    mucDoKhoText = "Không xác định";
+                }
+                $('#displayMucdokho').val(mucDoKhoText);
+                $('#hiddenMucdokho').val(mucDoKhoValue);
+            }
+
+            // Xử lý sự kiện khi dropdown Bộ câu hỏi thay đổi
+            $('#bocauhoiDropdown').change(function() {
+                var selectedBocauhoiId = $(this).val();
+                if (selectedBocauhoiId) {
+                    // Gửi AJAX request để lấy mức độ khó của bộ câu hỏi
+                    $.ajax({
+                        url: '@Url.Action("GetBocauhoiMucdokho", "Dethis", new { area = "Admin" })', // Đảm bảo đúng Area
+                        type: 'GET',
+                        data: { bocauhoiId: selectedBocauhoiId },
+                        success: function(response) {
+                            if (response.mucDoKho !== undefined) {
+                                updateMucdokhoDisplay(response.mucDoKho);
+                            } else {
+                                $('#displayMucdokho').val("Không xác định");
+                                $('#hiddenMucdokho').val("");
+                            }
+                        },
+                        error: function() {
+                            $('#displayMucdokho').val("Lỗi tải mức độ khó");
+                            $('#hiddenMucdokho').val("");
+                        }
+                    });
+                } else {
+                    $('#displayMucdokho').val("");
+                    $('#hiddenMucdokho').val("");
+                }
+            });
+
+            // Kích hoạt sự kiện change khi load trang nếu có giá trị Bocauhoiid ban đầu
+            // Điều này đảm bảo Mức độ khó được hiển thị ngay khi trang Edit tải lên
+            if ($('#bocauhoiDropdown').val()) {
+                $('#bocauhoiDropdown').trigger('change');
+            } else {
+                // Nếu không có bộ câu hỏi nào được chọn (hoặc null), xóa giá trị hiển thị mức độ khó
+                updateMucdokhoDisplay(""); // Đặt giá trị rỗng hoặc "Không xác định"
+            }
+        });
+    </script>
+}

@@ -72,7 +72,9 @@
                                     @if (showCompleted == true)
                                     {
                                         var ketquathi = student.Ketquathis?.FirstOrDefault(kq => kq.Lichthiid == lichthi.Id);
-                                        <td>@(ketquathi?.Diem.ToString("F2") ?? "N/A")</td>
+                                        <td>
+                                            @((ketquathi?.Diem.HasValue == true) ? ketquathi.Diem.Value.ToString("F2") : "N/A")
+                                        </td>
                                         <td>@(ketquathi?.Thoigianlam.ToString() + " phút" ?? "N/A")</td>
                                         <td class="text-center">
                                             @if (ketquathi != null)

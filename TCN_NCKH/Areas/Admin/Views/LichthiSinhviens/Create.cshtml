@@ -1,0 +1,131 @@
+﻿@model TCN_NCKH.Models.ViewModels.AssignStudentsToLichthiViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Phân công Sinh viên vào Lịch thi";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="mb-4">Phân công Sinh viên vào Lịch thi</h1>
+
+@* Hiển thị thông báo từ TempData *@
+@if (TempData["SuccessMessage"] is string successMessage && !string.IsNullOrEmpty(successMessage))
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @Html.Raw(successMessage)
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (TempData["ErrorMessage"] is string errorMessage && !string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @Html.Raw(errorMessage) @* Sử dụng biến đã kiểm tra null và kiểu *@
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<h4>Phân công cho Lịch thi: @Model.LichthiDisplayText</h4>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        @* Tăng chiều rộng cột form để chứa danh sách sinh viên *@
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            @* Ẩn LichthiId để gửi về Controller *@
+            <input type="hidden" asp-for="LichthiId" />
+
+            <div class="mb-3">
+                <label class="form-label">Lịch thi đang chọn</label>
+                <input type="text" class="form-control" value="@Model.LichthiDisplayText" readonly />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Lớp học</label>
+                <input type="text" class="form-control" value="@Model.LophocTenlop" readonly />
+                <input type="hidden" asp-for="LophocId" />
+            </div>
+
+            <div class="mb-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="selectAllStudents">
+                    <label class="form-check-label" for="selectAllStudents">
+                        **Chọn tất cả sinh viên trong lớp**
+                    </label>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <h5>Danh sách Sinh viên trong lớp này:</h5>
+                @if (Model.StudentsInClass != null && Model.StudentsInClass.Any())
+                {
+                    <div class="list-group">
+                        @foreach (var student in Model.StudentsInClass)
+                        {
+                            <label class="list-group-item">
+                                <input class="form-check-input me-1 student-checkbox" type="checkbox"
+                                       name="SelectedSinhvienIds" value="@student.Sinhvienid"
+                                @(student.IsSelected ? "checked" : "") @(student.IsAssigned ? "disabled" : "") />
+                                @student.Msv - @student.Hoten
+                                @if (student.IsAssigned)
+                                {
+                                    <span class="badge bg-info ms-2">Đã phân công</span>
+                                }
+                            </label>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <p class="text-info">Không có sinh viên nào trong lớp này hoặc đã được phân công hết.</p>
+                }
+                <span asp-validation-for="SelectedSinhvienIds" class="text-danger"></span>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i> Phân công
+                </button>
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Quay lại danh sách phân công
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const selectAllCheckbox = document.getElementById('selectAllStudents');
+            const studentCheckboxes = document.querySelectorAll('.student-checkbox');
+
+            selectAllCheckbox.addEventListener('change', function() {
+                studentCheckboxes.forEach(checkbox => {
+                    if (!checkbox.disabled) { // Chỉ thay đổi trạng thái của các checkbox không bị disabled
+                        checkbox.checked = selectAllCheckbox.checked;
+                    }
+                });
+            });
+
+            // Nếu tất cả các checkbox không bị disabled đều được chọn, thì "Chọn tất cả" cũng được chọn
+            studentCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const allNotDisabledChecked = Array.from(studentCheckboxes)
+                        .filter(cb => !cb.disabled)
+                        .every(cb => cb.checked);
+                    selectAllCheckbox.checked = allNotDisabledChecked;
+                });
+            });
+
+            // Khởi tạo trạng thái ban đầu của "Chọn tất cả" khi tải trang
+            const initialAllChecked = Array.from(studentCheckboxes)
+                .filter(cb => !cb.disabled)
+                .every(cb => cb.checked);
+            selectAllCheckbox.checked = initialAllChecked;
+        });
+    </script>
+}

@@ -1,0 +1,145 @@
+﻿@model TCN_NCKH.Models.ViewModels.LichthiSinhvienIndexViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Quản lý Phân công Lịch thi Sinh viên";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml"; // Đảm bảo sử dụng layout admin
+}
+
+<h1 class="mb-4">Quản lý Phân công Lịch thi Sinh viên</h1>
+
+@* Hiển thị thông báo từ TempData an toàn hơn *@
+@if (TempData["SuccessMessage"] is string successMessage && !string.IsNullOrEmpty(successMessage))
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @Html.Raw(successMessage)
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (TempData["ErrorMessage"] is string errorMessage && !string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @Html.Raw(errorMessage) @* Sử dụng biến đã kiểm tra null và kiểu *@
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <p>
+        <a asp-action="Create" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Phân công mới
+        </a>
+    </p>
+
+    @* Bộ lọc theo Lịch thi *@
+    <form asp-action="Index" method="get" class="d-flex align-items-center gap-2">
+        <label for="SelectedLichthiId" class="form-label mb-0">Lọc theo lịch thi:</label>
+        <select name="selectedLichthiId" id="SelectedLichthiId" class="form-select w-auto" onchange="this.form.submit()">
+            @* Dùng Model.AvailableLichthis từ ViewModel *@
+            @foreach (var item in Model.AvailableLichthis)
+            {
+                <option value="@item.Value" selected="@item.Selected">@item.Text</option> @* Đã sửa lỗi RZ1031 ở đây *@
+            }
+        </select>
+    </form>
+</div>
+
+<div class="table-responsive">
+    @* Giúp bảng responsive trên màn hình nhỏ *@
+    <table class="table table-hover table-striped" id="dataTable">
+        @* Thêm ID cho DataTables *@
+        @* Thêm các class Bootstrap cho bảng *@
+        <thead class="table-dark">
+            @* Nền tối cho header bảng *@
+            <tr>
+                <th>Lịch thi</th> @* Thay vì ID *@
+                <th>Sinh viên</th> @* Thay vì ID *@
+                <th>
+                    @Html.DisplayNameFor(model => model.Assignments.FirstOrDefault().Duocphepthi) @* Lấy từ FirstOrDefault để tránh lỗi nếu danh sách rỗng *@
+                </th>
+                <th></th> @* Cột cho các hành động *@
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Assignments != null && Model.Assignments.Any())
+            {
+                @foreach (var item in Model.Assignments)
+                {
+                    <tr>
+                        <td>
+                            @* Hiển thị thông tin lịch thi chi tiết hơn, kiểm tra null an toàn *@
+                            <strong>Đề thi:</strong> @(item.Lichthi?.Dethi?.Tendethi ?? "N/A")<br />
+                            <strong>Lớp:</strong> @(item.Lichthi?.Lophoc?.Tenlop ?? "N/A")<br />
+                            <strong>Ngày thi:</strong> @(item.Lichthi?.Ngaythi.ToString("dd/MM/yyyy HH:mm") ?? "N/A")
+                        </td>
+                        <td>
+                            @* Hiển thị thông tin sinh viên chi tiết hơn, kiểm tra null an toàn *@
+                            <strong>MSV:</strong> @(item.Sinhvien?.Msv ?? "N/A")<br />
+                            <strong>Họ tên:</strong> @(item.Sinhvien?.SinhvienNavigation?.Hoten ?? "N/A")
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Duocphepthi)
+                        </td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic mixed control">
+                                @* Nhóm các nút hành động *@
+                                <a asp-action="Edit" asp-route-lichthiId="@item.Lichthiid" asp-route-sinhvienId="@item.Sinhvienid" class="btn btn-sm btn-warning" title="Chỉnh sửa">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <a asp-action="Details" asp-route-lichthiId="@item.Lichthiid" asp-route-sinhvienId="@item.Sinhvienid" class="btn btn-sm btn-info text-white" title="Chi tiết">
+                                    <i class="bi bi-info-circle"></i>
+                                </a>
+                                <a asp-action="Delete" asp-route-lichthiId="@item.Lichthiid" asp-route-sinhvienId="@item.Sinhvienid" class="btn btn-sm btn-danger" title="Xóa">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4" class="text-center text-info">Không có phân công nào được tìm thấy theo bộ lọc.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+        {{!-- Thêm jQuery trước các script DataTables --}}
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.min.js"></script> @* Cập nhật Bootstrap 5 JS *@
+
+    <script>
+        $(document).ready(function() {
+            // Khởi tạo DataTables
+            $('#dataTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Vietnamese.json" // Ngôn ngữ tiếng Việt
+                },
+                "columnDefs": [
+                    { "orderable": false, "targets": [0, 1, 2, 3] } // Tắt sắp xếp cho tất cả các cột nếu cần (hoặc chỉ cột hành động, cột lịch thi, sinh viên)
+                ]
+            });
+
+            // Tự động đóng thông báo sau vài giây
+            window.setTimeout(function () {
+                $(".alert.fade.show").fadeTo(500, 0).slideUp(500, function () {
+                    $(this).remove();
+                });
+            }, 3000); // 3 giây
+        });
+    </script>
+}
+
+@section Styles {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> @* Cần thêm nếu dùng bi-* icons *@
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.min.css"> @* Cập nhật Bootstrap 5 CSS *@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" xintegrity="sha512-1ycn6IcaQQ40j/6PqqF/zEE4hQYkMWn6VfUe50I+fI+I5M5b5G+w5g5Z5L5K5B5E5P5Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+}

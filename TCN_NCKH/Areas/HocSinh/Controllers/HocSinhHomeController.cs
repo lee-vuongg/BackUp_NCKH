@@ -22,28 +22,30 @@ namespace TCN_NCKH.Areas.HocSinh.Controllers
             var msv = User.FindFirstValue(ClaimTypes.Name);
             if (string.IsNullOrWhiteSpace(msv))
             {
-                return Unauthorized("Không xác định được sinh viên.");
+                // Sử dụng TempData để thông báo lỗi và chuyển hướng
+                TempData["ErrorMessage"] = "Không xác định được sinh viên. Vui lòng đăng nhập lại.";
+                return RedirectToAction("Login", "Auth", new { area = "" });
             }
 
             var sinhVien = await _context.Sinhviens.FirstOrDefaultAsync(s => s.Msv == msv);
             if (sinhVien == null)
             {
-                return Unauthorized("Sinh viên không tồn tại.");
+                // Sử dụng TempData để thông báo lỗi và chuyển hướng
+                TempData["ErrorMessage"] = "Sinh viên không tồn tại trong hệ thống.";
+                return RedirectToAction("Index", "Home", new { area = "HocSinh" }); // Hoặc một trang khác phù hợp
             }
 
             // ************ ĐOẠN CODE ĐÃ ĐƯỢC TỐI ƯU LẠI ĐỂ KHẮC PHỤC LỖI 'WITH' ************
 
             var lichThisChuaNop = await _context.Lichthis
-                .AsNoTracking() // Vẫn giữ AsNoTracking vì nó vẫn có thể cải thiện hiệu suất
+                .AsNoTracking()
                 .Include(l => l.Dethi)
                     .ThenInclude(d => d.Monhoc)
                 .Include(l => l.Lophoc)
                 .Where(l => l.Ngaythi > DateTime.Now &&
-                            l.Ngaythi.AddMinutes(l.Thoigian) > DateTime.Now &&
-                            // Thay vì dùng .Contains() với danh sách đã lấy sẵn,
-                            // chúng ta dùng Any() với điều kiện ! (NOT EXISTS)
-                            // Điều này sẽ được dịch thành một subquery NOT EXISTS trong SQL
-                            !_context.Ketquathis.Any(k => k.Sinhvienid == sinhVien.Sinhvienid && k.Lichthiid == l.Id))
+                             // SỬA LỖI TẠI ĐÂY: Sử dụng GetValueOrDefault(0)
+                             l.Ngaythi.AddMinutes(l.Thoigian.GetValueOrDefault(0)) > DateTime.Now &&
+                             !_context.Ketquathis.Any(k => k.Sinhvienid == sinhVien.Sinhvienid && k.Lichthiid == l.Id))
                 .OrderBy(l => l.Ngaythi)
                 .ToListAsync();
 

@@ -1,105 +1,145 @@
-﻿@model TCN_NCKH.Models.DBModel.Cauhoi
+﻿@model TCN_NCKH.Models.ViewModels.CauhoiViewModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 @{
-    ViewData["Title"] = "Tạo Câu Hỏi Mới"; // Tiêu đề trang rõ ràng hơn
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml"; // Đảm bảo đúng layout của Admin
+    ViewData["Title"] = "Tạo Câu hỏi mới";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml"; // Sử dụng layout admin của mi
 }
 
-<div class="container-fluid">
-    <h1 class="mt-4">
-        <i class="fas fa-plus-circle"></i> @ViewData["Title"] @* Icon phù hợp cho tạo mới *@
-    </h1>
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="/Admin/AdminHome">Dashboard</a></li> @* Đảm bảo đường dẫn dashboard đúng *@
-        <li class="breadcrumb-item"><a asp-action="Index">Quản Lý Câu Hỏi</a></li>
-        <li class="breadcrumb-item active">@ViewData["Title"]</li>
-    </ol>
-
-    <!-- Khu vực hiển thị thông báo (Success/Error) -->
-    @if (TempData["SuccessMessage"] != null)
-    {
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            @TempData["SuccessMessage"]
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    }
-    @if (TempData["ErrorMessage"] != null)
-    {
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            @TempData["ErrorMessage"]
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<style>
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
     }
 
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Thông tin câu hỏi mới</h6>
+    .card-header {
+        background-color: #007bff;
+        color: white;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        padding: 1rem 1.5rem;
+        font-size: 1.25rem;
+    }
+
+    .form-group label {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .answer-group {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+        .answer-group label {
+            margin-right: 10px;
+            min-width: 20px; /* For A, B, C, D labels */
+        }
+
+        .answer-group input[type="text"] {
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+
+        .answer-group input[type="checkbox"] {
+            margin-top: 0;
+            transform: scale(1.2); /* Make checkbox slightly larger */
+        }
+</style>
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <i class="bi bi-patch-question-fill me-2"></i> Tạo Câu hỏi mới cho Bộ câu hỏi: @(Model.Tenbocauhoi ?? "N/A")
         </div>
         <div class="card-body">
-            <div class="row">
-                <div class="col-md-6"> @* Tăng chiều rộng của form lên 6 cột *@
-                    <form asp-action="Create">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        
-                        <div class="form-group">
-                            <label asp-for="Noidung" class="control-label"></label>
-                            <textarea asp-for="Noidung" class="form-control" rows="3"></textarea> @* Dùng textarea cho nội dung dài hơn *@
-                            <span asp-validation-for="Noidung" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="Dethiid" class="control-label"></label>
-                            <select asp-for="Dethiid" class ="form-control" asp-items="ViewBag.Dethiid">
-                                <option value="">-- Chọn Đề thi --</option> @* Thêm option mặc định *@
-                            </select>
-                            <span asp-validation-for="Dethiid" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="Loaicauhoi" class="control-label"></label>
-                            <select asp-for="Loaicauhoi" class="form-control">
-                                <option value="">-- Chọn Loại câu hỏi --</option> @* Tùy chọn cho null *@
-                                <option value="0">Trắc nghiệm</option> @* Giá trị 0 cho Trắc nghiệm *@
-                                @* Nếu có các loại khác trong tương lai, bạn có thể thêm:
-        <option value="1">Tự luận</option>
-        <option value="2">Điền khuyết</option>
-        *@  @* <-- Đã sửa lỗi cú pháp comment: bỏ dấu "/" cuối cùng *@
-                            </select>
-                            <span asp-validation-for="Loaicauhoi" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="Diem" class="control-label"></label>
-                            <input asp-for="Diem" class="form-control" type="number" step="0.01" /> @* Đặt type="number" cho điểm *@
-                            <span asp-validation-for="Diem" class="text-danger"></span>
-                        </div>
-                        
-                        <div class="form-group mt-3">
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-save"></i> Tạo Mới Câu Hỏi
-                            </button>
-                            <a asp-action="Index" class="btn btn-secondary ml-2">
-                                <i class="fas fa-arrow-left"></i> Quay Lại Danh Sách
-                            </a>
-                        </div>
-                    </form>
+            @* Cải thiện cách hiển thị TempData để an toàn hơn *@
+            @if (TempData["SuccessMessage"] is string successMessage && !string.IsNullOrEmpty(successMessage))
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @Html.Raw(successMessage) @* Dùng Html.Raw để hiển thị thẻ <br/> nếu có *@
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-            </div>
+            }
+            @if (TempData["ErrorMessage"] is string errorMessage && !string.IsNullOrEmpty(errorMessage))
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @Html.Raw(errorMessage) @* Dùng Html.Raw để hiển thị thẻ <br/> nếu có *@
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            <form asp-action="Create" method="post">
+                @* Thêm method="post" để tường minh *@
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <input type="hidden" asp-for="Bocauhoiid" /> @* ID của Bộ câu hỏi *@
+
+                <div class="form-group mb-3">
+                    <label asp-for="Noidung" class="control-label">Nội dung Câu hỏi</label>
+                    <textarea asp-for="Noidung" class="form-control" rows="4"></textarea>
+                    <span asp-validation-for="Noidung" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Diem" class="control-label">Điểm</label>
+                    <input asp-for="Diem" class="form-control" type="number" step="0.1" min="0.1" /> @* step và min cho double *@
+                    <span asp-validation-for="Diem" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label class="control-label">Đáp án</label>
+                    @* Lặp qua 4 đáp án mặc định (A, B, C, D) *@
+                    @{
+                        char option = 'A';
+                    }
+                    @for (int i = 0; i < Model.Dapans.Count; i++)
+                    {
+                        <div class="answer-group">
+                            <label>@option</label>
+                            @* Id đáp án là 0 cho đáp án mới, sẽ được database tự tạo *@
+                            <input type="hidden" asp-for="Dapans[i].Id" />
+                            <input asp-for="Dapans[i].Noidung" class="form-control" placeholder="Nội dung đáp án @option" />
+                            <div class="form-check form-switch ms-3">
+                                <input asp-for="Dapans[i].Dung" class="form-check-input" type="checkbox" id="dapan-@option-dung-@i"> @* Đặt id duy nhất cho mỗi checkbox *@
+                                <label class="form-check-label" for="dapan-@option-dung-@i">Đúng</label> @* Dùng id của checkbox cho label *@
+                            </div>
+                            <span asp-validation-for="Dapans[i].Noidung" class="text-danger ms-2"></span>
+                        </div>
+                        option++;
+                    }
+                    @* Thông báo lỗi nếu không có đáp án đúng nào được chọn *@
+                    <span asp-validation-for="Dapans" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-save me-2"></i> Tạo Câu hỏi
+                    </button>
+                    <a asp-action="Index" asp-route-bocauhoiId="@Model.Bocauhoiid" class="btn btn-secondary ms-2">
+                        <i class="bi bi-arrow-left-circle me-2"></i> Quay lại Danh sách Câu hỏi
+                    </a>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
     <script>
         $(document).ready(function() {
-            // Tự động đóng thông báo sau vài giây
+            // Tự động đóng thông báo sau 3 giây
             window.setTimeout(function () {
-                $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                $(".alert.fade.show").fadeTo(500, 0).slideUp(500, function () {
                     $(this).remove();
                 });
-            }, 3000); // 3 giây
+            }, 3000);
         });
     </script>
 }

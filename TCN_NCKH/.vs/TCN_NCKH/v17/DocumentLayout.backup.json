@@ -3,64 +3,332 @@
   "WorkspaceRootPath": "D:\\TCN_NCKH\\TCN_NCKH\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\views\\ketquathis\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\views\\ketquathis\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\views\\shared\\_layouthocsinh.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\views\\shared\\_layouthocsinh.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\controllers\\ketquathiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\controllers\\ketquathiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\ketquathis\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\ketquathis\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\controllers\\ketquathiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\controllers\\ketquathiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\dapan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\dapan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\traloisinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\traloisinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\controllers\\dethiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\controllers\\dethiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\cauhoi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\cauhoi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\ketquathis\\studentsbylichthi.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\ketquathis\\studentsbylichthi.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\dapan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\dapan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\sinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\sinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\controllers\\dapanscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\controllers\\dapanscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\nguoidung.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\nguoidung.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\lichthis\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\lichthis\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\ketquathis\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\ketquathis\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\dethis\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\dethis\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\lichthis\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\lichthis\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\controllers\\lichthiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\controllers\\lichthiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\questioncs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\questioncs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\middleware\\roleauthorizationmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:middleware\\roleauthorizationmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\nguoidung.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\nguoidung.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\dethi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\dethi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\lichthi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\lichthi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\lichthis\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\lichthis\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\cauhois\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\cauhois\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\lichthis\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\lichthis\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\lichthis\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\lichthis\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\dethis\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\dethis\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\controllers\\cauhoiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\controllers\\cauhoiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\dethis\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\dethis\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\dapans\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\dapans\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\viewmodels\\cauhoiviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\viewmodels\\cauhoiviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\bocauhoi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\bocauhoi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\nghiencuukhoahoccontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\nghiencuukhoahoccontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\traloisinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\traloisinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\cauhois\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\cauhois\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\cauhois\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\cauhois\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\controllers\\bocauhoiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\controllers\\bocauhoiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\controllers\\dethiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\controllers\\dethiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\viewmodels\\dethiviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\viewmodels\\dethiviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\views\\dethis\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\views\\dethis\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\cauhois\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\cauhois\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\cauhois\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\cauhois\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\bocauhois\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\bocauhois\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\controllers\\lambaicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\controllers\\lambaicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\views\\ketquathis\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\views\\ketquathis\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\views\\ketquathis\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\views\\ketquathis\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\views\\lambai\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\views\\lambai\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\monhoc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\monhoc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\ketquathi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\ketquathi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\controllers\\lichthiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\controllers\\lichthiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\controllers\\lichthisinhvienscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\controllers\\lichthisinhvienscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\views\\hocsinhhome\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\views\\hocsinhhome\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\views\\lichthis\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\views\\lichthis\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\views\\lichthis\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\views\\lichthis\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\lichthisinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\lichthisinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\viewmodels\\lichthisinhvienindexviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\viewmodels\\lichthisinhvienindexviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\lichthisinhviens\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\lichthisinhviens\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\lichthisinhviens\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\lichthisinhviens\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\lichthisinhviens\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\lichthisinhviens\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\viewmodels\\assignstudentstolichthiviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\viewmodels\\assignstudentstolichthiviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\loainguoidung.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\loainguoidung.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\bocauhois\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\bocauhois\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\ketquathis\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\ketquathis\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\lambai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\lambai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\controllers\\adminhomecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\controllers\\adminhomecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\controllers\\ketquathiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\controllers\\ketquathiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\bocauhois\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\bocauhois\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\controllers\\hocsinhhomecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\controllers\\hocsinhhomecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\ketquathilistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\ketquathilistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\ketquaviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\ketquaviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\dethilistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\dethilistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\bocauhois\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\bocauhois\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\bocauhois\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\bocauhois\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\lichthisinhviens\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\lichthisinhviens\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\lichthisinhviens\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\lichthisinhviens\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\controllers\\ketquathiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\controllers\\ketquathiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\controllers\\nguoidungscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\controllers\\nguoidungscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\ketquathis\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\ketquathis\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\ketquathis\\studentsbylichthi.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\ketquathis\\studentsbylichthi.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\dethis\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\dethis\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\dethis\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\dethis\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\controllers\\nguoidungscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\controllers\\nguoidungscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\lophoc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\lophoc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\views\\nguoidungs\\updateavatar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\views\\nguoidungs\\updateavatar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\views\\nguoidungs\\accountdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\views\\nguoidungs\\accountdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\giaovien\\views\\shared\\_layoutgiaovien.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\giaovien\\views\\shared\\_layoutgiaovien.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\sinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\sinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\questioncs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\questioncs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\controllers\\monhocscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -71,76 +339,8 @@
       "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\controllers\\lophocscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\lichthi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\lichthi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\views\\ketquathis\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\views\\ketquathis\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\controllers\\dethiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\controllers\\dethiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\controllers\\cauhoiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\controllers\\cauhoiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\ketquathi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\ketquathi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\controllers\\dapanscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\controllers\\dapanscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\dethi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\dethi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\lambai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\lambai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\ketquaviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\ketquaviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\dapans\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\dapans\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\dapans\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\dapans\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\views\\hocsinhhome\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\views\\hocsinhhome\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\views\\shared\\_layouthocsinh.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\views\\shared\\_layouthocsinh.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\dethilistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\dethilistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\lophoc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\lophoc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\viewmodels\\dethiviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\viewmodels\\dethiviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\cauhois\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\cauhois\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\controllers\\nguoidungscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\controllers\\nguoidungscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\nguoidungs\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -151,24 +351,12 @@
       "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\giaovien\\views\\dethis\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\middleware\\roleauthorizationmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:middleware\\roleauthorizationmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\cauhois\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\cauhois\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\giaovien\\views\\ketquathis\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\giaovien\\views\\ketquathis\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\giaovien\\views\\dethis\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\giaovien\\views\\dethis\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\ketquathis\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -187,28 +375,8 @@
       "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\giaovien\\controllers\\dethiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\views\\dethis\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\dethis\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\monhoc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\monhoc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\views\\dethis\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\views\\dethis\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\giaovien\\views\\shared\\_layoutgiaovien.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\giaovien\\views\\shared\\_layoutgiaovien.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\models\\dbmodel\\nghiencuukhoahoccontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:models\\dbmodel\\nghiencuukhoahoccontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\giaovien\\views\\giaovienhome\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -247,20 +415,8 @@
       "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\views\\adminhome\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\admin\\controllers\\adminhomecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\admin\\controllers\\adminhomecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\wwwroot\\css\\lichthihs.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:wwwroot\\css\\lichthihs.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\views\\lichthis\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\views\\lichthis\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\controllers\\lichthiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\controllers\\lichthiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\views\\nguoidungs\\changepassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -269,26 +425,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\views\\nguoidungs\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\views\\nguoidungs\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\views\\lichthis\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\views\\lichthis\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\views\\lambai\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\views\\lambai\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\views\\nguoidungs\\accountdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\views\\nguoidungs\\accountdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\controllers\\nguoidungscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\controllers\\nguoidungscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\views\\nguoidungs\\updateavatar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\views\\nguoidungs\\updateavatar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\wwwroot\\css\\layouths.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
@@ -301,26 +437,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\controllers\\dethiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\controllers\\dethiscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\controllers\\hocsinhhomecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\controllers\\hocsinhhomecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\areas\\hocsinh\\controllers\\lambaicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:areas\\hocsinh\\controllers\\lambaicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|d:\\tcn_nckh\\tcn_nckh\\migrations\\20250611120746_addketquathiidtotraloisinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1005824E-320E-4CC6-BB0A-E9AE6BE37A08}|TCN_NCKH.csproj|solutionrelative:migrations\\20250611120746_addketquathiidtotraloisinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -330,32 +446,46 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 0,
               "Title": "_LayoutHocSinh.cshtml",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Shared\\_LayoutHocSinh.cshtml",
               "RelativeDocumentMoniker": "Areas\\HocSinh\\Views\\Shared\\_LayoutHocSinh.cshtml",
               "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Shared\\_LayoutHocSinh.cshtml",
               "RelativeToolTip": "Areas\\HocSinh\\Views\\Shared\\_LayoutHocSinh.cshtml",
-              "ViewState": "AgIAADAAAAAAAAAAAAAAADMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACQAAABVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-06-08T16:09:41.641Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 42,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\HocSinhHome\\Index.cshtml",
               "RelativeDocumentMoniker": "Areas\\HocSinh\\Views\\HocSinhHome\\Index.cshtml",
               "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\HocSinhHome\\Index.cshtml",
               "RelativeToolTip": "Areas\\HocSinh\\Views\\HocSinhHome\\Index.cshtml",
-              "ViewState": "AgIAADAAAAAAAAAAAAAAACIAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAACIAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-06-08T16:08:36.311Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Bocauhoi.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Bocauhoi.cs",
+              "RelativeDocumentMoniker": "Models\\DBModel\\Bocauhoi.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Bocauhoi.cs",
+              "RelativeToolTip": "Models\\DBModel\\Bocauhoi.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T08:59:43.984Z",
               "IsPinned": true
             },
             {
@@ -368,152 +498,559 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Ketquathis\\Details.cshtml",
-              "RelativeDocumentMoniker": "Areas\\HocSinh\\Views\\Ketquathis\\Details.cshtml",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Ketquathis\\Details.cshtml",
-              "RelativeToolTip": "Areas\\HocSinh\\Views\\Ketquathis\\Details.cshtml",
-              "ViewState": "AgIAAHUAAAAAAAAAAAAAAIsAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-24T15:24:32.416Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Ketquathis\\Details.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Ketquathis\\Details.cshtml",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Ketquathis\\Details.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\Ketquathis\\Details.cshtml",
-              "ViewState": "AgIAAFQAAAAAAAAAAAAkwGQAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-24T14:52:10.606Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "DapansController.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\DapansController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\DapansController.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\DapansController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\DapansController.cs",
+              "ViewState": "AgIAAF8BAAAAAAAAAADwv3MBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T10:52:25.732Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Dapan.cs",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Dapan.cs",
               "RelativeDocumentMoniker": "Models\\DBModel\\Dapan.cs",
               "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Dapan.cs",
               "RelativeToolTip": "Models\\DBModel\\Dapan.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAYwBMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-11T09:42:35.66Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "KetquathisController.cs",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\KetquathisController.cs",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\KetquathisController.cs",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\KetquathisController.cs",
-              "RelativeToolTip": "Areas\\Admin\\Controllers\\KetquathisController.cs",
-              "ViewState": "AgIAAEAAAAAAAAAAAAAgwGMAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-20T08:35:25.63Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "KetquathisController.cs",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Controllers\\KetquathisController.cs",
-              "RelativeDocumentMoniker": "Areas\\HocSinh\\Controllers\\KetquathisController.cs",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Controllers\\KetquathisController.cs",
-              "RelativeToolTip": "Areas\\HocSinh\\Controllers\\KetquathisController.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAA3wA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T11:38:51.853Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "TraloiSinhvien.cs",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\TraloiSinhvien.cs",
-              "RelativeDocumentMoniker": "Models\\DBModel\\TraloiSinhvien.cs",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\TraloiSinhvien.cs",
-              "RelativeToolTip": "Models\\DBModel\\TraloiSinhvien.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T09:45:34.589Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
               "Title": "Cauhoi.cs",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Cauhoi.cs",
               "RelativeDocumentMoniker": "Models\\DBModel\\Cauhoi.cs",
               "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Cauhoi.cs",
               "RelativeToolTip": "Models\\DBModel\\Cauhoi.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAYwB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-11T09:45:25.604Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Sinhvien.cs",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Sinhvien.cs",
-              "RelativeDocumentMoniker": "Models\\DBModel\\Sinhvien.cs",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Sinhvien.cs",
-              "RelativeToolTip": "Models\\DBModel\\Sinhvien.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAgwBUAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "DethisController.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\DethisController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\DethisController.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\DethisController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\DethisController.cs",
+              "ViewState": "AgIAADQCAAAAAAAAAAAIwFMCAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T10:57:59.605Z"
+              "WhenOpened": "2025-06-20T08:22:52.233Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 6,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Ketquathis\\Index.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Ketquathis\\Index.cshtml",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Ketquathis\\Index.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\Ketquathis\\Index.cshtml",
-              "ViewState": "AgIAAGUAAAAAAAAAAAAowEIAAAAfAAAAAAAAAA==",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Dethis\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Dethis\\Index.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Dethis\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Dethis\\Index.cshtml",
+              "ViewState": "AgIAAJwAAAAAAAAAAAAIwKsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-20T08:35:38.616Z"
+              "WhenOpened": "2025-06-20T08:23:14.976Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Lichthis\\Create.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Lichthis\\Create.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Lichthis\\Create.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Lichthis\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-26T09:41:12.585Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "StudentsByLichthi.cshtml",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Ketquathis\\StudentsByLichthi.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Ketquathis\\StudentsByLichthi.cshtml",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Ketquathis\\StudentsByLichthi.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\Ketquathis\\StudentsByLichthi.cshtml",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAUwEEAAAAsAAAAAAAAAA==",
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Lichthis\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Lichthis\\Index.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Lichthis\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Lichthis\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-24T13:39:58.562Z"
+              "WhenOpened": "2025-06-26T09:31:50.892Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Nguoidung.cs",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Nguoidung.cs",
-              "RelativeDocumentMoniker": "Models\\DBModel\\Nguoidung.cs",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Nguoidung.cs",
-              "RelativeToolTip": "Models\\DBModel\\Nguoidung.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAxwCUAAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T10:57:53.736Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 8,
               "Title": "LichthisController.cs",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\LichthisController.cs",
               "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\LichthisController.cs",
               "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\LichthisController.cs",
               "RelativeToolTip": "Areas\\Admin\\Controllers\\LichthisController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHkBAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-24T13:50:04.344Z"
             },
             {
               "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "RoleAuthorizationMiddleware.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Middleware\\RoleAuthorizationMiddleware.cs",
+              "RelativeDocumentMoniker": "Middleware\\RoleAuthorizationMiddleware.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Middleware\\RoleAuthorizationMiddleware.cs",
+              "RelativeToolTip": "Middleware\\RoleAuthorizationMiddleware.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGgAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T08:08:07.529Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Dethi.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Dethi.cs",
+              "RelativeDocumentMoniker": "Models\\DBModel\\Dethi.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Dethi.cs",
+              "RelativeToolTip": "Models\\DBModel\\Dethi.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAA7wCsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T02:07:57.359Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Nguoidung.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Nguoidung.cs",
+              "RelativeDocumentMoniker": "Models\\DBModel\\Nguoidung.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Nguoidung.cs",
+              "RelativeToolTip": "Models\\DBModel\\Nguoidung.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAYwCcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T10:57:53.736Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 13,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Lichthis\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Lichthis\\Edit.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Lichthis\\Edit.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Lichthis\\Edit.cshtml",
+              "ViewState": "AgIAADoAAAAAAAAAAAAIwFEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-26T09:36:22.283Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Lichthi.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Lichthi.cs",
+              "RelativeDocumentMoniker": "Models\\DBModel\\Lichthi.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Lichthi.cs",
+              "RelativeToolTip": "Models\\DBModel\\Lichthi.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAgwBgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T10:57:42.817Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Cauhois\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Cauhois\\Index.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Cauhois\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Cauhois\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAK4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-24T10:33:17.713Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Lichthis\\Details.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Lichthis\\Details.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Lichthis\\Details.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Lichthis\\Details.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFQAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-26T09:40:14.655Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Lichthis\\Delete.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Lichthis\\Delete.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Lichthis\\Delete.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Lichthis\\Delete.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEsAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-26T09:41:51.571Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Dethis\\Create.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Dethis\\Create.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Dethis\\Create.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Dethis\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-26T09:52:08.986Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "CauhoisController.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\CauhoisController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\CauhoisController.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\CauhoisController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\CauhoisController.cs",
+              "ViewState": "AgIAAAYCAAAAAAAAAADwvxYCAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T10:30:59.931Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Dethis\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Dethis\\Edit.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Dethis\\Edit.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Dethis\\Edit.cshtml",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAIwLMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-26T09:51:15.435Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Dapans\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Dapans\\Index.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Dapans\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Dapans\\Index.cshtml",
+              "ViewState": "AgIAALoAAAAAAAAAAAAIwMsAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-24T11:38:34.808Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "CauhoiViewModel.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\ViewModels\\CauhoiViewModel.cs",
+              "RelativeDocumentMoniker": "Models\\ViewModels\\CauhoiViewModel.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\ViewModels\\CauhoiViewModel.cs",
+              "RelativeToolTip": "Models\\ViewModels\\CauhoiViewModel.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAcwCYAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T15:34:29.573Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "NghienCuuKhoaHocContext.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\NghienCuuKhoaHocContext.cs",
+              "RelativeDocumentMoniker": "Models\\DBModel\\NghienCuuKhoaHocContext.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\NghienCuuKhoaHocContext.cs",
+              "RelativeToolTip": "Models\\DBModel\\NghienCuuKhoaHocContext.cs",
+              "ViewState": "AgIAAGgAAAAAAAAAAADwv3kAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T10:57:52.103Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "TraloiSinhvien.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\TraloiSinhvien.cs",
+              "RelativeDocumentMoniker": "Models\\DBModel\\TraloiSinhvien.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\TraloiSinhvien.cs",
+              "RelativeToolTip": "Models\\DBModel\\TraloiSinhvien.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T09:45:34.589Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Cauhois\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Cauhois\\Edit.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Cauhois\\Edit.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Cauhois\\Edit.cshtml",
+              "ViewState": "AgIAAHkAAAAAAAAAAAAIwJIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-26T09:22:06.598Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Cauhois\\Create.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Cauhois\\Create.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Cauhois\\Create.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Cauhois\\Create.cshtml",
+              "ViewState": "AgIAAHgAAAAAAAAAAAAIwIcAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-24T10:38:49.76Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "BocauhoisController.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\BocauhoisController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\BocauhoisController.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\BocauhoisController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\BocauhoisController.cs",
+              "ViewState": "AgIAAIoBAAAAAAAAAAAIwJYBAABmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T10:20:09.139Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Cauhois\\Delete.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Cauhois\\Delete.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Cauhois\\Delete.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Cauhois\\Delete.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-26T09:30:02.849Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "DeThiViewModel.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\ViewModels\\DeThiViewModel.cs",
+              "RelativeDocumentMoniker": "Models\\ViewModels\\DeThiViewModel.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\ViewModels\\DeThiViewModel.cs",
+              "RelativeToolTip": "Models\\ViewModels\\DeThiViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T02:15:00.771Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "DethisController.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Controllers\\DethisController.cs",
+              "RelativeDocumentMoniker": "Areas\\HocSinh\\Controllers\\DethisController.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Controllers\\DethisController.cs",
+              "RelativeToolTip": "Areas\\HocSinh\\Controllers\\DethisController.cs",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAqwGIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T14:50:57.933Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Dethis\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\HocSinh\\Views\\Dethis\\Index.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Dethis\\Index.cshtml",
+              "RelativeToolTip": "Areas\\HocSinh\\Views\\Dethis\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-09T03:45:30.49Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Cauhois\\Details.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Cauhois\\Details.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Cauhois\\Details.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Cauhois\\Details.cshtml",
+              "ViewState": "AgIAAHkAAAAAAAAAAADwv6AAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-26T09:24:41.053Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Bocauhois\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Bocauhois\\Index.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Bocauhois\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Bocauhois\\Index.cshtml",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAcwFwAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-26T10:21:38.055Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\LamBai\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\HocSinh\\Views\\LamBai\\Index.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\LamBai\\Index.cshtml",
+              "RelativeToolTip": "Areas\\HocSinh\\Views\\LamBai\\Index.cshtml",
+              "ViewState": "AgIAAIMAAAAAAAAAAAAcwJUAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-11T09:48:56.562Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "LamBaiController.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Controllers\\LamBaiController.cs",
+              "RelativeDocumentMoniker": "Areas\\HocSinh\\Controllers\\LamBaiController.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Controllers\\LamBaiController.cs",
+              "RelativeToolTip": "Areas\\HocSinh\\Controllers\\LamBaiController.cs",
+              "ViewState": "AgIAAGoBAAAAAAAAAAAcwH0BAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T10:51:53.339Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Ketquathis\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\HocSinh\\Views\\Ketquathis\\Index.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Ketquathis\\Index.cshtml",
+              "RelativeToolTip": "Areas\\HocSinh\\Views\\Ketquathis\\Index.cshtml",
+              "ViewState": "AgIAADUAAAAAAAAAAAAkwEQAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-09T03:44:00.889Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Ketquathis\\Details.cshtml",
+              "RelativeDocumentMoniker": "Areas\\HocSinh\\Views\\Ketquathis\\Details.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Ketquathis\\Details.cshtml",
+              "RelativeToolTip": "Areas\\HocSinh\\Views\\Ketquathis\\Details.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-24T15:24:32.416Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "Monhoc.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Monhoc.cs",
+              "RelativeDocumentMoniker": "Models\\DBModel\\Monhoc.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Monhoc.cs",
+              "RelativeToolTip": "Models\\DBModel\\Monhoc.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T10:57:50.653Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "Ketquathi.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Ketquathi.cs",
+              "RelativeDocumentMoniker": "Models\\DBModel\\Ketquathi.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Ketquathi.cs",
+              "RelativeToolTip": "Models\\DBModel\\Ketquathi.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAYwBkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T09:45:29.971Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "LichthisController.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Controllers\\LichthisController.cs",
+              "RelativeDocumentMoniker": "Areas\\HocSinh\\Controllers\\LichthisController.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Controllers\\LichthisController.cs",
+              "RelativeToolTip": "Areas\\HocSinh\\Controllers\\LichthisController.cs",
+              "ViewState": "AgIAAPYAAAAAAAAAAAAAAAQBAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T14:31:16.311Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "LichthiSinhviensController.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\LichthiSinhviensController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\LichthiSinhviensController.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\LichthiSinhviensController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\LichthiSinhviensController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAxwBEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T10:27:50.165Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Lichthis\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\HocSinh\\Views\\Lichthis\\Index.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Lichthis\\Index.cshtml",
+              "RelativeToolTip": "Areas\\HocSinh\\Views\\Lichthis\\Index.cshtml",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAABoAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-11T08:47:47.09Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Lichthis\\Details.cshtml",
+              "RelativeDocumentMoniker": "Areas\\HocSinh\\Views\\Lichthis\\Details.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Lichthis\\Details.cshtml",
+              "RelativeToolTip": "Areas\\HocSinh\\Views\\Lichthis\\Details.cshtml",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAgwHcAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-11T14:29:51.941Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "LichthiSinhvienIndexViewModel.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\ViewModels\\LichthiSinhvienIndexViewModel.cs",
+              "RelativeDocumentMoniker": "Models\\ViewModels\\LichthiSinhvienIndexViewModel.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\ViewModels\\LichthiSinhvienIndexViewModel.cs",
+              "RelativeToolTip": "Models\\ViewModels\\LichthiSinhvienIndexViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAmwBEAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T06:15:13.165Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "LichthiSinhvien.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\LichthiSinhvien.cs",
+              "RelativeDocumentMoniker": "Models\\DBModel\\LichthiSinhvien.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\LichthiSinhvien.cs",
+              "RelativeToolTip": "Models\\DBModel\\LichthiSinhvien.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAiwBEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T08:59:41.58Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\LichthiSinhviens\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\LichthiSinhviens\\Edit.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\LichthiSinhviens\\Edit.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\LichthiSinhviens\\Edit.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-26T10:33:20.133Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\LichthiSinhviens\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\LichthiSinhviens\\Index.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\LichthiSinhviens\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\LichthiSinhviens\\Index.cshtml",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAIEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-26T10:31:02.541Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
               "Title": "Loainguoidung.cs",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Loainguoidung.cs",
               "RelativeDocumentMoniker": "Models\\DBModel\\Loainguoidung.cs",
@@ -525,139 +1062,55 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Questioncs.cs",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Questioncs.cs",
-              "RelativeDocumentMoniker": "Models\\DBModel\\Questioncs.cs",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Questioncs.cs",
-              "RelativeToolTip": "Models\\DBModel\\Questioncs.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T10:57:58.272Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "MonhocsController.cs",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\MonhocsController.cs",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\MonhocsController.cs",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\MonhocsController.cs",
-              "RelativeToolTip": "Areas\\Admin\\Controllers\\MonhocsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-24T13:32:08.369Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "KetquathiListViewModel.cs",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\KetquathiListViewModel.cs",
-              "RelativeDocumentMoniker": "Models\\DBModel\\KetquathiListViewModel.cs",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\KetquathiListViewModel.cs",
-              "RelativeToolTip": "Models\\DBModel\\KetquathiListViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-24T12:26:18.198Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "LophocsController.cs",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\LophocsController.cs",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\LophocsController.cs",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\LophocsController.cs",
-              "RelativeToolTip": "Areas\\Admin\\Controllers\\LophocsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-24T13:32:07.476Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "DethisController.cs",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\DethisController.cs",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\DethisController.cs",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\DethisController.cs",
-              "RelativeToolTip": "Areas\\Admin\\Controllers\\DethisController.cs",
-              "ViewState": "AgIAAMYAAAAAAAAAAAAkwL0AAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-20T08:22:52.233Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Lichthi.cs",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Lichthi.cs",
-              "RelativeDocumentMoniker": "Models\\DBModel\\Lichthi.cs",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Lichthi.cs",
-              "RelativeToolTip": "Models\\DBModel\\Lichthi.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T10:57:42.817Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Ketquathis\\Index.cshtml",
-              "RelativeDocumentMoniker": "Areas\\HocSinh\\Views\\Ketquathis\\Index.cshtml",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Ketquathis\\Index.cshtml",
-              "RelativeToolTip": "Areas\\HocSinh\\Views\\Ketquathis\\Index.cshtml",
-              "ViewState": "AgIAAIoAAAAAAAAAAAAAAJcAAAArAAAAAAAAAA==",
+              "DocumentIndex": 49,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\LichthiSinhviens\\Create.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\LichthiSinhviens\\Create.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\LichthiSinhviens\\Create.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\LichthiSinhviens\\Create.cshtml",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAYwHIAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-09T03:44:00.889Z"
+              "WhenOpened": "2025-06-26T10:33:11.279Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "CauhoisController.cs",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\CauhoisController.cs",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\CauhoisController.cs",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\CauhoisController.cs",
-              "RelativeToolTip": "Areas\\Admin\\Controllers\\CauhoisController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 50,
+              "Title": "AssignStudentsToLichthiViewModel.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\ViewModels\\AssignStudentsToLichthiViewModel.cs",
+              "RelativeDocumentMoniker": "Models\\ViewModels\\AssignStudentsToLichthiViewModel.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\ViewModels\\AssignStudentsToLichthiViewModel.cs",
+              "RelativeToolTip": "Models\\ViewModels\\AssignStudentsToLichthiViewModel.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAkwBYAAABJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-24T10:30:59.931Z"
+              "WhenOpened": "2025-06-27T05:03:46.207Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "Ketquathi.cs",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Ketquathi.cs",
-              "RelativeDocumentMoniker": "Models\\DBModel\\Ketquathi.cs",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Ketquathi.cs",
-              "RelativeToolTip": "Models\\DBModel\\Ketquathi.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAiwBkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T09:45:29.971Z"
+              "DocumentIndex": 52,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Bocauhois\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Bocauhois\\Edit.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Bocauhois\\Edit.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Bocauhois\\Edit.cshtml",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAQwFIAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-26T10:23:38.226Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "DapansController.cs",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\DapansController.cs",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\DapansController.cs",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\DapansController.cs",
-              "RelativeToolTip": "Areas\\Admin\\Controllers\\DapansController.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAwAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-24T10:52:25.732Z"
+              "DocumentIndex": 53,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Ketquathis\\Details.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Ketquathis\\Details.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Ketquathis\\Details.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Ketquathis\\Details.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACQAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-24T14:52:10.606Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "Dethi.cs",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Dethi.cs",
-              "RelativeDocumentMoniker": "Models\\DBModel\\Dethi.cs",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Dethi.cs",
-              "RelativeToolTip": "Models\\DBModel\\Dethi.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAiwBkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-12T02:07:57.359Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 54,
               "Title": "Lambai.cs",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Lambai.cs",
               "RelativeDocumentMoniker": "Models\\DBModel\\Lambai.cs",
@@ -669,43 +1122,79 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 55,
+              "Title": "AdminHomeController.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\AdminHomeController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\AdminHomeController.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\AdminHomeController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\AdminHomeController.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAlwB0AAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-20T08:16:56.197Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 57,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Bocauhois\\Create.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Bocauhois\\Create.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Bocauhois\\Create.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Bocauhois\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-26T10:25:47.507Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 56,
+              "Title": "KetquathisController.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\KetquathisController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\KetquathisController.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\KetquathisController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\KetquathisController.cs",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAEwJIAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-20T08:35:25.63Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 58,
+              "Title": "HocSinhHomeController.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Controllers\\HocSinhHomeController.cs",
+              "RelativeDocumentMoniker": "Areas\\HocSinh\\Controllers\\HocSinhHomeController.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Controllers\\HocSinhHomeController.cs",
+              "RelativeToolTip": "Areas\\HocSinh\\Controllers\\HocSinhHomeController.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAvwDIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T14:37:18.69Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 59,
+              "Title": "KetquathiListViewModel.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\KetquathiListViewModel.cs",
+              "RelativeDocumentMoniker": "Models\\DBModel\\KetquathiListViewModel.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\KetquathiListViewModel.cs",
+              "RelativeToolTip": "Models\\DBModel\\KetquathiListViewModel.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAYwBEAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T12:26:18.198Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 60,
               "Title": "KetQuaViewModel.cs",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\KetQuaViewModel.cs",
               "RelativeDocumentMoniker": "Models\\DBModel\\KetQuaViewModel.cs",
               "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\KetQuaViewModel.cs",
               "RelativeToolTip": "Models\\DBModel\\KetQuaViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-11T10:57:27.532Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Dapans\\Edit.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Dapans\\Edit.cshtml",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Dapans\\Edit.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\Dapans\\Edit.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-24T12:19:09.18Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Dapans\\Index.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Dapans\\Index.cshtml",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Dapans\\Index.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\Dapans\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-24T11:38:34.808Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 61,
               "Title": "DethiListViewModel.cs",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\DethiListViewModel.cs",
               "RelativeDocumentMoniker": "Models\\DBModel\\DethiListViewModel.cs",
@@ -717,7 +1206,151 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 62,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Bocauhois\\Delete.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Bocauhois\\Delete.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Bocauhois\\Delete.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Bocauhois\\Delete.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-26T10:27:08.417Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 63,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Bocauhois\\Details.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Bocauhois\\Details.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Bocauhois\\Details.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Bocauhois\\Details.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-26T10:26:27.359Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 64,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\LichthiSinhviens\\Delete.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\LichthiSinhviens\\Delete.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\LichthiSinhviens\\Delete.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\LichthiSinhviens\\Delete.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-26T10:36:04.137Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 65,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\LichthiSinhviens\\Details.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\LichthiSinhviens\\Details.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\LichthiSinhviens\\Details.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\LichthiSinhviens\\Details.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-26T10:35:08.671Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 66,
+              "Title": "KetquathisController.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Controllers\\KetquathisController.cs",
+              "RelativeDocumentMoniker": "Areas\\HocSinh\\Controllers\\KetquathisController.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Controllers\\KetquathisController.cs",
+              "RelativeToolTip": "Areas\\HocSinh\\Controllers\\KetquathisController.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAAwEEAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T11:38:51.853Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 67,
+              "Title": "NguoidungsController.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Controllers\\NguoidungsController.cs",
+              "RelativeDocumentMoniker": "Areas\\HocSinh\\Controllers\\NguoidungsController.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Controllers\\NguoidungsController.cs",
+              "RelativeToolTip": "Areas\\HocSinh\\Controllers\\NguoidungsController.cs",
+              "ViewState": "AgIAAPoAAAAAAAAAAAAAwAQBAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T13:21:00.533Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 68,
+              "Title": "_AdminLayout.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Shared\\_AdminLayout.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Shared\\_AdminLayout.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Shared\\_AdminLayout.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Shared\\_AdminLayout.cshtml",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAAAG0AAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-20T08:13:45.028Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 69,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Ketquathis\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Ketquathis\\Index.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Ketquathis\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Ketquathis\\Index.cshtml",
+              "ViewState": "AgIAAJcAAAAAAAAAAAAQwKsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-20T08:35:38.616Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 70,
+              "Title": "StudentsByLichthi.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Ketquathis\\StudentsByLichthi.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Ketquathis\\StudentsByLichthi.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Ketquathis\\StudentsByLichthi.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Ketquathis\\StudentsByLichthi.cshtml",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAlwEwAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-24T13:39:58.562Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 71,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Dethis\\Delete.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Dethis\\Delete.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Dethis\\Delete.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Dethis\\Delete.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-26T09:53:39.342Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 72,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Dethis\\Details.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Dethis\\Details.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Dethis\\Details.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Dethis\\Details.cshtml",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAAwF0AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-26T09:52:05.314Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 73,
+              "Title": "NguoidungsController.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\NguoidungsController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\NguoidungsController.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\NguoidungsController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\NguoidungsController.cs",
+              "ViewState": "AgIAAJMAAAAAAAAAAAAjwKEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T09:00:26.006Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 74,
               "Title": "Lophoc.cs",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Lophoc.cs",
               "RelativeDocumentMoniker": "Models\\DBModel\\Lophoc.cs",
@@ -729,31 +1362,127 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "DeThiViewModel.cs",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\ViewModels\\DeThiViewModel.cs",
-              "RelativeDocumentMoniker": "Models\\ViewModels\\DeThiViewModel.cs",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\ViewModels\\DeThiViewModel.cs",
-              "RelativeToolTip": "Models\\ViewModels\\DeThiViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-12T02:15:00.771Z"
+              "DocumentIndex": 75,
+              "Title": "UpdateAvatar.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Nguoidungs\\UpdateAvatar.cshtml",
+              "RelativeDocumentMoniker": "Areas\\HocSinh\\Views\\Nguoidungs\\UpdateAvatar.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Nguoidungs\\UpdateAvatar.cshtml",
+              "RelativeToolTip": "Areas\\HocSinh\\Views\\Nguoidungs\\UpdateAvatar.cshtml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-13T13:09:12.84Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
-              "Title": "NguoidungsController.cs",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\NguoidungsController.cs",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\NguoidungsController.cs",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\NguoidungsController.cs",
-              "RelativeToolTip": "Areas\\Admin\\Controllers\\NguoidungsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-24T09:00:26.006Z"
+              "DocumentIndex": 76,
+              "Title": "AccountDetails.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Nguoidungs\\AccountDetails.cshtml",
+              "RelativeDocumentMoniker": "Areas\\HocSinh\\Views\\Nguoidungs\\AccountDetails.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Nguoidungs\\AccountDetails.cshtml",
+              "RelativeToolTip": "Areas\\HocSinh\\Views\\Nguoidungs\\AccountDetails.cshtml",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAjwEsAAAB9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-13T13:34:10.985Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 77,
+              "Title": "_LayoutGiaoVien.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\GiaoVien\\Views\\Shared\\_LayoutGiaoVien.cshtml",
+              "RelativeDocumentMoniker": "Areas\\GiaoVien\\Views\\Shared\\_LayoutGiaoVien.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\GiaoVien\\Views\\Shared\\_LayoutGiaoVien.cshtml",
+              "RelativeToolTip": "Areas\\GiaoVien\\Views\\Shared\\_LayoutGiaoVien.cshtml",
+              "ViewState": "AgIAAGoAAAAAAAAAAAAjwGsAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-24T07:30:33.803Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 78,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-11T11:41:31.167Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 79,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAgAAABVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T03:19:46.631Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 80,
+              "Title": "Sinhvien.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Sinhvien.cs",
+              "RelativeDocumentMoniker": "Models\\DBModel\\Sinhvien.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Sinhvien.cs",
+              "RelativeToolTip": "Models\\DBModel\\Sinhvien.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAgwBUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T10:57:59.605Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 81,
+              "Title": "Questioncs.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Questioncs.cs",
+              "RelativeDocumentMoniker": "Models\\DBModel\\Questioncs.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Questioncs.cs",
+              "RelativeToolTip": "Models\\DBModel\\Questioncs.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T10:57:58.272Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 82,
+              "Title": "MonhocsController.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\MonhocsController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\MonhocsController.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\MonhocsController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\MonhocsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T13:32:08.369Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 83,
+              "Title": "LophocsController.cs",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\LophocsController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\LophocsController.cs",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\LophocsController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\LophocsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T13:32:07.476Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 84,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Dapans\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Dapans\\Edit.cshtml",
+              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Dapans\\Edit.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Dapans\\Edit.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-24T12:19:09.18Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 85,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Nguoidungs\\Edit.cshtml",
               "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Nguoidungs\\Edit.cshtml",
@@ -765,31 +1494,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Cauhois\\Create.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Cauhois\\Create.cshtml",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Cauhois\\Create.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\Cauhois\\Create.cshtml",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAtwEUAAABdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-24T10:38:49.76Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 37,
-              "Title": "RoleAuthorizationMiddleware.cs",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Middleware\\RoleAuthorizationMiddleware.cs",
-              "RelativeDocumentMoniker": "Middleware\\RoleAuthorizationMiddleware.cs",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Middleware\\RoleAuthorizationMiddleware.cs",
-              "RelativeToolTip": "Middleware\\RoleAuthorizationMiddleware.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAD4vzAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-24T08:08:07.529Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 86,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\GiaoVien\\Views\\Dethis\\Create.cshtml",
               "RelativeDocumentMoniker": "Areas\\GiaoVien\\Views\\Dethis\\Create.cshtml",
@@ -801,19 +1506,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Cauhois\\Index.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Cauhois\\Index.cshtml",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Cauhois\\Index.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\Cauhois\\Index.cshtml",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAswFIAAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-24T10:33:17.713Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 90,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Nguoidungs\\Index.cshtml",
               "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Nguoidungs\\Index.cshtml",
@@ -825,19 +1518,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
-              "Title": "_AdminLayout.cshtml",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Shared\\_AdminLayout.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Shared\\_AdminLayout.cshtml",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Shared\\_AdminLayout.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\Shared\\_AdminLayout.cshtml",
-              "ViewState": "AgIAAGUAAAAAAAAAAAAmwHcAAABNAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-20T08:13:45.028Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 87,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\GiaoVien\\Views\\Ketquathis\\Edit.cshtml",
               "RelativeDocumentMoniker": "Areas\\GiaoVien\\Views\\Ketquathis\\Edit.cshtml",
@@ -849,7 +1530,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 89,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Ketquathis\\Edit.cshtml",
               "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Ketquathis\\Edit.cshtml",
@@ -861,7 +1542,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 88,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\GiaoVien\\Views\\Dethis\\Index.cshtml",
               "RelativeDocumentMoniker": "Areas\\GiaoVien\\Views\\Dethis\\Index.cshtml",
@@ -873,7 +1554,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 91,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Nguoidungs\\Details.cshtml",
               "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Nguoidungs\\Details.cshtml",
@@ -885,7 +1566,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 92,
               "Title": "DethisController.cs",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\GiaoVien\\Controllers\\DethisController.cs",
               "RelativeDocumentMoniker": "Areas\\GiaoVien\\Controllers\\DethisController.cs",
@@ -897,55 +1578,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
-              "Title": "Monhoc.cs",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Monhoc.cs",
-              "RelativeDocumentMoniker": "Models\\DBModel\\Monhoc.cs",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\Monhoc.cs",
-              "RelativeToolTip": "Models\\DBModel\\Monhoc.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T10:57:50.653Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 46,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Dethis\\Index.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Dethis\\Index.cshtml",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\Dethis\\Index.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\Dethis\\Index.cshtml",
-              "ViewState": "AgIAAE8AAAAAAAAAAAAuwGMAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-20T08:23:14.976Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 49,
-              "Title": "_LayoutGiaoVien.cshtml",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\GiaoVien\\Views\\Shared\\_LayoutGiaoVien.cshtml",
-              "RelativeDocumentMoniker": "Areas\\GiaoVien\\Views\\Shared\\_LayoutGiaoVien.cshtml",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\GiaoVien\\Views\\Shared\\_LayoutGiaoVien.cshtml",
-              "RelativeToolTip": "Areas\\GiaoVien\\Views\\Shared\\_LayoutGiaoVien.cshtml",
-              "ViewState": "AgIAAF4AAAAAAAAAAAAmwHMAAABRAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-24T07:30:33.803Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 48,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Dethis\\Index.cshtml",
-              "RelativeDocumentMoniker": "Areas\\HocSinh\\Views\\Dethis\\Index.cshtml",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Dethis\\Index.cshtml",
-              "RelativeToolTip": "Areas\\HocSinh\\Views\\Dethis\\Index.cshtml",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABkAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-09T03:45:30.49Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 93,
               "Title": "_ValidationScriptsPartial.cshtml",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
               "RelativeDocumentMoniker": "Areas\\HocSinh\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
@@ -957,19 +1590,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
-              "Title": "NghienCuuKhoaHocContext.cs",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\NghienCuuKhoaHocContext.cs",
-              "RelativeDocumentMoniker": "Models\\DBModel\\NghienCuuKhoaHocContext.cs",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Models\\DBModel\\NghienCuuKhoaHocContext.cs",
-              "RelativeToolTip": "Models\\DBModel\\NghienCuuKhoaHocContext.cs",
-              "ViewState": "AgIAAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T10:57:52.103Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 94,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\GiaoVien\\Views\\GiaoVienHome\\Index.cshtml",
               "RelativeDocumentMoniker": "Areas\\GiaoVien\\Views\\GiaoVienHome\\Index.cshtml",
@@ -981,7 +1602,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 95,
               "Title": "GiaoVienHomeController.cs",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\GiaoVien\\Controllers\\GiaoVienHomeController.cs",
               "RelativeDocumentMoniker": "Areas\\GiaoVien\\Controllers\\GiaoVienHomeController.cs",
@@ -993,7 +1614,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 97,
               "Title": "KetquathisController.cs",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\GiaoVien\\Controllers\\KetquathisController.cs",
               "RelativeDocumentMoniker": "Areas\\GiaoVien\\Controllers\\KetquathisController.cs",
@@ -1005,7 +1626,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 96,
               "Title": "LichthisController.cs",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\GiaoVien\\Controllers\\LichthisController.cs",
               "RelativeDocumentMoniker": "Areas\\GiaoVien\\Controllers\\LichthisController.cs",
@@ -1017,7 +1638,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 101,
               "Title": "LayoutKVL.css",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\css\\LayoutKVL.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\LayoutKVL.css",
@@ -1029,7 +1650,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 100,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
@@ -1041,7 +1662,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 99,
               "Title": "home1.css",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\css\\home1.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\home1.css",
@@ -1053,7 +1674,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 98,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
@@ -1065,7 +1686,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 102,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Views\\AdminHome\\Index.cshtml",
               "RelativeDocumentMoniker": "Areas\\Admin\\Views\\AdminHome\\Index.cshtml",
@@ -1077,19 +1698,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
-              "Title": "AdminHomeController.cs",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\AdminHomeController.cs",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\AdminHomeController.cs",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\Admin\\Controllers\\AdminHomeController.cs",
-              "RelativeToolTip": "Areas\\Admin\\Controllers\\AdminHomeController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-20T08:16:56.197Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 62,
+              "DocumentIndex": 103,
               "Title": "LichthiHS.css",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\css\\LichthiHS.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\LichthiHS.css",
@@ -1101,19 +1710,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 67,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Lichthis\\Details.cshtml",
-              "RelativeDocumentMoniker": "Areas\\HocSinh\\Views\\Lichthis\\Details.cshtml",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Lichthis\\Details.cshtml",
-              "RelativeToolTip": "Areas\\HocSinh\\Views\\Lichthis\\Details.cshtml",
-              "ViewState": "AgIAAEoAAAAAAAAAAAAiwFoAAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-11T14:29:51.941Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 65,
+              "DocumentIndex": 104,
               "Title": "ChangePassword.cshtml",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Nguoidungs\\ChangePassword.cshtml",
               "RelativeDocumentMoniker": "Areas\\HocSinh\\Views\\Nguoidungs\\ChangePassword.cshtml",
@@ -1125,31 +1722,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 64,
-              "Title": "LichthisController.cs",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Controllers\\LichthisController.cs",
-              "RelativeDocumentMoniker": "Areas\\HocSinh\\Controllers\\LichthisController.cs",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Controllers\\LichthisController.cs",
-              "RelativeToolTip": "Areas\\HocSinh\\Controllers\\LichthisController.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAowCUAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T14:31:16.311Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 63,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Lichthis\\Index.cshtml",
-              "RelativeDocumentMoniker": "Areas\\HocSinh\\Views\\Lichthis\\Index.cshtml",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Lichthis\\Index.cshtml",
-              "RelativeToolTip": "Areas\\HocSinh\\Views\\Lichthis\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-11T08:47:47.09Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 66,
+              "DocumentIndex": 105,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Nguoidungs\\Edit.cshtml",
               "RelativeDocumentMoniker": "Areas\\HocSinh\\Views\\Nguoidungs\\Edit.cshtml",
@@ -1161,55 +1734,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 69,
-              "Title": "AccountDetails.cshtml",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Nguoidungs\\AccountDetails.cshtml",
-              "RelativeDocumentMoniker": "Areas\\HocSinh\\Views\\Nguoidungs\\AccountDetails.cshtml",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Nguoidungs\\AccountDetails.cshtml",
-              "RelativeToolTip": "Areas\\HocSinh\\Views\\Nguoidungs\\AccountDetails.cshtml",
-              "ViewState": "AgIAAGYAAAAAAAAAAAAAAHEAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-13T13:34:10.985Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 68,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\LamBai\\Index.cshtml",
-              "RelativeDocumentMoniker": "Areas\\HocSinh\\Views\\LamBai\\Index.cshtml",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\LamBai\\Index.cshtml",
-              "RelativeToolTip": "Areas\\HocSinh\\Views\\LamBai\\Index.cshtml",
-              "ViewState": "AgIAABEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-11T09:48:56.562Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 70,
-              "Title": "NguoidungsController.cs",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Controllers\\NguoidungsController.cs",
-              "RelativeDocumentMoniker": "Areas\\HocSinh\\Controllers\\NguoidungsController.cs",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Controllers\\NguoidungsController.cs",
-              "RelativeToolTip": "Areas\\HocSinh\\Controllers\\NguoidungsController.cs",
-              "ViewState": "AgIAAEMAAAAAAAAAAAAUwEoAAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-13T13:21:00.533Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 71,
-              "Title": "UpdateAvatar.cshtml",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Nguoidungs\\UpdateAvatar.cshtml",
-              "RelativeDocumentMoniker": "Areas\\HocSinh\\Views\\Nguoidungs\\UpdateAvatar.cshtml",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Views\\Nguoidungs\\UpdateAvatar.cshtml",
-              "RelativeToolTip": "Areas\\HocSinh\\Views\\Nguoidungs\\UpdateAvatar.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-13T13:09:12.84Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 72,
+              "DocumentIndex": 106,
               "Title": "LayoutHS.css",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\css\\LayoutHS.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\LayoutHS.css",
@@ -1221,7 +1746,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 73,
+              "DocumentIndex": 107,
               "Title": "_ViewStart.cshtml",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Views\\_ViewStart.cshtml",
               "RelativeDocumentMoniker": "Views\\_ViewStart.cshtml",
@@ -1233,7 +1758,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 74,
+              "DocumentIndex": 108,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Views\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "Views\\_ViewImports.cshtml",
@@ -1242,66 +1767,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-06-13T13:08:34.113Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 75,
-              "Title": "DethisController.cs",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Controllers\\DethisController.cs",
-              "RelativeDocumentMoniker": "Areas\\HocSinh\\Controllers\\DethisController.cs",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Controllers\\DethisController.cs",
-              "RelativeToolTip": "Areas\\HocSinh\\Controllers\\DethisController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T14:50:57.933Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 76,
-              "Title": "HocSinhHomeController.cs",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Controllers\\HocSinhHomeController.cs",
-              "RelativeDocumentMoniker": "Areas\\HocSinh\\Controllers\\HocSinhHomeController.cs",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Controllers\\HocSinhHomeController.cs",
-              "RelativeToolTip": "Areas\\HocSinh\\Controllers\\HocSinhHomeController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T14:37:18.69Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 79,
-              "Title": "20250611120746_AddKetquathiIdToTraloiSinhvien.cs",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Migrations\\20250611120746_AddKetquathiIdToTraloiSinhvien.cs",
-              "RelativeDocumentMoniker": "Migrations\\20250611120746_AddKetquathiIdToTraloiSinhvien.cs",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Migrations\\20250611120746_AddKetquathiIdToTraloiSinhvien.cs",
-              "RelativeToolTip": "Migrations\\20250611120746_AddKetquathiIdToTraloiSinhvien.cs",
-              "ViewState": "AgIAACoAAAAAAAAAAAAYwAcAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T12:07:46.849Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 78,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-06-11T11:41:31.167Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 77,
-              "Title": "LamBaiController.cs",
-              "DocumentMoniker": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Controllers\\LamBaiController.cs",
-              "RelativeDocumentMoniker": "Areas\\HocSinh\\Controllers\\LamBaiController.cs",
-              "ToolTip": "D:\\TCN_NCKH\\TCN_NCKH\\Areas\\HocSinh\\Controllers\\LamBaiController.cs",
-              "RelativeToolTip": "Areas\\HocSinh\\Controllers\\LamBaiController.cs",
-              "ViewState": "AgIAAFIAAAAAAAAAAAAmwGIAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T10:51:53.339Z"
             }
           ]
         }

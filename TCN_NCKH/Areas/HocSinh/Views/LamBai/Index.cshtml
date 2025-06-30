@@ -1,119 +1,286 @@
 ﻿@model TCN_NCKH.Models.DBModel.Lichthi
-@using TCN_NCKH.Models.DBModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
-    ViewData["Title"] = "Làm Bài Thi";
+    ViewData["Title"] = "Làm Bài: " + Model.Dethi?.Tendethi;
     Layout = "~/Areas/HocSinh/Views/Shared/_LayoutHocSinh.cshtml";
-
-    var thoiGianPhut = Model.Thoigian;
-    var cauHoiList = Model.Dethi?.Cauhois.ToList() ?? new List<Cauhoi>();
-    var dapAnChon = ViewBag.DapAnChon as Dictionary<int, List<int>> ?? new Dictionary<int, List<int>>();
 }
 
-<div class="container mt-5">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="fw-bold text-uppercase">
-            📝 Làm bài: @Model.Dethi?.Tendethi
-        </h2>
-        <div>
-            <span class="badge bg-danger fs-5 p-2 rounded shadow-sm">
-                ⏳ Thời gian còn lại: <span id="countdown">--:--</span>
-            </span>
-        </div>
-    </div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<style>
+    body {
+        background-color: #f8f9fa; /* Light background for the page */
+    }
 
-    <div class="border rounded bg-light p-3 shadow-sm mb-4">
-        <p><strong>📘 Môn học:</strong> @Model.Dethi?.Monhoc?.Tenmon</p>
-        <p><strong>📅 Ngày thi:</strong> @Model.Ngaythi.ToString("dd/MM/yyyy")</p>
-        <p><strong>🕒 Thời gian làm bài:</strong> @thoiGianPhut phút</p>
-    </div>
+    .container-custom {
+        max-width: 900px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
 
-    <form id="examForm" asp-action="NopBai" method="post">
-        <input type="hidden" name="lichThiId" value="@Model.Id" />
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
 
-        @for (int i = 0; i < cauHoiList.Count; i++)
-        {
-            var cauhoi = cauHoiList[i];
-            var dapanDungList = cauhoi.Dapans?.Where(d => d.Dung == true).ToList() ?? new List<Dapan>();
-            bool isMultipleChoice = dapanDungList.Count > 1;
+    .card-header {
+        background-color: #007bff;
+        color: white;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        padding: 1.5rem;
+        font-size: 1.25rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-            <div class="card mb-4 border-primary shadow-sm">
-                <div class="card-header bg-primary text-white fw-bold">
-                    📖 Câu @(i + 1):
-                </div>
-                <div class="card-body">
-                    <p>@Html.Raw(cauhoi.Noidung)</p>
+    .question-card {
+        margin-bottom: 20px;
+        border: 1px solid #e9ecef;
+        border-radius: 10px;
+        padding: 20px;
+        background-color: #ffffff;
+    }
 
-                    @foreach (var dapan in cauhoi.Dapans ?? new List<Dapan>())
-                    {
-                        bool daChon = dapAnChon.TryGetValue(cauhoi.Id, out var listChon) && listChon.Contains(dapan.Id);
+    .question-number {
+        font-weight: bold;
+        color: #007bff;
+        margin-right: 10px;
+    }
 
-                        if (isMultipleChoice)
-                        {
-                            <div class="form-check mb-2">
-                                <input class="form-check-input"
-                                       type="checkbox"
-                                       name="dapAnChon[@cauhoi.Id]"
-                                       value="@dapan.Id"
-                                       id="cauhoi_@cauhoi.Id@dapan.Id"
-                                @(daChon ? "checked" : "") />
-                                <label class="form-check-label" for="cauhoi_@cauhoi.Id@dapan.Id">
-                                    @Html.Raw(dapan.Noidung)
-                                </label>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="form-check mb-2">
-                                <input class="form-check-input"
-                                       type="radio"
-                                       name="dapAnChon[@cauhoi.Id]"
-                                       value="@dapan.Id"
-                                       id="cauhoi_@cauhoi.Id@dapan.Id"
-                                       required
-                                @(daChon ? "checked" : "") />
-                                <label class="form-check-label" for="cauhoi_@cauhoi.Id@dapan.Id">
-                                    @Html.Raw(dapan.Noidung)
-                                </label>
-                            </div>
-                        }
-                    }
-                </div>
-            </div>
+    .question-content {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+    }
+
+    .answer-option {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 10px;
+    }
+
+        .answer-option input[type="radio"],
+        .answer-option input[type="checkbox"] {
+            margin-right: 10px;
+            margin-top: 5px; /* Adjust vertical alignment */
         }
 
-        <div class="text-center mt-4">
-            <button type="submit" class="btn btn-lg btn-success px-5 shadow">
-                ✅ Nộp Bài
-            </button>
+        .answer-option label {
+            flex-grow: 1;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 5px; /* Add some padding to make clickable area larger */
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+
+            .answer-option label:hover {
+                background-color: #e2f0ff; /* Lighter blue on hover */
+            }
+
+    .submit-btn-container {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .timer-badge {
+        background-color: #dc3545; /* Red color for timer */
+        color: white;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    /* Style for the custom expiry alert */
+    .expiry-alert {
+        background-color: #ffe0e6; /* Light red/pink background */
+        color: #8b0000; /* Dark red text */
+        border: 1px solid #ff4d4d;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .expiry-alert .icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+        }
+</style>
+
+<div class="container container-custom">
+    @* Display messages *@
+    @if (TempData["SuccessMessage"] is string successMessage && !string.IsNullOrEmpty(successMessage))
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @Html.Raw(successMessage)
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-    </form>
+    }
+    @if (TempData["ErrorMessage"] is string errorMessage && !string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @Html.Raw(errorMessage)
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="card">
+        <div class="card-header">
+            <h2 class="mb-0">
+                <i class="bi bi-file-earmark-text-fill me-2"></i> LÀM BÀI: @Model.Dethi?.Tendethi
+            </h2>
+            <span class="timer-badge" id="timer">
+                <i class="bi bi-hourglass-split me-1"></i> Thời gian còn lại: Loading...
+            </span>
+        </div>
+        <div class="card-body">
+            <div class="mb-4 p-3 bg-light rounded-3">
+                <p class="mb-1"><i class="bi bi-book me-2"></i> <strong>Môn học:</strong> @(Model.Dethi?.Monhoc?.Tenmon ?? "N/A")</p>
+                <p class="mb-1"><i class="bi bi-calendar-check me-2"></i> <strong>Ngày thi:</strong> @(Model.Ngaythi.ToString("dd/MM/yyyy HH:mm"))</p>
+                <p class="mb-0"><i class="bi bi-clock me-2"></i> <strong>Thời gian làm bài:</strong> @(Model.Thoigian ?? 0) phút</p>
+            </div>
+
+            @* HIỂN THỊ THÔNG BÁO HẾT HẠN HOẶC ĐÃ NỘP *@
+            @if (ViewBag.IsExpired != null && ViewBag.IsExpired)
+            {
+                <div class="expiry-alert">
+                    <span class="icon"><i class="bi bi-emoji-frown-fill"></i></span>
+                    <p class="mb-0">@ViewBag.ExpiryMessage</p>
+                </div>
+            }
+
+            <form id="quizForm" asp-area="HocSinh" asp-controller="LamBai" asp-action="NopBai" method="post">
+                <input type="hidden" name="lichThiId" value="@Model.Id" />
+
+                @if (Model.Dethi?.Cauhois != null && Model.Dethi.Cauhois.Any())
+                {
+                    int questionNumber = 1;
+                    @foreach (var cauHoi in Model.Dethi.Cauhois.OrderBy(c => c.Id))
+                    {
+                        <div class="question-card">
+                            <p class="question-content">
+                                <span class="question-number">Câu @(questionNumber++):</span> @Html.Raw(cauHoi.Noidung)
+                                @if (cauHoi.Diem.HasValue)
+                                {
+                                    <small class="text-muted ms-2">(Điểm: @cauHoi.Diem)</small>
+                                }
+                            </p>
+
+                            @if (cauHoi.Dapans != null && cauHoi.Dapans.Any())
+                            {
+                                <div class="answers">
+                                    @foreach (var dapan in cauHoi.Dapans.OrderBy(d => d.Id))
+                                    {
+                                        <div class="answer-option">
+                                            <input type="checkbox"
+                                                   name="dapAnChon[@cauHoi.Id]"
+                                                   id="dapan-@dapan.Id"
+                                                   value="@dapan.Id"
+                                            @(ViewBag.IsExpired != null && ViewBag.IsExpired ? "disabled" : "") /> @* Vô hiệu hóa input *@
+                                            <label for="dapan-@dapan.Id">
+                                                @Html.Raw(dapan.Noidung)
+                                            </label>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            else
+                            {
+                                <p class="text-muted">Không có đáp án nào cho câu hỏi này.</p>
+                            }
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="alert alert-info text-center" role="alert">
+                        Không có câu hỏi nào trong đề thi này.
+                    </div>
+                }
+
+                <div class="submit-btn-container">
+                    <button type="submit" class="btn btn-success btn-lg px-5 shadow"
+                    @(ViewBag.IsExpired != null && ViewBag.IsExpired ? "disabled" : "")>
+                        @* Vô hiệu hóa nút nộp bài *@
+                        <i class="bi bi-check-circle me-2"></i> Nộp Bài
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 @section Scripts {
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script>
-        const totalMinutes = @thoiGianPhut;
-        let timeLeft = totalMinutes * 60;
-        const countdownEl = document.getElementById("countdown");
+        $(document).ready(function() {
+            // Lấy giá trị IsExpired từ ViewBag
+            var isExpired = @(ViewBag.IsExpired != null && ViewBag.IsExpired ? "true" : "false");
 
-        function formatTime(seconds) {
-            const min = Math.floor(seconds / 60);
-            const sec = seconds % 60;
-            return `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
-        }
+            if (!isExpired) { // Chỉ chạy timer nếu chưa hết hạn
+                var durationMinutes = @(Model.Thoigian ?? 0); // Thời gian làm bài từ Model
+                var startTime = new Date('@Model.Ngaythi.ToString("yyyy/MM/dd HH:mm:ss")').getTime();
+                var endTime = startTime + (durationMinutes * 60 * 1000); // Tính thời gian kết thúc
 
-        function updateCountdown() {
-            countdownEl.textContent = formatTime(timeLeft);
-            if (timeLeft <= 0) {
-                clearInterval(timer);
-                alert("⏰ Hết giờ! Bài thi sẽ được nộp.");
-                document.getElementById("examForm").submit();
+                // Cập nhật thời gian thực tế hiện tại
+                var actualLoadTime = new Date().getTime();
+                var remainingTimeMs = endTime - actualLoadTime;
+
+                if (remainingTimeMs < 0) {
+                    remainingTimeMs = 0;
+                    $('#timer').text("Đã hết giờ!");
+                    // Vô hiệu hóa form và nút nộp bài nếu JS phát hiện hết giờ
+                    $('#quizForm input, #quizForm button').prop('disabled', true);
+                    $('#quizForm button[type="submit"]').text('Đã hết giờ!');
+                    // alert("Thời gian làm bài đã hết! Bài thi của bạn sẽ được tự động nộp."); // Có thể bỏ nếu thông báo đã hiển thị rõ ràng trên View
+                    // $('#quizForm').submit(); // Tự động nộp bài khi hết giờ (nếu cần tự động nộp khi hết giờ do JS)
+                } else {
+                    updateTimer(); // Cập nhật lần đầu
+                    var timerInterval = setInterval(updateTimer, 1000); // Cập nhật mỗi giây
+                }
+
+                function updateTimer() {
+                    var now = new Date().getTime();
+                    var distance = endTime - now;
+
+                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    minutes = minutes < 10 ? "0" + minutes : minutes;
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                    $('#timer').html('<i class="bi bi-hourglass-split me-1"></i> Thời gian còn lại: ' + minutes + ":" + seconds);
+
+                    if (distance < 0) {
+                        clearInterval(timerInterval);
+                        $('#timer').text("Đã hết giờ!");
+                        // Vô hiệu hóa form và nút nộp bài khi hết giờ
+                        $('#quizForm input, #quizForm button').prop('disabled', true);
+                        $('#quizForm button[type="submit"]').text('Đã hết giờ!');
+                        // alert("Thời gian làm bài đã hết! Bài thi của bạn sẽ được tự động nộp."); // Loại bỏ alert để không gây khó chịu
+                        // $('#quizForm').submit(); // Tự động nộp bài khi hết giờ (nếu cần tự động nộp khi hết giờ do JS)
+                    }
+                }
+            } else {
+                // Nếu hết hạn từ server-side, vô hiệu hóa form và nút nộp bài ngay lập tức
+                $('#quizForm input, #quizForm button').prop('disabled', true);
+                $('#quizForm button[type="submit"]').text('Đã hết giờ!');
+                $('#timer').text("Đã hết giờ!"); // Cập nhật hiển thị timer
             }
-            timeLeft--;
-        }
 
-        const timer = setInterval(updateCountdown, 1000);
-        updateCountdown();
+            // Tự động đóng thông báo sau vài giây (giữ nguyên logic này)
+            window.setTimeout(function () {
+                $(".alert.fade.show").fadeTo(500, 0).slideUp(500, function () {
+                    $(this).remove();
+                });
+            }, 3000);
+        });
     </script>
 }

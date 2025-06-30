@@ -23,14 +23,75 @@
             {
                 <tr>
                     <td data-label="Ngày thi">@item.Ngaythi.ToString("dd/MM/yyyy")</td>
-                    <td data-label="Thời gian">@item.Thoigian</td>
+                    <td data-label="Thời gian">
+                        @(item.Thoigian.HasValue ? $"{item.Thoigian.Value} phút" : "N/A")
+                    </td>
                     <td data-label="Tên đề thi">@item.Dethi?.Tendethi</td>
                     <td data-label="Lớp học">@item.Lophoc?.Tenlop</td>
                     <td data-label="Thao tác">
-                        <a asp-action="Details" asp-route-id="@item.Id" class="btn-detail">Xem</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn-detail">Xem chi tiết</a>
+
+                        @{
+                            // Lấy thời gian hiện tại
+                            var now = DateTime.Now;
+
+                            // Lấy thời gian kết thúc dự kiến của bài thi
+                            // Sử dụng GetValueOrDefault(0) để xử lý Thoigian là int?
+                            var thoiGianKetThucDuKien = item.Ngaythi.AddMinutes(item.Thoigian.GetValueOrDefault(0));
+
+                            // Lấy ThoigianBatdau và ThoigianKetthuc từ DB (nếu có)
+                            // Các trường này trong model của bạn là DateTime?
+                            var thoiGianBatDauThucTe = item.ThoigianBatdau;
+                            var thoiGianKetThucThucTe = item.ThoigianKetthuc;
+
+                            // Điều kiện để nút "Bắt đầu thi" hiển thị:
+                            // 1. Ngày thi đã đến hoặc đang diễn ra
+                            // 2. Thời gian hiện tại chưa quá thời gian kết thúc dự kiến của bài thi
+                            bool isExamActive = item.Ngaythi.Date <= now.Date && now < thoiGianKetThucDuKien;
+
+                            // Thêm điều kiện kiểm tra ThoigianBatdau và ThoigianKetthuc nếu chúng được dùng để kiểm soát việc thi
+                            if (thoiGianBatDauThucTe.HasValue && thoiGianKetThucThucTe.HasValue)
+                            {
+                                isExamActive = isExamActive && (now >= thoiGianBatDauThucTe.Value && now <= thoiGianKetThucThucTe.Value);
+                            }
+
+                            // Thêm điều kiện: nếu ThoigianKetthucThucTe đã qua, không cho phép bắt đầu thi
+                            if (thoiGianKetThucThucTe.HasValue && now > thoiGianKetThucThucTe.Value)
+                            {
+                                isExamActive = false; // Đã quá thời gian thi thực tế, không thể bắt đầu
+                            }
+
+                            // Bạn cần thêm logic để kiểm tra xem học sinh đã nộp bài hay chưa (từ bảng Ketquathis)
+                            // Hiện tại, tôi không có thông tin về SinhvienId ở đây, nhưng đây là một ví dụ:
+                            // var studentId = /* Lấy ID học sinh hiện tại từ Session/Cookie/Claim */;
+                            // var hasSubmitted = await _context.Ketquathis.AnyAsync(kq => kq.Lichthiid == item.Id && kq.Sinhvienid == studentId);
+                            // Nếu đã nộp bài thì không cho bắt đầu nữa.
+
+                            // Kiểm tra đã nộp bài chưa (giả định bạn có cách lấy studentId hoặc kiểm tra trong controller rồi gửi trạng thái)
+                            // Hiện tại, không có thông tin học sinh ở đây để kiểm tra Ketquathi
+                            bool hasStudentSubmitted = false; // Cần thêm logic để kiểm tra thực tế
+
+                            if (isExamActive && !hasStudentSubmitted)
+                            {
+                                <a asp-action="StartExam" asp-route-id="@item.Id" class="btn-start">Bắt đầu thi</a>
+                            }
+                            else if (now >= thoiGianKetThucDuKien || (thoiGianKetThucThucTe.HasValue && now > thoiGianKetThucThucTe.Value))
+                            {
+                                <span class="btn-disabled">Đã hết hạn</span>
+                            }
+                            else if (hasStudentSubmitted)
+                            {
+                                <span class="btn-disabled">Đã nộp bài</span>
+                            }
+                            else
+                            {
+                                <span class="btn-disabled">Chưa đến giờ</span>
+                            }
+                        }
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
+

@@ -35,7 +35,7 @@
                         <dt class="col-sm-4">Điểm số:</dt>
                         <dd class="col-sm-8">
                             <span class="font-weight-bold text-@(ketqua?.Diem >= 5 ? "success" : "danger")">
-                                @(ketqua?.Diem.ToString("F2") ?? "N/A")
+                                @((ketqua?.Diem.HasValue == true) ? ketqua.Diem.Value.ToString("F2") : "N/A")
                             </span>
                         </dd>
 

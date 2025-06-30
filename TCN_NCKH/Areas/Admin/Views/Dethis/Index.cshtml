@@ -40,13 +40,24 @@
                                 Người tạo
                             </th>
                             <th>
+                                Bộ câu hỏi
+                            </th>
+                            <th>
+                                SL Câu hỏi
+                            </th>
+                            <th>
+                                Mức độ khó
+                            </th>
+                            <th>
+                                Đề khác nhau cho ca
+                            </th>
+                            <th>
                                 Trạng thái
                             </th>
                             <th>Hành động</th>
                         </tr>
                     </thead>
-                       
-                   
+
                     <tbody>
                         @foreach (var item in Model)
                         {
@@ -59,10 +70,68 @@
                                     @Html.DisplayFor(modelItem => item.Ngaytao)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Monhoc.Tenmon)
+                                    @* Thêm kiểm tra null cho Monhoc *@
+                                    @if (item.Monhoc != null)
+                                    {
+                                        @Html.DisplayFor(modelItem => item.Monhoc.Tenmon)
+                                    }
+                                    else
+                                    {
+                                        <span>N/A</span>
+                                    }
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.NguoitaoNavigation.Hoten)
+                                    @* Thêm kiểm tra null cho NguoitaoNavigation *@
+                                    @if (item.NguoitaoNavigation != null)
+                                    {
+                                        @Html.DisplayFor(modelItem => item.NguoitaoNavigation.Hoten)
+                                    }
+                                    else
+                                    {
+                                        <span>Không rõ người tạo</span> @* Hoặc hiển thị item.Nguoitao nếu muốn ID *@
+                                    }
+                                </td>
+                                <td>
+                                    @* Thêm kiểm tra null cho Bocauhoi *@
+                                    @if (item.Bocauhoi != null)
+                                    {
+                                        @Html.DisplayFor(modelItem => item.Bocauhoi.Tenbocauhoi)
+                                    }
+                                    else
+                                    {
+                                        <span>N/A</span>
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Soluongcauhoi)
+                                </td>
+                                <td>
+                                    @{
+                                        List<string> mucDoKhoList = new List<string>();
+                                        if (item.MucdokhoDe == true)
+                                        {
+                                            mucDoKhoList.Add("Dễ");
+                                        }
+                                        if (item.MucdokhoTrungbinh == true)
+                                        {
+                                            mucDoKhoList.Add("Trung bình");
+                                        }
+                                        if (item.MucdokhoKho == true)
+                                        {
+                                            mucDoKhoList.Add("Khó");
+                                        }
+                                    }
+                                    @if (mucDoKhoList.Any())
+                                    {
+                                        <span>@string.Join(", ", mucDoKhoList)</span>
+                                    }
+                                    else
+                                    {
+                                        <span>N/A</span>
+                                    }
+                                </td>
+                                <td>
+                                    @(item.DethikhacnhauCa == true ? "Có" : "Không")
                                 </td>
                                 <td>
                                     <span class="badge badge-success">Hoạt động</span>
@@ -97,12 +166,12 @@
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Vietnamese.json" // Ngôn ngữ tiếng Việt
                 }
-            });21
+            });
         });
     </script>
 }
 
 @section Styles {
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40j/6PqqF/zEE4hQYkMWn6VfUe50I+fI+I5M5b5G+w5g5Z5L5K5B5E5P5V5C5X5Y5A5B5E5P5Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" xintegrity="sha512-1ycn6IcaQQ40j/6PqqF/zEE4hQYkMWn6VfUe50I+fI+I5M5b5G+w5g5Z5L5K5B5E5P5V5C5X5Y5A5B5E5P5Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 }

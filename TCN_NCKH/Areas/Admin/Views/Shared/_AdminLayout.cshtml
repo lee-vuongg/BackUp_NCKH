@@ -39,9 +39,9 @@
 
                         if (admin != null)
                         {
-                            var avatarPath = string.IsNullOrEmpty(admin.Anhdaidien)
+                            var avatarPath = string.IsNullOrEmpty(admin.AnhDaiDien)
                             ? "/images/CT.jpg" // Default avatar if not set
-                            : "/images/" + admin.Anhdaidien;
+                            : "/images/" + admin.AnhDaiDien;
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" data-toggle="dropdown">
                                     <img src="@avatarPath" alt="Avatar" class="rounded-circle mr-2" style="width:32px; height:32px; object-fit:cover;" />
@@ -49,12 +49,12 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li>
-                                        <a class="dropdown-item" asp-area="HocSinh" asp-controller="NguoiDungs" asp-action="AccountDetails" asp-route-id="@admin.Id">
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="NguoiDungs" asp-action="AccountDetails" asp-route-id="@admin.Id">
                                             <i class="fas fa-user mr-2"></i> Thông tin tài khoản
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" asp-area="HocSinh" asp-controller="NguoiDungs" asp-action="ChangePassword" asp-route-id="@admin.Id">
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="NguoiDungs" asp-action="ChangePassword" asp-route-id="@admin.Id">
                                             <i class="fas fa-key mr-2"></i> Đổi mật khẩu
                                         </a>
                                     </li>
@@ -103,6 +103,8 @@
                         <li class="nav-item"><a href="/Admin/Cauhois/Index" class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Cauhois" ? "active" : "")"><i class="nav-icon fas fa-question-circle"></i><p>Quản lý Câu Hỏi</p></a></li>
                         <li class="nav-item"><a href="/Admin/Sinhviens/Index" class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Sinhviens" ? "active" : "")"><i class="nav-icon fas fa-user-graduate"></i><p>Quản lý Sinh Viên</p></a></li>
                         <li class="nav-item"><a href="/Admin/Dapans/Index" class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Dapans" ? "active" : "")"><i class="nav-icon fas fa-check-circle"></i><p>Quản lý Đáp Án</p></a></li>
+                        <li class="nav-item"><a href="/Admin/Bocauhois/Index" class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Bocauhois" ? "active" : "")"><i class="nav-icon fas fa-question-circle"></i><p>Quản lý Bộ Câu Hỏi</p></a></li>
+                        <li class="nav-item"><a href="/Admin/LichthiSinhviens/Index" class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "LichthiSinhviens" ? "active" : "")"><i class="nav-icon fas fa-calendar-alt"></i><p>Lịch Thi Sinh Viên</p></a></li>
                     </ul>
                 </nav>
             </div>

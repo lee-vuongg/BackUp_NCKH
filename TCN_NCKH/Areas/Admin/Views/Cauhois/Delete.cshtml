@@ -1,46 +1,164 @@
 ﻿@model TCN_NCKH.Models.DBModel.Cauhoi
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
-    ViewData["Title"] = "Delete";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Xác Nhận Xóa Câu Hỏi"; // Tiêu đề trang rõ ràng
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml"; // Đảm bảo đúng layout của Admin
+                                                               // Lấy BocauhoiId từ ViewBag để sử dụng cho nút quay lại
+    var bocauhoiId = ViewBag.BocauhoiId as int?;
 }
 
-<h1>Delete</h1>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Cauhoi</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Noidung)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Noidung)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Loaicauhoi)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Loaicauhoi)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Diem)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Diem)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Dethi)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Dethi.Id)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+<div class="container-fluid">
+    <h1 class="mt-4">
+        <i class="fas fa-trash-alt"></i> @ViewData["Title"]
+    </h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/Admin/AdminHome">Dashboard</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Bocauhois">Quản lý Bộ câu hỏi</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-route-bocauhoiId="@bocauhoiId">Câu hỏi của Bộ</a></li>
+        <li class="breadcrumb-item active">@ViewData["Title"]</li>
+    </ol>
+
+    @* Cải thiện cách hiển thị TempData để an toàn hơn và tương thích Bootstrap 5 *@
+    @if (TempData["SuccessMessage"] is string successMessage && !string.IsNullOrEmpty(successMessage))
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @Html.Raw(successMessage)
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    @if (TempData["ErrorMessage"] is string errorMessage && !string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @Html.Raw(errorMessage)
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Bạn có chắc chắn muốn xóa câu hỏi này không?</h6>
+            <p class="text-danger mt-2">Hành động này không thể hoàn tác.</p>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Noidung)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Noidung)
+                </dd>
+
+                <dt class="col-sm-3">
+                    Loại câu hỏi
+                </dt>
+                <dd class="col-sm-9">
+                    @{
+                        string loaiCauHoiText = "Không xác định";
+                        // Đảm bảo logic này khớp với Index và Details
+                        if (Model.Loaicauhoi.HasValue)
+                        {
+                            switch (Model.Loaicauhoi.Value)
+                            {
+                                case 1: loaiCauHoiText = "Trắc nghiệm"; break;
+                                case 2: loaiCauHoiText = "Tự luận"; break;
+                            }
+                        }
+                    }
+                    @loaiCauHoiText
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Diem)
+                </dt>
+                <dd class="col-sm-9">
+                    @(Model.Diem.HasValue ? Model.Diem.Value.ToString("F1") : "N/A") @* Format 1 chữ số thập phân *@
+                </dd>
+
+                <dt class="col-sm-3">
+                    Bộ câu hỏi
+                </dt>
+                <dd class="col-sm-9">
+                    @(Model.Bocauhoi?.Tenbocauhoi ?? "Chưa gán bộ câu hỏi")
+                    @{
+                        string mucDoKhoText = "Không xác định";
+                        if (Model.Bocauhoi != null && Model.Bocauhoi.Mucdokho.HasValue)
+                        {
+                            switch (Model.Bocauhoi.Mucdokho.Value)
+                            {
+                                case 0: mucDoKhoText = "Dễ"; break;
+                                case 1: mucDoKhoText = "Trung bình"; break;
+                                case 2: mucDoKhoText = "Khó"; break;
+                            }
+                        }
+                    }
+                    @if (Model.Bocauhoi != null)
+                    {
+                        <span>(Mức độ khó: @mucDoKhoText)</span>
+                    }
+                </dd>
+
+                <dt class="col-sm-3">
+                    Đề thi
+                </dt>
+                <dd class="col-sm-9">
+                    @(Model.Dethi?.Tendethi ?? "Chưa gán đề thi")
+                </dd>
+
+                @* Hiển thị các đáp án chi tiết để xác nhận *@
+                <dt class="col-sm-3">
+                    Các Đáp án
+                </dt>
+                <dd class="col-sm-9">
+                    @if (Model.Dapans != null && Model.Dapans.Any())
+                    {
+                        char optionChar = 'A';
+                        foreach (var dapan in Model.Dapans.OrderBy(d => d.Id))
+                        {
+                            <p class="mb-1 @(dapan.Dung == true ? "text-success font-weight-bold" : "")">
+                                @optionChar: @Html.DisplayFor(modelItem => dapan.Noidung)
+                                @if (dapan.Dung == true)
+                                {
+                                    <i class="bi bi-check-circle-fill text-success ms-1" title="Đáp án đúng"></i>
+                                }
+                            </p>
+                            optionChar++;
+                        }
+                    }
+                    else
+                    {
+                        <p>Chưa có đáp án nào được thiết lập.</p>
+                    }
+                </dd>
+            </dl>
+        </div>
+        <div class="card-footer">
+            <form asp-action="DeleteConfirmed">
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" class="btn btn-danger">
+                    <i class="fas fa-trash"></i> Xóa
+                </button>
+                <a asp-action="Index" asp-route-bocauhoiId="@bocauhoiId" class="btn btn-secondary ml-2">
+                    @* Sử dụng bocauhoiId *@
+                    <i class="fas fa-arrow-left"></i> Quay Lại Danh Sách Câu Hỏi
+                </a>
+            </form>
+        </div>
+    </div>
 </div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Tự động đóng thông báo sau vài giây
+            window.setTimeout(function () {
+                // Đảm bảo chọn đúng class của Bootstrap 5 cho alert
+                $(".alert.fade.show").fadeTo(500, 0).slideUp(500, function () {
+                    $(this).remove();
+                });
+            }, 3000); // 3 giây
+        });
+    </script>
+}

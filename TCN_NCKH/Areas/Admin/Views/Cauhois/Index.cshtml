@@ -1,92 +1,124 @@
 ﻿@model IEnumerable<TCN_NCKH.Models.DBModel.Cauhoi>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 @{
-    ViewData["Title"] = "Quản Lý Câu Hỏi"; // Tiêu đề trang
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml"; // Đảm bảo đúng layout của Admin
+    ViewData["Title"] = "Quản lý Câu hỏi";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml"; // Sử dụng layout admin của mi
+    var bocauhoi = ViewBag.Bocauhoi as TCN_NCKH.Models.DBModel.Bocauhoi;
 }
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
 <div class="container-fluid">
     <h1 class="mt-4">
-        <i class="fas fa-question-circle"></i> @ViewData["Title"] @* Icon phù hợp cho câu hỏi *@
+        <i class="bi bi-patch-question-fill me-2"></i> Câu hỏi của Bộ: @(bocauhoi?.Tenbocauhoi ?? "Không xác định")
     </h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="/Admin/AdminHome">Dashboard</a></li> @* Đảm bảo đường dẫn dashboard đúng *@
-        <li class="breadcrumb-item active">@ViewData["Title"]</li>
+        <li class="breadcrumb-item"><a href="/Admin/AdminHome">Dashboard</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Bocauhois">Quản lý Bộ câu hỏi</a></li>
+        <li class="breadcrumb-item active">Câu hỏi</li>
     </ol>
 
-    <!-- Khu vực hiển thị thông báo (Success/Error) -->
     @if (TempData["SuccessMessage"] != null)
     {
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
             @TempData["SuccessMessage"]
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
     @if (TempData["ErrorMessage"] != null)
     {
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            @TempData["ErrorMessage"]
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+            @Html.Raw(TempData["ErrorMessage"])
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
 
+    <p>
+        <a asp-action="Create" asp-route-bocauhoiId="@(bocauhoi?.Id)" class="btn btn-primary">
+            <i class="bi bi-plus-circle-fill me-2"></i> Thêm Câu hỏi mới
+        </a>
+    </p>
+
     <div class="card shadow mb-4">
-        <div class="card-header py-3 d-flex justify-content-between align-items-center">
-            <h6 class="m-0 font-weight-bold text-primary">Danh sách câu hỏi</h6>
-            <a asp-action="Create" class="btn btn-primary btn-sm">
-                <i class="fas fa-plus"></i> Thêm Mới Câu Hỏi
-            </a>
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách Câu hỏi</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th style="width: 50px;">#</th> @* Cột số thứ tự *@
-                            <th>ID</th>
-                            <th>Nội dung</th>
-                            <th>Loại câu hỏi</th>
+                            <th style="width: 50px;">STT</th>
+                            <th>Nội dung Câu hỏi</th>
                             <th>Điểm</th>
-                            <th>Đề thi</th>
+                            <th>Mức độ khó (Từ Bộ câu hỏi)</th> @* Thay đổi tiêu đề cột *@
+                            <th>Loại câu hỏi</th>
+                            <th>Các đáp án</th>
                             <th style="width: 150px;">Hành động</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @{
-                            int rowNo = 1;
-                        }
                         @if (Model != null && Model.Any())
                         {
+                            var stt = 1; // Khởi tạo biến STT
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td>@(rowNo++)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                                    <td>@(stt++)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Noidung)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Diem)</td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Noidung)
-                                    <td>
-                                            @{
-                                                string loaiCauHoiText;
-                                                if (item.Loaicauhoi.HasValue && item.Loaicauhoi.Value == 0)
+                                        @{
+                                            string mucDoKhoText = "Không xác định";
+                                            // SỬA LỖI TẠI ĐÂY: Truy cập Mucdokho thông qua Bocauhoi
+                                            if (item.Bocauhoi != null && item.Bocauhoi.Mucdokho.HasValue)
+                                            {
+                                                switch (item.Bocauhoi.Mucdokho.Value)
                                                 {
-                                                    loaiCauHoiText = "Trắc nghiệm";
-                                                }
-                                                else
-                                                {
-                                                    loaiCauHoiText = "Chưa thiết lập / Khác"; // Hoặc "Không xác định", "Không phải trắc nghiệm" tùy theo logic nghiệp vụ của bạn
+                                                    case 0: mucDoKhoText = "Dễ"; break;
+                                                    case 1: mucDoKhoText = "Trung bình"; break; // Đã sửa lỗi chính tả ở đây
+                                                    case 2: mucDoKhoText = "Khó"; break;
                                                 }
                                             }
-                                            @loaiCauHoiText
+                                        }
+                                        @mucDoKhoText
                                     </td>
                                     <td>
-                                        @(item.Diem.HasValue ? item.Diem.Value.ToString() : "N/A")
+                                        @{
+                                            string loaiCauHoiText = "Không xác định";
+                                            if (item.Loaicauhoi.HasValue)
+                                            {
+                                                switch (item.Loaicauhoi.Value)
+                                                {
+                                                    case 1: loaiCauHoiText = "Trắc nghiệm"; break;
+                                                    case 2: loaiCauHoiText = "Tự luận"; break; // Giả định
+                                                }
+                                            }
+                                        }
+                                        @loaiCauHoiText
                                     </td>
                                     <td>
-                                        @(item.Dethi?.Tendethi ?? "N/A") @* Hiển thị Tên Đề Thi an toàn *@
+                                        @if (item.Dapans != null && item.Dapans.Any())
+                                        {
+                                            char optionChar = 'A';
+                                            foreach (var dapan in item.Dapans.OrderBy(d => d.Id))
+                                            {
+                                                <span class="@(dapan.Dung == true ? "text-success font-weight-bold" : "")">@optionChar: @dapan.Noidung</span>
+                                                if (dapan.Dung == true)
+                                                {
+                                                    <i class="bi bi-check-circle-fill text-success ms-1" title="Đáp án đúng"></i>
+                                                }
+                                                <br />
+                                                optionChar++;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <span>Chưa có đáp án</span>
+                                        }
                                     </td>
                                     <td>
                                         <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm" title="Chỉnh sửa">
@@ -105,7 +137,7 @@
                         else
                         {
                             <tr>
-                                <td colspan="7" class="text-center">Không tìm thấy câu hỏi nào.</td> @* Cập nhật colspan *@
+                                <td colspan="7" class="text-center">Chưa có câu hỏi nào trong bộ câu hỏi này.</td>
                             </tr>
                         }
                     </tbody>
@@ -118,7 +150,6 @@
 @section Scripts {
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap4.min.js"></script>
-
     <script>
         $(document).ready(function() {
             $('#dataTable').DataTable({
@@ -126,23 +157,18 @@
                     "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Vietnamese.json" // Ngôn ngữ tiếng Việt
                 },
                 "columnDefs": [
-                    { "orderable": false, "targets": 0 },   // Cột số thứ tự không sắp xếp
-                    { "orderable": false, "targets": -1 }  // Cột hành động không sắp xếp
-                ]
+                    { "orderable": false, "targets": -1 }, // Cột hành động không sắp xếp
+                    { "orderable": false, "targets": 0 } // Cột STT không sắp xếp
+                ],
+                "order": [] // Tắt sắp xếp mặc định để STT không bị ảnh hưởng
             });
 
-            // Tự động đóng thông báo sau vài giây
+            // Tự động đóng thông báo sau 3 giây
             window.setTimeout(function () {
-                $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                $(".alert.fade.show").fadeTo(500, 0).slideUp(500, function () {
                     $(this).remove();
                 });
-            }, 3000); // 3 giây
+            }, 3000);
         });
     </script>
-}
-
-@section Styles {
-    <!-- Style cho DataTables và Font Awesome -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40j/6PqqF/zEE4hQYkMWn6VfUe50I+fI+I5M5b5G+w5g5Z5L5K5B5E5P5Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 }

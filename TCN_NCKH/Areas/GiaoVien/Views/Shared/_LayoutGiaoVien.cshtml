@@ -49,9 +49,9 @@
                     // Sử dụng biến 'giaovien' đã lấy ở phía trên
                     if (giaovien != null)
                     {
-                        var avatarPath = string.IsNullOrEmpty(giaovien.Anhdaidien)
+                        var avatarPath = string.IsNullOrEmpty(giaovien.AnhDaiDien)
                         ? "/images/CT.jpg" // Ảnh mặc định nếu không set (giống admin)
-                        : "/images/" + giaovien.Anhdaidien;
+                        : "/images/" + giaovien.AnhDaiDien;
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" data-toggle="dropdown">
@@ -115,9 +115,9 @@
             <div class="sidebar">
                 @if (User.Identity != null && User.Identity.IsAuthenticated && giaovien != null)
                 {
-                    var avatarPath = string.IsNullOrEmpty(giaovien.Anhdaidien)
+                    var avatarPath = string.IsNullOrEmpty(giaovien.AnhDaiDien)
                     ? "/images/CT.jpg" // Ảnh mặc định nếu không set
-                    : "/images/" + giaovien.Anhdaidien;
+                    : "/images/" + giaovien.AnhDaiDien;
 
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">

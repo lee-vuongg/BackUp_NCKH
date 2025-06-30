@@ -1,47 +1,132 @@
 ﻿@model TCN_NCKH.Models.DBModel.Lichthi
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 @{
-    ViewData["Title"] = "Edit";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Chỉnh Sửa Lịch Thi"; // Tiêu đề trang rõ ràng
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml"; // Đảm bảo đúng layout của Admin
 }
 
-<h1>Edit</h1>
+<div class="container-fluid">
+    <h1 class="mt-4">
+        <i class="fas fa-edit"></i> @ViewData["Title"]
+    </h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/Admin/AdminHome">Dashboard</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index">Quản Lý Lịch Thi</a></li>
+        <li class="breadcrumb-item active">@ViewData["Title"]</li>
+    </ol>
 
-<h4>Lichthi</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Dethiid" class="control-label"></label>
-                <select asp-for="Dethiid" class="form-control" asp-items="ViewBag.Dethiid"></select>
-                <span asp-validation-for="Dethiid" class="text-danger"></span>
+    @* Hiển thị thông báo từ TempData an toàn hơn *@
+    @if (TempData["SuccessMessage"] is string successMessage && !string.IsNullOrEmpty(successMessage))
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @Html.Raw(successMessage)
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    @if (TempData["ErrorMessage"] is string errorMessage && !string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @Html.Raw(errorMessage)
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Chỉnh sửa thông tin lịch thi</h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    @* Tăng chiều rộng của form lên 6 cột để phù hợp với các trường mới *@
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" /> @* Quan trọng: giữ lại Id để biết đối tượng nào đang được chỉnh sửa *@
+
+                        <div class="form-group">
+                            <label asp-for="Dethiid" class="control-label"></label>
+                            <select asp-for="Dethiid" class="form-control" asp-items="ViewBag.Dethiid">
+                                <option value="">-- Chọn Đề thi --</option> @* Thêm option mặc định *@
+                            </select>
+                            <span asp-validation-for="Dethiid" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Lophocid" class="control-label"></label>
+                            <select asp-for="Lophocid" class="form-control" asp-items="ViewBag.Lophocid">
+                                <option value="">-- Chọn Lớp học --</option> @* Thêm option mặc định *@
+                            </select>
+                            <span asp-validation-for="Lophocid" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Phongthi" class="control-label"></label>
+                            <input asp-for="Phongthi" class="form-control" />
+                            <span asp-validation-for="Phongthi" class="text-danger"></span>
+                        </div>
+
+                        @* CẬP NHẬT Ở ĐÂY: Sử dụng input type="date" và type="time" với giá trị được điền sẵn *@
+                        <div class="form-group">
+                            <label for="ngayThiPicker" class="control-label">Ngày thi</label>
+                            <input type="date" id="ngayThiPicker" name="ngayThiPicker" class="form-control"
+                                   value="@(Model.Ngaythi.ToString("yyyy-MM-dd"))" />
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="gioThiPicker" class="control-label">Giờ thi</label>
+                            <input type="time" id="gioThiPicker" name="gioThiPicker" class="form-control"
+                                   value="@(Model.Ngaythi.ToString("HH:mm"))" />
+                            <span class="text-danger"></span>
+                        </div>
+                        @* Kết thúc phần cập nhật cho Ngaythi *@
+
+                        <div class="form-group">
+                            <label asp-for="ThoigianBatdau" class="control-label"></label>
+                            <input asp-for="ThoigianBatdau" class="form-control" type="datetime-local" value="@(Model.ThoigianBatdau.HasValue ? Model.ThoigianBatdau.Value.ToString("yyyy-MM-ddTHH:mm") : "")" />
+                            <span asp-validation-for="ThoigianBatdau" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="ThoigianKetthuc" class="control-label"></label>
+                            <input asp-for="ThoigianKetthuc" class="form-control" type="datetime-local" value="@(Model.ThoigianKetthuc.HasValue ? Model.ThoigianKetthuc.Value.ToString("yyyy-MM-ddTHH:mm") : "")" />
+                            <span asp-validation-for="ThoigianKetthuc" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Thoigian" class="control-label"></label>
+                            <input asp-for="Thoigian" class="form-control" type="number" /> @* Đảm bảo type="number" cho thời gian (phút) *@
+                            <span asp-validation-for="Thoigian" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Lưu Thay Đổi
+                            </button>
+                            <a asp-action="Index" class="btn btn-secondary ml-2">
+                                <i class="fas fa-arrow-left"></i> Quay Lại Danh Sách
+                            </a>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Lophocid" class="control-label"></label>
-                <select asp-for="Lophocid" class="form-control" asp-items="ViewBag.Lophocid"></select>
-                <span asp-validation-for="Lophocid" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Ngaythi" class="control-label"></label>
-                <input asp-for="Ngaythi" class="form-control" />
-                <span asp-validation-for="Ngaythi" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Thoigian" class="control-label"></label>
-                <input asp-for="Thoigian" class="form-control" />
-                <span asp-validation-for="Thoigian" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
+@section Scripts {
+    @* ĐẢM BẢO JQUERY ĐƯỢC TẢI ĐẦU TIÊN TRONG PHẦN SCRIPT NÀY *@
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function() {
+            // Tự động đóng thông báo sau vài giây
+            window.setTimeout(function () {
+                $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                    $(this).remove();
+                });
+            }, 3000); // 3 giây
+        });
+    </script>
+}

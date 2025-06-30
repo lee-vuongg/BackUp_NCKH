@@ -11,7 +11,7 @@ public partial class Ketquathi
 
     public int? Lichthiid { get; set; }
 
-    public double Diem { get; set; }
+    public double? Diem { get; set; }
 
     public int Thoigianlam { get; set; }
 
@@ -20,6 +20,6 @@ public partial class Ketquathi
     public virtual Lichthi? Lichthi { get; set; }
 
     public virtual Sinhvien? Sinhvien { get; set; }
-    public virtual ICollection<TraloiSinhvien> TraloiSinhviens { get; set; } = new List<TraloiSinhvien>();
 
+    public virtual ICollection<TraloiSinhvien> TraloiSinhviens { get; set; } = new List<TraloiSinhvien>();
 }

@@ -1,0 +1,85 @@
+﻿@model TCN_NCKH.Models.DBModel.Bocauhoi
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Chi tiết Bộ câu hỏi";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml"; // Đảm bảo sử dụng layout admin
+}
+
+<h1 class="mb-4">Chi tiết Bộ câu hỏi</h1>
+
+<div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Bộ câu hỏi: @Model.Tenbocauhoi</h4>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Tenbocauhoi)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Tenbocauhoi)
+            </dd>
+
+            <dt class="col-sm-3">
+                Môn học
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Monhoc.Tenmon) @* HIỂN THỊ TÊN MÔN HỌC *@
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Mota)
+            </dt>
+            <dd class="col-sm-9">
+                <div class="card card-body bg-light">
+                    @* Dùng card để làm nổi bật mô tả *@
+                    @Html.DisplayFor(model => model.Mota)
+                </div>
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Mucdokho)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Mucdokho)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.DapanMacdinhA)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.DapanMacdinhA)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.DapanMacdinhB)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.DapanMacdinhB)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.DapanMacdinhC)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.DapanMacdinhC)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.DapanMacdinhD)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.DapanMacdinhD)
+            </dd>
+        </dl>
+    </div>
+    <div class="card-footer d-flex justify-content-end gap-2">
+        @* Dùng gap-2 để tạo khoảng cách giữa các nút *@
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning">
+            <i class="bi bi-pencil-square"></i> Chỉnh sửa
+        </a>
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Quay lại danh sách
+        </a>
+    </div>
+</div>

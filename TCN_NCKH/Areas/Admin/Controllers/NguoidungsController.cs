@@ -158,7 +158,7 @@ namespace TCN_NCKH.Areas.Admin.Controllers
             existingNguoidung.Gioitinh = nguoidungFromForm.Gioitinh;
             existingNguoidung.Trangthai = nguoidungFromForm.Trangthai;
             existingNguoidung.Loainguoidungid = nguoidungFromForm.Loainguoidungid;
-            existingNguoidung.Anhdaidien = nguoidungFromForm.Anhdaidien;
+            existingNguoidung.AnhDaiDien = nguoidungFromForm.AnhDaiDien;
 
             // Handle password: ONLY UPDATE if a new password has been entered in the form
             if (!string.IsNullOrEmpty(nguoidungFromForm.Matkhau))

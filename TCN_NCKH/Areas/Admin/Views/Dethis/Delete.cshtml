@@ -1,46 +1,114 @@
 ﻿@model TCN_NCKH.Models.DBModel.Dethi
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Xóa Đề Thi";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Delete</h1>
+<div class="container-fluid">
+    <h1 class="mt-4">
+        <i class="fas fa-trash-alt"></i> Xóa Đề Thi
+    </h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/Admin/AdminHome">Dashboard</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index">Quản Lý Đề Thi</a></li>
+        <li class="breadcrumb-item active">Xóa</li>
+    </ol>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Dethi</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Tendethi)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Tendethi)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Ngaytao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Ngaytao)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Monhoc)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Monhoc.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NguoitaoNavigation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NguoitaoNavigation.Id)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Bạn có chắc chắn muốn xóa đề thi này?</h4>
+        <p>Thao tác này không thể hoàn tác.</p>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Thông tin Đề Thi cần xóa</h6>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Tendethi)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Tendethi)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Ngaytao)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Ngaytao)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Monhoc)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Monhoc.Tenmon) @* Hiển thị tên môn học *@
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.NguoitaoNavigation)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.NguoitaoNavigation.Hoten) @* Hiển thị họ tên người tạo *@
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Bocauhoi)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Bocauhoi.Tenbocauhoi) @* Hiển thị tên Bộ câu hỏi *@
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Soluongcauhoi)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Soluongcauhoi)
+                </dd>
+                <dt class="col-sm-3">
+                    Mức độ khó
+                </dt>
+                <dd class="col-sm-9">
+                    @{
+                        List<string> mucDoKhoList = new List<string>();
+                        if (Model.MucdokhoDe == true)
+                        {
+                            mucDoKhoList.Add("Dễ");
+                        }
+                        if (Model.MucdokhoTrungbinh == true)
+                        {
+                            mucDoKhoList.Add("Trung bình");
+                        }
+                        if (Model.MucdokhoKho == true)
+                        {
+                            mucDoKhoList.Add("Khó");
+                        }
+                    }
+                    @if (mucDoKhoList.Any())
+                    {
+                        <span>@string.Join(", ", mucDoKhoList)</span>
+                    }
+                    else
+                    {
+                        <span>(Không xác định)</span>
+                    }
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.DethikhacnhauCa)
+                </dt>
+                <dd class="col-sm-9">
+                    @(Model.DethikhacnhauCa == true ? "Có" : "Không")
+                </dd>
+            </dl>
+        </div>
+        <div class="card-footer">
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" class="btn btn-danger">
+                    <i class="fas fa-trash"></i> Xóa
+                </button>
+                <a asp-action="Index" class="btn btn-secondary ml-2">
+                    <i class="fas fa-arrow-left"></i> Hủy và Quay lại
+                </a>
+            </form>
+        </div>
+    </div>
 </div>

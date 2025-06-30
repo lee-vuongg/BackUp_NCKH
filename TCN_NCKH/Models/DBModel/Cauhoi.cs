@@ -15,6 +15,12 @@ public partial class Cauhoi
 
     public double? Diem { get; set; }
 
+    public int? Bocauhoiid { get; set; }
+
+    public string? DapandungKeys { get; set; }
+
+    public virtual Bocauhoi? Bocauhoi { get; set; }
+
     public virtual ICollection<Dapan> Dapans { get; set; } = new List<Dapan>();
 
     public virtual Dethi? Dethi { get; set; }

@@ -18,33 +18,55 @@ namespace TCN_NCKH.Areas.HocSinh.Controllers
         }
 
         // GET: HocSinh/Ketquathis
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string dethiId) // Tham số dethiId
         {
-            // Kiểm tra đăng nhập và phân quyền
-            if (!User.Identity.IsAuthenticated || !User.IsInRole("Sinh viên"))
+            var msv = User.FindFirstValue(ClaimTypes.Name);
+            if (string.IsNullOrWhiteSpace(msv))
             {
-                return RedirectToAction("Login", "Auth");
+                TempData["ErrorMessage"] = "Không xác định được thông tin sinh viên đăng nhập.";
+                return RedirectToAction("Login", "Account");
             }
 
-            var sinhvienId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-            if (string.IsNullOrEmpty(sinhvienId))
+            var sinhVien = await _context.Sinhviens.FirstOrDefaultAsync(s => s.Msv == msv);
+            if (sinhVien == null)
             {
-                return RedirectToAction("Login", "Auth");
+                TempData["ErrorMessage"] = "Thông tin sinh viên không tìm thấy trong hệ thống.";
+                return RedirectToAction("Login", "Account");
             }
 
-            // Lấy danh sách kết quả thi và bao gồm đầy đủ thông tin liên quan
-            var ketquaList = await _context.Ketquathis
-                .Include(k => k.Lichthi)
-                    .ThenInclude(l => l.Dethi)
-                        .ThenInclude(d => d.Monhoc)
-                .Include(k => k.Sinhvien)
-                    .ThenInclude(sv => sv.SinhvienNavigation) // <-- Đảm bảo Include SinhvienNavigation để lấy thông tin Người dùng
-                .Where(k => k.Sinhvienid == sinhvienId)
-                .OrderByDescending(k => k.Ngaythi)
-                .ToListAsync();
+            // Nếu không có DethiId được cung cấp, có thể chuyển hướng hoặc hiển thị tất cả kết quả
+            if (string.IsNullOrWhiteSpace(dethiId))
+            {
+                TempData["WarningMessage"] = "Không có mã đề thi được cung cấp. Hiển thị tất cả kết quả của bạn.";
+                // Hoặc bạn có thể chọn:
+                // return RedirectToAction("MyResults"); // Một action khác để xem tất cả kết quả
+            }
 
-            return View(ketquaList);
+            // Lấy kết quả thi của sinh viên hiện tại, liên quan đến đề thi được chọn
+            var ketquaList = _context.Ketquathis
+                                     .AsNoTracking()
+                                     .Include(kq => kq.Lichthi) // Nạp thông tin lịch thi
+                                         .ThenInclude(lt => lt.Dethi) // Nạp thông tin đề thi từ lịch thi
+                                             .ThenInclude(dt => dt.Monhoc) // Nạp môn học từ đề thi
+                                     .Where(kq => kq.Sinhvienid == sinhVien.Sinhvienid);
+
+            // Lọc theo DethiId nếu có
+            if (!string.IsNullOrWhiteSpace(dethiId))
+            {
+                ketquaList = ketquaList.Where(kq => kq.Lichthi != null && kq.Lichthi.Dethiid == dethiId);
+            }
+            else
+            {
+                // Nếu không có dethiId, chỉ hiển thị kết quả của sinh viên đó
+                // (Có thể bạn muốn sắp xếp hoặc phân trang ở đây)
+            }
+
+            var ketquathis = await ketquaList.OrderByDescending(kq => kq.Ngaythi).ToListAsync();
+
+            // Truyền dethiId hiện tại xuống View để có thể sử dụng cho tiêu đề hoặc logic khác
+            ViewBag.CurrentDethiId = dethiId;
+
+            return View(ketquathis);
         }
 
         // GET: HocSinh/Ketquathis/Details/5

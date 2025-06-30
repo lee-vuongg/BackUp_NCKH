@@ -13,11 +13,19 @@ public partial class Lichthi
 
     public DateTime Ngaythi { get; set; }
 
-    public int Thoigian { get; set; }
+    public int? Thoigian { get; set; }
+
+    public string? Phongthi { get; set; }
+
+    public DateTime? ThoigianBatdau { get; set; }
+
+    public DateTime? ThoigianKetthuc { get; set; }
 
     public virtual Dethi? Dethi { get; set; }
 
     public virtual ICollection<Ketquathi> Ketquathis { get; set; } = new List<Ketquathi>();
+
+    public virtual ICollection<LichthiSinhvien> LichthiSinhviens { get; set; } = new List<LichthiSinhvien>();
 
     public virtual Lophoc? Lophoc { get; set; }
 }

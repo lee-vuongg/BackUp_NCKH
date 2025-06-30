@@ -1,0 +1,76 @@
+﻿@model TCN_NCKH.Models.DBModel.LichthiSinhvien
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Xóa Phân công Lịch thi";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml"; // Đảm bảo sử dụng layout admin
+}
+
+<h1 class="mb-4">Xóa Phân công Lịch thi</h1>
+
+@* Hiển thị thông báo từ TempData *@
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<h3 class="text-danger mb-3">Bạn có chắc chắn muốn xóa phân công lịch thi này không?</h3>
+
+<div class="card shadow-sm border-danger">
+    @* Thêm border-danger để cảnh báo *@
+    <div class="card-header bg-danger text-white">
+        <h4 class="mb-0">Thông tin Phân công Lịch thi sẽ bị xóa</h4>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">
+                Lịch thi
+            </dt>
+            <dd class="col-sm-9">
+                <strong>Đề thi:</strong> @Html.DisplayFor(model => model.Lichthi.Dethi.Tendethi)<br />
+                <strong>Lớp:</strong> @Html.DisplayFor(model => model.Lichthi.Lophoc.Tenlop)<br />
+                <strong>Ngày thi:</strong> @Html.DisplayFor(model => model.Lichthi.Ngaythi)
+            </dd>
+
+            <dt class="col-sm-3">
+                Sinh viên
+            </dt>
+            <dd class="col-sm-9">
+                <strong>MSV:</strong> @Html.DisplayFor(model => model.Sinhvien.Msv)<br />
+                <strong>Họ tên:</strong> @Html.DisplayFor(model => model.Sinhvien.SinhvienNavigation.Hoten)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Duocphepthi)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Duocphepthi)
+            </dd>
+        </dl>
+    </div>
+    <div class="card-footer d-flex justify-content-between">
+        @* Dùng flexbox để căn chỉnh nút *@
+        <form asp-action="DeleteConfirmed">
+            @* Các trường khóa chính, cần giữ lại dưới dạng hidden input để gửi lên server *@
+            <input type="hidden" asp-for="Lichthiid" />
+            <input type="hidden" asp-for="Sinhvienid" />
+
+            <button type="submit" class="btn btn-danger">
+                <i class="bi bi-trash"></i> Xóa
+            </button>
+        </form>
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Hủy và quay lại danh sách
+        </a>
+    </div>
+</div>

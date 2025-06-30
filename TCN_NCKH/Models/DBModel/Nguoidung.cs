@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TCN_NCKH.Models.DBModel;
 
@@ -28,6 +27,8 @@ public partial class Nguoidung
 
     public byte? Loainguoidungid { get; set; }
 
+    public string? AnhDaiDien { get; set; }
+
     public virtual ICollection<Dethi> Dethis { get; set; } = new List<Dethi>();
 
     public virtual Loainguoidung? Loainguoidung { get; set; }
@@ -35,7 +36,4 @@ public partial class Nguoidung
     public virtual Sinhvien? Sinhvien { get; set; }
 
     public virtual ICollection<Loainguoidung> Loainguoidungs { get; set; } = new List<Loainguoidung>();
-   
-    public string? Anhdaidien { get; set; }
-
 }
