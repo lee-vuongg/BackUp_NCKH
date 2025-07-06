@@ -1,8 +1,8 @@
-﻿@model TCN_NCKH.Models.DBModel.Lichthi
+﻿@model TCN_NCKH.Areas.HocSinh.Models.LamBaiViewModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
-    ViewData["Title"] = "Làm Bài: " + Model.Dethi?.Tendethi;
+    ViewData["Title"] = "Làm Bài: " + Model.LichThi.Dethi?.Tendethi;
     Layout = "~/Areas/HocSinh/Views/Shared/_LayoutHocSinh.cshtml";
 }
 
@@ -13,7 +13,7 @@
     }
 
     .container-custom {
-        max-width: 900px;
+        max-width: 1200px; /* Tăng chiều rộng container để có không gian cho sidebar */
         margin-top: 30px;
         margin-bottom: 30px;
     }
@@ -112,6 +112,176 @@
             font-size: 2.5rem;
             margin-right: 15px;
         }
+
+    /* Styles for the question navigation sidebar */
+    .question-nav-sidebar {
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        padding: 20px;
+        position: sticky; /* Giữ sidebar khi cuộn */
+        top: 30px; /* Khoảng cách từ trên cùng */
+        max-height: calc(100vh - 60px); /* Đảm bảo sidebar không tràn ra ngoài màn hình */
+        overflow-y: auto; /* Thêm thanh cuộn nếu nội dung quá dài */
+    }
+
+        .question-nav-sidebar h5 {
+            color: #007bff;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+    .question-nav-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(45px, 1fr)); /* 5 cột */
+        gap: 10px;
+    }
+
+    .question-nav-button {
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #ced4da;
+        border-radius: 8px;
+        background-color: #f0f0f0;
+        color: #343a40;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+    }
+
+        .question-nav-button:hover {
+            background-color: #e9ecef;
+        }
+
+        .question-nav-button.answered {
+            background-color: #28a745; /* Xanh lá cây */
+            color: white;
+            border-color: #28a745;
+        }
+
+        .question-nav-button.current {
+            background-color: #007bff; /* Xanh dương */
+            color: white;
+            border-color: #007bff;
+            transform: scale(1.1);
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+        }
+
+    .summary-section {
+        margin-top: 20px;
+        padding-top: 15px;
+        border-top: 1px solid #e9ecef;
+    }
+
+    /* Custom styles for security warnings and modal */
+    .security-alert {
+        background-color: #ffe0e6; /* Light red/pink background for warnings */
+        color: #8b0000; /* Dark red text */
+        border: 1px solid #ff4d4d;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+        font-size: 1rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+        .security-alert strong {
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .security-alert ul {
+            list-style: disc;
+            padding-left: 25px;
+            margin-top: 5px;
+        }
+
+        .security-alert li {
+            margin-bottom: 4px;
+        }
+
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.75);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999; /* Ensure it's on top of everything */
+    }
+
+    .modal-content {
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        max-width: 500px;
+        width: 90%;
+        text-align: center;
+        animation: fadeIn 0.3s ease-out;
+    }
+
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .modal-close-btn {
+        background-color: #dc3545; /* Red button */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.2s;
+    }
+
+        .modal-close-btn:hover {
+            background-color: #c82333;
+        }
+
+    .security-stats {
+        margin-top: 20px;
+        padding: 15px;
+        border: 1px solid #e9ecef;
+        border-radius: 10px;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: space-around;
+        font-size: 0.95rem;
+        color: #555;
+    }
+
+        .security-stats span {
+            display: block;
+            text-align: center;
+        }
+
+        .security-stats .status-ok {
+            color: #28a745; /* Green */
+            font-weight: bold;
+        }
+
+        .security-stats .status-warning {
+            color: #dc3545; /* Red */
+            font-weight: bold;
+        }
 </style>
 
 <div class="container container-custom">
@@ -134,7 +304,7 @@
     <div class="card">
         <div class="card-header">
             <h2 class="mb-0">
-                <i class="bi bi-file-earmark-text-fill me-2"></i> LÀM BÀI: @Model.Dethi?.Tendethi
+                <i class="bi bi-file-earmark-text-fill me-2"></i> LÀM BÀI: @Model.LichThi.Dethi?.Tendethi
             </h2>
             <span class="timer-badge" id="timer">
                 <i class="bi bi-hourglass-split me-1"></i> Thời gian còn lại: Loading...
@@ -142,108 +312,404 @@
         </div>
         <div class="card-body">
             <div class="mb-4 p-3 bg-light rounded-3">
-                <p class="mb-1"><i class="bi bi-book me-2"></i> <strong>Môn học:</strong> @(Model.Dethi?.Monhoc?.Tenmon ?? "N/A")</p>
-                <p class="mb-1"><i class="bi bi-calendar-check me-2"></i> <strong>Ngày thi:</strong> @(Model.Ngaythi.ToString("dd/MM/yyyy HH:mm"))</p>
-                <p class="mb-0"><i class="bi bi-clock me-2"></i> <strong>Thời gian làm bài:</strong> @(Model.Thoigian ?? 0) phút</p>
+                <p class="mb-1"><i class="bi bi-book me-2"></i> <strong>Môn học:</strong> @(Model.LichThi.Dethi?.Monhoc?.Tenmon ?? "N/A")</p>
+                <p class="mb-1"><i class="bi bi-calendar-check me-2"></i> <strong>Ngày thi:</strong> @(Model.LichThi.Ngaythi.ToString("dd/MM/yyyy HH:mm"))</p>
+                <p class="mb-0"><i class="bi bi-clock me-2"></i> <strong>Thời gian làm bài:</strong> @(Model.LichThi.Thoigian ?? 0) phút</p>
             </div>
 
             @* HIỂN THỊ THÔNG BÁO HẾT HẠN HOẶC ĐÃ NỘP *@
-            @if (ViewBag.IsExpired != null && ViewBag.IsExpired)
+            @if (Model.IsExpired)
             {
                 <div class="expiry-alert">
                     <span class="icon"><i class="bi bi-emoji-frown-fill"></i></span>
-                    <p class="mb-0">@ViewBag.ExpiryMessage</p>
+                    <p class="mb-0">@Model.ExpiryMessage</p>
                 </div>
             }
+            else
+            {
+                @* Security Warning Display Area *@
+                <div id="security-warnings" class="security-alert hidden">
+                    <strong>Cảnh báo gian lận!</strong>
+                    <ul id="warning-list">
+                        @* Warnings will be appended here by JavaScript *@
+                    </ul>
+                    <p class="mt-2 text-sm text-center">
+                        Hành vi này đã được ghi lại. Vui lòng tập trung vào bài thi.
+                    </p>
+                </div>
 
-            <form id="quizForm" asp-area="HocSinh" asp-controller="LamBai" asp-action="NopBai" method="post">
-                <input type="hidden" name="lichThiId" value="@Model.Id" />
-
-                @if (Model.Dethi?.Cauhois != null && Model.Dethi.Cauhois.Any())
-                {
-                    int questionNumber = 1;
-                    @foreach (var cauHoi in Model.Dethi.Cauhois.OrderBy(c => c.Id))
-                    {
-                        <div class="question-card">
-                            <p class="question-content">
-                                <span class="question-number">Câu @(questionNumber++):</span> @Html.Raw(cauHoi.Noidung)
-                                @if (cauHoi.Diem.HasValue)
+                <div class="row">
+                    @* Cột bên trái: Danh sách câu hỏi *@
+                    <div class="col-md-3">
+                        <div class="question-nav-sidebar">
+                            <h5>Danh sách câu hỏi</h5>
+                            <div class="question-nav-grid">
+                                @if (Model.LichThi.Dethi?.Cauhois != null && Model.LichThi.Dethi.Cauhois.Any())
                                 {
-                                    <small class="text-muted ms-2">(Điểm: @cauHoi.Diem)</small>
-                                }
-                            </p>
-
-                            @if (cauHoi.Dapans != null && cauHoi.Dapans.Any())
-                            {
-                                <div class="answers">
-                                    @foreach (var dapan in cauHoi.Dapans.OrderBy(d => d.Id))
+                                    int qNavNumber = 1;
+                                    @foreach (var cauHoi in Model.LichThi.Dethi.Cauhois.OrderBy(c => c.Id))
                                     {
-                                        <div class="answer-option">
-                                            <input type="checkbox"
-                                                   name="dapAnChon[@cauHoi.Id]"
-                                                   id="dapan-@dapan.Id"
-                                                   value="@dapan.Id"
-                                            @(ViewBag.IsExpired != null && ViewBag.IsExpired ? "disabled" : "") /> @* Vô hiệu hóa input *@
-                                            <label for="dapan-@dapan.Id">
-                                                @Html.Raw(dapan.Noidung)
-                                            </label>
-                                        </div>
+                                        <button type="button" class="question-nav-button" data-question-id="@cauHoi.Id">
+                                            @qNavNumber
+                                        </button>
+                                        qNavNumber++;
                                     }
-                                </div>
+                                }
+                            </div>
+                            <div class="summary-section text-center mt-3">
+                                <p class="mb-1">Đã làm: <span id="answeredCount" class="badge bg-success">0</span> / <span id="totalQuestions" class="badge bg-secondary">@Model.LichThi.Dethi?.Cauhois?.Count ?? 0</span></p>
+                                <p class="mb-0">Chưa làm: <span id="unansweredCount" class="badge bg-warning text-dark">@Model.LichThi.Dethi?.Cauhois?.Count ?? 0</span></p>
+                            </div>
+
+                            @* Security Stats Area *@
+                            <div class="security-stats mt-4">
+                                <span>Lỗi chuyển màn hình: <span id="tab-switch-count" class="status-ok">0</span></span>
+                                <span>Sao chép/Dán bị chặn: <span id="copy-paste-attempted" class="status-ok">Không</span></span>
+                                <span>Chế độ toàn màn hình: <span id="fullscreen-status" class="status-ok">Đang hoạt động</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    @* Cột bên phải: Nội dung bài thi *@
+                    <div class="col-md-9">
+                        <form id="quizForm" asp-area="HocSinh" asp-controller="LamBai" asp-action="NopBai" method="post">
+                            @Html.AntiForgeryToken() @* THÊM DÒNG NÀY ĐỂ BẢO VỆ FORM *@
+                            <input type="hidden" name="lichThiId" value="@Model.LichThi.Id" />
+                            <input type="hidden" name="lichSuLamBaiId" value="@Model.LichSuLamBaiId" /> @* Thêm trường ẩn này *@
+
+                            @if (Model.LichThi.Dethi?.Cauhois != null && Model.LichThi.Dethi.Cauhois.Any())
+                            {
+                                int questionNumber = 1;
+                                @foreach (var cauHoi in Model.LichThi.Dethi.Cauhois.OrderBy(c => c.Id))
+                                {
+                                    <div class="question-card" id="question-@cauHoi.Id" data-question-id="@cauHoi.Id">
+                                        <p class="question-content">
+                                            <span class="question-number">Câu @(questionNumber++):</span> @Html.Raw(cauHoi.Noidung)
+                                            @if (cauHoi.Diem.HasValue)
+                                            {
+                                                <small class="text-muted ms-2">(Điểm: @cauHoi.Diem)</small>
+                                            }
+                                        </p>
+
+                                        @if (cauHoi.Dapans != null && cauHoi.Dapans.Any())
+                                        {
+                                            <div class="answers">
+                                                @foreach (var dapan in cauHoi.Dapans.OrderBy(d => d.Id))
+                                                {
+                                                    <div class="answer-option">
+                                                        @* Kiểm tra Loaicauhoi để quyết định radio hay checkbox *@
+                                                        @if (cauHoi.Loaicauhoi == 1) // 1 for single choice (radio)
+                                                        {
+                                                            <input type="radio"
+                                                                   name="dapAnChon[@cauHoi.Id]"
+                                                                   id="dapan-@dapan.Id"
+                                                                   value="@dapan.Id"
+                                                            @(Model.IsExpired ? "disabled" : "") />
+                                                        }
+                                                        else // Default to multiple choice (checkbox) if not 1
+                                                        {
+                                                            <input type="checkbox"
+                                                                   name="dapAnChon[@cauHoi.Id]"
+                                                                   id="dapan-@dapan.Id"
+                                                                   value="@dapan.Id"
+                                                            @(Model.IsExpired ? "disabled" : "") />
+                                                        }
+                                                        <label for="dapan-@dapan.Id">
+                                                            @Html.Raw(dapan.Noidung)
+                                                        </label>
+                                                    </div>
+                                                }
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <p class="text-muted">Không có đáp án nào cho câu hỏi này.</p>
+                                        }
+                                    </div>
+                                }
                             }
                             else
                             {
-                                <p class="text-muted">Không có đáp án nào cho câu hỏi này.</p>
+                                <div class="alert alert-info text-center" role="alert">
+                                    Không có câu hỏi nào trong đề thi này.
+                                </div>
                             }
-                        </div>
-                    }
-                }
-                else
-                {
-                    <div class="alert alert-info text-center" role="alert">
-                        Không có câu hỏi nào trong đề thi này.
-                    </div>
-                }
 
-                <div class="submit-btn-container">
-                    <button type="submit" class="btn btn-success btn-lg px-5 shadow"
-                    @(ViewBag.IsExpired != null && ViewBag.IsExpired ? "disabled" : "")>
-                        @* Vô hiệu hóa nút nộp bài *@
-                        <i class="bi bi-check-circle me-2"></i> Nộp Bài
-                    </button>
+                            <div class="submit-btn-container">
+                                <button type="submit" class="btn btn-success btn-lg px-5 shadow"
+                                @(Model.IsExpired ? "disabled" : "")>
+                                    <i class="bi bi-check-circle me-2"></i> Nộp Bài
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </form>
+            }
+        </div>
+    </div>
+    @* Custom Modal for Security Warnings *@
+    <div id="security-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg p-6 max-w-sm mx-auto shadow-xl text-center">
+            <h3 class="text-xl font-bold text-red-600 mb-4">Cảnh Báo!</h3>
+            <p id="modal-message" class="text-gray-700 mb-6"></p>
+            <button id="modal-close-btn" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Đã Hiểu</button>
         </div>
     </div>
 </div>
-
 @section Scripts {
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
     <script>
+        // --- GLOBAL VARIABLES (Accessible to all functions) ---
+        const lichSuLamBaiId = @Model.LichSuLamBaiId;
+        const logViolationUrl = '@Url.Action("LogSecurityViolation", "LamBai", new { area = "HocSinh" })';
+
+        let activeWarnings = []; // Stores active warnings as { message, type }
+        let copyPasteAttempted = false;
+        let isDismissingWarning = false;
+        const DISMISS_COOLDOWN_MS = 4000; // 4 giây cooldown
+
+        const originalDocumentTitle = document.title; // Store original title
+
+        // --- DOM ELEMENTS ---
+        const securityWarningsDiv = document.getElementById('security-warnings');
+        const warningListUl = document.getElementById('warning-list');
+        const tabSwitchCountSpan = document.getElementById('tab-switch-count');
+        const copyPasteAttemptedSpan = document.getElementById('copy-paste-attempted');
+        const securityModal = document.getElementById('security-modal');
+        const modalMessageDiv = document.getElementById('modal-message');
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+
+        // --- SECURITY FUNCTIONS ---
+
+        async function sendViolationLog(type, message) {
+            console.log(`[${new Date().toLocaleTimeString()}] DEBUG: sendViolationLog called for type: ${type}, message: ${message}`);
+            try {
+                const antiForgeryToken = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
+                const response = await fetch(logViolationUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'RequestVerificationToken': antiForgeryToken
+                    },
+                    body: JSON.stringify({
+                        lichSuLamBaiId: lichSuLamBaiId,
+                        violationType: type,
+                        message: message
+                    })
+                });
+
+                if (!response.ok) {
+                    console.error(`[${new Date().toLocaleTimeString()}] ERROR: Failed to log security violation on server: Status ${response.status}, ${response.statusText}`);
+                } else {
+                    const data = await response.json();
+                    if (data.newSoLanRoiManHinh !== undefined) {
+                        tabSwitchCountSpan.textContent = data.newSoLanRoiManHinh;
+                        if (data.newSoLanRoiManHinh > 0) {
+                            tabSwitchCountSpan.classList.remove('status-ok');
+                            tabSwitchCountSpan.classList.add('status-warning');
+                        }
+                    }
+                    console.log(`[${new Date().toLocaleTimeString()}] DEBUG: Security violation logged successfully. Server response:`, data);
+                }
+            } catch (error) {
+                console.error(`[${new Date().toLocaleTimeString()}] ERROR: Error sending security violation log:`, error);
+            }
+        }
+
+        function addWarning(message, type) {
+            console.log(`\n[${new Date().toLocaleTimeString()}] DEBUG: addWarning called for type: ${type}`);
+            console.log(`  - isDismissingWarning: ${isDismissingWarning}`);
+
+            // Chỉ thêm cảnh báo nếu KHÔNG đang trong giai đoạn đóng modal
+            if (isDismissingWarning) {
+                console.log(`[${new Date().toLocaleTimeString()}] DEBUG: Warning for ${type} skipped: isDismissingWarning=${isDismissingWarning}`);
+                return;
+            }
+
+            if (activeWarnings.some(w => w.message === message && w.type === type)) {
+                console.log(`[${new Date().toLocaleTimeString()}] DEBUG: Warning for ${type} already active, skipping duplicate.`);
+                return;
+            }
+
+            activeWarnings.push({ message: message, type: type });
+            console.log(`[${new Date().toLocaleTimeString()}] DEBUG: activeWarnings after adding:`, activeWarnings);
+            updateWarningDisplay();
+
+            modalMessageDiv.textContent = message;
+            securityModal.classList.remove('hidden');
+            securityModal.classList.add('flex');
+            console.log(`[${new Date().toLocaleTimeString()}] DEBUG: Modal displayed.`);
+
+            sendViolationLog(type, message);
+        }
+
+        function removeWarning(type) {
+            console.log(`[${new Date().toLocaleTimeString()}] DEBUG: removeWarning called for type: ${type}`);
+            const initialLength = activeWarnings.length;
+            activeWarnings = activeWarnings.filter(w => w.type !== type);
+            if (activeWarnings.length !== initialLength) {
+                console.log(`[${new Date().toLocaleTimeString()}] DEBUG: activeWarnings after removing ${type}:`, activeWarnings);
+                updateWarningDisplay();
+            } else {
+                console.log(`[${new Date().toLocaleTimeString()}] DEBUG: Warning type ${type} not found in activeWarnings.`);
+            }
+        }
+
+        function updateWarningDisplay() {
+            console.log(`[${new Date().toLocaleTimeString()}] DEBUG: updateWarningDisplay called.`);
+            warningListUl.innerHTML = '';
+            if (activeWarnings.length > 0) {
+                activeWarnings.forEach(w => {
+                    const li = document.createElement('li');
+                    li.textContent = w.message;
+                    warningListUl.appendChild(li);
+                });
+                securityWarningsDiv.classList.remove('hidden');
+                console.log(`[${new Date().toLocaleTimeString()}] DEBUG: Security warnings div shown.`);
+            } else {
+                securityWarningsDiv.classList.add('hidden');
+                console.log(`[${new Date().toLocaleTimeString()}] DEBUG: Security warnings div hidden.`);
+            }
+        }
+
+        function handleCloseModal() {
+            console.log(`\n[${new Date().toLocaleTimeString()}] DEBUG: handleCloseModal called!`);
+            isDismissingWarning = true;
+            console.log(`[${new Date().toLocaleTimeString()}] DEBUG: isDismissingWarning set to true.`);
+
+            securityModal.classList.add('hidden');
+            securityModal.classList.remove('flex');
+            modalMessageDiv.textContent = '';
+            console.log(`[${new Date().toLocaleTimeString()}] DEBUG: Modal hidden.`);
+
+            activeWarnings = [];
+            console.log(`[${new Date().toLocaleTimeString()}] DEBUG: activeWarnings cleared.`);
+            updateWarningDisplay();
+            document.title = originalDocumentTitle;
+
+            // Reset cờ isDismissingWarning sau một khoảng thời gian "hạ nhiệt"
+            setTimeout(() => {
+                isDismissingWarning = false;
+                console.log(`[${new Date().toLocaleTimeString()}] DEBUG: isDismissingWarning reset to false after cooldown.`);
+            }, DISMISS_COOLDOWN_MS);
+        }
+
+        // --- Event Handlers for Security Features ---
+
+        const handleVisibilityChange = () => {
+            console.log(`\n[${new Date().toLocaleTimeString()}] DEBUG: handleVisibilityChange triggered. document.hidden: ${document.hidden}`);
+            if (document.hidden) {
+                addWarning('Bạn đã chuyển ra khỏi tab bài thi!', 'TabSwitch');
+                document.title = 'Cảnh báo! Quay lại bài thi!';
+            } else {
+                removeWarning('TabSwitch');
+                document.title = originalDocumentTitle;
+            }
+        };
+
+        const handleBlur = () => {
+            console.log(`\n[${new Date().toLocaleTimeString()}] DEBUG: handleBlur triggered. document.hidden: ${document.hidden}`);
+            // Chỉ thêm cảnh báo nếu document.hidden là false (nghĩa là cửa sổ vẫn visible nhưng mất focus)
+            if (!document.hidden) {
+                addWarning('Bạn đã chuyển ra khỏi cửa sổ bài thi!', 'WindowSwitch');
+                document.title = 'Cảnh báo! Quay lại bài thi!';
+            }
+        };
+
+        const handleFocus = () => {
+            console.log(`\n[${new Date().toLocaleTimeString()}] DEBUG: handleFocus triggered.`);
+            removeWarning('WindowSwitch');
+            document.title = originalDocumentTitle;
+        };
+
+        const handleCopyPaste = (event) => {
+            console.log(`\n[${new Date().toLocaleTimeString()}] DEBUG: handleCopyPaste triggered for type: ${event.type}`);
+            event.preventDefault();
+            addWarning(`Hành vi ${event.type === 'copy' ? 'sao chép' : 'dán'} không được phép!`, 'CopyPaste');
+            copyPasteAttempted = true;
+            copyPasteAttemptedSpan.textContent = 'Có';
+            copyPasteAttemptedSpan.classList.remove('status-ok');
+            copyPasteAttemptedSpan.classList.add('status-warning');
+        };
+
+        // --- MAIN DOCUMENT READY LOGIC ---
         $(document).ready(function() {
-            // Lấy giá trị IsExpired từ ViewBag
-            var isExpired = @(ViewBag.IsExpired != null && ViewBag.IsExpired ? "true" : "false");
+            console.log(`\n[${new Date().toLocaleTimeString()}] DEBUG: Document Ready.`);
+            var totalQuestions = @(Model.LichThi.Dethi?.Cauhois?.Count ?? 0);
+            var answeredQuestions = 0;
+            var isExpired = @(Model.IsExpired ? "true" : "false");
 
-            if (!isExpired) { // Chỉ chạy timer nếu chưa hết hạn
-                var durationMinutes = @(Model.Thoigian ?? 0); // Thời gian làm bài từ Model
-                var startTime = new Date('@Model.Ngaythi.ToString("yyyy/MM/dd HH:mm:ss")').getTime();
-                var endTime = startTime + (durationMinutes * 60 * 1000); // Tính thời gian kết thúc
+            // Function to update answered/unanswered counts and button styles
+            function updateQuestionStatus() {
+                answeredQuestions = 0;
+                $('.question-card').each(function() {
+                    var questionId = $(this).data('question-id');
+                    var answered = false;
+                    $(this).find('input[type="radio"], input[type="checkbox"]').each(function() {
+                        if ($(this).is(':checked')) {
+                            answered = true;
+                            return false;
+                        }
+                    });
 
-                // Cập nhật thời gian thực tế hiện tại
+                    var navButton = $('.question-nav-button[data-question-id="' + questionId + '"]');
+                    if (answered) {
+                        navButton.addClass('answered');
+                        answeredQuestions++;
+                    } else {
+                        navButton.removeClass('answered');
+                    }
+                });
+
+                $('#answeredCount').text(answeredQuestions);
+                $('#unansweredCount').text(totalQuestions - answeredQuestions);
+                $('#totalQuestions').text(totalQuestions);
+            }
+
+            // Initial status update
+            updateQuestionStatus();
+
+            // Event listener for answer changes
+            $('#quizForm').on('change', 'input[type="radio"], input[type="checkbox"]', function() {
+                updateQuestionStatus();
+            });
+
+            // Handle navigation button clicks
+            $('.question-nav-button').on('click', function() {
+                var questionId = $(this).data('question-id');
+                var targetQuestion = $('#question-' + questionId);
+
+                $('.question-nav-button').removeClass('current');
+                $(this).addClass('current');
+
+                if (targetQuestion.length) {
+                    $('html, body').animate({
+                        scrollTop: targetQuestion.offset().top - 80
+                    }, 500);
+                }
+            });
+
+            // Timer logic (no changes here for this issue)
+            if (!isExpired) {
+                var durationMinutes = @(Model.LichThi.Thoigian ?? 0);
+                var startTime = new Date('@Model.LichThi.Ngaythi.ToString("yyyy/MM/dd HH:mm:ss")').getTime();
+                var endTime = startTime + (durationMinutes * 60 * 1000);
+
                 var actualLoadTime = new Date().getTime();
                 var remainingTimeMs = endTime - actualLoadTime;
 
                 if (remainingTimeMs < 0) {
                     remainingTimeMs = 0;
                     $('#timer').text("Đã hết giờ!");
-                    // Vô hiệu hóa form và nút nộp bài nếu JS phát hiện hết giờ
                     $('#quizForm input, #quizForm button').prop('disabled', true);
                     $('#quizForm button[type="submit"]').text('Đã hết giờ!');
-                    // alert("Thời gian làm bài đã hết! Bài thi của bạn sẽ được tự động nộp."); // Có thể bỏ nếu thông báo đã hiển thị rõ ràng trên View
-                    // $('#quizForm').submit(); // Tự động nộp bài khi hết giờ (nếu cần tự động nộp khi hết giờ do JS)
                 } else {
-                    updateTimer(); // Cập nhật lần đầu
-                    var timerInterval = setInterval(updateTimer, 1000); // Cập nhật mỗi giây
+                    updateTimer();
+                    var timerInterval = setInterval(updateTimer, 1000);
                 }
 
                 function updateTimer() {
@@ -261,26 +727,59 @@
                     if (distance < 0) {
                         clearInterval(timerInterval);
                         $('#timer').text("Đã hết giờ!");
-                        // Vô hiệu hóa form và nút nộp bài khi hết giờ
                         $('#quizForm input, #quizForm button').prop('disabled', true);
                         $('#quizForm button[type="submit"]').text('Đã hết giờ!');
-                        // alert("Thời gian làm bài đã hết! Bài thi của bạn sẽ được tự động nộp."); // Loại bỏ alert để không gây khó chịu
-                        // $('#quizForm').submit(); // Tự động nộp bài khi hết giờ (nếu cần tự động nộp khi hết giờ do JS)
                     }
                 }
             } else {
-                // Nếu hết hạn từ server-side, vô hiệu hóa form và nút nộp bài ngay lập tức
                 $('#quizForm input, #quizForm button').prop('disabled', true);
                 $('#quizForm button[type="submit"]').text('Đã hết giờ!');
-                $('#timer').text("Đã hết giờ!"); // Cập nhật hiển thị timer
+                $('#timer').text("Đã hết giờ!");
             }
 
-            // Tự động đóng thông báo sau vài giây (giữ nguyên logic này)
             window.setTimeout(function () {
                 $(".alert.fade.show").fadeTo(500, 0).slideUp(500, function () {
                     $(this).remove();
                 });
             }, 3000);
+
+
+            // --- SECURITY JAVASCRIPT INITIALIZATION ---
+            if (!isExpired) {
+                document.addEventListener('visibilitychange', handleVisibilityChange);
+                window.addEventListener('blur', handleBlur);
+                window.addEventListener('focus', handleFocus);
+                document.addEventListener('copy', handleCopyPaste);
+                document.addEventListener('paste', handleCopyPaste);
+
+                // KHÔNG kiểm tra công cụ nhà phát triển để tránh xung đột
+                /*
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.shiftKey && e.key === 'J')) {
+                        e.preventDefault();
+                        addWarning('Bạn không được phép mở công cụ nhà phát triển.', 'DeveloperTools');
+                    }
+                });
+                */
+
+                modalCloseBtn.addEventListener('click', handleCloseModal);
+
+                // Loại bỏ hoàn toàn logic liên quan đến toàn màn hình
+                // Không có fullscreenchange listener
+                // Không có polling toàn màn hình
+                // Không có nút "Vào Toàn Màn Hình"
+            } else {
+                tabSwitchCountSpan.textContent = 'N/A';
+                copyPasteAttemptedSpan.textContent = 'N/A';
+                // Loại bỏ hiển thị trạng thái toàn màn hình
+                // fullscreenStatusSpan.textContent = 'N/A';
+                tabSwitchCountSpan.classList.remove('status-ok', 'status-warning');
+                copyPasteAttemptedSpan.classList.remove('status-ok', 'status-warning');
+                // Loại bỏ class cho trạng thái toàn màn hình
+                // fullscreenStatusSpan.classList.remove('status-ok', 'status-warning');
+            }
         });
     </script>
 }
+
+

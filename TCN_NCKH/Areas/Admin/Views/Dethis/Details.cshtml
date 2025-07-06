@@ -37,20 +37,41 @@
                     @Html.DisplayNameFor(model => model.Monhoc)
                 </dt>
                 <dd class="col-sm-9">
-                    @Html.DisplayFor(model => model.Monhoc.Tenmon) @* Hiển thị tên môn học *@
+                    @if (Model.Monhoc != null)
+                    {
+                        @Html.DisplayFor(model => model.Monhoc.Tenmon) @* Hiển thị tên môn học *@
+                    }
+                    else
+                    {
+                        <span>N/A</span>
+                    }
                 </dd>
                 <dt class="col-sm-3">
                     @Html.DisplayNameFor(model => model.NguoitaoNavigation)
                 </dt>
                 <dd class="col-sm-9">
-                    @Html.DisplayFor(model => model.NguoitaoNavigation.Hoten) @* Hiển thị họ tên người tạo *@
+                    @if (Model.NguoitaoNavigation != null)
+                    {
+                        @Html.DisplayFor(model => model.NguoitaoNavigation.Hoten) @* Hiển thị họ tên người tạo *@
+                    }
+                    else
+                    {
+                        <span>Không rõ người tạo</span>
+                    }
                 </dd>
 
                 <dt class="col-sm-3">
                     @Html.DisplayNameFor(model => model.Bocauhoi)
                 </dt>
                 <dd class="col-sm-9">
-                    @Html.DisplayFor(model => model.Bocauhoi.Tenbocauhoi) @* Hiển thị tên Bộ câu hỏi *@
+                    @if (Model.Bocauhoi != null)
+                    {
+                        @Html.DisplayFor(model => model.Bocauhoi.Tenbocauhoi) @* Hiển thị tên Bộ câu hỏi *@
+                    }
+                    else
+                    {
+                        <span>N/A</span>
+                    }
                 </dd>
                 <dt class="col-sm-3">
                     @Html.DisplayNameFor(model => model.Soluongcauhoi)
@@ -92,6 +113,23 @@
                 <dd class="col-sm-9">
                     @(Model.DethikhacnhauCa == true ? "Có" : "Không")
                 </dd>
+
+                {{-- THÊM TRƯỜNG THỜI LƯỢNG THI --}}
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Thoiluongthi)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Thoiluongthi) phút
+                </dd>
+
+                {{-- THÊM TRƯỜNG TRẠNG THÁI --}}
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Trangthai)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Trangthai)
+                </dd>
+
             </dl>
         </div>
         <div class="card-footer">

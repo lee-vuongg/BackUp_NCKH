@@ -25,6 +25,8 @@ public partial class Lichthi
 
     public virtual ICollection<Ketquathi> Ketquathis { get; set; } = new List<Ketquathi>();
 
+    public virtual ICollection<LichSuLamBai> LichSuLamBais { get; set; } = new List<LichSuLamBai>();
+
     public virtual ICollection<LichthiSinhvien> LichthiSinhviens { get; set; } = new List<LichthiSinhvien>();
 
     public virtual Lophoc? Lophoc { get; set; }

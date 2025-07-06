@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System.ComponentModel.DataAnnotations; // Thêm dòng này
 
 namespace TCN_NCKH.Models.DBModel;
 
 public partial class Dethi
 {
-    [Key] // Đảm bảo đây là khóa chính
-    [BindNever] // Vẫn giữ BindNever
-    // XÓA BẤT KỲ THUỘC TÍNH [Required] NÀO Ở ĐÂY NẾU CÓ
-    public string Id { get; set; } = null!; // Giữ null! vì bạn sẽ gán giá trị
+    public string Id { get; set; } = null!;
 
     public string Tendethi { get; set; } = null!;
 
@@ -32,9 +27,15 @@ public partial class Dethi
 
     public bool DethikhacnhauCa { get; set; }
 
+    public int? Thoiluongthi { get; set; }
+
+    public string? Trangthai { get; set; }
+
     public virtual Bocauhoi? Bocauhoi { get; set; }
 
     public virtual ICollection<Cauhoi> Cauhois { get; set; } = new List<Cauhoi>();
+
+    public virtual ICollection<LichSuLamBai> LichSuLamBais { get; set; } = new List<LichSuLamBai>();
 
     public virtual ICollection<Lichthi> Lichthis { get; set; } = new List<Lichthi>();
 

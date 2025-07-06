@@ -13,6 +13,8 @@ public partial class Sinhvien
 
     public virtual ICollection<Ketquathi> Ketquathis { get; set; } = new List<Ketquathi>();
 
+    public virtual ICollection<LichSuLamBai> LichSuLamBais { get; set; } = new List<LichSuLamBai>();
+
     public virtual ICollection<LichthiSinhvien> LichthiSinhviens { get; set; } = new List<LichthiSinhvien>();
 
     public virtual Lophoc? Lophoc { get; set; }
@@ -20,4 +22,5 @@ public partial class Sinhvien
     public virtual Nguoidung SinhvienNavigation { get; set; } = null!;
 
     public virtual ICollection<TraloiSinhvien> TraloiSinhviens { get; set; } = new List<TraloiSinhvien>();
+
 }

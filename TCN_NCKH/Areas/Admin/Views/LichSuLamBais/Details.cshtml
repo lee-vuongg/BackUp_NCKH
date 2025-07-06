@@ -1,0 +1,83 @@
+﻿@model TCN_NCKH.Models.ViewModels.LichSuLamBaiDetailsViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Chi Tiết Lịch Sử Làm Bài";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="text-center mb-4">Chi Tiết Lịch Sử Làm Bài</h1>
+
+<div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Thông tin chi tiết</h4>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.TenSinhVien)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.TenSinhVien)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.TenDeThi)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.TenDeThi)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.ThongTinLichThi)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.ThongTinLichThi)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.ThoiDiemBatDau)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.ThoiDiemBatDau)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.ThoiDiemKetThuc)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.ThoiDiemKetThuc)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.TongDiemDatDuoc)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.TongDiemDatDuoc)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.TrangThaiNopBai)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.TrangThaiNopBai)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.DaChamDiem)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.DaChamDiem)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.SoLanRoiManHinh)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.SoLanRoiManHinh)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Ipaddress)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Ipaddress)
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<div class="mt-4">
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Sửa</a>
+    <a asp-action="Index" class="btn btn-secondary ml-2">Quay lại danh sách</a>
+</div>

@@ -12,6 +12,15 @@ namespace TCN_NCKH.Models.ViewModels
         public Dethi? DeThi { get; set; }
         // Cờ cho biết đề thi đã được nộp bài hay chưa (có thể dùng trong context làm bài/kết quả)
         public bool DaNopBai { get; set; }
+        [Display(Name = "Thời lượng thi (phút)")]
+        [Range(1, 300, ErrorMessage = "Thời lượng thi phải từ 1 đến 300 phút.")]
+        public int? ThoiLuongThi { get; set; }
+
+        [Display(Name = "Trạng thái")]
+        public string? TrangThai { get; set; }
+
+        // Thêm list này để populate dropdown cho trạng thái
+        public List<SelectListItem> TrangThaiList { get; set; } = new List<SelectListItem>();
 
         // ID của đề thi. Là string để khớp với kiểu dữ liệu trong model Dethi của mi.
         // Có thể là null khi tạo mới, nhưng cần cho chỉnh sửa.

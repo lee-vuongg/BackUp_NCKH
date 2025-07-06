@@ -91,6 +91,25 @@
                     <span asp-validation-for="Soluongcauhoi" class="text-danger"></span>
                 </div>
 
+             
+                <div class="form-group mb-3">
+                    <label asp-for="ThoiLuongThi" class="control-label"></label>
+                    <input asp-for="ThoiLuongThi" class="form-control" type="number" min="1" />
+                    <span asp-validation-for="ThoiLuongThi" class="text-danger"></span>
+                </div>
+
+               
+                <div class="form-group mb-3">
+                    <label asp-for="TrangThai" class="control-label"></label>
+                    <select asp-for="TrangThai" class="form-control">
+                        <option value="">-- Chọn Trạng thái --</option>
+                        <option value="Đang Hoạt Động">Đang Hoạt Động</option>
+                        <option value="Không Hoạt Động">Không Hoạt Động</option>
+                        <option value="Bản Nháp">Bản Nháp</option>
+                    </select>
+                    <span asp-validation-for="TrangThai" class="text-danger"></span>
+                </div>
+
                 <div class="form-group form-check mb-3">
                     <input class="form-check-input" asp-for="DethikhacnhauCa" />
                     <label class="form-check-label" asp-for="DethikhacnhauCa"></label>
@@ -174,6 +193,11 @@
                 // Nếu không có bộ câu hỏi nào được chọn (hoặc null), xóa giá trị hiển thị mức độ khó
                 updateMucdokhoDisplay(""); // Đặt giá trị rỗng hoặc "Không xác định"
             }
+
+            // --- Khởi tạo giá trị cho các trường mới khi tải trang ---
+            // Đối với 'ThoiLuongThi', asp-for sẽ tự động bind giá trị từ model.
+            // Đối với 'TrangThai', đảm bảo dropdown list chọn đúng giá trị ban đầu của model
+            // (asp-for="TrangThai" trong select tag đã lo phần này)
         });
     </script>
 }

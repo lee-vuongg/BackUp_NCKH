@@ -89,6 +89,24 @@
                     <span asp-validation-for="Soluongcauhoi" class="text-danger"></span>
                 </div>
 
+               
+                <div class="form-group mb-3">
+                    <label asp-for="ThoiLuongThi" class="control-label"></label>
+                    <input asp-for="ThoiLuongThi" class="form-control" type="number" min="1" />
+                    <span asp-validation-for="ThoiLuongThi" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="TrangThai" class="control-label"></label>
+                    <select asp-for="TrangThai" class="form-control">
+                        <option value="">-- Chọn Trạng thái --</option>
+                        <option value="Đang Hoạt Động">Đang Hoạt Động</option>
+                        <option value="Không Hoạt Động">Không Hoạt Động</option>
+                        <option value="Bản Nháp">Bản Nháp</option>
+                    </select>
+                    <span asp-validation-for="TrangThai" class="text-danger"></span>
+                </div>
+
                 <div class="form-group form-check mb-3">
                     <input class="form-check-input" asp-for="DethikhacnhauCa" />
                     <label class="form-check-label" asp-for="DethikhacnhauCa"></label>
@@ -120,30 +138,34 @@
                 });
             }, 3000);
 
+            // Hàm để cập nhật hiển thị mức độ khó
+            function updateMucdokhoDisplay(mucDoKhoValue) {
+                var mucDoKhoText = "";
+                if (mucDoKhoValue === 0) {
+                    mucDoKhoText = "Dễ";
+                } else if (mucDoKhoValue === 1) {
+                    mucDoKhoText = "Trung bình";
+                } else if (mucDoKhoValue === 2) {
+                    mucDoKhoText = "Khó";
+                } else {
+                    mucDoKhoText = "Không xác định";
+                }
+                $('#displayMucdokho').val(mucDoKhoText);
+                $('#hiddenMucdokho').val(mucDoKhoValue); // Gán giá trị byte cho input hidden
+            }
+
             // Xử lý sự kiện khi dropdown Bộ câu hỏi thay đổi
             $('#bocauhoiDropdown').change(function() {
                 var selectedBocauhoiId = $(this).val();
                 if (selectedBocauhoiId) {
                     // Gửi AJAX request để lấy mức độ khó của bộ câu hỏi
                     $.ajax({
-                        url: '@Url.Action("GetBocauhoiMucdokho", "Dethis")', // Tạo một action mới trong DethisController
+                        url: '@Url.Action("GetBocauhoiMucdokho", "Dethis", new { area = "Admin" })', // Đảm bảo đúng Area và Controller
                         type: 'GET',
                         data: { bocauhoiId: selectedBocauhoiId },
                         success: function(response) {
                             if (response.mucDoKho !== undefined) {
-                                var mucDoKhoText = "";
-                                // Map giá trị byte? sang text
-                                if (response.mucDoKho === 0) {
-                                    mucDoKhoText = "Dễ";
-                                } else if (response.mucDoKho === 1) {
-                                    mucDoKhoText = "Trung bình";
-                                } else if (response.mucDoKho === 2) {
-                                    mucDoKhoText = "Khó";
-                                } else {
-                                    mucDoKhoText = "Không xác định";
-                                }
-                                $('#displayMucdokho').val(mucDoKhoText);
-                                $('#hiddenMucdokho').val(response.mucDoKho); // Gán giá trị byte cho input hidden
+                                updateMucdokhoDisplay(response.mucDoKho);
                             } else {
                                 $('#displayMucdokho').val("Không xác định");
                                 $('#hiddenMucdokho').val("");

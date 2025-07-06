@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TCN_NCKH.Models.DBModel;
-using TCN_NCKH.Models.ViewModels; // Thêm để sử dụng DethiListViewModel (và các ViewModels khác nếu có)
 using Microsoft.Data.SqlClient; // Thêm để bắt lỗi SQL Server cụ thể
 
 namespace TCN_NCKH.Areas.Admin.Controllers
@@ -21,72 +20,137 @@ namespace TCN_NCKH.Areas.Admin.Controllers
             _context = context;
         }
 
-        // GET: Admin/Dapans
-        // Đã thêm tham số phân trang page và pageSize
-        public async Task<IActionResult> Index(int page = 1, int pageSize = 5) // Mặc định 5 đề thi mỗi trang
+        // GET: Admin/Dapans (Giờ đây hiển thị danh sách CÂU HỎI)
+        public async Task<IActionResult> Index(int? selectedBoCauHoiId, string selectedDeThiId, int? selectedCauHoiId, int page = 1, int pageSize = 10) // Mặc định 10 câu hỏi mỗi trang
         {
-            Console.WriteLine($"DEBUG: [DapansController][Index] - Vào action Index. Page: {page}, PageSize: {pageSize}");
+            Console.WriteLine($"DEBUG: [DapansController][Index] - Vào action Index (hiển thị Câu hỏi). SelectedBoCauHoiId: {selectedBoCauHoiId}, SelectedDeThiId: {selectedDeThiId}, SelectedCauHoiId: {selectedCauHoiId}, Page: {page}, PageSize: {pageSize}");
 
-            // Đảm bảo số trang và kích thước trang hợp lệ
             if (page < 1) page = 1;
-            if (pageSize < 1) pageSize = 5;
+            if (pageSize < 1) pageSize = 10; // Kích thước trang cho Câu hỏi
 
-            // Lấy tất cả đề thi để đếm tổng số mục trước khi phân trang
-            // Sắp xếp theo ID để đảm bảo thứ tự nhất quán
-            var query = _context.Dethis.OrderBy(d => d.Id);
+            // Bắt đầu query các Câu hỏi
+            IQueryable<Cauhoi> cauhoisQuery = _context.Cauhois
+                                                .Include(c => c.Bocauhoi) // Bao gồm Bộ câu hỏi
+                                                .Include(c => c.Dapans)   // Bao gồm các Đáp án của câu hỏi
+                                                .OrderBy(c => c.Id); // Sắp xếp để đảm bảo thứ tự nhất quán
 
-            // Đếm tổng số đề thi
-            var totalItems = await query.CountAsync();
-            Console.WriteLine($"DEBUG: [DapansController][Index] - Tổng số đề thi: {totalItems}");
+            // Áp dụng bộ lọc Đề thi nếu có
+            if (!string.IsNullOrEmpty(selectedDeThiId))
+            {
+                var dethi = await _context.Dethis.AsNoTracking().FirstOrDefaultAsync(d => d.Id == selectedDeThiId);
+                if (dethi?.Bocauhoiid.HasValue == true)
+                {
+                    cauhoisQuery = cauhoisQuery.Where(c => c.Bocauhoiid == dethi.Bocauhoiid.Value);
+                    Console.WriteLine($"DEBUG: [DapansController][Index] - Lọc theo Đề thi ID: {selectedDeThiId}, Bộ câu hỏi liên quan: {dethi.Bocauhoiid.Value}");
+                    // Khi lọc theo Đề thi, ưu tiên bộ câu hỏi của đề thi đó
+                    selectedBoCauHoiId = dethi.Bocauhoiid.Value;
+                    selectedCauHoiId = null; // Reset câu hỏi khi lọc theo đề thi
+                }
+                else
+                {
+                    Console.WriteLine($"DEBUG: [DapansController][Index] - Không tìm thấy Đề thi với ID {selectedDeThiId} hoặc không có Bộ câu hỏi liên kết.");
+                }
+            }
+
+            // Áp dụng bộ lọc Bộ câu hỏi nếu có
+            if (selectedBoCauHoiId.HasValue)
+            {
+                cauhoisQuery = cauhoisQuery.Where(c => c.Bocauhoiid == selectedBoCauHoiId.Value);
+                Console.WriteLine($"DEBUG: [DapansController][Index] - Lọc theo Bộ câu hỏi ID: {selectedBoCauHoiId.Value}");
+            }
+
+            // Áp dụng bộ lọc Câu hỏi nếu có (cho trường hợp tìm kiếm cụ thể 1 câu hỏi)
+            if (selectedCauHoiId.HasValue)
+            {
+                cauhoisQuery = cauhoisQuery.Where(c => c.Id == selectedCauHoiId.Value);
+                Console.WriteLine($"DEBUG: [DapansController][Index] - Lọc theo Câu hỏi ID: {selectedCauHoiId.Value}");
+            }
+
+            // Đếm tổng số câu hỏi sau khi lọc
+            var totalItems = await cauhoisQuery.CountAsync();
+            Console.WriteLine($"DEBUG: [DapansController][Index] - Tổng số câu hỏi (sau lọc): {totalItems}");
 
             // Tính tổng số trang
             var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
             Console.WriteLine($"DEBUG: [DapansController][Index] - Tổng số trang: {totalPages}");
 
-            // Lấy danh sách đề thi cho trang hiện tại
-            // CHUỖI INCLUDE ĐÃ ĐƯỢC SỬA LẠI ĐƠN GIẢN HƠN VÌ GIẢ ĐỊNH CAUHOI CÓ DETHIID TRỰC TIẾP
-            var dethisOnPage = await query
-                                        .Skip((page - 1) * pageSize) // Bỏ qua các đề thi của các trang trước
-                                        .Take(pageSize) // Lấy số lượng đề thi cho trang hiện tại
-                                        .Include(d => d.Cauhois.OrderBy(c => c.Id)) // Include Cauhois trực tiếp từ Dethi, sắp xếp theo ID
-                                            .ThenInclude(ch => ch.Dapans.OrderBy(da => da.Id)) // Sau đó include Dapans từ Cauhois, sắp xếp theo ID
+            // Lấy danh sách câu hỏi cho trang hiện tại
+            var cauhoisOnPage = await cauhoisQuery
+                                        .Skip((page - 1) * pageSize)
+                                        .Take(pageSize)
                                         .ToListAsync();
 
-            Console.WriteLine($"DEBUG: [DapansController][Index] - Đã tải {dethisOnPage.Count} đề thi cho trang {page}.");
-            foreach (var dethi in dethisOnPage)
+            Console.WriteLine($"DEBUG: [DapansController][Index] - Đã tải {cauhoisOnPage.Count} câu hỏi cho trang {page}.");
+
+            // Tạo ViewModel cho từng Câu hỏi để bao gồm tên Đề thi liên quan
+            var questionViewModels = new List<QuestionViewModelForIndex>();
+
+            foreach (var cauhoi in cauhoisOnPage)
             {
-                Console.WriteLine($"DEBUG: Đề thi ID: {dethi.Id}, Tên: {dethi.Tendethi}, Số câu hỏi: {dethi.Cauhois?.Count ?? 0}");
-                if (dethi.Cauhois != null)
+                List<string> relatedDeThiNames = new List<string>();
+                if (cauhoi.Bocauhoiid.HasValue)
                 {
-                    foreach (var cauhoi in dethi.Cauhois)
-                    {
-                        Console.WriteLine($"  - Câu hỏi ID: {cauhoi.Id}, Nội dung: {cauhoi.Noidung?.Substring(0, Math.Min(cauhoi.Noidung.Length, 50))}..., Số đáp án: {cauhoi.Dapans?.Count ?? 0}");
-                        if (cauhoi.Dapans != null)
-                        {
-                            foreach (var dapan in cauhoi.Dapans)
-                            {
-                                Console.WriteLine($"    - Đáp án ID: {dapan.Id}, Nội dung: {dapan.Noidung?.Substring(0, Math.Min(dapan.Noidung.Length, 50))}..., Đúng: {dapan.Dung}");
-                            }
-                        }
-                    }
+                    var relatedDethis = await _context.Dethis
+                                                      .Where(d => d.Bocauhoiid == cauhoi.Bocauhoiid.Value)
+                                                      .Select(d => d.Tendethi)
+                                                      .ToListAsync();
+                    relatedDeThiNames.AddRange(relatedDethis);
                 }
+
+                questionViewModels.Add(new QuestionViewModelForIndex
+                {
+                    Cauhoi = cauhoi,
+                    RelatedDeThiNames = relatedDeThiNames
+                });
             }
+
+            // Populate dropdowns cho các bộ lọc trên View
+            ViewData["BoCauHoiId"] = new SelectList(await _context.Bocauhois.OrderBy(b => b.Tenbocauhoi).ToListAsync(), "Id", "Tenbocauhoi", selectedBoCauHoiId);
+            ViewData["DeThiId"] = new SelectList(await _context.Dethis.OrderBy(d => d.Tendethi).ToListAsync(), "Id", "Tendethi", selectedDeThiId);
+
+            // Lọc danh sách câu hỏi cho dropdown "Câu hỏi" dựa trên selectedBoCauHoiId
+            var cauhoisForFilterDropdown = _context.Cauhois.AsQueryable();
+            if (selectedBoCauHoiId.HasValue)
+            {
+                cauhoisForFilterDropdown = cauhoisForFilterDropdown.Where(c => c.Bocauhoiid == selectedBoCauHoiId.Value);
+            }
+            ViewData["CauHoiId"] = new SelectList(await cauhoisForFilterDropdown.OrderBy(c => c.Noidung).ToListAsync(), "Id", "Noidung", selectedCauHoiId);
 
 
             // Tạo ViewModel để truyền dữ liệu và thông tin phân trang sang View
-            var viewModel = new DethiListViewModel
+            var viewModel = new QuestionListViewModel
             {
-                Dethis = dethisOnPage,
+                Questions = questionViewModels, // Giờ là danh sách Câu hỏi
                 PageNumber = page,
                 PageSize = pageSize,
                 TotalPages = totalPages,
-                TotalItems = totalItems
+                TotalItems = totalItems,
+                SelectedBoCauHoiId = selectedBoCauHoiId,
+                SelectedCauHoiId = selectedCauHoiId,
+                SelectedDeThiId = selectedDeThiId
             };
 
             return View(viewModel);
         }
 
-        // GET: Admin/Dapans/Details/5
+        // GET: Admin/Dapans/GetAnswersForQuestion (Action mới cho AJAX để lấy đáp án cho modal)
+        [HttpGet]
+        public async Task<IActionResult> GetAnswersForQuestion(int cauhoiId)
+        {
+            var cauhoi = await _context.Cauhois
+                                       .Include(c => c.Dapans.OrderBy(d => d.Id)) // Lấy các đáp án và sắp xếp
+                                       .FirstOrDefaultAsync(c => c.Id == cauhoiId);
+
+            if (cauhoi == null)
+            {
+                return NotFound();
+            }
+            // Trả về PartialView chứa danh sách đáp án
+            return PartialView("_AnswersForQuestionPartial", cauhoi);
+        }
+
+
+        // GET: Admin/Dapans/Details/5 (Giữ nguyên)
         public async Task<IActionResult> Details(int? id)
         {
             Console.WriteLine($"DEBUG: [DapansController][Details] - Vào action Details. ID: {id ?? null}");
@@ -98,11 +162,11 @@ namespace TCN_NCKH.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            // Load Dapan và Cauhoi, Dethi liên quan
+            // Load Dapan và Cauhoi, Bocauhoi liên quan
             var dapan = await _context.Dapans
-                                        .Include(d => d.Cauhoi)
-                                            .ThenInclude(c => c.Dethi) // Cần để lấy Dethiid cho dropdown
-                                        .FirstOrDefaultAsync(d => d.Id == id);
+                                     .Include(d => d.Cauhoi)
+                                         .ThenInclude(c => c.Bocauhoi)
+                                     .FirstOrDefaultAsync(d => d.Id == id);
 
             if (dapan == null)
             {
@@ -112,40 +176,72 @@ namespace TCN_NCKH.Areas.Admin.Controllers
             }
 
             Console.WriteLine($"DEBUG: [DapansController][Details] - Đã tìm thấy đáp án ID: {dapan.Id}, Nội dung: {dapan.Noidung}");
-            Console.WriteLine($"DEBUG: [DapansController][Details] - Thuộc câu hỏi ID: {dapan.Cauhoiid}, Đề thi ID: {dapan.Cauhoi?.Dethiid}");
+            Console.WriteLine($"DEBUG: [DapansController][Details] - Thuộc câu hỏi ID: {dapan.Cauhoiid}, Bộ câu hỏi ID: {dapan.Cauhoi?.Bocauhoiid}");
 
+            // Populate Bocauhoi dropdown (sử dụng cho View)
+            ViewData["Bocauhoiid"] = new SelectList(await _context.Bocauhois.OrderBy(b => b.Tenbocauhoi).ToListAsync(), "Id", "Tenbocauhoi", dapan.Cauhoi?.Bocauhoiid);
 
-            // Populate Dethi dropdown
-            ViewData["Dethiid"] = new SelectList(_context.Dethis.OrderBy(d => d.Tendethi), "Id", "Tendethi", dapan.Cauhoi?.Dethiid);
-
-            // Populate Cauhoi dropdown, filtered by selected Dethiid (if any)
-            var cauhoisForDethi = _context.Cauhois.AsQueryable();
-            if (dapan.Cauhoi?.Dethiid != null) // Kiểm tra Dethiid có giá trị
+            // Populate Cauhoi dropdown, filtered by selected Bocauhoiid (sử dụng cho View)
+            var cauhoisForBoCauHoi = _context.Cauhois.AsQueryable();
+            if (dapan.Cauhoi?.Bocauhoiid != null)
             {
-                Console.WriteLine($"DEBUG: [DapansController][Details] - Lọc câu hỏi theo Dethiid: {dapan.Cauhoi.Dethiid}");
-                cauhoisForDethi = cauhoisForDethi.Where(c => c.Dethiid == dapan.Cauhoi.Dethiid);
+                Console.WriteLine($"DEBUG: [DapansController][Details] - Lọc câu hỏi theo Bocauhoiid: {dapan.Cauhoi.Bocauhoiid}");
+                cauhoisForBoCauHoi = cauhoisForBoCauHoi.Where(c => c.Bocauhoiid == dapan.Cauhoi.Bocauhoiid);
             }
-            ViewData["Cauhoiid"] = new SelectList(cauhoisForDethi.OrderBy(c => c.Noidung), "Id", "Noidung", dapan.Cauhoi?.Id);
+            ViewData["Cauhoiid"] = new SelectList(await cauhoisForBoCauHoi.OrderBy(c => c.Noidung).ToListAsync(), "Id", "Noidung", dapan.Cauhoiid);
 
             return View(dapan);
         }
 
-        // GET: Admin/Dapans/Create
-        public IActionResult Create()
+        // GET: Admin/Dapans/Create (Giữ nguyên)
+        public async Task<IActionResult> Create(int? cauhoiid)
         {
-            Console.WriteLine("DEBUG: [DapansController][Create] - Vào action Create (GET).");
-            // Vẫn cần DethiId để lọc Cauhoi sau này nếu muốn
-            ViewData["Dethiid"] = new SelectList(_context.Dethis.OrderBy(d => d.Tendethi), "Id", "Tendethi");
-            ViewData["Cauhoiid"] = new SelectList(_context.Cauhois.OrderBy(c => c.Noidung), "Id", "Noidung");
+            Console.WriteLine($"DEBUG: [DapansController][Create] - Vào action Create (GET). Cauhoiid truyền vào: {cauhoiid ?? null}");
+
+            // Populate Bocauhoi dropdown
+            ViewData["Bocauhoiid"] = new SelectList(await _context.Bocauhois.OrderBy(b => b.Tenbocauhoi).ToListAsync(), "Id", "Tenbocauhoi");
+
+            // Logic để chọn sẵn Câu hỏi nếu có cauhoiid truyền vào, và lọc dropdown Câu hỏi theo Bộ câu hỏi của nó
+            List<SelectListItem> cauhoiListItems = new List<SelectListItem>();
+            int? preselectedBoCauHoiId = null;
+
+            if (cauhoiid.HasValue)
+            {
+                var cauhoi = await _context.Cauhois.Include(c => c.Bocauhoi).FirstOrDefaultAsync(c => c.Id == cauhoiid.Value);
+                if (cauhoi != null)
+                {
+                    preselectedBoCauHoiId = cauhoi.Bocauhoiid;
+                    // Lọc câu hỏi theo Bộ câu hỏi của câu hỏi được truyền vào nếu có
+                    cauhoiListItems = (await _context.Cauhois
+                                                    .Where(c => c.Bocauhoiid == preselectedBoCauHoiId)
+                                                    .OrderBy(c => c.Noidung)
+                                                    .ToListAsync())
+                                                    .Select(c => new SelectListItem { Value = c.Id.ToString(), Text = $"{c.Noidung?.Substring(0, Math.Min(c.Noidung.Length, 100))}..." })
+                                                    .ToList();
+                }
+            }
+            else // Nếu không có cauhoiid truyền vào, hiển thị tất cả câu hỏi ban đầu
+            {
+                cauhoiListItems = (await _context.Cauhois.OrderBy(c => c.Noidung).ToListAsync())
+                                                    .Select(c => new SelectListItem { Value = c.Id.ToString(), Text = $"{c.Noidung?.Substring(0, Math.Min(c.Noidung.Length, 100))}..." })
+                                                    .ToList();
+            }
+
+            ViewData["Cauhoiid"] = new SelectList(cauhoiListItems, "Value", "Text", cauhoiid);
+            ViewBag.PreselectedBoCauHoiId = preselectedBoCauHoiId;
+
             return View();
         }
 
-        // POST: Admin/Dapans/Create
+        // POST: Admin/Dapans/Create (Giữ nguyên)
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Cauhoiid,Noidung,Dung")] Dapan dapan)
         {
             Console.WriteLine($"DEBUG: [DapansController][Create] - Vào action Create (POST). Dữ liệu nhận được: CauhoiID={dapan.Cauhoiid}, NoiDung='{dapan.Noidung}', Dung={dapan.Dung}");
+
+            // Loại bỏ validation cho các navigation properties (nếu chúng gây lỗi)
+            ModelState.Remove("Cauhoi");
 
             if (ModelState.IsValid)
             {
@@ -169,16 +265,47 @@ namespace TCN_NCKH.Areas.Admin.Controllers
                 Console.WriteLine("DEBUG: [DapansController][Create] - ModelState.IsValid là FALSE. Có lỗi validation.");
             }
 
-            // Populate ViewDatas again on error
-            ViewData["Dethiid"] = new SelectList(_context.Dethis.OrderBy(d => d.Tendethi), "Id", "Tendethi");
-            ViewData["Cauhoiid"] = new SelectList(_context.Cauhois.OrderBy(c => c.Noidung), "Id", "Noidung", dapan.Cauhoiid);
+            // Repopulate ViewDatas again on error
+            // Tải lại câu hỏi để biết nó thuộc bộ câu hỏi nào nếu Cauhoiid đã được chọn trên form
+            int? preselectedBoCauHoiIdOnError = null;
+            if (dapan.Cauhoiid.HasValue)
+            {
+                var cauhoi = await _context.Cauhois.AsNoTracking().FirstOrDefaultAsync(c => c.Id == dapan.Cauhoiid.Value);
+                if (cauhoi != null)
+                {
+                    preselectedBoCauHoiIdOnError = cauhoi.Bocauhoiid;
+                }
+            }
+
+            ViewData["Bocauhoiid"] = new SelectList(await _context.Bocauhois.OrderBy(b => b.Tenbocauhoi).ToListAsync(), "Id", "Tenbocauhoi", preselectedBoCauHoiIdOnError);
+
+            // Lọc danh sách câu hỏi cho dropdown dựa trên Bộ câu hỏi đã chọn (hoặc tất cả nếu chưa chọn)
+            List<SelectListItem> cauhoiListItemsOnError = new List<SelectListItem>();
+            if (preselectedBoCauHoiIdOnError.HasValue)
+            {
+                cauhoiListItemsOnError = (await _context.Cauhois
+                                                        .Where(c => c.Bocauhoiid == preselectedBoCauHoiIdOnError.Value)
+                                                        .OrderBy(c => c.Noidung)
+                                                        .ToListAsync())
+                                                        .Select(c => new SelectListItem { Value = c.Id.ToString(), Text = $"{c.Noidung?.Substring(0, Math.Min(c.Noidung.Length, 100))}..." })
+                                                        .ToList();
+            }
+            else
+            {
+                cauhoiListItemsOnError = (await _context.Cauhois.OrderBy(c => c.Noidung).ToListAsync())
+                                                    .Select(c => new SelectListItem { Value = c.Id.ToString(), Text = $"{c.Noidung?.Substring(0, Math.Min(c.Noidung.Length, 100))}..." })
+                                                    .ToList();
+            }
+            ViewData["Cauhoiid"] = new SelectList(cauhoiListItemsOnError, "Value", "Text", dapan.Cauhoiid);
+            ViewBag.PreselectedBoCauHoiId = preselectedBoCauHoiIdOnError;
+
             if (TempData["ErrorMessage"] == null)
             {
                 TempData["ErrorMessage"] = "Thông tin đáp án không hợp lệ. Vui lòng kiểm tra lại.";
             }
             string validationErrors = string.Join("<br/>", ModelState.Values
-                                                    .SelectMany(v => v.Errors)
-                                                    .Select(e => e.ErrorMessage));
+                                                                 .SelectMany(v => v.Errors)
+                                                                 .Select(e => e.ErrorMessage));
             if (!string.IsNullOrEmpty(validationErrors))
             {
                 TempData["ErrorMessage"] = (TempData["ErrorMessage"] as string ?? "") + "<br/>" + validationErrors;
@@ -187,7 +314,7 @@ namespace TCN_NCKH.Areas.Admin.Controllers
             return View(dapan);
         }
 
-        // GET: Admin/Dapans/Edit/5
+        // GET: Admin/Dapans/Edit/5 (Giữ nguyên)
         public async Task<IActionResult> Edit(int? id)
         {
             Console.WriteLine($"DEBUG: [DapansController][Edit] - Vào action Edit (GET). ID: {id ?? null}");
@@ -198,11 +325,11 @@ namespace TCN_NCKH.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            // Load Dapan và Cauhoi, Dethi liên quan
+            // Load Dapan và Cauhoi, Bocauhoi liên quan
             var dapan = await _context.Dapans
-                                        .Include(d => d.Cauhoi)
-                                            .ThenInclude(c => c.Dethi)
-                                        .FirstOrDefaultAsync(d => d.Id == id);
+                                         .Include(d => d.Cauhoi)
+                                             .ThenInclude(c => c.Bocauhoi)
+                                         .FirstOrDefaultAsync(d => d.Id == id);
 
             if (dapan == null)
             {
@@ -212,23 +339,37 @@ namespace TCN_NCKH.Areas.Admin.Controllers
             }
 
             Console.WriteLine($"DEBUG: [DapansController][Edit] - Đã tìm thấy đáp án ID: {dapan.Id}, Nội dung: {dapan.Noidung}");
-            Console.WriteLine($"DEBUG: [DapansController][Edit] - Thuộc câu hỏi ID: {dapan.Cauhoiid}, Đề thi ID: {dapan.Cauhoi?.Dethiid}");
+            Console.WriteLine($"DEBUG: [DapansController][Edit] - Thuộc câu hỏi ID: {dapan.Cauhoiid}, Bộ câu hỏi ID: {dapan.Cauhoi?.Bocauhoiid}");
 
+            // Populate Bocauhoi dropdown
+            ViewData["Bocauhoiid"] = new SelectList(await _context.Bocauhois.OrderBy(b => b.Tenbocauhoi).ToListAsync(), "Id", "Tenbocauhoi", dapan.Cauhoi?.Bocauhoiid);
 
-            ViewData["Dethiid"] = new SelectList(_context.Dethis.OrderBy(d => d.Tendethi), "Id", "Tendethi", dapan.Cauhoi?.Dethiid);
-
-            var cauhoisForDethi = _context.Cauhois.AsQueryable();
-            if (dapan.Cauhoi?.Dethiid != null)
+            // Populate Cauhoi dropdown, filtered by selected Bocauhoiid
+            List<SelectListItem> cauhoiListItems = new List<SelectListItem>();
+            if (dapan.Cauhoi?.Bocauhoiid != null)
             {
-                Console.WriteLine($"DEBUG: [DapansController][Edit] - Lọc câu hỏi theo Dethiid: {dapan.Cauhoi.Dethiid}");
-                cauhoisForDethi = cauhoisForDethi.Where(c => c.Dethiid == dapan.Cauhoi.Dethiid);
+                Console.WriteLine($"DEBUG: [DapansController][Edit] - Lọc câu hỏi theo Bocauhoiid: {dapan.Cauhoi.Bocauhoiid}");
+                cauhoiListItems = (await _context.Cauhois
+                                                .Where(c => c.Bocauhoiid == dapan.Cauhoi.Bocauhoiid)
+                                                .OrderBy(c => c.Noidung)
+                                                .ToListAsync())
+                                                .Select(c => new SelectListItem { Value = c.Id.ToString(), Text = $"{c.Noidung?.Substring(0, Math.Min(c.Noidung.Length, 100))}..." })
+                                                .ToList();
             }
-            ViewData["Cauhoiid"] = new SelectList(cauhoisForDethi.OrderBy(c => c.Noidung), "Id", "Noidung", dapan.Cauhoi?.Id);
+            else
+            {
+                cauhoiListItems = (await _context.Cauhois.OrderBy(c => c.Noidung).ToListAsync())
+                                                    .Select(c => new SelectListItem { Value = c.Id.ToString(), Text = $"{c.Noidung?.Substring(0, Math.Min(c.Noidung.Length, 100))}..." })
+                                                    .ToList();
+            }
+            ViewData["Cauhoiid"] = new SelectList(cauhoiListItems, "Value", "Text", dapan.Cauhoiid);
+            ViewBag.PreselectedBoCauHoiId = dapan.Cauhoi?.Bocauhoiid;
+
 
             return View(dapan);
         }
 
-        // POST: Admin/Dapans/Edit/5
+        // POST: Admin/Dapans/Edit/5 (Giữ nguyên)
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Cauhoiid,Noidung,Dung")] Dapan dapanFromForm)
@@ -241,6 +382,8 @@ namespace TCN_NCKH.Areas.Admin.Controllers
                 Console.WriteLine($"DEBUG: [DapansController][Edit] - ID không khớp: {id} != {dapanFromForm.Id}.");
                 return NotFound();
             }
+
+            ModelState.Remove("Cauhoi"); // Remove to avoid validation errors on navigation property
 
             var existingDapan = await _context.Dapans.FindAsync(id);
 
@@ -255,24 +398,38 @@ namespace TCN_NCKH.Areas.Admin.Controllers
             {
                 Console.WriteLine("DEBUG: [DapansController][Edit] - ModelState.IsValid là FALSE. Có lỗi validation.");
                 string validationErrors = string.Join("<br/>", ModelState.Values
-                                                    .SelectMany(v => v.Errors)
-                                                    .Select(e => e.ErrorMessage));
+                                                                 .SelectMany(v => v.Errors)
+                                                                 .Select(e => e.ErrorMessage));
                 TempData["ErrorMessage"] = "Có lỗi xác thực: <br/>" + validationErrors;
                 Console.WriteLine($"DEBUG: [DapansController][Edit] - Lỗi validation: {validationErrors}");
 
-                // Repopulate ViewDatas on error, ensuring related Dethi/Cauhoi are loaded
-                await _context.Entry(existingDapan).Reference(d => d.Cauhoi).LoadAsync(); // Load Cauhoi để truy cập DethiId
+                // Repopulate ViewDatas on error, ensuring related BoCauHoi/Cauhoi are loaded
+                await _context.Entry(existingDapan).Reference(d => d.Cauhoi).LoadAsync(); // Load Cauhoi để truy cập Bocauhoiid
 
-                ViewData["Dethiid"] = new SelectList(_context.Dethis.OrderBy(d => d.Tendethi), "Id", "Tendethi", existingDapan.Cauhoi?.Dethiid);
+                // Load the BoCauHoi from the existing Dapan's Cauhoi for pre-selecting the dropdown
+                int? preselectedBoCauHoiIdOnError = existingDapan.Cauhoi?.Bocauhoiid;
+                ViewData["Bocauhoiid"] = new SelectList(await _context.Bocauhois.OrderBy(b => b.Tenbocauhoi).ToListAsync(), "Id", "Tenbocauhoi", preselectedBoCauHoiIdOnError);
 
-                var cauhoisForDethi = _context.Cauhois.AsQueryable();
-                if (existingDapan.Cauhoi?.Dethiid != null)
+                List<SelectListItem> cauhoiListItemsOnError = new List<SelectListItem>();
+                if (preselectedBoCauHoiIdOnError.HasValue)
                 {
-                    cauhoisForDethi = cauhoisForDethi.Where(c => c.Dethiid == existingDapan.Cauhoi.Dethiid);
+                    cauhoiListItemsOnError = (await _context.Cauhois
+                                                            .Where(c => c.Bocauhoiid == preselectedBoCauHoiIdOnError.Value)
+                                                            .OrderBy(c => c.Noidung)
+                                                            .ToListAsync())
+                                                            .Select(c => new SelectListItem { Value = c.Id.ToString(), Text = $"{c.Noidung?.Substring(0, Math.Min(c.Noidung.Length, 100))}..." })
+                                                            .ToList();
                 }
-                ViewData["Cauhoiid"] = new SelectList(cauhoisForDethi.OrderBy(c => c.Noidung), "Id", "Noidung", existingDapan.Cauhoiid);
+                else
+                {
+                    cauhoiListItemsOnError = (await _context.Cauhois.OrderBy(c => c.Noidung).ToListAsync())
+                                                        .Select(c => new SelectListItem { Value = c.Id.ToString(), Text = $"{c.Noidung?.Substring(0, Math.Min(c.Noidung.Length, 100))}..." })
+                                                        .ToList();
+                }
+                ViewData["Cauhoiid"] = new SelectList(cauhoiListItemsOnError, "Value", "Text", dapanFromForm.Cauhoiid); // Use dapanFromForm.Cauhoiid for current selection
+                ViewBag.PreselectedBoCauHoiId = preselectedBoCauHoiIdOnError;
 
-                return View(existingDapan);
+                return View(existingDapan); // Return existingDapan to retain its properties not bound by form
             }
 
             try
@@ -307,7 +464,7 @@ namespace TCN_NCKH.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Admin/Dapans/Delete/5
+        // GET: Admin/Dapans/Delete/5 (Giữ nguyên)
         public async Task<IActionResult> Delete(int? id)
         {
             Console.WriteLine($"DEBUG: [DapansController][Delete] - Vào action Delete (GET). ID: {id ?? null}");
@@ -320,7 +477,7 @@ namespace TCN_NCKH.Areas.Admin.Controllers
 
             var dapan = await _context.Dapans
                 .Include(d => d.Cauhoi)
-                    .ThenInclude(c => c.Dethi) // Include Dethi for display in Details/Delete view
+                    .ThenInclude(c => c.Bocauhoi)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (dapan == null)
@@ -333,7 +490,7 @@ namespace TCN_NCKH.Areas.Admin.Controllers
             return View(dapan);
         }
 
-        // POST: Admin/Dapans/Delete/5
+        // POST: Admin/Dapans/Delete/5 (Giữ nguyên)
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -366,6 +523,38 @@ namespace TCN_NCKH.Areas.Admin.Controllers
         private bool DapanExists(int id)
         {
             return _context.Dapans.Any(e => e.Id == id);
+        }
+
+        // GET: Admin/Dapans/GetQuestionsByBoCauHoiId (Ajax endpoint) (Giữ nguyên)
+        [HttpGet]
+        public async Task<IActionResult> GetQuestionsByBoCauHoiId(int boCauHoiId)
+        {
+            var questions = await _context.Cauhois
+                                          .Where(c => c.Bocauhoiid == boCauHoiId)
+                                          .OrderBy(c => c.Noidung)
+                                          .Select(c => new { value = c.Id, text = c.Noidung })
+                                          .ToListAsync();
+            return Json(questions);
+        }
+
+        // ViewModel cho từng Câu hỏi hiển thị trên trang Index
+        public class QuestionViewModelForIndex
+        {
+            public Cauhoi Cauhoi { get; set; }
+            public List<string> RelatedDeThiNames { get; set; } = new List<string>(); // Danh sách tên các Đề thi liên quan
+        }
+
+        // ViewModel cho Index action, chứa danh sách các QuestionViewModelForIndex
+        public class QuestionListViewModel
+        {
+            public IEnumerable<QuestionViewModelForIndex> Questions { get; set; } = new List<QuestionViewModelForIndex>();
+            public int PageNumber { get; set; }
+            public int PageSize { get; set; }
+            public int TotalPages { get; set; }
+            public int TotalItems { get; set; }
+            public int? SelectedBoCauHoiId { get; set; }
+            public int? SelectedCauHoiId { get; set; } // Giữ lại cho bộ lọc câu hỏi
+            public string SelectedDeThiId { get; set; }
         }
     }
 }

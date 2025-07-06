@@ -36,7 +36,7 @@ namespace TCN_NCKH.Areas.Admin.Controllers
             Console.WriteLine($"DEBUG: [DethisController][Index] - Đã tải {dethisList.Count} đề thi.");
             foreach (var dt in dethisList)
             {
-                Console.WriteLine($"DEBUG:   - Đề thi ID: {dt.Id}, Tên đề: {dt.Tendethi}, Người tạo (ID): {dt.Nguoitao ?? "N/A"}, Tên người tạo (Hoten): {dt.NguoitaoNavigation?.Hoten ?? "N/A"}, Số câu hỏi thực tế: {dt.Cauhois?.Count ?? 0}");
+                Console.WriteLine($"DEBUG:   - Đề thi ID: {dt.Id}, Tên đề: {dt.Tendethi}, Người tạo (ID): {dt.Nguoitao ?? "N/A"}, Tên người tạo (Hoten): {dt.NguoitaoNavigation?.Hoten ?? "N/A"}, Số câu hỏi thực tế: {dt.Cauhois?.Count ?? 0}, Thời lượng: {dt.Thoiluongthi ?? 0} phút, Trạng thái: {dt.Trangthai ?? "N/A"}");
             }
             return View(dethisList);
         }
@@ -66,7 +66,7 @@ namespace TCN_NCKH.Areas.Admin.Controllers
                 Console.WriteLine($"DEBUG: [DethisController][Details] - Không tìm thấy đề thi với ID: {id}. Chuyển hướng về Index.");
                 return RedirectToAction(nameof(Index));
             }
-            Console.WriteLine($"DEBUG: [DethisController][Details] - Đã tìm thấy đề thi: ID={dethi.Id}, Tên đề: {dethi.Tendethi}, Người tạo (ID): {dethi.Nguoitao ?? "N/A"}, Tên người tạo (Hoten): {dethi.NguoitaoNavigation?.Hoten ?? "N/A"}, Số câu hỏi thực tế: {dethi.Cauhois?.Count ?? 0}");
+            Console.WriteLine($"DEBUG: [DethisController][Details] - Đã tìm thấy đề thi: ID={dethi.Id}, Tên đề: {dethi.Tendethi}, Người tạo (ID): {dethi.Nguoitao ?? "N/A"}, Tên người tạo (Hoten): {dethi.NguoitaoNavigation?.Hoten ?? "N/A"}, Số câu hỏi thực tế: {dethi.Cauhois?.Count ?? 0}, Thời lượng: {dethi.Thoiluongthi ?? 0} phút, Trạng thái: {dethi.Trangthai ?? "N/A"}");
             if (dethi.Cauhois != null)
             {
                 foreach (var ch in dethi.Cauhois)
@@ -96,27 +96,25 @@ namespace TCN_NCKH.Areas.Admin.Controllers
         }
 
         // POST: Admin/Dethis/Create
+        // POST: Admin/Dethis/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(DethiViewModel viewModel)
         {
             Console.WriteLine("DEBUG: [DethisController][Create] - Vào action Create (POST).");
-            Console.WriteLine($"DEBUG: Dữ liệu nhận từ form: Tendethi={viewModel.Tendethi}, Monhocid={viewModel.Monhocid}, Bocauhoiid={viewModel.Bocauhoiid}, Soluongcauhoi={viewModel.Soluongcauhoi}, Mucdokho={viewModel.Mucdokho}");
+            Console.WriteLine($"DEBUG: Dữ liệu nhận từ form: Tendethi={viewModel.Tendethi}, Monhocid={viewModel.Monhocid}, Bocauhoiid={viewModel.Bocauhoiid}, Soluongcauhoi={viewModel.Soluongcauhoi}, ThoiLuongThi={viewModel.ThoiLuongThi}, TrangThai={viewModel.TrangThai}");
 
-            // Loại bỏ lỗi validation cho các navigation properties (nếu chúng gây lỗi)
             ModelState.Remove("Monhoc");
             ModelState.Remove("Bocauhoi");
             ModelState.Remove("NguoitaoNavigation");
-            ModelState.Remove("Nguoitao"); // Bỏ qua validation cho Nguoitao vì sẽ được gán thủ công
-            ModelState.Remove("Ngaytao"); // Bỏ qua validation cho Ngaytao vì sẽ được gán thủ công
-
+            ModelState.Remove("Nguoitao");
+            ModelState.Remove("Ngaytao");
 
             if (ModelState.IsValid)
             {
                 Console.WriteLine("DEBUG: [DethisController][Create] - ModelState.IsValid là TRUE. Tiến hành lưu dữ liệu.");
                 try
                 {
-                    // Lấy ID người dùng từ Claims
                     string currentUserClaimId = User.FindFirst("MaGiangVien")?.Value ?? User.FindFirst("MaQuanLy")?.Value;
                     if (string.IsNullOrEmpty(currentUserClaimId))
                     {
@@ -125,139 +123,95 @@ namespace TCN_NCKH.Areas.Admin.Controllers
                     if (string.IsNullOrEmpty(currentUserClaimId))
                     {
                         Console.WriteLine("WARNING: [Create] - Không tìm thấy ID người dùng từ bất kỳ Claims nào. Gán Nguoitao = 'AnonymousUser'.");
-                        currentUserClaimId = "AnonymousUser"; // Hoặc xử lý lỗi khác
+                        currentUserClaimId = "AnonymousUser";
                     }
                     Console.WriteLine($"DEBUG: [Create] - ID người dùng sẽ được gán cho Nguoitao: '{currentUserClaimId}'");
 
-                    // Tạo đối tượng Dethi từ ViewModel
-                    var dethi = new Dethi
-                    {
-                        Id = Guid.NewGuid().ToString("N").Substring(0, 10), // Tạo ID duy nhất (ví dụ: 10 ký tự hex)
-                        Tendethi = viewModel.Tendethi,
-                        Monhocid = viewModel.Monhocid,
-                        Bocauhoiid = viewModel.Bocauhoiid,
-                        Soluongcauhoi = viewModel.Soluongcauhoi, // Số lượng câu hỏi mong muốn
-                        DethikhacnhauCa = viewModel.DethikhacnhauCa,
-                        Ngaytao = DateTime.Now,
-                        Nguoitao = currentUserClaimId // Gán ID người tạo đã lấy được
-                    };
-                    Console.WriteLine($"DEBUG: [Create] - dethi.Nguoitao được gán là: '{dethi.Nguoitao ?? "null"}'");
+                    byte? selectedMucDoKhoBocauhoi = null; // Khởi tạo biến này
 
-                    // Lấy thông tin mức độ khó từ Bộ câu hỏi được chọn
-                    byte? selectedMucDoKhoBocauhoi = null;
-                    if (dethi.Bocauhoiid.HasValue)
+                    // =========================================================
+                    // Logic kiểm tra Bộ câu hỏi và Số lượng câu hỏi (GIỮ NGUYÊN)
+                    // =========================================================
+                    if (!viewModel.Bocauhoiid.HasValue)
                     {
-                        var bocauhoi = await _context.Bocauhois
-                                                     .AsNoTracking()
-                                                     .FirstOrDefaultAsync(b => b.Id == dethi.Bocauhoiid.Value);
-                        if (bocauhoi != null)
+                        ModelState.AddModelError("Bocauhoiid", "Vui lòng chọn Bộ câu hỏi.");
+                        Console.WriteLine($"ERROR: [Create] - Không có Bộ câu hỏi được chọn.");
+                    }
+                    else
+                    {
+                        var bocauhoi = await _context.Bocauhois.AsNoTracking().FirstOrDefaultAsync(b => b.Id == viewModel.Bocauhoiid.Value);
+                        if (bocauhoi == null)
                         {
-                            selectedMucDoKhoBocauhoi = bocauhoi.Mucdokho;
-                            Console.WriteLine($"DEBUG: Mức độ khó của Bộ câu hỏi được chọn: {selectedMucDoKhoBocauhoi}");
+                            ModelState.AddModelError("Bocauhoiid", "Bộ câu hỏi được chọn không tồn tại.");
+                            Console.WriteLine($"ERROR: [Create] - Bộ câu hỏi ID {viewModel.Bocauhoiid.Value} không tồn tại.");
                         }
                         else
                         {
-                            Console.WriteLine($"WARNING: Không tìm thấy Bộ câu hỏi với ID: {dethi.Bocauhoiid.Value}");
+                            selectedMucDoKhoBocauhoi = bocauhoi.Mucdokho; // Lấy mức độ khó từ Bộ câu hỏi
+                            var totalQuestionsInBoCauHoi = await _context.Cauhois.CountAsync(ch => ch.Bocauhoiid == bocauhoi.Id);
+
+                            if (viewModel.Soluongcauhoi <= 0)
+                            {
+                                ModelState.AddModelError("Soluongcauhoi", "Số lượng câu hỏi phải lớn hơn 0.");
+                                Console.WriteLine($"ERROR: [Create] - Số lượng câu hỏi yêu cầu ({viewModel.Soluongcauhoi}) không hợp lệ.");
+                            }
+                            else if (viewModel.Soluongcauhoi > totalQuestionsInBoCauHoi)
+                            {
+                                ModelState.AddModelError("Soluongcauhoi", $"Số lượng câu hỏi yêu cầu ({viewModel.Soluongcauhoi}) lớn hơn số câu hỏi có sẵn trong bộ câu hỏi ({totalQuestionsInBoCauHoi}).");
+                                Console.WriteLine($"ERROR: [Create] - Số lượng câu hỏi yêu cầu ({viewModel.Soluongcauhoi}) vượt quá số lượng có sẵn trong bộ câu hỏi ({totalQuestionsInBoCauHoi}).");
+                            }
                         }
                     }
 
-                    // Gán 3 thuộc tính boolean mức độ khó dựa trên Mucdokho của Bộ câu hỏi
+                    if (!ModelState.IsValid)
+                    {
+                        Console.WriteLine("DEBUG: [DethisController][Create] - ModelState.IsValid là FALSE sau kiểm tra số lượng/bộ câu hỏi. Trả về View với lỗi.");
+                        await PopulateDropdowns(viewModel);
+                        return View(viewModel);
+                    }
+                    // =========================================================
+                    // Kết thúc logic kiểm tra Bộ câu hỏi và Số lượng câu hỏi
+                    // =========================================================
+
+
+                    var dethi = new Dethi
+                    {
+                        Id = Guid.NewGuid().ToString("N").Substring(0, 10),
+                        Tendethi = viewModel.Tendethi,
+                        Monhocid = viewModel.Monhocid,
+                        Bocauhoiid = viewModel.Bocauhoiid,
+                        Soluongcauhoi = viewModel.Soluongcauhoi,
+                        DethikhacnhauCa = viewModel.DethikhacnhauCa,
+                        Ngaytao = DateTime.Now,
+                        Nguoitao = currentUserClaimId,
+                        Thoiluongthi = viewModel.ThoiLuongThi,
+                        Trangthai = viewModel.TrangThai ?? "Bản Nháp"
+                    };
+                    Console.WriteLine($"DEBUG: [Create] - dethi.Nguoitao được gán là: '{dethi.Nguoitao ?? "null"}'");
+                    Console.WriteLine($"DEBUG: [Create] - Đề thi sẽ được tạo với Thời lượng: {dethi.Thoiluongthi} và Trạng thái: {dethi.Trangthai}");
+
+                    // Gán mức độ khó vào Dethi từ mức độ khó của Bộ câu hỏi đã chọn (GIỮ NGUYÊN)
                     dethi.MucdokhoDe = (selectedMucDoKhoBocauhoi == 0);
                     dethi.MucdokhoTrungbinh = (selectedMucDoKhoBocauhoi == 1);
                     dethi.MucdokhoKho = (selectedMucDoKhoBocauhoi == 2);
                     Console.WriteLine($"DEBUG: Đề thi sẽ được lưu với: Dễ={dethi.MucdokhoDe}, TB={dethi.MucdokhoTrungbinh}, Khó={dethi.MucdokhoKho}");
 
-                    // Thêm đề thi vào context và lưu trước để có ID
                     _context.Add(dethi);
                     await _context.SaveChangesAsync();
                     Console.WriteLine($"DEBUG: [Create] - Đề thi gốc ID: {dethi.Id} đã được lưu thành công.");
 
                     // =========================================================
-                    // Logic sao chép câu hỏi từ Bộ câu hỏi vào Đề thi
-                    // =========================================================
-                    if (dethi.Bocauhoiid.HasValue)
-                    {
-                        var questionsFromBoCauHoi = await _context.Cauhois
-                                                                   .Where(ch => ch.Bocauhoiid == dethi.Bocauhoiid.Value)
-                                                                   .Include(ch => ch.Dapans) // Include Answers as well
-                                                                   .AsNoTracking() // No need to track original questions
-                                                                   .ToListAsync();
-
-                        if (questionsFromBoCauHoi.Any())
-                        {
-                            // Nếu Soluongcauhoi được chỉ định và nhỏ hơn tổng số câu hỏi trong bộ, thì lấy ngẫu nhiên
-                            int numberOfQuestionsToTake = dethi.Soluongcauhoi > 0 && dethi.Soluongcauhoi < questionsFromBoCauHoi.Count ? dethi.Soluongcauhoi : questionsFromBoCauHoi.Count;
-
-                            // Lấy ngẫu nhiên các câu hỏi nếu cần
-                            var random = new Random();
-                            var selectedQuestions = questionsFromBoCauHoi.OrderBy(x => random.Next()).Take(numberOfQuestionsToTake).ToList();
-
-                            Console.WriteLine($"DEBUG: [Create] - Đang sao chép {selectedQuestions.Count} câu hỏi từ Bộ câu hỏi ID {dethi.Bocauhoiid} cho Đề thi ID {dethi.Id}.");
-
-                            foreach (var originalQuestion in selectedQuestions)
-                            {
-                                var newQuestion = new Cauhoi
-                                {
-                                    // Id sẽ được tự động tạo bởi DB (nếu là identity column)
-                                    Noidung = originalQuestion.Noidung,
-                                    Dethiid = dethi.Id, // Gán Dethiid của đề thi mới
-                                    Loaicauhoi = originalQuestion.Loaicauhoi,
-                                    Diem = originalQuestion.Diem,
-                                    // Không gán Bocauhoiid cho câu hỏi đã được sao chép vào đề thi (nếu muốn độc lập)
-                                    // originalQuestion.Bocauhoiid có thể được giữ lại nếu muốn biết nguồn gốc
-                                    Bocauhoiid = originalQuestion.Bocauhoiid, // Giữ lại ID bộ câu hỏi gốc để tiện truy vết
-                                    DapandungKeys = originalQuestion.DapandungKeys // Sao chép đáp án đúng keys
-                                };
-
-                                // Sao chép các đáp án
-                                newQuestion.Dapans = new List<Dapan>();
-                                foreach (var originalAnswer in originalQuestion.Dapans)
-                                {
-                                    var newAnswer = new Dapan
-                                    {
-                                        // Id sẽ được tự động tạo bởi DB (nếu là identity column)
-                                        Noidung = originalAnswer.Noidung,
-                                        Dung = originalAnswer.Dung,
-                                        // Cauhoiid sẽ được tự động set khi add newQuestion vào _context và SaveChanges
-                                    };
-                                    newQuestion.Dapans.Add(newAnswer);
-                                }
-                                _context.Cauhois.Add(newQuestion); // Add new question with its answers
-                            }
-                            await _context.SaveChangesAsync(); // Lưu các câu hỏi và đáp án đã sao chép
-                            Console.WriteLine($"DEBUG: [Create] - Đã sao chép và lưu thành công {selectedQuestions.Count} câu hỏi và đáp án liên quan cho Đề thi ID {dethi.Id}.");
-
-                            // Cập nhật lại Soluongcauhoi của đề thi với số lượng thực tế
-                            dethi.Soluongcauhoi = selectedQuestions.Count;
-                            _context.Update(dethi); // Mark as modified
-                            await _context.SaveChangesAsync(); // Save updated Soluongcauhoi
-                            Console.WriteLine($"DEBUG: [Create] - Đã cập nhật Soluongcauhoi của Đề thi ID {dethi.Id} thành {dethi.Soluongcauhoi}.");
-                        }
-                        else
-                        {
-                            Console.WriteLine($"WARNING: [Create] - Bộ câu hỏi ID {dethi.Bocauhoiid.Value} không có câu hỏi nào để sao chép.");
-                            dethi.Soluongcauhoi = 0; // Đảm bảo số lượng câu hỏi là 0 nếu không có gì để sao chép
-                            _context.Update(dethi); // Mark as modified
-                            await _context.SaveChangesAsync(); // Save updated Soluongcauhoi
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine($"INFO: [Create] - Không có Bocauhoiid được chọn cho đề thi ID {dethi.Id}. Không sao chép câu hỏi nào.");
-                        dethi.Soluongcauhoi = 0; // Đảm bảo số lượng câu hỏi là 0
-                        _context.Update(dethi); // Mark as modified
-                        await _context.SaveChangesAsync(); // Save updated Soluongcauhoi
-                    }
-                    // =========================================================
-                    // Kết thúc logic sao chép câu hỏi
+                    // Logic sao chép câu hỏi đã bị LOẠI BỎ ở đây
+                    // dethi.Cauhois sẽ KHÔNG được populate trực tiếp từ bocauhoi
+                    // Các câu hỏi sẽ được lấy từ Bocauhoi khi hiển thị chi tiết hoặc khi thi
                     // =========================================================
 
-                    TempData["SuccessMessage"] = "Đề thi đã được tạo thành công và câu hỏi đã được liên kết!";
+                    TempData["SuccessMessage"] = "Đề thi đã được tạo thành công!"; // Đổi lại thông báo
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"ERROR: [DethisController][Create] - Lỗi khi lưu dữ liệu hoặc sao chép câu hỏi: {ex.Message}");
+                    Console.WriteLine($"ERROR: [DethisController][Create] - Lỗi khi lưu dữ liệu: {ex.Message}");
                     if (ex.InnerException != null)
                     {
                         Console.WriteLine($"ERROR: Inner Exception: {ex.InnerException.Message}");
@@ -280,11 +234,11 @@ namespace TCN_NCKH.Areas.Admin.Controllers
                     }
                 }
             }
-            await PopulateDropdowns(viewModel); // Tải lại dữ liệu cho dropdowns nếu có lỗi
+            await PopulateDropdowns(viewModel);
 
             string validationErrors = string.Join("<br/>", ModelState.Values
-                                                            .SelectMany(v => v.Errors)
-                                                            .Select(e => e.ErrorMessage));
+                                                                 .SelectMany(v => v.Errors)
+                                                                 .Select(e => e.ErrorMessage));
             if (!string.IsNullOrEmpty(validationErrors))
             {
                 TempData["ErrorMessage"] = (TempData["ErrorMessage"] as string ?? "") + "<br/>" + validationErrors;
@@ -292,6 +246,7 @@ namespace TCN_NCKH.Areas.Admin.Controllers
             Console.WriteLine("DEBUG: [DethisController][Create] - Trả về View với lỗi.");
             return View(viewModel);
         }
+
 
         // GET: Admin/Dethis/Edit/5
         public async Task<IActionResult> Edit(string id)
@@ -325,11 +280,13 @@ namespace TCN_NCKH.Areas.Admin.Controllers
                 Bocauhoiid = dethi.Bocauhoiid,
                 Soluongcauhoi = dethi.Soluongcauhoi,
                 DethikhacnhauCa = dethi.DethikhacnhauCa,
+                ThoiLuongThi = dethi.Thoiluongthi, // GÁN THUỘC TÍNH MỚI
+                TrangThai = dethi.Trangthai, // GÁN THUỘC TÍNH MỚI
                 // Chuyển đổi 3 boolean thành 1 byte? để hiển thị trên form
                 Mucdokho = dethi.MucdokhoDe ? (byte)0 : (dethi.MucdokhoTrungbinh ? (byte)1 : (dethi.MucdokhoKho ? (byte)2 : null))
             };
             await PopulateDropdowns(viewModel);
-            Console.WriteLine($"DEBUG: [DethisController][Edit] - Đã tải ViewModel để chỉnh sửa đề thi: {dethi.Tendethi}, Người tạo (ID): {dethi.Nguoitao ?? "N/A"}, Tên người tạo (Hoten): {dethi.NguoitaoNavigation?.Hoten ?? "N/A"}");
+            Console.WriteLine($"DEBUG: [DethisController][Edit] - Đã tải ViewModel để chỉnh sửa đề thi: {dethi.Tendethi}, Người tạo (ID): {dethi.Nguoitao ?? "N/A"}, Tên người tạo (Hoten): {dethi.NguoitaoNavigation?.Hoten ?? "N/A"}, Thời lượng: {dethi.Thoiluongthi}, Trạng thái: {dethi.Trangthai}");
             Console.WriteLine("DEBUG: [DethisController][Edit] - ViewData cho Edit (GET) đã được thiết lập.");
             return View(viewModel);
         }
@@ -340,7 +297,7 @@ namespace TCN_NCKH.Areas.Admin.Controllers
         public async Task<IActionResult> Edit(string id, DethiViewModel viewModel)
         {
             Console.WriteLine($"DEBUG: [DethisController][Edit] - Vào action Edit (POST). ID: {id}");
-            Console.WriteLine($"DEBUG: Dữ liệu nhận từ form: Tendethi={viewModel.Tendethi}, Monhocid={viewModel.Monhocid}, Bocauhoiid={viewModel.Bocauhoiid}, Soluongcauhoi={viewModel.Soluongcauhoi}, Mucdokho={viewModel.Mucdokho}");
+            Console.WriteLine($"DEBUG: Dữ liệu nhận từ form: Tendethi={viewModel.Tendethi}, Monhocid={viewModel.Monhocid}, Bocauhoiid={viewModel.Bocauhoiid}, Soluongcauhoi={viewModel.Soluongcauhoi}, Mucdokho={viewModel.Mucdokho}, ThoiLuongThi={viewModel.ThoiLuongThi}, TrangThai={viewModel.TrangThai}");
 
             if (id != viewModel.Id)
             {
@@ -391,6 +348,9 @@ namespace TCN_NCKH.Areas.Admin.Controllers
                     dethiToUpdate.Bocauhoiid = viewModel.Bocauhoiid;
                     dethiToUpdate.Soluongcauhoi = viewModel.Soluongcauhoi;
                     dethiToUpdate.DethikhacnhauCa = viewModel.DethikhacnhauCa;
+                    dethiToUpdate.Thoiluongthi = viewModel.ThoiLuongThi; // CẬP NHẬT THUỘC TÍNH MỚI
+                    dethiToUpdate.Trangthai = viewModel.TrangThai; // CẬP NHẬT THUỘC TÍNH MỚI
+
                     // Nguoitao và Ngaytao KHÔNG được cập nhật ở đây để giữ nguyên người tạo và ngày tạo ban đầu
                     Console.WriteLine($"DEBUG: [Edit] - Đề thi đã được cập nhật dữ liệu từ ViewModel.");
 
@@ -422,6 +382,7 @@ namespace TCN_NCKH.Areas.Admin.Controllers
                     await _context.SaveChangesAsync();
                     Console.WriteLine($"DEBUG: [DethisController][Edit] - Đề thi ID {dethiToUpdate.Id} đã được cập nhật thành công.");
                     Console.WriteLine($"DEBUG: [DethisController][Edit] - Người tạo đã lưu trong DB cho đề thi này: {dethiToUpdate.Nguoitao ?? "N/A"}");
+                    Console.WriteLine($"DEBUG: [DethisController][Edit] - Thời lượng: {dethiToUpdate.Thoiluongthi}, Trạng thái: {dethiToUpdate.Trangthai}");
                     TempData["SuccessMessage"] = "Đề thi đã được cập nhật thành công!";
                     return RedirectToAction(nameof(Index));
                 }
@@ -503,7 +464,7 @@ namespace TCN_NCKH.Areas.Admin.Controllers
                 Console.WriteLine($"DEBUG: [DethisController][Delete] - Không tìm thấy đề thi với ID: {id}. Chuyển hướng về Index.");
                 return RedirectToAction(nameof(Index));
             }
-            Console.WriteLine($"DEBUG: [DethisController][Delete] - Đã tìm thấy đề thi để xóa: ID={dethi.Id}, Tên đề: {dethi.Tendethi}, Người tạo (ID): {dethi.Nguoitao ?? "N/A"}, Tên người tạo (Hoten): {dethi.NguoitaoNavigation?.Hoten ?? "N/A"}, Số câu hỏi thực tế: {dethi.Cauhois?.Count ?? 0}");
+            Console.WriteLine($"DEBUG: [DethisController][Delete] - Đã tìm thấy đề thi để xóa: ID={dethi.Id}, Tên đề: {dethi.Tendethi}, Người tạo (ID): {dethi.Nguoitao ?? "N/A"}, Tên người tạo (Hoten): {dethi.NguoitaoNavigation?.Hoten ?? "N/A"}, Số câu hỏi thực tế: {dethi.Cauhois?.Count ?? 0}, Thời lượng: {dethi.Thoiluongthi ?? 0} phút, Trạng thái: {dethi.Trangthai ?? "N/A"}");
             return View(dethi);
         }
 
@@ -588,6 +549,15 @@ namespace TCN_NCKH.Areas.Admin.Controllers
                                                      .OrderBy(b => b.Tenbocauhoi)
                                                      .Select(b => new SelectListItem { Value = b.Id.ToString(), Text = b.Tenbocauhoi })
                                                      .ToListAsync();
+
+            // Populate danh sách trạng thái cho dropdown
+            viewModel.TrangThaiList = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "Draft", Text = "Bản nháp" },
+                new SelectListItem { Value = "Ready", Text = "Sẵn sàng" },
+                new SelectListItem { Value = "Active", Text = "Đang diễn ra" },
+                new SelectListItem { Value = "Finished", Text = "Đã kết thúc" }
+            };
 
             Console.WriteLine("DEBUG: [DethisController][PopulateDropdowns] - Dropdowns cho DethiViewModel đã được populate xong.");
         }

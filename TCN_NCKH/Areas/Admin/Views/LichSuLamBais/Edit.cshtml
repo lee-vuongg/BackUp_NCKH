@@ -1,0 +1,86 @@
+﻿@* Giữ nguyên phần này như bạn đã có *@
+@model TCN_NCKH.Models.ViewModels.LichSuLamBaiViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Chỉnh Sửa Lịch Sử Làm Bài";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="text-center mb-4">Chỉnh Sửa Lịch Sử Làm Bài</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label asp-for="MaSinhVien" class="control-label"></label>
+                <select asp-for="MaSinhVien" class="form-control" asp-items="Model.SinhVienList"></select>
+                <span asp-validation-for="MaSinhVien" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaDeThi" class="control-label"></label>
+                <select asp-for="MaDeThi" class="form-control" asp-items="Model.DeThiList"></select>
+                <span asp-validation-for="MaDeThi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LichThiId" class="control-label"></label>
+                <select asp-for="LichThiId" class="form-control" asp-items="Model.LichThiList"></select>
+                <span asp-validation-for="LichThiId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThoiDiemBatDau" class="control-label"></label>
+                @* Định dạng trực tiếp giá trị DateTime cho input type="datetime-local" *@
+                <input asp-for="ThoiDiemBatDau" type="datetime-local" class="form-control"
+                       value="@(Model.ThoiDiemBatDau.HasValue ? Model.ThoiDiemBatDau.Value.ToString("yyyy-MM-ddTHH:mm") : "")" />
+                <span asp-validation-for="ThoiDiemBatDau" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ThoiDiemKetThuc" class="control-label"></label>
+                @* Định dạng trực tiếp giá trị DateTime cho input type="datetime-local" *@
+                <input asp-for="ThoiDiemKetThuc" type="datetime-local" class="form-control"
+                       value="@(Model.ThoiDiemKetThuc.HasValue ? Model.ThoiDiemKetThuc.Value.ToString("yyyy-MM-ddTHH:mm") : "")" />
+                <span asp-validation-for="ThoiDiemKetThuc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SoLanRoiManHinh" class="control-label"></label>
+                <input asp-for="SoLanRoiManHinh" class="form-control" />
+                <span asp-validation-for="SoLanRoiManHinh" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <input class="form-check-input" asp-for="TrangThaiNopBai" />
+                <label class="form-check-label" asp-for="TrangThaiNopBai"></label>
+                <span asp-validation-for="TrangThaiNopBai" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ipaddress" class="control-label"></label>
+                <input asp-for="Ipaddress" class="form-control" />
+                <span asp-validation-for="Ipaddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TongDiemDatDuoc" class="control-label"></label>
+                <input asp-for="TongDiemDatDuoc" class="form-control" />
+                <span asp-validation-for="TongDiemDatDuoc" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <input class="form-check-input" asp-for="DaChamDiem" />
+                <label class="form-check-label" asp-for="DaChamDiem"></label>
+                <span asp-validation-for="DaChamDiem" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="Lưu" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary ml-2">Quay lại danh sách</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    @* LOẠI BỎ ĐOẠN JAVASCRIPT ĐỊNH DẠNG TẠI ĐÂY *@
+}

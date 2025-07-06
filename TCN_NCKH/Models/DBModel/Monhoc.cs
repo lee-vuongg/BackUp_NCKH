@@ -5,7 +5,7 @@ namespace TCN_NCKH.Models.DBModel;
 
 public partial class Monhoc
 {
-    public string? Id { get; set; } = null!;
+    public string Id { get; set; } = null!;
 
     public string Tenmon { get; set; } = null!;
 

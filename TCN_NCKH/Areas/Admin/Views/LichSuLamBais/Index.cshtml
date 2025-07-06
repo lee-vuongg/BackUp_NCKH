@@ -1,0 +1,111 @@
+﻿@model IEnumerable<TCN_NCKH.Models.ViewModels.LichSuLamBaiDetailsViewModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Quản lý Lịch Sử Làm Bài";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="text-center mb-4">Danh Sách Lịch Sử Làm Bài</h1>
+
+<p class="mb-3">
+    <a asp-action="Create" class="btn btn-primary">Thêm Lịch Sử Làm Bài Mới</a>
+</p>
+
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.TenSinhVien)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TenDeThi)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ThongTinLichThi)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ThoiDiemBatDau)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ThoiDiemKetThuc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TongDiemDatDuoc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TrangThaiNopBai)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DaChamDiem)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SoLanRoiManHinh)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ipaddress)
+                </th>
+                <th class="text-center">Hành Động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenSinhVien)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenDeThi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ThongTinLichThi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ThoiDiemBatDau)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ThoiDiemKetThuc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TongDiemDatDuoc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TrangThaiNopBai)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DaChamDiem)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoLanRoiManHinh)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ipaddress)
+                    </td>
+                    <td class="text-center">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-info" title="Sửa"><i class="fas fa-edit"></i> Sửa</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-secondary mx-1" title="Chi Tiết"><i class="fas fa-info-circle"></i> Chi Tiết</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" title="Xóa"><i class="fas fa-trash-alt"></i> Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        // Có thể thêm các script tùy chỉnh ở đây nếu cần, ví dụ: tìm kiếm, phân trang DataTable
+        $(document).ready(function () {
+            $('.table').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Vietnamese.json" // Tùy chọn: Thêm ngôn ngữ tiếng Việt cho DataTable
+                },
+                "paging": true, // Bật phân trang
+                "searching": true, // Bật tìm kiếm
+                "ordering": true // Bật sắp xếp
+            });
+        });
+    </script>
+}

@@ -52,6 +52,9 @@
                                 Đề khác nhau cho ca
                             </th>
                             <th>
+                                Thời lượng thi
+                            </th>
+                            <th>
                                 Trạng thái
                             </th>
                             <th>Hành động</th>
@@ -134,7 +137,10 @@
                                     @(item.DethikhacnhauCa == true ? "Có" : "Không")
                                 </td>
                                 <td>
-                                    <span class="badge badge-success">Hoạt động</span>
+                                    @Html.DisplayFor(modelItem => item.Thoiluongthi) phút
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Trangthai) 
                                 </td>
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm" title="Chỉnh sửa">

@@ -35,7 +35,7 @@ namespace TCN_NCKH.Models.ViewModels
         public int Id { get; set; } // ID của đáp án (0 nếu là mới)
 
         [Required(ErrorMessage = "Nội dung đáp án không được để trống.")]
-        [StringLength(500, MinimumLength = 10, ErrorMessage = "Nội dung phải có từ 10 đến 500 ký tự.")] // Sửa ở đây
+        [StringLength(500, MinimumLength = 1, ErrorMessage = "Nội dung phải có từ 10 đến 500 ký tự.")] // Sửa ở đây
         [Display(Name = "Nội dung Đáp án")]
         public string Noidung { get; set; } = null!;
 

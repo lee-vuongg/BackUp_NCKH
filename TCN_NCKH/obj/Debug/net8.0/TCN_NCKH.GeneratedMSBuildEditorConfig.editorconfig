@@ -92,6 +92,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFwYW5zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/TCN_NCKH/TCN_NCKH/Areas/Admin/Views/Dapans/_AnswersForQuestionPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFwYW5zXF9BbnN3ZXJzRm9yUXVlc3Rpb25QYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/TCN_NCKH/TCN_NCKH/Areas/Admin/Views/Dethis/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGV0aGlzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -134,6 +138,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/TCN_NCKH/TCN_NCKH/Areas/Admin/Views/Ketquathis/StudentsByLichthi.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcS2V0cXVhdGhpc1xTdHVkZW50c0J5TGljaHRoaS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TCN_NCKH/TCN_NCKH/Areas/Admin/Views/LichSuLamBais/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTGljaFN1TGFtQmFpc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TCN_NCKH/TCN_NCKH/Areas/Admin/Views/LichSuLamBais/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTGljaFN1TGFtQmFpc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TCN_NCKH/TCN_NCKH/Areas/Admin/Views/LichSuLamBais/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTGljaFN1TGFtQmFpc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TCN_NCKH/TCN_NCKH/Areas/Admin/Views/LichSuLamBais/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTGljaFN1TGFtQmFpc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TCN_NCKH/TCN_NCKH/Areas/Admin/Views/LichSuLamBais/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTGljaFN1TGFtQmFpc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/TCN_NCKH/TCN_NCKH/Areas/Admin/Views/LichthiSinhviens/Create.cshtml]
@@ -378,6 +402,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/TCN_NCKH/TCN_NCKH/Areas/HocSinh/Views/LamBai/KetQua.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSG9jU2luaFxWaWV3c1xMYW1CYWlcS2V0UXVhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TCN_NCKH/TCN_NCKH/Areas/HocSinh/Views/LichSuLamBais/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSG9jU2luaFxWaWV3c1xMaWNoU3VMYW1CYWlzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TCN_NCKH/TCN_NCKH/Areas/HocSinh/Views/LichSuLamBais/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSG9jU2luaFxWaWV3c1xMaWNoU3VMYW1CYWlzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/TCN_NCKH/TCN_NCKH/Areas/HocSinh/Views/Lichthis/Details.cshtml]

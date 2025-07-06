@@ -1,0 +1,39 @@
+﻿@model TCN_NCKH.Models.DBModel.Cauhoi
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<div class="modal-header">
+    <h5 class="modal-title" id="answersModalLabel">Đáp án cho Câu hỏi: @Model.Noidung</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    @if (Model.Dapans != null && Model.Dapans.Any())
+    {
+        <ul class="list-group">
+            @foreach (var dapan in Model.Dapans.OrderBy(d => d.Id))
+            {
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        @Html.Raw(dapan.Noidung) @* Sử dụng Html.Raw nếu nội dung đáp án có thể chứa HTML *@
+                    </div>
+                    @if (dapan.Dung == true)
+                    {
+                        <span class="badge badge-success badge-pill" title="Đáp án đúng"><i class="fas fa-check"></i> Đúng</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-danger badge-pill" title="Đáp án sai"><i class="fas fa-times"></i> Sai</span>
+                    }
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p class="text-muted">Câu hỏi này chưa có đáp án nào.</p>
+    }
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+</div>

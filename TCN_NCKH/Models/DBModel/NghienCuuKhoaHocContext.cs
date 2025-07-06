@@ -9,7 +9,15 @@ public partial class NghienCuuKhoaHocContext : DbContext
     public NghienCuuKhoaHocContext()
     {
     }
+    // Thêm trường để lưu trữ IConfiguration
+    private readonly IConfiguration _configuration;
 
+    // Cập nhật constructor để nhận IConfiguration
+    public NghienCuuKhoaHocContext(DbContextOptions<NghienCuuKhoaHocContext> options, IConfiguration configuration)
+        : base(options)
+    {
+        _configuration = configuration;
+    }
     public NghienCuuKhoaHocContext(DbContextOptions<NghienCuuKhoaHocContext> options)
         : base(options)
     {
@@ -24,6 +32,8 @@ public partial class NghienCuuKhoaHocContext : DbContext
     public virtual DbSet<Dethi> Dethis { get; set; }
 
     public virtual DbSet<Ketquathi> Ketquathis { get; set; }
+
+    public virtual DbSet<LichSuLamBai> LichSuLamBais { get; set; }
 
     public virtual DbSet<Lichthi> Lichthis { get; set; }
 
@@ -41,9 +51,10 @@ public partial class NghienCuuKhoaHocContext : DbContext
 
     public virtual DbSet<TraloiSinhvien> TraloiSinhviens { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=VUONG\\SQLEXPRESS;Database=nghien_cuu_khoa_hoc;Trusted_Connection=True;MultipleActiveResultSets=True; TrustServerCertificate=True");
+
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+//        => optionsBuilder.UseSqlServer("Server=VUONG\\SQLEXPRESS;Database=nghien_cuu_khoa_hoc;Trusted_Connection=True;MultipleActiveResultSets=True; TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -89,39 +100,23 @@ public partial class NghienCuuKhoaHocContext : DbContext
 
             entity.ToTable("CAUHOI");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedOnAdd()
-                .HasColumnName("ID");
-
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Bocauhoiid).HasColumnName("BOCAUHOIID");
-
             entity.Property(e => e.DapandungKeys)
                 .HasMaxLength(4)
                 .IsUnicode(false)
                 .HasColumnName("DAPANDUNG_KEYS");
-
             entity.Property(e => e.Dethiid)
-                .HasMaxLength(36) // Kiểm tra lại độ dài Dethiid nếu cần
-                .IsUnicode(true)
-                .IsFixedLength(false)
+                .HasMaxLength(10)
+                .IsUnicode(false)
+                .IsFixedLength()
                 .HasColumnName("DETHIID");
-
-            entity.Property(e => e.Diem)
-                .HasColumnName("DIEM");
-
-            entity.Property(e => e.Loaicauhoi)
-                .HasColumnName("LOAICAUHOI");
-
-            // HÃY XÓA DÒNG NÀY (nếu có):
-            // entity.Property(e => e.Mucdokho)
-            //    .HasColumnName("MUCDOKHO");
-
+            entity.Property(e => e.Diem).HasColumnName("DIEM");
+            entity.Property(e => e.Loaicauhoi).HasColumnName("LOAICAUHOI");
             entity.Property(e => e.Noidung)
-                .IsRequired()
                 .HasMaxLength(500)
                 .HasColumnName("NOIDUNG");
 
-            // Các mối quan hệ (foreign keys) vẫn giữ nguyên
             entity.HasOne(d => d.Bocauhoi).WithMany(p => p.Cauhois)
                 .HasForeignKey(d => d.Bocauhoiid)
                 .OnDelete(DeleteBehavior.SetNull)
@@ -188,6 +183,11 @@ public partial class NghienCuuKhoaHocContext : DbContext
             entity.Property(e => e.Tendethi)
                 .HasMaxLength(100)
                 .HasColumnName("TENDETHI");
+            entity.Property(e => e.Thoiluongthi).HasColumnName("THOILUONGTHI");
+            entity.Property(e => e.Trangthai)
+                .HasMaxLength(50)
+                .HasDefaultValue("Draft")
+                .HasColumnName("TRANGTHAI");
 
             entity.HasOne(d => d.Bocauhoi).WithMany(p => p.Dethis)
                 .HasForeignKey(d => d.Bocauhoiid)
@@ -234,6 +234,39 @@ public partial class NghienCuuKhoaHocContext : DbContext
                 .HasForeignKey(d => d.Sinhvienid)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__KETQUATHI__SINHV__3F466844");
+        });
+
+        modelBuilder.Entity<LichSuLamBai>(entity =>
+        {
+            entity.ToTable("LichSuLamBai");
+
+            entity.Property(e => e.DaChamDiem).HasDefaultValue(false);
+            entity.Property(e => e.Ipaddress)
+                .HasMaxLength(45)
+                .HasColumnName("IPAddress");
+            entity.Property(e => e.MaDeThi)
+                .HasMaxLength(10)
+                .IsUnicode(false)
+                .IsFixedLength();
+            entity.Property(e => e.MaSinhVien)
+                .HasMaxLength(15)
+                .IsUnicode(false)
+                .IsFixedLength();
+            entity.Property(e => e.ThoiDiemBatDau).HasColumnType("datetime");
+            entity.Property(e => e.ThoiDiemKetThuc).HasColumnType("datetime");
+            entity.Property(e => e.TrangThaiNopBai).HasMaxLength(20);
+
+            entity.HasOne(d => d.LichThi).WithMany(p => p.LichSuLamBais)
+                .HasForeignKey(d => d.LichThiId)
+                .HasConstraintName("FK_LichSuLamBai_Lichthi");
+
+            entity.HasOne(d => d.MaDeThiNavigation).WithMany(p => p.LichSuLamBais)
+                .HasForeignKey(d => d.MaDeThi)
+                .HasConstraintName("FK_LichSuLamBai_Dethi");
+
+            entity.HasOne(d => d.MaSinhVienNavigation).WithMany(p => p.LichSuLamBais)
+                .HasForeignKey(d => d.MaSinhVien)
+                .HasConstraintName("FK_LichSuLamBai_Sinhvien");
         });
 
         modelBuilder.Entity<Lichthi>(entity =>

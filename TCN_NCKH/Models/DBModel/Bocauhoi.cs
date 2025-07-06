@@ -9,7 +9,7 @@ public partial class Bocauhoi
 
     public string Tenbocauhoi { get; set; } = null!;
 
-    public string? Monhocid { get; set; } = null!;
+    public string Monhocid { get; set; } = null!;
 
     public string? Mota { get; set; }
 
