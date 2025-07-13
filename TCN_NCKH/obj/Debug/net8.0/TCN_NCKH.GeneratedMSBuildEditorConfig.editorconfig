@@ -72,6 +72,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2F1aG9pc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/TCN_NCKH/TCN_NCKH/Areas/Admin/Views/CheatDetectionLogs/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2hlYXREZXRlY3Rpb25Mb2dzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TCN_NCKH/TCN_NCKH/Areas/Admin/Views/CheatDetectionLogs/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2hlYXREZXRlY3Rpb25Mb2dzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TCN_NCKH/TCN_NCKH/Areas/Admin/Views/CheatDetectionLogs/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2hlYXREZXRlY3Rpb25Mb2dzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TCN_NCKH/TCN_NCKH/Areas/Admin/Views/CheatDetectionLogs/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2hlYXREZXRlY3Rpb25Mb2dzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TCN_NCKH/TCN_NCKH/Areas/Admin/Views/CheatDetectionLogs/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2hlYXREZXRlY3Rpb25Mb2dzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/TCN_NCKH/TCN_NCKH/Areas/Admin/Views/Dapans/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFwYW5zXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -410,6 +430,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/TCN_NCKH/TCN_NCKH/Areas/HocSinh/Views/LichSuLamBais/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSG9jU2luaFxWaWV3c1xMaWNoU3VMYW1CYWlzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TCN_NCKH/TCN_NCKH/Areas/HocSinh/Views/LichSuLamBais/ScoreAnalysis.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSG9jU2luaFxWaWV3c1xMaWNoU3VMYW1CYWlzXFNjb3JlQW5hbHlzaXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/TCN_NCKH/TCN_NCKH/Areas/HocSinh/Views/Lichthis/Details.cshtml]

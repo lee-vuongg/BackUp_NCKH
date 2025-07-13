@@ -29,6 +29,8 @@ public partial class Nguoidung
 
     public string? AnhDaiDien { get; set; }
 
+    public virtual ICollection<CheatDetectionLog> CheatDetectionLogs { get; set; } = new List<CheatDetectionLog>();
+
     public virtual ICollection<Dethi> Dethis { get; set; } = new List<Dethi>();
 
     public virtual Loainguoidung? Loainguoidung { get; set; }

@@ -22,5 +22,4 @@ public partial class Sinhvien
     public virtual Nguoidung SinhvienNavigation { get; set; } = null!;
 
     public virtual ICollection<TraloiSinhvien> TraloiSinhviens { get; set; } = new List<TraloiSinhvien>();
-
 }

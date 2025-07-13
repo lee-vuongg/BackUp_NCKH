@@ -7,7 +7,10 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using TCN_NCKH.Areas.HocSinh.Models; // Dòng này cần thiết cho LamBaiViewModel
-using TCN_NCKH.Models; // <--- ĐẢM BẢO DÒNG NÀY ĐÚNG VỚI NAMESPACE CỦA SecurityViolationLog.cs
+using TCN_NCKH.Models;
+using TCN_NCKH.Models.ViewModels;
+using TCN_NCKH.Services; // <--- ĐẢM BẢO DÒNG NÀY ĐÚNG VỚI NAMESPACE CỦA SecurityViolationLog.cs
+
 
 namespace TCN_NCKH.Areas.HocSinh.Controllers
 {
@@ -15,10 +18,13 @@ namespace TCN_NCKH.Areas.HocSinh.Controllers
     public class LamBaiController : Controller
     {
         private readonly NghienCuuKhoaHocContext _context;
+        private readonly IEmailService _emailService; // Vẫn khai báo là IEmailService
 
-        public LamBaiController(NghienCuuKhoaHocContext context)
+
+        public LamBaiController(NghienCuuKhoaHocContext context, IEmailService emailService)
         {
             _context = context;
+            _emailService = emailService; // Dòng này sẽ không còn lỗi CS0103 nữa
         }
 
         // Hiển thị đề thi cho học sinh
@@ -229,11 +235,12 @@ namespace TCN_NCKH.Areas.HocSinh.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken] // Đảm bảo có attribute này để bảo vệ form
         public async Task<IActionResult> NopBai(int lichThiId, int lichSuLamBaiId, Dictionary<int, List<int>> dapAnChon)
         {
             Console.WriteLine($"DEBUG: Vào action NopBai (POST). LichThiId: {lichThiId}, LichSuLamBaiId: {lichSuLamBaiId}");
 
-            var msv = User.FindFirstValue("MaSinhVien")?.Trim(); // Trim MSV từ Claims
+            var msv = User.FindFirstValue("MaSinhVien")?.Trim();
             Console.WriteLine($"DEBUG: MSV từ Claims trong NopBai (đã trim): '{msv ?? "NULL/Empty"}'");
 
             if (string.IsNullOrWhiteSpace(msv))
@@ -243,8 +250,11 @@ namespace TCN_NCKH.Areas.HocSinh.Controllers
                 return RedirectToAction("Login", "Account", new { area = "" });
             }
 
-            // Trim MSV khi truy vấn DB
-            var sinhVien = await _context.Sinhviens.FirstOrDefaultAsync(s => s.Msv.Trim() == msv);
+            // SỬA DÒNG NÀY: INCLUDE THUỘC TÍNH ĐIỀU HƯỚNG NGUOIDUNG ĐỂ LẤY EMAIL VÀ HỌ TÊN
+            var sinhVien = await _context.Sinhviens
+                .Include(s => s.SinhvienNavigation) // Giả định Sinhvien có thuộc tính điều hướng tên là Nguoidung (kiểu Nguoidung)
+                .FirstOrDefaultAsync(s => s.Msv.Trim() == msv);
+
             if (sinhVien == null)
             {
                 Console.WriteLine("DEBUG: Sinh viên không tồn tại trong NopBai. Chuyển hướng về Home.");
@@ -269,18 +279,18 @@ namespace TCN_NCKH.Areas.HocSinh.Controllers
             if (lichThi.Dethi.Bocauhoiid.HasValue)
             {
                 questionsForScoring = await _context.Cauhois
-                                                   .AsNoTracking() // Thêm AsNoTracking()
-                                                   .Include(c => c.Dapans)
-                                                   .Where(c => c.Bocauhoiid == lichThi.Dethi.Bocauhoiid.Value)
-                                                   .ToListAsync();
+                                                    .AsNoTracking()
+                                                    .Include(c => c.Dapans)
+                                                    .Where(c => c.Bocauhoiid == lichThi.Dethi.Bocauhoiid.Value)
+                                                    .ToListAsync();
             }
             else
             {
                 var dethiWithDirectQuestions = await _context.Dethis
-                                                             .AsNoTracking() // Thêm AsNoTracking()
-                                                             .Include(d => d.Cauhois)
-                                                                 .ThenInclude(c => c.Dapans)
-                                                             .FirstOrDefaultAsync(d => d.Id.Trim() == lichThi.Dethi.Id.Trim());
+                                                              .AsNoTracking()
+                                                              .Include(d => d.Cauhois)
+                                                                  .ThenInclude(c => c.Dapans)
+                                                              .FirstOrDefaultAsync(d => d.Id.Trim() == lichThi.Dethi.Id.Trim());
                 questionsForScoring = dethiWithDirectQuestions?.Cauhois?.ToList() ?? new List<Cauhoi>();
             }
             Console.WriteLine($"DEBUG: NopBai: Đã tải {questionsForScoring.Count} câu hỏi để tính điểm.");
@@ -309,7 +319,7 @@ namespace TCN_NCKH.Areas.HocSinh.Controllers
             Console.WriteLine("DEBUG: Tạo Ketquathi mới.");
             var ketQuaMoi = new Ketquathi
             {
-                Sinhvienid = sinhVien.Sinhvienid.Trim(), // Lưu Sinhvienid đã trim
+                Sinhvienid = sinhVien.Sinhvienid.Trim(),
                 Lichthiid = lichThiId,
                 Thoigianlam = lichThi.Thoigian.GetValueOrDefault(0),
                 Ngaythi = now,
@@ -327,7 +337,7 @@ namespace TCN_NCKH.Areas.HocSinh.Controllers
                     {
                         newTraLois.Add(new TraloiSinhvien
                         {
-                            Sinhvienid = sinhVien.Sinhvienid.Trim(), // Lưu Sinhvienid đã trim
+                            Sinhvienid = sinhVien.Sinhvienid.Trim(),
                             Cauhoiid = cauHoi.Id,
                             Dapanid = dapanId,
                             Ngaytraloi = now,
@@ -341,7 +351,7 @@ namespace TCN_NCKH.Areas.HocSinh.Controllers
             // --- LÔ-GIC: Cập nhật LichSuLamBai khi nộp bài ---
             Console.WriteLine($"DEBUG: Đang tìm kiếm LichSuLamBai để cập nhật (ID từ form: {lichSuLamBaiId}, MSV: '{sinhVien.Msv.Trim()}', LichThiId: {lichThiId}).");
             var lichSuLamBai = await _context.LichSuLamBais
-                .FirstOrDefaultAsync(ls => ls.Id == lichSuLamBaiId && ls.MaSinhVien.Trim() == sinhVien.Sinhvienid.Trim() && ls.LichThiId == lichThiId); // SỬ DỤNG SINHVIENID.TRIM() Ở ĐÂY!
+                .FirstOrDefaultAsync(ls => ls.Id == lichSuLamBaiId && ls.MaSinhVien.Trim() == sinhVien.Sinhvienid.Trim() && ls.LichThiId == lichThiId);
 
             if (lichSuLamBai != null)
             {
@@ -358,8 +368,8 @@ namespace TCN_NCKH.Areas.HocSinh.Controllers
                 Console.WriteLine($"  TongDiemDatDuoc: {lichSuLamBai.TongDiemDatDuoc}");
                 Console.WriteLine($"  DaChamDiem: {lichSuLamBai.DaChamDiem}");
                 Console.WriteLine($"  Ipaddress: {lichSuLamBai.Ipaddress}");
-                Console.WriteLine($"  LichSuLamBai.MaSinhVien (from DB): '{lichSuLamBai.MaSinhVien?.Trim()}'"); // Show trimmed MSV from DB
-                Console.WriteLine($"  LichSuLamBai.MaDeThi (from DB): '{lichSuLamBai.MaDeThi?.Trim()}'");    // Show trimmed MaDeThi from DB
+                Console.WriteLine($"  LichSuLamBai.MaSinhVien (from DB): '{lichSuLamBai.MaSinhVien?.Trim()}'");
+                Console.WriteLine($"  LichSuLamBai.MaDeThi (from DB): '{lichSuLamBai.MaDeThi?.Trim()}'");
                 Console.WriteLine($"  LichSuLamBai.LichThiId (from DB): {lichSuLamBai.LichThiId}");
 
                 _context.LichSuLamBais.Update(lichSuLamBai);
@@ -369,9 +379,8 @@ namespace TCN_NCKH.Areas.HocSinh.Controllers
             {
                 Console.WriteLine($"WARNING: KHÔNG tìm thấy bản ghi LichSuLamBai để cập nhật khi nộp bài (ID: {lichSuLamBaiId}, MSV: '{sinhVien.Msv.Trim()}', LichThiId: {lichThiId}).");
                 Console.WriteLine("WARNING: Dữ liệu thời gian kết thúc, IP, và trạng thái chấm điểm CÓ THỂ KHÔNG ĐƯỢC LƯU.");
-                // Log all existing LichSuLamBai entries for this student and lichThiId to debug
                 var existingEntries = await _context.LichSuLamBais
-                    .Where(ls => ls.MaSinhVien.Trim() == sinhVien.Sinhvienid.Trim() && ls.LichThiId == lichThiId) // SỬ DỤNG SINHVIENID.TRIM() Ở ĐÂY!
+                    .Where(ls => ls.MaSinhVien.Trim() == sinhVien.Sinhvienid.Trim() && ls.LichThiId == lichThiId)
                     .ToListAsync();
                 if (existingEntries.Any())
                 {
@@ -392,7 +401,41 @@ namespace TCN_NCKH.Areas.HocSinh.Controllers
             {
                 await _context.SaveChangesAsync();
                 Console.WriteLine("DEBUG: Đã lưu dữ liệu nộp bài và LichSuLamBai thành công.");
-                TempData["SuccessMessage"] = $"Bạn đã nộp bài thành công! Điểm của bạn là: {ketQuaMoi.Diem}";
+
+                // --- BẮT ĐẦU LÔ-GIC GỬI EMAIL ---
+                // SỬA LẠI CÁCH TRUY CẬP EMAIL VÀ HỌ TÊN CỦA SINH VIÊN
+                if (sinhVien?.SinhvienNavigation != null && !string.IsNullOrEmpty(sinhVien.SinhvienNavigation.Email))
+                {
+                    var toEmail = sinhVien.SinhvienNavigation.Email; // Lấy email từ Nguoidung
+                    var subject = $"Kết quả bài thi: {lichThi.Dethi?.Tendethi}";
+                    var message = $@"
+                        <p>Xin chào {sinhVien.SinhvienNavigation.Hoten},</p> 
+                        <p>Bạn đã hoàn thành bài thi <strong>{lichThi.Dethi?.Tendethi}</strong>.</p>
+                        <p>Kết quả của bạn là: <strong>{ketQuaMoi.Diem} điểm</strong>.</p>
+                        <p>Cảm ơn bạn đã tham gia!</p>
+                        <p>Trân trọng,</p>
+                        <p>Hệ thống Thi Trắc Nghiệm CNTT</p>
+                    ";
+                    try
+                    {
+                        await _emailService.SendEmailAsync(toEmail, subject, message);
+                        TempData["SuccessMessage"] = $"Bạn đã nộp bài thành công! Điểm của bạn là: {ketQuaMoi.Diem}. Kết quả đã được gửi về email của bạn.";
+                        Console.WriteLine($"DEBUG: Đã gửi email kết quả đến: {toEmail}");
+                    }
+                    catch (Exception ex)
+                    {
+                        TempData["ErrorMessage"] = $"Bạn đã nộp bài thành công! Điểm của bạn là: {ketQuaMoi.Diem}. Nhưng có lỗi khi gửi email kết quả. Vui lòng kiểm tra lại email hoặc liên hệ quản trị viên.";
+                        Console.WriteLine($"ERROR: Lỗi gửi email kết quả cho '{toEmail}': {ex.Message}");
+                        Console.WriteLine($"ERROR: Inner Exception Email: {ex.InnerException?.Message ?? "N/A"}");
+                    }
+                }
+                else
+                {
+                    TempData["SuccessMessage"] = $"Bạn đã nộp bài thành công! Điểm của bạn là: {ketQuaMoi.Diem}. (Không tìm thấy email để gửi kết quả)";
+                    Console.WriteLine($"WARNING: Không tìm thấy email của sinh viên '{sinhVien?.Msv}' để gửi kết quả thi.");
+                }
+                // --- KẾT THÚC LÔ-GIC GỬI EMAIL ---
+
                 return RedirectToAction("KetQua", new { id = lichThiId });
             }
             catch (Exception ex)
@@ -403,6 +446,7 @@ namespace TCN_NCKH.Areas.HocSinh.Controllers
                 return RedirectToAction("Index", "Home", new { area = "HocSinh" });
             }
         }
+
 
 
         // --- NEW ACTION: LogSecurityViolation ---

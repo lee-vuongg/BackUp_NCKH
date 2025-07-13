@@ -1,0 +1,277 @@
+﻿
+/* Add this if not already in Lambai.css */
+.hidden {
+    display: none !important;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top */
+}
+
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 90%;
+}
+
+.modal-close-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 20px;
+}
+
+    .modal-close-btn:hover {
+        background-color: #0056b3;
+    }
+
+.security-alert {
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+    color: #856404;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+}
+
+    .security-alert ul {
+        margin-top: 10px;
+        margin-bottom: 0;
+        padding-left: 20px;
+    }
+
+.security-stats span {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.status-ok {
+    color: #28a745; /* Green */
+    font-weight: bold;
+}
+
+.status-warning {
+    color: #dc3545; /* Red */
+    font-weight: bold;
+}
+
+.expiry-alert {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+    .expiry-alert .icon {
+        font-size: 2rem;
+    }
+
+.timer-badge {
+    background-color: #28a745;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.question-nav-sidebar {
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 20px; /* Adjust as needed */
+}
+
+    .question-nav-sidebar h5 {
+        color: #007bff;
+        margin-bottom: 15px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+.question-nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(45px, 1fr)); /* 5 cột */
+    gap: 10px;
+}
+
+.question-nav-button {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    color: #343a40;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+    .question-nav-button:hover {
+        background-color: #e9ecef;
+    }
+
+    .question-nav-button.answered {
+        background-color: #28a745; /* Xanh lá cây */
+        color: white;
+        border-color: #28a745;
+    }
+
+    .question-nav-button.current {
+        background-color: #007bff; /* Xanh dương */
+        color: white;
+        border-color: #007bff;
+        transform: scale(1.1);
+        box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+    }
+
+.summary-section {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #e9ecef;
+}
+
+/* Custom styles for security warnings and modal */
+.security-alert {
+    background-color: #ffe0e6; /* Light red/pink background for warnings */
+    color: #8b0000; /* Dark red text */
+    border: 1px solid #ff4d4d;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+    .security-alert strong {
+        font-size: 1.1rem;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    .security-alert ul {
+        list-style: disc;
+        padding-left: 25px;
+        margin-top: 5px;
+    }
+
+    .security-alert li {
+        margin-bottom: 4px;
+    }
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; /* Ensure it's on top of everything */
+}
+
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-close-btn {
+    background-color: #dc3545; /* Red button */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+}
+
+    .modal-close-btn:hover {
+        background-color: #c82333;
+    }
+
+.security-stats {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: space-around;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+    .security-stats span {
+        display: block;
+        text-align: center;
+    }
+
+    .security-stats .status-ok {
+        color: #28a745; /* Green */
+        font-weight: bold;
+    }
+
+    .security-stats .status-warning {
+        color: #dc3545; /* Red */
+        font-weight: bold;
+    }
+
+

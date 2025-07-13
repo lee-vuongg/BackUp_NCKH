@@ -5,18 +5,21 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
-using TCN_NCKH.Helpers;
 using TCN_NCKH.Models.DBModel;
+using TCN_NCKH.Services;
 
 namespace TCN_NCKH.Controllers
 {
     public class AuthController : Controller
     {
         private readonly NghienCuuKhoaHocContext _context;
+        private readonly IEmailService _emailService; // Khai báo IEmailService
 
-        public AuthController(NghienCuuKhoaHocContext context)
+
+        public AuthController(NghienCuuKhoaHocContext context, IEmailService emailService)
         {
             _context = context;
+            _emailService = emailService; // Gán instance của EmailService
             Console.WriteLine("[Constructor] AuthController khởi tạo thành công.");
         }
 
@@ -68,13 +71,13 @@ namespace TCN_NCKH.Controllers
             var msv = user.Sinhvien?.Msv ?? "Chưa có MSV";
 
             var claims = new List<Claim>
-{
-                 new Claim("MaSinhVien", msv), // 👈 THÊM NÀY!
-                 new Claim(ClaimTypes.Name, msv),
-                 new Claim(ClaimTypes.Email, user.Email),
-                 new Claim(ClaimTypes.Role, role),
-                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
-};
+            {
+                   new Claim("MaSinhVien", msv), // 👈 THÊM NÀY!
+                   new Claim(ClaimTypes.Name, msv),
+                   new Claim(ClaimTypes.Email, user.Email),
+                   new Claim(ClaimTypes.Role, role),
+                   new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+            };
 
 
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -95,10 +98,7 @@ namespace TCN_NCKH.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-
             Console.WriteLine("[Register-GET] Truy cập form đăng ký.");
-           
-
             return View(new RegisterModel());
         }
 
@@ -133,11 +133,21 @@ namespace TCN_NCKH.Controllers
 
             string subject = "Mã xác nhận đăng ký tài khoản";
             string body = $"<h3>Mã xác nhận của bạn là: <strong>{verificationCode}</strong></h3>";
-            await EmailSender.SendEmailAsync(model.Email, subject, body);
 
-            return RedirectToAction("~/Views/Auth/VerifyCode.cshtml"); 
+            try
+            {
+                // GỌI DỊCH VỤ EMAIL QUA INTERFACE ĐÃ INJECT
+                await _emailService.SendEmailAsync(model.Email, subject, body);
+                Console.WriteLine("[Register-POST] Email xác nhận đã được gửi.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[Register-POST] Lỗi khi gửi email xác nhận: {ex.Message}");
+                ModelState.AddModelError("", "Không thể gửi mã xác nhận. Vui lòng thử lại sau.");
+                return View(model);
+            }
 
-
+            return RedirectToAction("VerifyCode", "Auth");
         }
 
         [HttpGet]
@@ -228,7 +238,7 @@ namespace TCN_NCKH.Controllers
                     ModelState.AddModelError("", "Đã xảy ra lỗi khi lưu dữ liệu. Vui lòng thử lại.");
                     return View();
                 }
-            }
+            } 
             else
             {
                 Console.WriteLine("[VerifyCode-POST] Mã xác nhận không khớp hoặc hết hạn.");

@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\TCN_NCKH.c31altdqe8.bundle.scp.css"
     },
     {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\css\\Lambai.css",
+      "PackagePath": "staticwebassets\\css\\Lambai.css"
+    },
+    {
       "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\css\\LayoutHS.css",
       "PackagePath": "staticwebassets\\css\\LayoutHS.css"
     },
@@ -73,8 +77,20 @@
       "PackagePath": "staticwebassets\\images\\624b0dcf-fdef-4c02-bed2-a1a9916d8b7f.jpg"
     },
     {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\images\\7cf2ad50-3d68-4305-bfca-039969d01cff.jpg",
+      "PackagePath": "staticwebassets\\images\\7cf2ad50-3d68-4305-bfca-039969d01cff.jpg"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\images\\83f528f7-33b8-489b-a587-06c6f72b21a8.jpg",
+      "PackagePath": "staticwebassets\\images\\83f528f7-33b8-489b-a587-06c6f72b21a8.jpg"
+    },
+    {
       "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\images\\87e743ca-c7d3-4ae2-9f98-12f66d222020.jpg",
       "PackagePath": "staticwebassets\\images\\87e743ca-c7d3-4ae2-9f98-12f66d222020.jpg"
+    },
+    {
+      "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\images\\898f1d05-1ea3-4f62-ad52-68611cdbae05.jpg",
+      "PackagePath": "staticwebassets\\images\\898f1d05-1ea3-4f62-ad52-68611cdbae05.jpg"
     },
     {
       "Id": "D:\\TCN_NCKH\\TCN_NCKH\\wwwroot\\images\\8b3350da-ee91-4014-9eaf-68428f9ecb4f.jpg",

@@ -27,6 +27,8 @@ public partial class LichSuLamBai
 
     public bool? DaChamDiem { get; set; }
 
+    public virtual ICollection<CheatDetectionLog> CheatDetectionLogs { get; set; } = new List<CheatDetectionLog>();
+
     public virtual Lichthi? LichThi { get; set; }
 
     public virtual Dethi? MaDeThiNavigation { get; set; }

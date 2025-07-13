@@ -9,15 +9,7 @@ public partial class NghienCuuKhoaHocContext : DbContext
     public NghienCuuKhoaHocContext()
     {
     }
-    // Thêm trường để lưu trữ IConfiguration
-    private readonly IConfiguration _configuration;
 
-    // Cập nhật constructor để nhận IConfiguration
-    public NghienCuuKhoaHocContext(DbContextOptions<NghienCuuKhoaHocContext> options, IConfiguration configuration)
-        : base(options)
-    {
-        _configuration = configuration;
-    }
     public NghienCuuKhoaHocContext(DbContextOptions<NghienCuuKhoaHocContext> options)
         : base(options)
     {
@@ -26,6 +18,8 @@ public partial class NghienCuuKhoaHocContext : DbContext
     public virtual DbSet<Bocauhoi> Bocauhois { get; set; }
 
     public virtual DbSet<Cauhoi> Cauhois { get; set; }
+
+    public virtual DbSet<CheatDetectionLog> CheatDetectionLogs { get; set; }
 
     public virtual DbSet<Dapan> Dapans { get; set; }
 
@@ -51,10 +45,9 @@ public partial class NghienCuuKhoaHocContext : DbContext
 
     public virtual DbSet<TraloiSinhvien> TraloiSinhviens { get; set; }
 
-
-    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-//        => optionsBuilder.UseSqlServer("Server=VUONG\\SQLEXPRESS;Database=nghien_cuu_khoa_hoc;Trusted_Connection=True;MultipleActiveResultSets=True; TrustServerCertificate=True");
+//    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+////#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+////        => optionsBuilder.UseSqlServer("Server=VUONG\\SQLEXPRESS;Database=nghien_cuu_khoa_hoc;Trusted_Connection=True;MultipleActiveResultSets=True; TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -126,6 +119,32 @@ public partial class NghienCuuKhoaHocContext : DbContext
                 .HasForeignKey(d => d.Dethiid)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__CAUHOI__DETHIID__2E1BDC42");
+        });
+
+        modelBuilder.Entity<CheatDetectionLog>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__CheatDet__3214EC07974BE044");
+
+            entity.HasIndex(e => e.LichSuLamBaiId, "IX_CheatDetectionLogs_LichSuLamBaiId");
+
+            entity.HasIndex(e => new { e.UserId, e.Timestamp }, "IX_CheatDetectionLogs_UserId_Timestamp").IsDescending(false, true);
+
+            entity.Property(e => e.Details).HasMaxLength(1000);
+            entity.Property(e => e.DetectionType).HasMaxLength(50);
+            entity.Property(e => e.Timestamp).HasDefaultValueSql("(getutcdate())");
+            entity.Property(e => e.UserId)
+                .HasMaxLength(15)
+                .IsUnicode(false)
+                .IsFixedLength();
+
+            entity.HasOne(d => d.LichSuLamBai).WithMany(p => p.CheatDetectionLogs)
+                .HasForeignKey(d => d.LichSuLamBaiId)
+                .OnDelete(DeleteBehavior.SetNull)
+                .HasConstraintName("FK_CheatDetectionLogs_LichSuLamBai");
+
+            entity.HasOne(d => d.User).WithMany(p => p.CheatDetectionLogs)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK_CheatDetectionLogs_NguoiDung");
         });
 
         modelBuilder.Entity<Dapan>(entity =>

@@ -1,90 +1,175 @@
-﻿@model IEnumerable<TCN_NCKH.Models.DBModel.LichSuLamBai>
+﻿@model IEnumerable<TCN_NCKH.Models.ViewModels.LichSuLamBaiDetailsViewModel>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Lịch Sử Làm Bài ";
     Layout = "~/Areas/HocSinh/Views/Shared/_LayoutHocSinh.cshtml";
 }
 
-<h1>Index</h1>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ThoiDiemBatDau)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ThoiDiemKetThuc)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SoLanRoiManHinh)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TrangThaiNopBai)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Ipaddress)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TongDiemDatDuoc)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DaChamDiem)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LichThi)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MaDeThiNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MaSinhVienNavigation)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ThoiDiemBatDau)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ThoiDiemKetThuc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SoLanRoiManHinh)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TrangThaiNopBai)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ipaddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TongDiemDatDuoc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DaChamDiem)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LichThi.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaDeThiNavigation.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaSinhVienNavigation.Sinhvienid)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    .container-custom {
+        max-width: 1200px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+        background-color: #007bff;
+        color: white;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        padding: 1.5rem;
+        font-size: 1.25rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .table th, .table td {
+        vertical-align: middle;
+    }
+
+    .table thead th {
+        background-color: #f0f0f0;
+        font-weight: bold;
+    }
+
+    .badge-status {
+        padding: 0.5em 0.8em;
+        border-radius: 0.5rem;
+        font-size: 0.85em;
+        font-weight: bold;
+    }
+    .badge-success { background-color: #28a745; color: white; }
+    .badge-warning { background-color: #ffc107; color: #343a40; }
+    .badge-info { background-color: #17a2b8; color: white; }
+    .badge-danger { background-color: #dc3545; color: white; }
+    .badge-secondary { background-color: #6c757d; color: white; }
+</style>
+
+<div class="container container-custom">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="mb-0">
+                <i class="bi bi-clock-history me-2"></i> Lịch Sử Làm Bài 
+            </h2>
+        </div>
+        <div class="card-body">
+            <p>
+                <a asp-action="Index" asp-controller="Home" class="btn btn-primary">
+                    <i class="bi bi-plus-circle me-2"></i> Bắt đầu bài thi mới
+                </a>
+                <a asp-action="ScoreAnalysis" class="btn btn-info ms-2">
+                    <i class="bi bi-bar-chart-fill me-2"></i> Xem Phân Tích Điểm
+                </a>
+            </p>
+
+            <table class="table table-striped table-hover mt-3">
+                <thead>
+                    <tr>
+                        <th>
+                            <i class="bi bi-calendar-event me-1"></i> Bắt Đầu
+                        </th>
+                        <th>
+                            <i class="bi bi-calendar-check me-1"></i> Kết Thúc
+                        </th>
+                        <th>
+                            <i class="bi bi-file-earmark-text me-1"></i> Đề Thi
+                        </th>
+                        <th>
+                            <i class="bi bi-person me-1"></i> Sinh Viên
+                        </th>
+                        <th>
+                            <i class="bi bi-exclamation-triangle me-1"></i> Lỗi Màn Hình
+                        </th>
+                        <th>
+                            <i class="bi bi-check-circle me-1"></i> Trạng Thái Nộp
+                        </th>
+                        <th>
+                            <i class="bi bi-geo-alt me-1"></i> IP
+                        </th>
+                        <th>
+                            <i class="bi bi-star-fill me-1"></i> Điểm
+                        </th>
+                        <th>
+                            <i class="bi bi-clipboard-check me-1"></i> Đã Chấm
+                        </th>
+                        <th></th>
+                        <th>PDF</th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ThoiDiemBatDau)
+                            </td>
+                            <td>
+                                @(item.ThoiDiemKetThuc?.ToString("dd/MM/yyyy HH:mm") ?? "Chưa kết thúc")
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TenDeThi)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TenSinhVien)
+                            </td>
+                            <td>
+                                <span class="badge @(item.SoLanRoiManHinh > 0 ? "bg-danger" : "bg-success")">
+                                    @Html.DisplayFor(modelItem => item.SoLanRoiManHinh)
+                                </span>
+                            </td>
+                            <td>
+                                <span class="badge @(item.TrangThaiNopBai?.Equals("true", StringComparison.OrdinalIgnoreCase) == true ? "bg-success" : "bg-warning")">
+                                    @(item.TrangThaiNopBai?.Equals("true", StringComparison.OrdinalIgnoreCase) == true ? "Đã nộp" : "Chưa nộp")
+                                </span>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Ipaddress)
+                            </td>
+                            <td>
+                                <span class="badge @(item.TongDiemDatDuoc.HasValue && item.TongDiemDatDuoc.Value >= 5 ? "bg-success" : (item.TongDiemDatDuoc.HasValue ? "bg-danger" : "bg-secondary"))">
+                                    @(item.TongDiemDatDuoc?.ToString("F2") ?? "N/A")
+                                </span>
+                            </td>
+                            <td>
+                                <span class="badge @(item.DaChamDiem == true ? "bg-success" : "bg-warning")">
+                                    @(item.DaChamDiem == true ? "Đã chấm" : "Chưa chấm")
+                                </span>
+                            </td>
+                            <td>
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">
+                                    <i class="bi bi-info-circle"></i> Chi tiết
+                                </a>
+                               
+                            </td>
+                            <td>
+                               
+                                @if (item.TongDiemDatDuoc.HasValue && item.TrangThaiNopBai?.Equals("true", StringComparison.OrdinalIgnoreCase) == true && item.DaChamDiem == true)
+                                {
+                                    <a asp-action="DownloadExamResultPdf" asp-route-id="@item.Id" class="btn btn-sm btn-success">
+                                        <i class="bi bi-file-earmark-arrow-down"></i> Tải PDF
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">Chưa sẵn sàng</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
